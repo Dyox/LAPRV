@@ -31,12 +31,10 @@
             <div class="clear hideSkiplink">
                 <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
                     <Items>
-                        <asp:MenuItem>
                         <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
                         <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
                         <asp:MenuItem NavigateUrl="~/NovaPagina.aspx" Text="dektop" Value="dektop"/>
                         <asp:MenuItem NavigateUrl="~/Dyox2.aspx" Text="Dyox2Page" Value="Dyox2Page"/>
-                        </asp:MenuItem>
                     </Items>
                 </asp:Menu>
             </div>

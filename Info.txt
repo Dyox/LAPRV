@@ -1,0 +1,7 @@
+- competências de cada elemento
+- contactos de cada elemento: nº de telemovel, skype, msn, etc.
+- divisão genérica de de tarefas
+- periodo de trabalho
+- meios de comunicação e interacção entre elementos da equipa
+- porta voz do grupo para as reuniões com cliente
+- processo de desenvolvimento de software:incremental

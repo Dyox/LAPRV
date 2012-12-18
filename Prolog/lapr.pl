@@ -1,16 +1,56 @@
-%user_profile(Id,Tags,DataNasc,Tel,Email,Linkedin,Facebook,Estado).
-user_profile(nick_98,[sw,porto,masculino,pintor],_,_,_,_,_,_).
-user_profile(killabeep,[trance,porto],_,_,_,_,_,_).
-user_profile(fred,[lx,lisboa,'nu metal'],_,_,_,_,_,_).
-user_profile(mariposa,[mala,apple,arte,pintura],_,_,_,_,_,_).
-user_profile(quimera,[pintor,barroco,'neo classico'],_,_,_,_,_,_).
-user_profile(ana_gt,[musica,video],_,_,_,_,_,_).
+% grafo
 
-%user_conn(Id,ConnList).
-%ConnList=[(UserIdA,TagA,Strength1),(UserIdB,TagB,Strength2),...]
-user_conn(killabeep,[(nick_98,irmao,3),(a,_,_),(b,_,_),(c,_,_)]).
-user_conn(nick_98,[(killabeep,irmao,3),(fred,_,_),(mariposa,namorada,2),(quimera,_,_),(ana_gt,_,_)]).
-user_conn(fred,[(nick_98,_,_),(d,_,_)]).
-user_conn(mariposa,[(nick_98,namorada,2),(e,_,_),(f,_,_),(g,_,_),(quimera,_,_)]).
-user_conn(quimera,[(nick_98,_,_),(mariposa,_,_),(h,_,_),(i,_,_),(j,_,_)]).
-user_conn(ana_gt,[(l,_,_),(m,_,_),(n,_,_),(o,_,_),(nick_98,_,_)]).
+% no(NoID,PosX,PosY)
+no(a,[musica,rock],45,95).
+no(b,[musica],90,95).
+no(c,[],45,95).
+no(d,[],90,95).
+no(e,[],45,95).
+no(f,[],90,95).
+
+% ramo(No1_ID,No2_ID,Tag,Força)
+ramo(a,b,namorada,1).
+ramo(a,c,amiga,2).
+ramo(a,d,amiga,1).
+ramo(a,e,amiga,2).
+ramo(b,e,amiga,1).
+ramo(d,e,amiga,1).
+ramo(c,d,amiga,3).
+
+semantic_eq(['c#','csharp'],['vb','visual basic']).
+
+/*todos os caminhos entre dois pontos*/
+
+go(Orig,Dest,L) :- go(Orig,Dest,[Orig],L). 
+go(Dest,Dest,_,[Dest]). 
+go(Orig,Dest,LA,[Orig|L]) :- ramo(Orig,X,_), 
+not member(X,LA), 
+go(X,Dest,[X|LA],L).
+
+/*verifica se dois user são amigos*/
+amigos(X,Y):-ramo(X,Y,_);ramo(Y,X,_).
+
+/*lista uma lista com os amigos de um user*/
+listar(X):-findall(L,listar_amigos(X,L),Lista),
+		write(Lista),nl.
+
+listar_amigos(X,L):-listar_amigos(X,[],L).
+listar_amigos(X,L,[Y|L]):-ramo(X,Y,_).
+
+/*listar todos os amigos de uma tag*/
+listar_amigos_tag(X,Tag,L):-listar_amigos_tag(X,Tag,[],L).
+listar_amigos_tag(X,Tag,L,[Y|L]):-ramo(X,Y,Tag,_).
+
+/*listar_tags(X,L):-listar_tags(X,[],L).
+listar_tags(X,L,[Y|L]):-no(X,Y,_,_).*/
+
+listar_tags(X,L):-listar_tags(X,[],L).
+listar_tags(X,L,[H|L]):-no(X,[H|T],_,_),compara(X,H,L).
+
+compara(X,H,L):-findall(L,listar_amigos(X,L),Lista),
+		no([[A|Lista]|L1],L2,_,_),write(L1).
+
+
+
+
+

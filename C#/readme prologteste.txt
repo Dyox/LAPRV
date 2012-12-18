@@ -1,0 +1,1 @@
+o projecto tem uma class library baseada no projecto 'PrologApp' em que o prolog. No entanto no site retorna a mensagem de erro: "Não é possível carregar DLL 'Int386w.dll': Impossível localizar o módulo especificado. (Excepção de HRESULT: 0x8007007E)"

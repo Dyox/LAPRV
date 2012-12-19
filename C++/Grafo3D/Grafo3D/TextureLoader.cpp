@@ -116,7 +116,7 @@ int	TextureLoader::LoadTextureFromDisk(char *szFileName, glTexture *pglTexture)
 	}
 	else																// Otherwise... We Are Loading From A File
 	{
-		GetCurrentDirectory(MAX_PATH,(LPWSTR)szFullPath);						// Get Our Working Directory
+		GetCurrentDirectory(MAX_PATH, szFullPath);						// Get Our Working Directory
 		strcat(szFullPath, "\\");										// Append "\" After The Working Directory
 		strcat(szFullPath, szFileName);									// Append The PathName
 	}
@@ -124,7 +124,7 @@ int	TextureLoader::LoadTextureFromDisk(char *szFileName, glTexture *pglTexture)
 	ExtensionFromFilename(szFileName, szExtension);
 
 	// if the file is a TGA then use the TGA file loader
-	if (lstrcmpi((LPWSTR)szExtension, (LPWSTR)"tga") == 0)
+	if (lstrcmpi(szExtension, "tga") == 0)
 	{
 		return(LoadTGAFromDisk(szFullPath, pglTexture));				// Load TGA (Compressed/Uncompressed)
 	}
@@ -133,28 +133,28 @@ int	TextureLoader::LoadTextureFromDisk(char *szFileName, glTexture *pglTexture)
 		// else load BMP, JPG, GIF
 
 		pglTexture->TexType = txUnknown;
-		if (lstrcmpi((LPCWSTR)szExtension, (LPCWSTR)"bmp") == 0)
+		if (lstrcmpi(szExtension, "bmp") == 0)
 		{
 			pglTexture->TexType = txBmp;
 		}
-		else if ((lstrcmpi((LPCWSTR)szExtension, (LPCWSTR)"jpg") == 0) ||
-				 (lstrcmpi((LPCWSTR)szExtension, (LPCWSTR)"jpeg") == 0) )
+		else if ((lstrcmpi(szExtension, "jpg") == 0) ||
+				 (lstrcmpi(szExtension, "jpeg") == 0) )
 		{
 			pglTexture->TexType = txJpg;
 		}
-		else if (lstrcmpi((LPCWSTR)szExtension, (LPCWSTR)"gif") == 0)
+		else if (lstrcmpi(szExtension, "gif") == 0)
 		{
 			pglTexture->TexType = txGif;
 		}
-		else if (lstrcmpi((LPCWSTR)szExtension, (LPCWSTR)"ico") == 0)
+		else if (lstrcmpi(szExtension, "ico") == 0)
 		{
 			pglTexture->TexType = txIco;
 		}
-		else if (lstrcmpi((LPCWSTR)szExtension, (LPCWSTR)"emf") == 0)
+		else if (lstrcmpi(szExtension, "emf") == 0)
 		{
 			pglTexture->TexType = txEmf;
 		}
-		else if (lstrcmpi((LPCWSTR)szExtension, (LPCWSTR)"wmf") == 0)
+		else if (lstrcmpi(szExtension, "wmf") == 0)
 		{
 			pglTexture->TexType = txWmf;
 		}
@@ -173,10 +173,10 @@ int	TextureLoader::LoadTextureFromRam(unsigned char *pData, int Length, glTextur
 
 	char szTempFileName[MAX_PATH+1];
 
-	GetCurrentDirectory(MAX_PATH, (LPWSTR)szTempFileName);						// Get Our Working Directory
-	lstrcat((LPWSTR)szTempFileName, (LPCWSTR)"glTEMP$$.tmp");
+	GetCurrentDirectory(MAX_PATH, szTempFileName);						// Get Our Working Directory
+	lstrcat(szTempFileName, "glTEMP$$.tmp");
 
-	HANDLE hFile = CreateFile((LPCWSTR)szTempFileName,
+	HANDLE hFile = CreateFile(szTempFileName,
 							  GENERIC_WRITE,
 							  0,
 							  NULL,
@@ -207,7 +207,7 @@ int	TextureLoader::LoadTextureFromRam(unsigned char *pData, int Length, glTextur
 			rc = BuildTexture(szTempFileName, pglTexture);
 		}
 
-		DeleteFile((LPCWSTR)szTempFileName);										// Delete The Temp File
+		DeleteFile(szTempFileName);										// Delete The Temp File
 
 		return (rc);													// Teturn State Of Texture Load
 	}
@@ -230,7 +230,7 @@ int	TextureLoader::LoadTextureFromResource(unsigned int ResourceName, char *pRes
 		// set the texture type
 		pglTexture->TexType = TexType;
 
-		rc = LoadJPG_GIFResource((char*)MAKEINTRESOURCE(ResourceName), pResourceType, pglTexture);
+		rc = LoadJPG_GIFResource(MAKEINTRESOURCE(ResourceName), pResourceType, pglTexture);
 	}
 
 	if (TexType == txBmp)
@@ -248,7 +248,7 @@ int	TextureLoader::LoadTextureFromResource(unsigned int ResourceName, char *pRes
 		// set the texture type
 		pglTexture->TexType = TexType;
 
-		rc = LoadTGAResource((char*)MAKEINTRESOURCE(ResourceName), pResourceType, pglTexture);
+		rc = LoadTGAResource(MAKEINTRESOURCE(ResourceName), pResourceType, pglTexture);
 	}
 
 	return (rc);
@@ -756,7 +756,7 @@ int TextureLoader::LoadJPG_GIFResource(char *pResourceName, char *pResourceType,
 
 	// from resources
 	HRSRC	hRes;
-	hRes = FindResource(NULL, (LPCWSTR)pResourceName, (LPCWSTR)pResourceType);
+	hRes = FindResource(NULL, pResourceName, pResourceType);
 
 	DWORD	dwDataSize	= SizeofResource(NULL,hRes);
 	HGLOBAL	hGlob		= LoadResource(NULL,hRes);
@@ -905,7 +905,7 @@ int	TextureLoader::LoadTGAResource(char *pResourceName, char *pResourceType, glT
 {
 	// from resources
 	HRSRC	hRes;
-	hRes = FindResource(NULL, (LPCWSTR)pResourceName, (LPCWSTR)pResourceType);
+	hRes = FindResource(NULL, pResourceName, pResourceType);
 
 	DWORD	dwDataSize	= SizeofResource(NULL,hRes);
 	HGLOBAL	hGlob		= LoadResource(NULL,hRes);
@@ -1021,7 +1021,7 @@ int TextureLoader::GenerateTexture(glTexture *pglTexture, GLubyte *pImgData)
 //
 void TextureLoader::ExtensionFromFilename(char *szFileName, char *szExtension)
 {
-	int len = lstrlen((LPCWSTR)szFileName);
+	int len = lstrlen(szFileName);
 	int begin=len;
 	for (begin=len;begin>=0;begin--)
 	{
@@ -1038,7 +1038,7 @@ void TextureLoader::ExtensionFromFilename(char *szFileName, char *szExtension)
 	}
 	else
 	{
-		lstrcpy((LPWSTR)szExtension, (LPCWSTR)&szFileName[begin]);
+		lstrcpy(szExtension, &szFileName[begin]);
 	}
 }
 

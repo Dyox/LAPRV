@@ -1,24 +1,61 @@
 #define _USE_MATH_DEFINES
-#include <windows.h>	// Header File For Windows
-#include <olectl.h>	// Header File For The OLE Controls Library
-#include <math.h>	// Header File For The Math Library
-#include <stdlib.h>     
+#include <stdio.h>
 #include <string.h>
+//#include <string>
+#include <stdlib.h>
+#include <math.h>
+#include <time.h>
 #include <GL\glut.h>
 #include <gl\GLAux.h>
 #include <iostream>
+//#include <cstring>
+//#include <limits>
+#include "mathlib.h"
+//#include <sstream>
+#include "studio.h"
+//#include "mdlviewer.h"
+//#include "Model_3DS.h"
+#include <fstream>
+#include <vector>
+#include "TextureLoader.h"
+#include <algorithm>
 #include "grafos.h"
 #include "glfont.h"
-//#include "TextureLoader.h"
+
+/*//musica
+#include <al.h>
+#include <alut.h>
+*/
+#include "atlstr.h"
+
+//Ceu
+#include "SkyDome.h"
+
+//Neve
+#include "Neve.h"
+
+//chuva
+#include "rain.h"
+
+//texto
+#include "font.h"
 
 using namespace std;
 
+#pragma comment (lib, "glaux.lib")    /* link with Win32 GLAUX lib usada para ler bitmaps */
+#pragma comment (lib, "OpenAL32.lib")
+#pragma comment (lib, "alut.lib")
+#pragma comment (user, "Compiled on " __DATE__ " at " __TIME__)
+#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
+
 // função para ler jpegs do ficheiro readjpeg.c
-//extern "C" int read_JPEG_file(char *, char **, int *, int *, int *);
+extern "C" int read_JPEG_file(char *, char **, int *, int *, int *);
+
 
 #define graus(X) (double)((X)*180/M_PI)
 #define rad(X)   (double)((X)*M_PI/180)
-#define NUM_TEXTURAS 1
+#define CHECKPOINT				"http://imagens.filmes3d.com/2009/setembro/av6.jpg"
+#define NUM_TEXTURAS				80
 
 // luzes e materiais
 
@@ -83,6 +120,7 @@ typedef struct Estado{
 	GLint		lightViewer;
 	GLint		eixoTranslaccao;
 	GLdouble	eixo[3];
+	GLint		noSeleccionado;
 }Estado;
 
 typedef struct Modelo {
@@ -98,13 +136,31 @@ typedef struct Modelo {
 	GLfloat escala;
 	GLUquadric *quad;
 }Modelo;
-GLuint        texID[NUM_TEXTURAS];
 Estado estado;
 Modelo modelo;
-//TextureLoader *apTexLoad = new TextureLoader();
-//glTexture txAvatar;
-GLuint txAvatar;
-/*
+TextureLoader *apTexLoad = new TextureLoader();
+glTexture checkpoint;
+GLuint        texID[NUM_TEXTURAS];
+
+AUX_RGBImageRec *LoadBMP(char *Filename)				// Loads A Bitmap Image
+{
+	FILE *File=NULL;									// File Handle
+
+	if (!Filename)										// Make Sure A Filename Was Given
+	{
+		return NULL;									// If Not Return NULL
+	}
+
+	File=fopen(Filename,"r");							// Check To See If The File Exists
+
+	if (File)											// Does The File Exist?
+	{
+		fclose(File);									// Close The Handle
+		return auxDIBImageLoad(Filename);				// Load The Bitmap And Return A Pointer
+	}
+
+	return NULL;										// If Load Failed Return NULL
+}
 void createTextures(GLuint texID[])
 {
 	AUX_RGBImageRec *TextureImage[1];					// Create Storage Space For The Texture
@@ -118,137 +174,23 @@ void createTextures(GLuint texID[])
 
 	apTexLoad->SetHighQualityTextures(TRUE);
 	apTexLoad->SetTextureFilter(txTrilinear);
-	apTexLoad->LoadTextureFromDisk("avatar.jpg",&txAvatar);
 
-	
-	//gate
-	if(read_JPEG_file("avatar.jpg",&image, &w, &h, &bpp))
+	apTexLoad->LoadTextureFromDisk(CHECKPOINT,&checkpoint);
+	/*
+	//relva
+	if(	read_JPEG_file(TEXTURA_RELVA, &image, &w, &h, &bpp))
 	{
-		glBindTexture(GL_TEXTURE_2D, texID[0]);
+		glBindTexture(GL_TEXTURE_2D, texID[ID_TEXTURA_RELVA]);
 		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST );
 		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
 		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		gluBuild2DMipmaps(GL_TEXTURE_2D, 3, w, h, GL_RGB, GL_UNSIGNED_BYTE, image);
 	}else{
-
-		printf("Textura %s not Found\n","avatar.jpg");
-		cin.get();
+		printf("Textura %s not Found\n",TEXTURA_RELVA);
 		exit(0);
-	}
+	}*/
 	glBindTexture(GL_TEXTURE_2D, NULL);
-}*/
-
-int BuildTexture(char *szPathName, GLuint &texid)						// Load Image And Convert To A Texture
-{
-	HDC			hdcTemp;												// The DC To Hold Our Bitmap
-	HBITMAP		hbmpTemp;												// Holds The Bitmap Temporarily
-	IPicture	*pPicture;												// IPicture Interface
-	OLECHAR		wszPath[MAX_PATH+1];									// Full Path To Picture (WCHAR)
-	char		szPath[MAX_PATH+1];										// Full Path To Picture
-	long		lWidth;													// Width In Logical Units
-	long		lHeight;												// Height In Logical Units
-	long		lWidthPixels;											// Width In Pixels
-	long		lHeightPixels;											// Height In Pixels
-	GLint		glMaxTexDim ;											// Holds Maximum Texture Size
-	LPWSTR tmpPath;
-
-	if (strstr(szPathName, "http://"))									// If PathName Contains http:// Then...
-	{
-		strcpy(szPath, szPathName);										// Append The PathName To szPath
-	}
-	else																// Otherwise... We Are Loading From A File
-	{
-		/*GetCurrentDirectory(MAX_PATH, szPath);							// Get Our Working Directory
-		strcat(szPath, "\\");											// Append "\" After The Working Directory
-		strcat(szPath, szPathName);		*/								// Append The PathName
-	}
-
-	MultiByteToWideChar(CP_ACP, 0, szPath, -1, wszPath, MAX_PATH);		// Convert From ASCII To Unicode
-	HRESULT hr = OleLoadPicturePath(wszPath, 0, 0, 0, IID_IPicture, (void**)&pPicture);
-
-	if(FAILED(hr))														// If Loading Failed
-		return FALSE;													// Return False
-
-	hdcTemp = CreateCompatibleDC(GetDC(0));								// Create The Windows Compatible Device Context
-	if(!hdcTemp)														// Did Creation Fail?
-	{
-		pPicture->Release();											// Decrements IPicture Reference Count
-		return FALSE;													// Return False (Failure)
-	}
-
-	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &glMaxTexDim);					// Get Maximum Texture Size Supported
 	
-	pPicture->get_Width(&lWidth);										// Get IPicture Width (Convert To Pixels)
-	lWidthPixels	= MulDiv(lWidth, GetDeviceCaps(hdcTemp, LOGPIXELSX), 2540);
-	pPicture->get_Height(&lHeight);										// Get IPicture Height (Convert To Pixels)
-	lHeightPixels	= MulDiv(lHeight, GetDeviceCaps(hdcTemp, LOGPIXELSY), 2540);
-
-	// Resize Image To Closest Power Of Two
-	if (lWidthPixels <= glMaxTexDim) // Is Image Width Less Than Or Equal To Cards Limit
-		lWidthPixels = 1 << (int)floor((log((double)lWidthPixels)/log(2.0f)) + 0.5f); 
-	else  // Otherwise  Set Width To "Max Power Of Two" That The Card Can Handle
-		lWidthPixels = glMaxTexDim;
- 
-	if (lHeightPixels <= glMaxTexDim) // Is Image Height Greater Than Cards Limit
-		lHeightPixels = 1 << (int)floor((log((double)lHeightPixels)/log(2.0f)) + 0.5f);
-	else  // Otherwise  Set Height To "Max Power Of Two" That The Card Can Handle
-		lHeightPixels = glMaxTexDim;
-	
-	//	Create A Temporary Bitmap
-	BITMAPINFO	bi = {0};												// The Type Of Bitmap We Request
-	DWORD		*pBits = 0;												// Pointer To The Bitmap Bits
-
-	bi.bmiHeader.biSize			= sizeof(BITMAPINFOHEADER);				// Set Structure Size
-	bi.bmiHeader.biBitCount		= 32;									// 32 Bit
-	bi.bmiHeader.biWidth		= lWidthPixels;							// Power Of Two Width
-	bi.bmiHeader.biHeight		= lHeightPixels;						// Make Image Top Up (Positive Y-Axis)
-	bi.bmiHeader.biCompression	= BI_RGB;								// RGB Encoding
-	bi.bmiHeader.biPlanes		= 1;									// 1 Bitplane
-
-	//	Creating A Bitmap This Way Allows Us To Specify Color Depth And Gives Us Imediate Access To The Bits
-	hbmpTemp = CreateDIBSection(hdcTemp, &bi, DIB_RGB_COLORS, (void**)&pBits, 0, 0);
-	
-	if(!hbmpTemp)														// Did Creation Fail?
-	{
-		DeleteDC(hdcTemp);												// Delete The Device Context
-		pPicture->Release();											// Decrements IPicture Reference Count
-		return FALSE;													// Return False (Failure)
-	}
-
-	SelectObject(hdcTemp, hbmpTemp);									// Select Handle To Our Temp DC And Our Temp Bitmap Object
-
-	// Render The IPicture On To The Bitmap
-	pPicture->Render(hdcTemp, 0, 0, lWidthPixels, lHeightPixels, 0, lHeight, lWidth, -lHeight, 0);
-
-	// Convert From BGR To RGB Format And Add An Alpha Value Of 255
-	for(long i = 0; i < lWidthPixels * lHeightPixels; i++)				// Loop Through All Of The Pixels
-	{
-		BYTE* pPixel	= (BYTE*)(&pBits[i]);							// Grab The Current Pixel
-		BYTE  temp		= pPixel[0];									// Store 1st Color In Temp Variable (Blue)
-		pPixel[0]		= pPixel[2];									// Move Red Value To Correct Position (1st)
-		pPixel[2]		= temp;											// Move Temp Value To Correct Blue Position (3rd)
-
-		// This Will Make Any Black Pixels, Completely Transparent		(You Can Hardcode The Value If You Wish)
-		if ((pPixel[0]==0) && (pPixel[1]==0) && (pPixel[2]==0))			// Is Pixel Completely Black
-			pPixel[3]	=   0;											// Set The Alpha Value To 0
-		else															// Otherwise
-			pPixel[3]	= 255;											// Set The Alpha Value To 255
-	}
-
-	glGenTextures(1, &texid);											// Create The Texture
-
-	// Typical Texture Generation Using Data From The Bitmap
-	glBindTexture(GL_TEXTURE_2D, texid);								// Bind To The Texture ID
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);		// (Modify This For The Type Of Filtering You Want)
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);     // (Modify This For The Type Of Filtering You Want)
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, lWidthPixels, lHeightPixels, 0, GL_RGBA, GL_UNSIGNED_BYTE, pBits);	// (Modify This If You Want Mipmaps)
-
-	DeleteObject(hbmpTemp);												// Delete The Object
-	DeleteDC(hdcTemp);													// Delete The Device Context
-
-	pPicture->Release();												// Decrements IPicture Reference Count
-
-	return TRUE;														// Return True (All Good)
 }
 
 void initEstado(){
@@ -310,7 +252,8 @@ void myInit()
 	glEnable(GL_SMOOTH); /*enable smooth shading */
 	glEnable(GL_LIGHTING); /* enable lighting */
 	glEnable(GL_DEPTH_TEST); /* enable z buffer */
-	glEnable(GL_NORMALIZE);
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_NORMALIZE); 
 
 	glDepthFunc(GL_LESS);
 
@@ -323,6 +266,8 @@ void myInit()
 	modelo.quad=gluNewQuadric();
 	gluQuadricDrawStyle(modelo.quad, GLU_FILL);
 	gluQuadricNormals(modelo.quad, GLU_OUTSIDE);
+
+	estado.noSeleccionado=-1;
 
 	leGrafo();
 	
@@ -666,68 +611,72 @@ void desenhaEixos(){
 }
 
 void desenhaHUD(int width, int height){
-	//Altera viewport e projecção
-	glViewport(0, 0, (GLint) width, (GLint) height);
-	glMatrixMode(GL_PROJECTION);
 
-	glLoadIdentity();
-	gluOrtho2D(0,100,0,100);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	glDisable(GL_LIGHTING);
-	glPushMatrix();
-		glColor3f(0.0,0.0,0.8);
-		glRasterPos2i(80, 97);
-		printString("Avatar:");
-		glColor3f(0.0,0.0,1.0);
-		glRasterPos2i(80, 95);
-		printString("Colocar aki o avatar");
-		/*
-		// Load .JPG From A File		(1st Texture)
-		BuildTexture("http://sp3.imgs.sapo.pt/0003/04/1a/28/041a28066b51fc2994bcfea85e4f84f0.jpg", txAvatar);
+	if(estado.noSeleccionado>=0)
+	{
+		//Altera viewport e projecção
+		glViewport(0, 0, (GLint) width, (GLint) height);
+		glMatrixMode(GL_PROJECTION);
+
+		glLoadIdentity();
+		gluOrtho2D(0,100,100,0);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
 		glPushMatrix();
-			glEnable(GL_BLEND);
-			glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			glBindTexture(GL_TEXTURE_2D, txAvatar);           
-			//glTranslatef(0,15,0);
-			glBegin(GL_QUADS);
-				glTexCoord2f(0,0);
-				glVertex2f(10,10);
-				glTexCoord2f(0,1);
-				glVertex2f(10,25);
-				glTexCoord2f(1,1);
-				glVertex2f(25,25);
-				glTexCoord2f(1,0);
-				glVertex2f(25,10);
-			glEnd();
-			glDisable(GL_BLEND);
+			glDisable(GL_LIGHTING);
+			glColor3f(0.0,0.0,0.8);
+			glRasterPos2i(80, 3);
+			printString("Avatar:");
+			/*glColor3f(0.0,0.0,1.0);
+			glRasterPos2i(80, 5);
+			printString("Colocar aki o avatar");*/
+	
+			//carregar avatar
+			glPushMatrix();
+				glColor3f(1.0,1.0,1.0);
+				glEnable(GL_BLEND);
+				glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+				glBindTexture(GL_TEXTURE_2D, checkpoint.TextureID);  
+				glBegin(GL_QUADS);
+					glTexCoord2f(0,1);
+					glVertex2f(80,4);
+					glTexCoord2f(0,0);
+					glVertex2f(80,18);
+					glTexCoord2f(1,0);
+					glVertex2f(94,18);
+					glTexCoord2f(1,1);
+					glVertex2f(94,4);
+				glEnd();
+				glBindTexture(GL_TEXTURE_2D, NULL);  
+				glDisable(GL_BLEND);
+			glPopMatrix();
+
+			glColor3f(0.0,0.0,0.8);
+			glRasterPos2i(80, 21);
+			printString("Nome:");
+			glColor3f(0.0,0.0,1.0);
+			glRasterPos2i(80, 23);
+			printString("Xpto Otpx");
+
+			glColor3f(0.0,0.0,0.8);
+			glRasterPos2i(80, 26);
+			printString("Data Nascimento:");
+			glColor3f(0.0,0.0,1.0);
+			glRasterPos2i(80, 28);
+			printString("01-01-9999");
+
+			glColor3f(0.0,0.0,0.8);
+			glRasterPos2i(80, 31);
+			printString("Morada:");
+			glColor3f(0.0,0.0,1.0);
+			glRasterPos2i(80, 33);
+			printString("Rua xpto, 666, qwerty");
+
+			glEnable(GL_LIGHTING);
 		glPopMatrix();
-		*/
-		glColor3f(0.0,0.0,0.8);
-		glRasterPos2i(80, 90);
-		printString("Nome:");
-		glColor3f(0.0,0.0,1.0);
-		glRasterPos2i(80, 88);
-		printString("Xpto Otpx");
 
-		glColor3f(0.0,0.0,0.8);
-		glRasterPos2i(80, 83);
-		printString("Data Nascimento:");
-		glColor3f(0.0,0.0,1.0);
-		glRasterPos2i(80, 81);
-		printString("01-01-9999");
-
-		glColor3f(0.0,0.0,0.8);
-		glRasterPos2i(80, 76);
-		printString("Morada:");
-		glColor3f(0.0,0.0,1.0);
-		glRasterPos2i(80, 74);
-		printString("Rua xpto, 666, qwerty");
-
-
-	glPopMatrix();
-	glEnable(GL_LIGHTING);
-	myReshape((GLint) width, (GLint) height);
+		myReshape((GLint) width, (GLint) height);
+	}
 }
 
 
@@ -749,8 +698,7 @@ void setCamera(){
 
 void display(void)
 {
-
-
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	setCamera();
@@ -758,12 +706,12 @@ void display(void)
 	material(slate);
 	desenhaSolo();
 
-	
 	desenhaEixos();
 	
 	desenhaLabirinto();
 
 	desenhaHUD(glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT));
+
  
 	if(estado.eixoTranslaccao) {
 		// desenha plano de translacção
@@ -1016,6 +964,7 @@ int picking(int x, int y){
 	return objid;
 }
 void mouse(int btn, int state, int x, int y){
+	int idobj;
 	switch(btn) {
 		case GLUT_RIGHT_BUTTON :
 					if(state == GLUT_DOWN){
@@ -1034,9 +983,19 @@ void mouse(int btn, int state, int x, int y){
 				break;
 		case GLUT_LEFT_BUTTON :
 					if(state == GLUT_DOWN){
-						estado.eixoTranslaccao=picking(x,y);
+						idobj=picking(x,y);
+						estado.eixoTranslaccao=idobj;
 						if(estado.eixoTranslaccao)
 							glutMotionFunc(motionDrag);
+						if (idobj>3)//temporario
+						{
+							estado.noSeleccionado=idobj;
+						}
+						else
+						{
+							estado.noSeleccionado=-1;
+						}
+						glutPostRedisplay();
 						cout << "Left down - objecto:" << estado.eixoTranslaccao << endl;
 					}
 					else{
@@ -1071,7 +1030,7 @@ void main(int argc, char **argv)
 
 	myInit();
 
-	//createTextures(texID);
+	createTextures(texID);   //carrega texturas
 
 	imprime_ajuda();
 

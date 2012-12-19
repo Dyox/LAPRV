@@ -105,29 +105,7 @@ namespace Rede
             }
         }
 
-        public static List<string> TagCloudRel()
-        {
-            List<string> lst = new List<string>();
-           
-            try
-            {
-                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * from TRelacao");
-
-                foreach (DataRow r in ds.Tables[0].Rows)
-                {
-                    Relacao av = new Relacao(r);
-                    lst.Add(av.TTag);
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException("Erro BD", ex);
-            }
-            return lst;
-        }
-
+       
 
 
         public override void Save()

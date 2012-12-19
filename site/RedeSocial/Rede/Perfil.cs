@@ -235,15 +235,15 @@ namespace Rede
         {
             if (this.ID != 0)
             {
-                ExecuteNonQuery("UPDATE TProfile SET Nome='"+this.Name+"',Nick= '"+this.Nick+"',Morada= '"+ this.Morada +"',DataNascimento='"+this.DataNascimento.ToString("yyyy-MM-dd") +"',Telemovel="+this.Telemovel+",Linkedin='"+ this.Linkedin+"', Facebook='"+ this.FaceBook+"',HumorID="+this.humor.ID+", Avatar='"+this.avatar+"',X="+this.X+", Y="+this.Y+"WHERE ProfileID=" + this.ID );
+                ExecuteNonQuery("UPDATE TProfile SET Nome='"+this._name+"',Nick= '"+this._nick+"',Morada= '"+ this._morada +"',DataNascimento='"+this._datanasc.ToString("yyyy-MM-dd") +"',Telemovel="+this._tlm+",Linkedin='"+ this._lk+"', Facebook='"+ this._fb+"',HumorID="+this._humor.ID+", Avatar='"+this._avatar+"',X="+this._x+", Y="+this._y+"WHERE ProfileID=" + this.ID );
             }
             else
             {
                 
                 
-                this.humor= Humor.LoadById(this.humor.ID);
+                this.humor= Humor.LoadById(2);
 
-                this.myID = ExecuteNonQuery("INSERT INTO TProfile(UserID, Nome, Nick, Morada, DataNascimento, Telemovel, Facebook, Linkedin, AvatarID, HumorID, X, Y)   VALUES('" + this.UsID + "','" + this.Name + "','" + this.Nick + "','" + this.Morada + "','" + this.DataNascimento.ToString("yyyy-MM-dd") + "'," + this.Telemovel + ",'" + this.Linkedin + "','" + this.FaceBook + "'," + this.humor.ID + ", '" + this.avatar + "'," + this.X + "," + this.Y + ")");
+                this.myID = ExecuteNonQuery("INSERT INTO TProfile(UserID, Nome, Nick, Morada, DataNascimento, Telemovel, Facebook, Linkedin, Avatar, HumorID, X, Y)   VALUES('" + this.UsID + "','" + this.Name + "','" + this.Nick + "','" + this.Morada + "','" + this.DataNascimento.ToString("yyyy-MM-dd") + "'," + this.Telemovel + ",'" + this.Linkedin + "','" + this.FaceBook + "','" + this.avatar + "'," + this.humor.ID + "," + this.X + "," + this.Y + ")");
 
                 
             }

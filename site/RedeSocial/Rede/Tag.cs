@@ -111,6 +111,33 @@ namespace Rede
             return lst;
         }
 
+        public static List<string> TagCloudRel()
+        {
+            List<string> lst = new List<string>();
+            int aux=0;
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * from TTag");
+
+                foreach (DataRow r in ds.Tables[0].Rows)
+                {
+                    Tag av = new Tag(r);
+                    aux = getOcurrenciasRelacao(av.ID);
+                    while(aux!=0){
+
+                    lst.Add(av.Designacao);
+                    aux--;
+                    }
+                   
+                }}
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro BD", ex);
+            }
+            return lst;
+        }
+
+
         public static int getOcurrencias(int id)
         {
             int aux=0;
@@ -122,6 +149,16 @@ namespace Rede
                     return aux;                       
         }
 
+        public static int getOcurrenciasRelacao(int id)
+        {
+            int aux = 0;
+            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * from Rel_Tag WHERE ID_Tag=" + id);
+            foreach (DataRow r2 in ds.Tables[0].Rows)
+            {
+                aux++;
+            }
+            return aux;
+        }
 
 
 

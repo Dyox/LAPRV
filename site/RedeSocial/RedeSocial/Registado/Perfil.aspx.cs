@@ -20,31 +20,18 @@ namespace RedeSocial.Registado
             TextFace.Enabled = false;
             TextNick.Enabled = false;
             TextTlm.Enabled = false;
+            DropDownList1.Enabled = false;
 
             MembershipUser currentLoggedInUser = Membership.GetUser();
-            if (currentLoggedInUser != null)
-            {
+            
                 string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
                 Rede.Perfil prof = Rede.Perfil.LoadByUserId(id);
-                if (prof != null)
-                {
-
-                    TextNome.Text = prof.Name;
-                    TextNick.Text = prof.Nick;
-                    TextMorada.Text = prof.Morada;
-                    TextFace.Text = prof.FaceBook;
-                    TextData.Text = prof.DataNascimento.ToShortDateString();
-                    TextLinkedin.Text = prof.Linkedin;
-                    TextTlm.Text = prof.Telemovel.ToString();
-                    avatarIMG.Src = prof.avatar;
-                }
-                else
+                if (prof == null)
                 {
                     id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
                     prof = new Rede.Perfil(id);
                     prof.Save();
-                }
-            }
+                }    
 
         }
 
@@ -77,10 +64,24 @@ namespace RedeSocial.Registado
             prof.X = 1;
             prof.Y = 1;
             prof.Save();
+
         }
 
         protected void Button4_Click(object sender, EventArgs e)
         {
+            MembershipUser currentLoggedInUser = Membership.GetUser();
+
+            string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
+            Rede.Perfil prof = Rede.Perfil.LoadByUserId(id);
+            TextNome.Text = prof.Name;
+            TextNick.Text = prof.Nick;
+            TextMorada.Text = prof.Morada;
+            TextFace.Text = prof.FaceBook;
+            TextData.Text = prof.DataNascimento.ToShortDateString();
+            TextLinkedin.Text = prof.Linkedin;
+            TextTlm.Text = prof.Telemovel.ToString();
+            avatarIMG.Src = prof.avatar;
+            DropDownList1.SelectedValue = Convert.ToString(prof.humor.ID);
             TextNome.Enabled = true;
             TextMorada.Enabled = true;
             TextData.Enabled = true;
@@ -89,6 +90,7 @@ namespace RedeSocial.Registado
             TextNick.Enabled = true;
             TextTlm.Enabled = true;
             Button3.Visible = true;
+            DropDownList1.Enabled = true;
         }
     }
 }

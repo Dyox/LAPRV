@@ -23,7 +23,7 @@ namespace RedeSocial
 
         protected void Cloud_tagrelacao()
         {
-            List<string> lst = Rede.Relacao.TagCloudRel();
+            List<string> lst = Rede.Tag.TagCloudRel();
 
             var tags = (from l in lst
                         group l by l into g

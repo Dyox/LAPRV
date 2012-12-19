@@ -83,6 +83,8 @@ h4 {
 
 h5, h6 {
     font-size: 1em;
+    height: 57px;
+    margin-left: 40px;
 }
 
     h5 a:link, h5 a:visited, h5 a:active {

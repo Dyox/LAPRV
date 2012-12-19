@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Rede
 {
-    class Tag :ActiveRecord
+    public class Tag :ActiveRecord
     {
         private string _desgina;
 
@@ -81,6 +81,49 @@ namespace Rede
 
             return av;
         }
+
+        public static List<string> TagUser()
+        {
+            List<string> lst = new List<string>();
+            int aux=0;
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * from TTag");
+
+                foreach (DataRow r in ds.Tables[0].Rows)
+                {
+                    Tag av = new Tag(r);
+                    aux = getOcurrencias(av.ID);
+                    while(aux!=0){
+
+                    lst.Add(av.Designacao);
+                    aux--;
+                    }
+                   
+                }
+
+              
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro BD", ex);
+            }
+            return lst;
+        }
+
+        public static int getOcurrencias(int id)
+        {
+            int aux=0;
+              DataSet ds = ExecuteQuery(GetConnection(false),"SELECT * from TTags WHERE TagID="+id);
+                    foreach (DataRow r2 in ds.Tables[0].Rows)
+                    {
+                       aux++;
+                    }
+                    return aux;                       
+        }
+
+
+
 
         public override void Save()
         {

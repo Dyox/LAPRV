@@ -1,5 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Perfil.aspx.cs" Inherits="RedeSocial.Registado.Perfil" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <style type="text/css">
+        .auto-style1
+        {
+            width: 57px;
+            height: 53px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
@@ -29,14 +36,15 @@
 <asp:TextBox ID="TextTlm" runat="server"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;
 <asp:Label ID="Label8" runat="server" Font-Bold="True" Font-Size="Medium" Height="35px" Text="Avatar" Width="95px"></asp:Label>
-<asp:TextBox ID="TextAvatar" runat="server"></asp:TextBox>
-    <br />
+    <asp:FileUpload ID="UploadAvatar" runat="server" />
+    <img id="avatarIMG" alt="" class="auto-style1" runat="server"  /><br />
     <br />
     <asp:Label ID="Label9" runat="server" Text="Nick"></asp:Label>
     <asp:TextBox ID="TextNick" runat="server"></asp:TextBox>
 <br />
 <asp:Button ID="Button2" runat="server" Text="Enviar" OnClick="Button2_Click" />
-<asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Limpar" />
+<asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Limpar" Visible="False" />
+    <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Editar" />
 <br />
 <br />
 </asp:Content>

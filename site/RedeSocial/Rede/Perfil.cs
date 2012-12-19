@@ -19,7 +19,7 @@ namespace Rede
         private string _lk;
         private string _fb;
         private Humor _humor;
-        private Avatar _avatar;
+        private string _avatar;
         private int _x;
         private int _y;
 
@@ -33,19 +33,19 @@ namespace Rede
             this._userID= uid;
             
            
-            this._name = " ";
-            this._nick = " ";
+            this._name = "";
+            this._nick = "";
             this._datanasc = DateTime.Today.Date;
-            this._morada = " ";
+            this._morada = "";
             this._tlm = 0;
-            this._lk = " ";
-            this._fb = " ";
+            this._lk = "";
+            this._fb = "";
             this._humor = Rede.Humor.LoadById(2);
-            this._avatar = Rede.Avatar.LoadById(1);
+            this._avatar = "";
             this._x = 1;
             this._y = 2;
         }
-        public Perfil(int id, string uID, string Name, string Nick, DateTime dataNasc, string morada, int tlm, string lk, string fb, Humor humor, Avatar avatar, int x, int y)
+        public Perfil(int id, string uID, string Name, string Nick, DateTime dataNasc, string morada, int tlm, string lk, string fb, Humor humor, string avatar, int x, int y)
         {
             this.myID = id;
             this._userID = uID;
@@ -114,7 +114,7 @@ namespace Rede
             get { return _humor; }
             set { _humor = value; }
         }
-        public Avatar avatar
+        public string avatar
         {
             get { return _avatar; }
             set { _avatar = value; }
@@ -142,7 +142,7 @@ namespace Rede
             this._tlm = (int)row["Telemovel"];
             this._fb = (string)row["Facebook"];
             this._lk = (string)row["Linkedin"];
-            this._avatar = Avatar.LoadById((int)row["AvatarID"]);
+            this._avatar = (string)row["Avatar"];
             this._humor = Humor.LoadById((int)row["HumorID"]);
             this._x = (int)row["X"];
             this._y = (int)row["Y"];
@@ -205,21 +205,45 @@ namespace Rede
             }
         }
 
+        public static int get_UsersRegistados()
+        {
+            int N_users=0;
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * FROM TProfile");
+
+              
+
+                foreach (DataRow r in ds.Tables[0].Rows)
+                {
+                    N_users++;
+                }
+
+              
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro BD", ex);
+            }
+
+            return N_users;
+         
+        }
+
 
         public override void Save()
         {
             if (this.ID != 0)
             {
-                ExecuteNonQuery("UPDATE TProfile SET Nome='"+this.Name+"',Nick= '"+this.Nick+"',Morada= '"+ this.Morada +"',DataNascimento='"+this.DataNascimento.ToString("yyyy-MM-dd") +"',Telemovel="+this.Telemovel+",Linkedin='"+ this.Linkedin+"', Facebook='"+ this.FaceBook+"',HumorID="+this.humor.ID+", AvatarID="+this.avatar.ID+",X="+this.X+", Y="+this.Y+"WHERE ProfileID=" + this.ID );
+                ExecuteNonQuery("UPDATE TProfile SET Nome='"+this.Name+"',Nick= '"+this.Nick+"',Morada= '"+ this.Morada +"',DataNascimento='"+this.DataNascimento.ToString("yyyy-MM-dd") +"',Telemovel="+this.Telemovel+",Linkedin='"+ this.Linkedin+"', Facebook='"+ this.FaceBook+"',HumorID="+this.humor.ID+", Avatar='"+this.avatar+"',X="+this.X+", Y="+this.Y+"WHERE ProfileID=" + this.ID );
             }
             else
             {
                 
                 
                 this.humor= Humor.LoadById(this.humor.ID);
-                this.avatar= Avatar.LoadById(this.avatar.ID);
 
-                this.myID = ExecuteNonQuery("INSERT INTO TProfile(UserID, Nome, Nick, Morada, DataNascimento, Telemovel, Facebook, Linkedin, AvatarID, HumorID, X, Y)   VALUES('" + this.UsID + "','" + this.Name + "','" + this.Nick + "','" + this.Morada + "','" + this.DataNascimento.ToString("yyyy-MM-dd") + "'," + this.Telemovel + ",'" + this.Linkedin + "','" + this.FaceBook + "'," + this.humor.ID + ", " + this.avatar.ID + "," + this.X + "," + this.Y + ")");
+                this.myID = ExecuteNonQuery("INSERT INTO TProfile(UserID, Nome, Nick, Morada, DataNascimento, Telemovel, Facebook, Linkedin, AvatarID, HumorID, X, Y)   VALUES('" + this.UsID + "','" + this.Name + "','" + this.Nick + "','" + this.Morada + "','" + this.DataNascimento.ToString("yyyy-MM-dd") + "'," + this.Telemovel + ",'" + this.Linkedin + "','" + this.FaceBook + "'," + this.humor.ID + ", '" + this.avatar + "'," + this.X + "," + this.Y + ")");
 
                 
             }

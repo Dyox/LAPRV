@@ -157,13 +157,22 @@ namespace RedeSocial.Registado {
         protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
-        /// TextAvatar control.
+        /// UploadAvatar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextAvatar;
+        protected global::System.Web.UI.WebControls.FileUpload UploadAvatar;
+        
+        /// <summary>
+        /// avatarIMG control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage avatarIMG;
         
         /// <summary>
         /// Label9 control.
@@ -200,5 +209,14 @@ namespace RedeSocial.Registado {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button3;
+        
+        /// <summary>
+        /// Button4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button4;
     }
 }

@@ -13,7 +13,13 @@ namespace RedeSocial.Registado
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            TextNome.Enabled = false;
+            TextMorada.Enabled = false;
+            TextData.Enabled = false;
+            TextLinkedin.Enabled = false;
+            TextFace.Enabled = false;
+            TextNick.Enabled = false;
+            TextTlm.Enabled = false;
 
             MembershipUser currentLoggedInUser = Membership.GetUser();
             if (currentLoggedInUser != null)
@@ -24,12 +30,13 @@ namespace RedeSocial.Registado
                 {
 
                     TextNome.Text = prof.Name;
+                    TextNick.Text = prof.Nick;
                     TextMorada.Text = prof.Morada;
                     TextFace.Text = prof.FaceBook;
                     TextData.Text = prof.DataNascimento.ToShortDateString();
                     TextLinkedin.Text = prof.Linkedin;
                     TextTlm.Text = prof.Telemovel.ToString();
-                    TextAvatar.Text = prof.avatar.Designacao;
+                    avatarIMG.Src = prof.avatar;
                 }
                 else
                 {
@@ -65,13 +72,23 @@ namespace RedeSocial.Registado
             prof.Linkedin = TextLinkedin.Text;
             Rede.Humor h = Rede.Humor.LoadById( Convert.ToInt32(DropDownList1.SelectedValue));
             prof.humor = h;
-            prof.Telemovel = Convert.ToInt32(TextTlm.Text);
-            Rede.Avatar a = new Rede.Avatar(TextAvatar.Text);
-            prof.avatar =a ;
+            prof.Telemovel = Convert.ToInt32(TextTlm.Text);            
+            prof.avatar =UploadAvatar.FileName;
             prof.X = 1;
             prof.Y = 1;
             prof.Save();
+        }
 
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            TextNome.Enabled = true;
+            TextMorada.Enabled = true;
+            TextData.Enabled = true;
+            TextLinkedin.Enabled = true;
+            TextFace.Enabled = true;
+            TextNick.Enabled = true;
+            TextTlm.Enabled = true;
+            Button3.Visible = true;
         }
     }
 }

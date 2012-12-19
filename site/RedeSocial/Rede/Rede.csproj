@@ -40,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveRecord.cs" />
-    <Compile Include="Avatar.cs" />
     <Compile Include="Humor.cs" />
     <Compile Include="Perfil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

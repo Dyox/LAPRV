@@ -25,6 +25,14 @@ namespace ExemploProf
             //NomeFich=Comando+"_"+User;
             this._NomeFich = nomeFich;
         }
+
+        public PrologExec(string lines, string user, string comando)
+        {
+            this._Lines = lines;
+            this._User = user;
+            this._Comando = comando;
+            //NomeFich=Comando+"_"+User;
+        }
         
         public string Lines
         {
@@ -145,6 +153,7 @@ namespace ExemploProf
 
         public string executaComandoProlog()
         {
+        //Lines=Lines.Replace("user_comando",NomeFich);
             Boolean pl =escrverPL();
             if (pl)
             {

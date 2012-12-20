@@ -111,6 +111,27 @@ namespace Rede
             return lst;
         }
 
+
+        public static bool ExisteTag(string design)
+        {
+            int aux = 0;
+            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * from TTag WHERE Designacao='" + design+"'");
+            foreach (DataRow r2 in ds.Tables[0].Rows)
+            {
+                aux++;
+            }
+
+
+
+            if (aux != 0) return true;
+
+            return false;
+
+
+
+
+        }
+
         public static List<string> TagCloudRel()
         {
             List<string> lst = new List<string>();
@@ -162,6 +183,15 @@ namespace Rede
 
 
 
+        public static void insereRelacao(int idProfile, int idTag)
+        {
+            int aux = 0;
+           aux= ExecuteNonQuery("INSERT INTO TTags(ProfileID,TagID) VALUES("+ idProfile+","+idTag+")");
+           
+        }
+
+
+
         public override void Save()
         {
 
@@ -174,6 +204,7 @@ namespace Rede
             else
             {
                 this.myID = ExecuteNonQuery("INSERT INTO TTag(Designacao) VALUES('" + this.Designacao + "')");
+
             }
 
             

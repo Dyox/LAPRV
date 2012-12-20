@@ -38,7 +38,7 @@ namespace RedeSocial
             double minSize = 8;
 
             //Maximum Size for Tags, you can set it as per your need
-            double maxSize = 32;
+            double maxSize = 42;
 
             //Calculating the step in which increament the fonts
             double steps = (maxSize - minSize) / (double)tags.Count();
@@ -78,10 +78,10 @@ namespace RedeSocial
                     select t);
 
             //Minimum Size for Tags, you can set it as per your need
-            double minSize = 10;
+            double minSize = 8;
 
             //Maximum Size for Tags, you can set it as per your need
-            double maxSize = 26;
+            double maxSize = 42;
 
             //Calculating the step in which increament the fonts
             double steps = (maxSize - minSize) / (double)tags.Count();
@@ -90,9 +90,10 @@ namespace RedeSocial
             foreach (var tag in tags)
             {
                 //Calculating the Size
-                double size = minSize + ((double)tag.Count - 1) * steps;
+                int size = Convert.ToInt32(minSize + ((double)tag.Count) * steps);
 
-                //Create the SPAN tag with spefic font size so it looks like cloud
+
+
                 sb.Append("<span style='font-size:" + size + "pt'>" + tag.Name + " </span>");
             }
 

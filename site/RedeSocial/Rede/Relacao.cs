@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace Rede
 {
-    class Relacao :ActiveRecord
+    public class Relacao :ActiveRecord
     {
-        private string _profileIDA;
-        private string _profileIDB;
+        private int _profileIDA;
+        private int _profileIDB;
         private int _forca;
         private string _tag;
         private string _estado;
 
-        public Relacao(string profileIDA, string profileIDB, int forca, string tag, string estado )
+        public Relacao(int profileIDA, int profileIDB, int forca, string tag, string estado )
         {
 
             this._profileIDA= profileIDA;
@@ -28,17 +28,17 @@ namespace Rede
 
         protected Relacao(DataRow row)
         {
-            this.myID = (int)row["RelacaoID"];
-            this._profileIDA = (string)row["ProfileIDA"];
-            this._profileIDB = (string)row["ProfileIDB"];
+            this.myID = (int)row["IDRelacao"];
+            this._profileIDA = (int)row["ProfileIDA"];
+            this._profileIDB = (int)row["ProfileIDB"];
             this._forca= (int)row["Forca"];
             this._tag = (string)row["Tag"];
             this._estado= (string)row["Estado"];
         }
 
 
-        public string ProfileIDA { get { return _profileIDA; } set { _profileIDA = value; } }
-        public string ProfileIDB { get { return _profileIDB; } set { _profileIDB = value; } }
+        public int ProfileIDA { get { return _profileIDA; } set { _profileIDA = value; } }
+        public int ProfileIDB { get { return _profileIDB; } set { _profileIDB = value; } }
         public int Forca { get { return _forca; } set { _forca = value; } }
         public string TTag { get { return _tag; } set { _tag = value; } }
         public string Estado { get { return _estado; } set { _estado = value; } }
@@ -105,6 +105,7 @@ namespace Rede
             }
         }
 
+       
 
 
         public override void Save()
@@ -114,11 +115,11 @@ namespace Rede
             
             if (this.ID != 0)
             {
-                ExecuteNonQuery("UPDATE TRelacao SET RelacaoID=" + this.ID + ", ProfileIDA='" + this._profileIDA + "', ProfileIDB='"+this._profileIDB+"',Forca="+this._forca+",Tag='"+this._tag+"',Estado='"+this._estado+"'WHERE RelacaoID=" + this.ID);
+                ExecuteNonQuery("UPDATE TRelacao SET ProfileIDA=" + this._profileIDA + ", ProfileIDB="+this._profileIDB+",Forca="+this._forca+",Tag='"+this._tag+"',Estado='"+this._estado+"'WHERE RelacaoID=" + this.ID);
             }
             else
             {
-                this.myID = ExecuteNonQuery("INSERT INTO THumor(ProfileIDA, ProfileIDB, Forca, Tag, Estado) VALUES('" + this.ProfileIDA + "','"+this.ProfileIDB+"',"+this.Forca+",'"+this.TTag+"','"+this.Estado+"')");
+                this.myID = ExecuteNonQuery("INSERT INTO TRelacao(ProfileIDA, ProfileIDB, Forca, Tag, Estado) VALUES(" + this.ProfileIDA + ","+this.ProfileIDB+","+this.Forca+",'"+this.TTag+"','"+this.Estado+"')");
             }
         }
     }

@@ -42,9 +42,10 @@ namespace Rede
         {
 
             DataSet ds = ExecuteQuery("SELECT * FROM THumor WHERE HumorID=" + ID);
-            Humor m = new Humor(ds.Tables[0].Rows[0]);
-
-            return m;
+            if (ds.Tables[0].Rows.Count != 1)
+                return null;
+            else
+                return new Humor(ds.Tables[0].Rows[0]);
         }
 
         public static IList LoadAll()

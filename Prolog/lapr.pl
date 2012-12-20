@@ -2,22 +2,23 @@
 
 % no(NoID,PosX,PosY)
 no(a,[musica,rock],45,95).
-no(b,[musica],90,95).
-no(c,[],45,95).
+no(b,[musica,rock],90,95).
+no(c,[musica],45,95).
 no(d,[],90,95).
 no(e,[],45,95).
-no(f,[],90,95).
+no(f,['c#'],90,95).
 
 % ramo(No1_ID,No2_ID,Tag,Força)
-ramo(a,b,namorada,1).
-ramo(a,c,amiga,2).
-ramo(a,d,amiga,1).
-ramo(a,e,amiga,2).
-ramo(b,e,amiga,1).
-ramo(d,e,amiga,1).
-ramo(c,d,amiga,3).
+ramo(a,b,[namorada],1).
+ramo(a,c,[amiga],2).
+ramo(a,d,[amiga],1).
+ramo(a,e,[amiga],2).
+ramo(b,e,[amiga],1).
+ramo(d,e,[amiga],1).
+ramo(d,f,[amiga,irma],1).
+ramo(c,d,[],3).
 
-semantic_eq(['c#','csharp'],['vb','visual basic']).
+semantic_eq([['c#','csharp'],['vb','visual basic']]).
 
 /*todos os caminhos entre dois pontos*/
 
@@ -67,26 +68,44 @@ conta_tag(Tag,L,[Y|L]):-no(_,Lista,_,_),member(Tag,Lista),Y is + 1, write(Y).
 verifica_tag(X,Tag):-no(X,L,_,_),member(Tag,L).
 
 
+
 /**/
-listar(X):-findall(L,listar_amigos(X,L),Lista),
-		write(Lista),nl.
+listar_am(X):-findall(L,listar_amigos(X,L),Lista),
+		write(Lista),nl,
+		constroi_lista(Lista,[],L).
 
 listar_amigos(X,L):-listar_amigos(X,[],L).
 listar_amigos(X,L,[Y|L]):-ramo(X,Y,_,_).
+
+
+
+
+
 
 /*conta os amigos de um user*/
 conta_amigos(X):-findall(L,listar_amigos(X,L),Lista),
 			conta_elem(Lista,Y),
 			write(Y),nl.
 
+
+
+
+
 /*lista os amigos dos amigos de um user*/
-/*listar_amigos_amigos(X):-findall(L,listar_amigos(X,L),Lista),
-*/		
+listar_amigos_amigos(X):-findall(L,listar_amigos(X,L),Lista),
+				p(Lista).
+p([[X|_]|L1]):-listar_amigos2(X,L),p(L1).
+
+/*listar_amigos2(X,L),p(L1).*/
+
+listar_amigos2(X,L):-listar_amigos2(X,[],L).
+listar_amigos2(X,L,[Y|L]):-ramo(X,Y,_,_),write(Y),nl.
+
+listar_am_am(X):-findall(_,listar_amigos_amigos(X),Lista),
+		nl,write(Lista),nl.
 
 
-		
-		/*listar(X),
-		listar_amigos_amigos(L).*/
+
 
 
 
@@ -96,3 +115,11 @@ conta_elem([_|T],N):-len(T,M),N is M+1.
 
 
 
+/*procura amigos com X tags iguais*/
+/*User Xtags Lista*/
+amigos_tags_iguais(U,X,L):-amigos_tags_iguais(U,X,[],L).
+amigos_tags_iguais(U,X,L,[Y|L]):-no(Y,La,_,_),
+					no(U,[Tag|L],_,_),
+					
+					member(Tag,La),write(Tag).
+					

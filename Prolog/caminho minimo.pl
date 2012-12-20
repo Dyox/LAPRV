@@ -31,4 +31,4 @@ menor([X|T],X):-menor(T,L),
 				N =< M,!.
 menor([X|T],L):-menor(T,L).
 cam_min(X,Y,P):-findall(P,caminhos(X,Y,P),L),	
-			menor(L,P),write('toma la o write cárlinhos -> '),write(P),nl.
+			menor(L,P),write(P),nl.

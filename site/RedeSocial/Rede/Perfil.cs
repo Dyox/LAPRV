@@ -20,6 +20,7 @@ namespace Rede
         private string _fb;
         private Humor _humor;
         private string _avatar;
+        private string _avatar3D;
         private int _x;
         private int _y;
 
@@ -42,10 +43,11 @@ namespace Rede
             this._fb = "";
             this._humor = Rede.Humor.LoadById(2);
             this._avatar = "";
+            this._avatar3D = "";
             this._x = 1;
             this._y = 2;
         }
-        public Perfil(int id, string uID, string Name, string Nick, DateTime dataNasc, string morada, int tlm, string lk, string fb, Humor humor, string avatar, int x, int y)
+        public Perfil(int id, string uID, string Name, string Nick, DateTime dataNasc, string morada, int tlm, string lk, string fb, Humor humor,string avatar3D, string avatar, int x, int y)
         {
             this.myID = id;
             this._userID = uID;
@@ -57,6 +59,7 @@ namespace Rede
             this._lk = lk;
             this._fb = fb;
             this._humor = humor;
+            this._avatar3D = avatar3D;
             this._avatar = avatar;
             this._x = x;
             this._y = y;
@@ -114,6 +117,13 @@ namespace Rede
             get { return _humor; }
             set { _humor = value; }
         }
+
+        public string avatar3D
+        {
+            get { return _avatar3D; }
+            set { _avatar3D = value; }
+        }
+
         public string avatar
         {
             get { return _avatar; }
@@ -142,6 +152,7 @@ namespace Rede
             this._tlm = (int)row["Telemovel"];
             this._fb = (string)row["Facebook"];
             this._lk = (string)row["Linkedin"];
+            this._avatar3D = (string)row["Avatar3D"];
             this._avatar = (string)row["Avatar"];
             this._humor = Humor.LoadById((int)row["HumorID"]);
             this._x = (int)row["X"];
@@ -235,7 +246,7 @@ namespace Rede
         {
             if (this.ID != 0)
             {
-                ExecuteNonQuery("UPDATE TProfile SET Nome='"+this._name+"',Nick= '"+this._nick+"',Morada= '"+ this._morada +"',DataNascimento='"+this._datanasc.ToString("yyyy-MM-dd") +"',Telemovel="+this._tlm+",Linkedin='"+ this._lk+"', Facebook='"+ this._fb+"',HumorID="+this._humor.ID+", Avatar='"+this._avatar+"',X="+this._x+", Y="+this._y+"WHERE ProfileID=" + this.ID );
+                ExecuteNonQuery("UPDATE TProfile SET Nome='"+this._name+"',Nick= '"+this._nick+"',Morada= '"+ this._morada +"',DataNascimento='"+this._datanasc.ToString("yyyy-MM-dd") +"',Telemovel="+this._tlm+",Linkedin='"+ this._lk+"', Facebook='"+ this._fb+"',HumorID="+this._humor.ID+", Avatar3D='"+this._avatar3D+"', Avatar='"+this._avatar+"',X="+this._x+", Y="+this._y+"WHERE ProfileID=" + this.ID );
             }
             else
             {
@@ -243,7 +254,7 @@ namespace Rede
                 
                 this.humor= Humor.LoadById(2);
 
-                this.myID = ExecuteNonQuery("INSERT INTO TProfile(UserID, Nome, Nick, Morada, DataNascimento, Telemovel, Facebook, Linkedin, Avatar, HumorID, X, Y)   VALUES('" + this.UsID + "','" + this.Name + "','" + this.Nick + "','" + this.Morada + "','" + this.DataNascimento.ToString("yyyy-MM-dd") + "'," + this.Telemovel + ",'" + this.Linkedin + "','" + this.FaceBook + "','" + this.avatar + "'," + this.humor.ID + "," + this.X + "," + this.Y + ")");
+                this.myID = ExecuteNonQuery("INSERT INTO TProfile(UserID, Nome, Nick, Morada, DataNascimento, Telemovel, Facebook, Linkedin, Avatar3D, Avatar, HumorID, X, Y)   VALUES('" + this.UsID + "','" + this.Name + "','" + this.Nick + "','" + this.Morada + "','" + this.DataNascimento.ToString("yyyy-MM-dd") + "'," + this.Telemovel + ",'" + this.Linkedin + "','" + this.FaceBook + "','" + this.avatar3D+ "','" + this.avatar + "'," + this.humor.ID + "," + this.X + "," + this.Y + ")");
 
                 
             }

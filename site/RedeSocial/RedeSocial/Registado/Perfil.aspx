@@ -35,6 +35,13 @@
     <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Designacao" DataValueField="HumorID" >
     </asp:DropDownList>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>" SelectCommand="SELECT * FROM [THumor]"></asp:SqlDataSource>
+    <br />
+<asp:Label ID="Label12" runat="server" Font-Bold="True" Font-Size="Medium" Height="35px" Text="Avatar 3D" Width="95px"></asp:Label>
+    <asp:FileUpload ID="UploadAvatar3D" runat="server" />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:Button ID="uploadButton0" runat="server" Text="Upload 3D" OnClick="UploadFile3D" CssClass="auto-style2" />
+    <asp:Label ID="StatusLabel" runat="server"></asp:Label>
+    <asp:Label ID="lblfile" runat="server"></asp:Label>
 <br />
 <asp:Label ID="Label4" runat="server" Font-Bold="True" Font-Size="Medium" Height="35px" Text="Tlm." Width="95px"></asp:Label>
 <asp:TextBox ID="TextTlm" runat="server"></asp:TextBox>

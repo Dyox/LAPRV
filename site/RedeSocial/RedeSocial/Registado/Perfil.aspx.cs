@@ -9,7 +9,7 @@ using Rede;
 using System.IO; // this is for the file upload
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing.Imaging; 
+using System.Drawing.Imaging;
 
 namespace RedeSocial.Registado
 {
@@ -26,7 +26,7 @@ namespace RedeSocial.Registado
             TextTlm.Enabled = false;
             DropDownList1.Enabled = false;
             TextTag.Enabled = false;
-           
+            uploadButton0.Enabled = false;
             uploadButton.Enabled = false;
             Button5.Enabled = false;
 
@@ -44,6 +44,7 @@ namespace RedeSocial.Registado
                 TextLinkedin.Text = prof.Linkedin;
                 TextTlm.Text = prof.Telemovel.ToString();
                 avatarIMG.Src = prof.avatar;
+                StatusLabel.Text = prof.avatar3D;
                 DropDownList1.SelectedValue = Convert.ToString(prof.humor.ID);
                 SqlDataSource2.SelectParameters["ProfileID"].DefaultValue = Convert.ToString(prof.ID);
             }
@@ -81,6 +82,8 @@ namespace RedeSocial.Registado
             Rede.Humor h = Rede.Humor.LoadById(Convert.ToInt32(DropDownList1.SelectedValue));
             prof.humor = h;
             prof.Telemovel = Convert.ToInt32(TextTlm.Text);
+            prof.avatar3D = @"/Registado/Avatar3D/3D_" + lblfile.Text;
+            lblfile.Text = "";
             prof.avatar = avatarIMG.Src;
             prof.X = 1;
             prof.Y = 1;
@@ -92,6 +95,7 @@ namespace RedeSocial.Registado
         {
             TextNome.Enabled = true;
             uploadButton.Enabled = true;
+            uploadButton0.Enabled = true;
             Button5.Enabled = true;
             TextMorada.Enabled = true;
             TextData.Enabled = true;
@@ -102,7 +106,7 @@ namespace RedeSocial.Registado
             Button3.Visible = true;
             DropDownList1.Enabled = true;
             TextTag.Enabled = true;
-           
+
 
         }
 
@@ -155,8 +159,6 @@ namespace RedeSocial.Registado
 
                 // Write a message to inform the user all is OK
                 imglabel.Text = "File Name: <b style='color: red;'>" + filename + "</b><br>";
-                //imglabel.Text += "Content Type: <b style='color: red;'>" + UploadAvatar.PostedFile.ContentType + "</b><br>";
-                //imglabel.Text += "File Size: <b style='color: red;'>" + UploadAvatar.PostedFile.ContentLength.ToString() + "</b>";
                 // Display the image to the user
                 avatarIMG.Visible = true;
                 avatarIMG.Src = @"/Registado/Avatar/tn_" + filename;
@@ -192,6 +194,45 @@ namespace RedeSocial.Registado
 
             }
         }
+
+
+
+        protected void UploadFile3D(Object s, EventArgs e)
+        {
+            // First we check to see if the user has selected a file
+            if (UploadAvatar3D.HasFile)
+            {
+                // Find the fileUpload control
+                string filename = UploadAvatar3D.FileName;
+                
+                // Check if the directory we want the image uploaded to actually exists or not
+                if (!Directory.Exists(MapPath(@"Avatar3D")))
+                {
+                    // If it doesn't then we just create it before going any further
+                    Directory.CreateDirectory(MapPath(@"Avatar3D"));
+                }
+
+                // Specify the upload directory
+
+                if (UploadAvatar3D.PostedFile.ContentType == "application/x-3ds" || UploadAvatar3D.PostedFile.ContentType == "application/octet-stream")
+                {
+                    if (UploadAvatar3D.PostedFile.ContentLength < 10485760)
+                    {
+
+                        string directory = Server.MapPath(@"Avatar3D\");
+                        UploadAvatar3D.SaveAs(directory + "3D_" + filename);
+                        lblfile.Text = filename;
+                        StatusLabel.Text = "Upload status: File uploaded!";
+
+                    }
+                    else
+                        StatusLabel.Text = "Upload status: The file has to be less than 10 Mb!";
+                    }
+                    else
+                        StatusLabel.Text = "Upload status: Only 3DS, OBJ files are accepted!";           
+
+                }
+            }
+        }
     }
-}
 

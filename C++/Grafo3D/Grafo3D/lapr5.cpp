@@ -54,8 +54,9 @@ extern "C" int read_JPEG_file(char *, char **, int *, int *, int *);
 
 #define graus(X) (double)((X)*180/M_PI)
 #define rad(X)   (double)((X)*M_PI/180)
-#define CHECKPOINT				"http://imagens.filmes3d.com/2009/setembro/av6.jpg"
-#define NUM_TEXTURAS				80
+#define CHECKPOINT "http://imagens.filmes3d.com/2009/setembro/av6.jpg"
+#define NUM_TEXTURAS 80
+#define DEBUG_PICKING true
 
 // luzes e materiais
 
@@ -120,7 +121,7 @@ typedef struct Estado{
 	GLint		lightViewer;
 	GLint		eixoTranslaccao;
 	GLdouble	eixo[3];
-	GLint		noSeleccionado;
+	GLint		itemSeleccionado;
 }Estado;
 
 typedef struct Modelo {
@@ -194,10 +195,10 @@ void createTextures(GLuint texID[])
 }
 
 void initEstado(){
-	estado.camera.dir_lat=M_PI/4;
-	estado.camera.dir_long=-M_PI/4;
+	estado.camera.dir_lat=M_PI/8;
+	estado.camera.dir_long=0/*-M_PI/4*/;
 	estado.camera.fov=60;
-	estado.camera.dist=100;
+	estado.camera.dist=50;
 	estado.eixo[0]=0;
 	estado.eixo[1]=0;
 	estado.eixo[2]=0;
@@ -267,7 +268,7 @@ void myInit()
 	gluQuadricDrawStyle(modelo.quad, GLU_FILL);
 	gluQuadricNormals(modelo.quad, GLU_OUTSIDE);
 
-	estado.noSeleccionado=-1;
+	estado.itemSeleccionado=-1;
 
 	leGrafo();
 	
@@ -441,7 +442,7 @@ void desenhaLigacao(GLfloat xi, GLfloat yi, GLfloat zi, GLfloat xf, GLfloat yf, 
 	GLfloat dist=sqrt(pow(hipo,2)+pow(catz,2));
 	GLfloat angz=(atan(catz/hipo)*180)/M_PI;
 	glPushMatrix();
-		material(red_plastic);
+		//material(red_plastic);
 		glTranslatef(xi,yi,zi+0.2);
 		glRotatef(270,1,0,0);
 		glRotatef(ang,0,1,0);
@@ -522,9 +523,16 @@ void desenhaLabirinto(){
 		material(red_plastic);
 		for(int i=0; i<numNos; i++){
 			glPushMatrix();
-				material(cinza);
+				if (estado.itemSeleccionado==i+1)
+				{
+					material(emerald);
+				}
+				else
+				{
+					material(cinza);
+				}
 				glTranslatef(nos[i].x,nos[i].y,nos[i].z);
-				glPushName(i+4);
+				glPushName(i+1);
 					glutSolidSphere(0.8,10,10);
 				glPopName();
 			glPopMatrix();
@@ -532,7 +540,20 @@ void desenhaLabirinto(){
 		}
 		material(emerald);
 		for(int i=0; i<numArcos; i++)
-			desenhaArco(arcos[i]);
+		{
+			if (estado.itemSeleccionado==numNos+1+i)
+			{
+				material(emerald);
+			}
+			else
+			{
+				material(red_plastic);
+			}
+			glPushName(numNos+1+i);
+				desenhaArco(arcos[i]);
+			glPopName();
+		}
+		
 	glPopMatrix();
 }
 
@@ -586,7 +607,10 @@ void desenhaPlanoDrag(int eixo){
 }
 
 void desenhaEixos(){
-
+	/*
+	estado.eixo[0]=estado.camera.center[0];
+	estado.eixo[1]=estado.camera.center[1];
+	estado.eixo[2]=estado.camera.center[2];
 	glPushMatrix();
 		glTranslated(estado.eixo[0],estado.eixo[1],estado.eixo[2]);
 		material(emerald);
@@ -608,11 +632,36 @@ void desenhaEixos(){
 			glPopMatrix();
 		glPopName();
 	glPopMatrix();
+	*/
 }
 
 void desenhaHUD(int width, int height){
 
-	if(estado.noSeleccionado>=0)
+	if (DEBUG_PICKING)
+	{
+		//Altera viewport e projecção
+		glViewport(0, 0, (GLint) width, (GLint) height);
+		glMatrixMode(GL_PROJECTION);
+
+		glLoadIdentity();
+		gluOrtho2D(0,100,100,0);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		glPushMatrix();
+			glDisable(GL_LIGHTING);
+			glColor3f(0.0,0.0,0.8);
+			glRasterPos2i(80, 90);
+			char strobj[50]="ID obj sel:";
+			char idobj[30];
+			itoa(estado.itemSeleccionado,idobj,10);
+			strcat(strobj,idobj);
+			printString(strobj);
+			glEnable(GL_LIGHTING);
+		glPopMatrix();
+		myReshape((GLint) width, (GLint) height);
+	}
+
+	if (estado.itemSeleccionado>numNos)
 	{
 		//Altera viewport e projecção
 		glViewport(0, 0, (GLint) width, (GLint) height);
@@ -626,56 +675,102 @@ void desenhaHUD(int width, int height){
 			glDisable(GL_LIGHTING);
 			glColor3f(0.0,0.0,0.8);
 			glRasterPos2i(80, 3);
-			printString("Avatar:");
-			/*glColor3f(0.0,0.0,1.0);
-			glRasterPos2i(80, 5);
-			printString("Colocar aki o avatar");*/
-	
-			//carregar avatar
-			glPushMatrix();
-				glColor3f(1.0,1.0,1.0);
-				glEnable(GL_BLEND);
-				glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-				glBindTexture(GL_TEXTURE_2D, checkpoint.TextureID);  
-				glBegin(GL_QUADS);
-					glTexCoord2f(0,1);
-					glVertex2f(80,4);
-					glTexCoord2f(0,0);
-					glVertex2f(80,18);
-					glTexCoord2f(1,0);
-					glVertex2f(94,18);
-					glTexCoord2f(1,1);
-					glVertex2f(94,4);
-				glEnd();
-				glBindTexture(GL_TEXTURE_2D, NULL);  
-				glDisable(GL_BLEND);
-			glPopMatrix();
-
-			glColor3f(0.0,0.0,0.8);
-			glRasterPos2i(80, 21);
-			printString("Nome:");
+			printString("Relacao:");
+			glRasterPos2i(80, 10);
+			printString("De:");
 			glColor3f(0.0,0.0,1.0);
-			glRasterPos2i(80, 23);
-			printString("Xpto Otpx");
-
+			glRasterPos2i(80, 12);
+			printString("Utilizador1");
 			glColor3f(0.0,0.0,0.8);
-			glRasterPos2i(80, 26);
-			printString("Data Nascimento:");
+			glRasterPos2i(80, 15);
+			printString("Para:");
 			glColor3f(0.0,0.0,1.0);
-			glRasterPos2i(80, 28);
-			printString("01-01-9999");
-
+			glRasterPos2i(80, 17);
+			printString("Utilizador2");
 			glColor3f(0.0,0.0,0.8);
-			glRasterPos2i(80, 31);
-			printString("Morada:");
+			glRasterPos2i(80, 20);
+			printString("Tags:");
+			int lastTagPos=20;
+			lastTagPos+=2;
 			glColor3f(0.0,0.0,1.0);
-			glRasterPos2i(80, 33);
-			printString("Rua xpto, 666, qwerty");
+			glRasterPos2i(80, lastTagPos);
+			printString("Tag1");
+			lastTagPos+=2;
+			glColor3f(0.0,0.0,1.0);
+			glRasterPos2i(80, lastTagPos);
+			printString("Tag2");
 
 			glEnable(GL_LIGHTING);
 		glPopMatrix();
-
 		myReshape((GLint) width, (GLint) height);
+	}
+	else
+	{
+		if(estado.itemSeleccionado>0)
+		{
+			//Altera viewport e projecção
+			glViewport(0, 0, (GLint) width, (GLint) height);
+			glMatrixMode(GL_PROJECTION);
+
+			glLoadIdentity();
+			gluOrtho2D(0,100,100,0);
+			glMatrixMode(GL_MODELVIEW);
+			glLoadIdentity();
+			glPushMatrix();
+				glDisable(GL_LIGHTING);
+				glColor3f(0.0,0.0,0.8);
+				glRasterPos2i(80, 3);
+				printString("Avatar:");
+				/*glColor3f(0.0,0.0,1.0);
+				glRasterPos2i(80, 5);
+				printString("Colocar aki o avatar");*/
+	
+				//carregar avatar
+				glPushMatrix();
+					glColor3f(1.0,1.0,1.0);
+					glEnable(GL_BLEND);
+					glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+					glBindTexture(GL_TEXTURE_2D, checkpoint.TextureID);  
+					glBegin(GL_QUADS);
+						glTexCoord2f(0,1);
+						glVertex2f(80,4);
+						glTexCoord2f(0,0);
+						glVertex2f(80,18);
+						glTexCoord2f(1,0);
+						glVertex2f(94,18);
+						glTexCoord2f(1,1);
+						glVertex2f(94,4);
+					glEnd();
+					glBindTexture(GL_TEXTURE_2D, NULL);  
+					glDisable(GL_BLEND);
+				glPopMatrix();
+
+				glColor3f(0.0,0.0,0.8);
+				glRasterPos2i(80, 21);
+				printString("Nome:");
+				glColor3f(0.0,0.0,1.0);
+				glRasterPos2i(80, 23);
+				printString("Xpto Otpx");
+
+				glColor3f(0.0,0.0,0.8);
+				glRasterPos2i(80, 26);
+				printString("Data Nascimento:");
+				glColor3f(0.0,0.0,1.0);
+				glRasterPos2i(80, 28);
+				printString("01-01-9999");
+
+				glColor3f(0.0,0.0,0.8);
+				glRasterPos2i(80, 31);
+				printString("Morada:");
+				glColor3f(0.0,0.0,1.0);
+				glRasterPos2i(80, 33);
+				printString("Rua xpto, 666, qwerty");
+
+				glEnable(GL_LIGHTING);
+			glPopMatrix();
+
+			myReshape((GLint) width, (GLint) height);
+		}
 	}
 }
 
@@ -792,12 +887,16 @@ void keyboard(unsigned char key, int x, int y)
 			break;    
 		case 'q':
 		case 'Q':
-				estado.camera.dist-=1;
+				//estado.camera.dist-=1;
+				estado.camera.center[2]+=1;
+				desenhaEixos();
 				glutPostRedisplay();
 			break;
 		case 'a':
 		case 'A':
-				estado.camera.dist+=1;
+				//estado.camera.dist+=1;
+				estado.camera.center[2]-=1;
+				desenhaEixos();
 				glutPostRedisplay();
 			break;
 	}
@@ -833,13 +932,28 @@ void Special(int key, int x, int y){
 				glutPostRedisplay();
 			break;	
 		case GLUT_KEY_UP:
-				estado.camera.dist-=1;
+				//estado.camera.dist-=1;
+				estado.camera.center[0]-=1*cos(estado.camera.dir_long);
+				estado.camera.center[1]-=1*sin(estado.camera.dir_long);
+				desenhaEixos();
 				glutPostRedisplay();
 			break;
 		case GLUT_KEY_DOWN:
-				estado.camera.dist+=1;
+				//estado.camera.dist+=1;
+				estado.camera.center[0]+=1*cos(estado.camera.dir_long);
+				estado.camera.center[1]+=1*sin(estado.camera.dir_long);
+				desenhaEixos();
+				glutPostRedisplay();
+			break;
+		case GLUT_KEY_LEFT:
+				estado.camera.dir_long+=0.05;
+				glutPostRedisplay();
+			break;
+		case GLUT_KEY_RIGHT:
+				estado.camera.dir_long-=0.05;
 				glutPostRedisplay();
 			break;	}
+		
 }
 
 
@@ -889,7 +1003,7 @@ void motionDrag(int x, int y){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	setCamera();
-	desenhaPlanoDrag(estado.eixoTranslaccao);
+	//desenhaPlanoDrag(estado.eixoTranslaccao);
 	
 	n = glRenderMode(GL_RENDER);
 	if (n > 0) {
@@ -987,14 +1101,8 @@ void mouse(int btn, int state, int x, int y){
 						estado.eixoTranslaccao=idobj;
 						if(estado.eixoTranslaccao)
 							glutMotionFunc(motionDrag);
-						if (idobj>3)//temporario
-						{
-							estado.noSeleccionado=idobj;
-						}
-						else
-						{
-							estado.noSeleccionado=-1;
-						}
+							estado.itemSeleccionado=idobj;
+							//estado.itemSeleccionado=-1;
 						glutPostRedisplay();
 						cout << "Left down - objecto:" << estado.eixoTranslaccao << endl;
 					}

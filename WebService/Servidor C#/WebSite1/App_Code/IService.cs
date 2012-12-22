@@ -15,7 +15,9 @@ using System.Collections;
         int Add(int x, int y);
 
         [OperationContract]
-        IList<No> GetAllXY();
+        IList<NoBD> GetAllXY();
+        [OperationContract]
+        IList<ArcoBD> GetAllArcoBD();
 
         [OperationContract]
         void DoWork();

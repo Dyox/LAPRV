@@ -9,7 +9,7 @@ using System.Web;
 /// </summary>
 
 [DataContract]
-public class No
+public class NoBD
 {
     [DataMember]
     public int id { get; set; }
@@ -19,13 +19,14 @@ public class No
     [DataMember]
     public int y { get; set; }
 
-    [DataMember]
-    public int numNo { get; set; }
+    //[DataMember]
+    //public int countNos { get; set; }
 
-    public No(int idi, int xi, int yi)
+    public NoBD(int idi, int xi, int yi)
     {
         id = idi;
         x = xi;
         y = yi;
+        //countNos = counti;
     }
 }

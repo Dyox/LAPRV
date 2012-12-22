@@ -21,16 +21,17 @@ using System.Collections;
         }
 
       
-        public IList<No> GetAllXY()
+        public IList<NoBD> GetAllXY()
         {
-            IList<No> ret = new List<No>();
+            IList<NoBD> ret = new List<NoBD>();
             //IList idl = new ArrayList();
             //IList xl = new ArrayList();
             //IList yl = new ArrayList();
             IList lista = Rede.Perfil.LoadAll();
             for (int i = 0; i < lista.Count; i++)
             {
-                ret.Add(new No(((Rede.Perfil)lista[i]).ID, ((Rede.Perfil)lista[i]).X, ((Rede.Perfil)lista[i]).Y));
+                ret.Add(new NoBD(lista.Count, 0, 0));
+                ret.Add(new NoBD(((Rede.Perfil)lista[i]).ID, ((Rede.Perfil)lista[i]).X, ((Rede.Perfil)lista[i]).Y));
                 //idl.Add(((Rede.Perfil)lista[i]).ID);
                 //xl.Add(((Rede.Perfil)lista[i]).X);
                 //yl.Add(((Rede.Perfil)lista[i]).Y);
@@ -39,6 +40,26 @@ using System.Collections;
             return ret;
 
         }
+        public IList<ArcoBD > GetAllArcoBD()
+        {
+            IList<ArcoBD> ret = new List<ArcoBD>();
+            //IList idl = new ArrayList();
+            //IList xl = new ArrayList();
+            //IList yl = new ArrayList();
+            IList lista = Rede.Relacao.LoadAll();
+            for (int i = 0; i < lista.Count; i++)
+            {
+                ret.Add(new ArcoBD(lista.Count,0,0,0));
+                ret.Add(new ArcoBD(((Rede.Relacao)lista[i]).ID, ((Rede.Relacao)lista[i]).ProfileIDA, ((Rede.Relacao)lista[i]).ProfileIDB, ((Rede.Relacao)lista[i]).Forca));
+                //idl.Add(((Rede.Perfil)lista[i]).ID);
+                //xl.Add(((Rede.Perfil)lista[i]).X
+                //yl.Add(((Rede.Perfil)lista[i]).Y);
+            }
+
+            return ret;
+
+        }
+
 
     }
 

@@ -32,7 +32,7 @@ namespace Rede
             this._profileIDA = (int)row["ProfileIDA"];
             this._profileIDB = (int)row["ProfileIDB"];
             this._forca= (int)row["Forca"];
-            this._tag = (string)row["Tag"];
+            //this._tag = (string)row["Tag"];
             this._estado= (string)row["Estado"];
         }
 

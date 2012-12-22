@@ -8,8 +8,10 @@ using System.Web;
 /// Summary description for Arco
 /// </summary>
 [DataContract]
-public class Arco
+public class ArcoBD
 {
+    [DataMember]
+    public int idRel { get; set; }
     [DataMember]
     public int idPrim { get; set; }
     [DataMember]
@@ -17,12 +19,15 @@ public class Arco
 
     [DataMember]
     public int forca { get; set; }
+   
 
 
-    public Arco(int idi, int xi, int yi)
+
+    public ArcoBD(int idr,int id1, int id2, int f)
     {
-        idPrim = idi;
-        idSec = xi;
-        forca = yi;
+        idRel = idr;
+        idPrim = id1;
+        idSec = id2;
+        forca = f;
     }
 }

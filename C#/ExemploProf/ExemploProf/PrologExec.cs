@@ -12,6 +12,7 @@ namespace ExemploProf
         string _User;
         string _Comando;
         string _NomeFich;
+        //string _Target;
 
         private PrologExec()
         {
@@ -22,16 +23,15 @@ namespace ExemploProf
             this._Lines = lines;
             this._User = user;
             this._Comando= comando;
-            //NomeFich=Comando+"_"+User;
-            this._NomeFich = nomeFich;
+            NomeFich=Comando+"_"+User;
+            //this._NomeFich = nomeFich;
         }
 
-        public PrologExec(string lines, string user, string comando)
+        public PrologExec(string user, string comando)
         {
-            this._Lines = lines;
             this._User = user;
             this._Comando = comando;
-            //NomeFich=Comando+"_"+User;
+            NomeFich = Comando + "_" + User;
         }
         
         public string Lines
@@ -58,11 +58,11 @@ namespace ExemploProf
             set { _Comando = value; }
         }
 
-        private Boolean escrverPL()
+        private Boolean escrverPL(string target)
         {
+            obterLines(target);
             if (Lines == null)
                 return false;
-            
             try
             {
                 System.IO.File.WriteAllText(@"C:\\WIN-PROLOG 4800\"+NomeFich+".pl", Lines);
@@ -72,6 +72,25 @@ namespace ExemploProf
                 return false;
             }
             return true;
+        }
+
+        private void obterLines(string target)
+        {
+            string nos = resultadoFicheiro("readNos");
+            string ramos = resultadoFicheiro("readRamos");
+            string conteudo = null;
+            switch (Comando)
+            {
+                case "menorCaminho":
+                    conteudo = resultadoFicheiro("menorCaminho");
+                    break;
+            }
+            string fim ="run:- tell('" + NomeFich + ".txt'),_target_,told,halt."+ "\n" +
+                                 ":-run. \n";
+            fim = fim.Replace("_target_",target);
+            if (nos == null && ramos == null && conteudo == null)
+                Lines = null;
+            Lines = nos + "\n" + ramos + "\n" + conteudo + "\n" + fim;
         }
 
         private Boolean executaProlog()
@@ -100,11 +119,11 @@ namespace ExemploProf
             }
         }
 
-        private string resultadoProlog()
+        private string resultadoFicheiro(string nomeFicheiro)
         {
             try
             {
-                string text = System.IO.File.ReadAllText(@"C:\\WIN-PROLOG 4800\" + NomeFich + ".txt");
+                string text = System.IO.File.ReadAllText(@"C:\\WIN-PROLOG 4800\" + nomeFicheiro + ".txt");
                 return text;
             }
             catch (System.IO.IOException e)
@@ -151,16 +170,15 @@ namespace ExemploProf
             return true;
         }
 
-        public string executaComandoProlog()
+        public string executaComandoProlog(string target)
         {
-        //Lines=Lines.Replace("user_comando",NomeFich);
-            Boolean pl =escrverPL();
+            Boolean pl =escrverPL(target);
             if (pl)
             {
                 Boolean exec = executaProlog();
                 if (exec)
                 {
-                    String resultado = resultadoProlog();
+                    String resultado = resultadoFicheiro(NomeFich);
                     removeFiles();
                     return resultado;
                 }

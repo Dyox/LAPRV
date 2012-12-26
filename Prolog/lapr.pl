@@ -1,12 +1,12 @@
 % grafo
 
 % no(NoID,PosX,PosY)
-no(a,[musica,rock],45,95).
+no(a,[musica,rock,pimba,zumba],45,95).
 no(b,[musica,rock],90,95).
 no(c,[musica],45,95).
 no(d,[],90,95).
-no(e,[],45,95).
-no(f,['c#'],90,95).
+no(e,[pimba],45,95).
+no(f,['c#',zumba],90,95).
 
 % ramo(No1_ID,No2_ID,Tag,Força)
 ramo(a,b,[namorada],1).
@@ -36,8 +36,6 @@ ramo(y,x,[],3).
 ramo(y,w,[],3).
 ramo(w,y,[],3).
 
-/*ver acertz*/
-semantic_eq([['c#','csharp'],['vb','visual basic']]).
 
 /*todos os caminhos entre dois pontos*/
 
@@ -257,13 +255,6 @@ conta_elem([_|T],N):-len(T,M),N is M+1.
 /*---*/
 
 
-/*procura amigos com X tags iguais*/
-/*User Xtags Lista*/
-amigos_tags_iguais(U,X,L):-amigos_tags_iguais(U,X,[],L).
-amigos_tags_iguais(U,X,L,[Y|L]):-no(Y,La,_,_),
-					no(U,[Tag|L],_,_),
-					
-					member(Tag,La),write(Tag).
 
 
 
@@ -283,4 +274,105 @@ menor([X|T],X):-menor(T,L),
 menor([X|T],L):-menor(T,L).
 cam_min(X,Y,P):-findall(P,caminhos(X,Y,P),L),	
 			menor(L,P),write(P);write('Nenhum caminho...').
-/*---------------------*/					
+/*---------------------*/	
+
+/*sugere users para amizade com o user X q tenham alguma tag comum*/
+sugerir_users(X):-
+	listar_amigos_amigos_lista(X,L1),
+	listar_amigos_amigos_amigos_lista(X,L2),
+	uniao(L1,L2,L3),
+	no(X,Tags,_,_),
+	corre3(X,Tags,L3,Tags,L3).
+	
+
+corre3(X,[A|List],[Li|Final],ListC,FinalC):-
+	sugere(X,A,Li),
+	Final\==[]->(corre3(X,[A],Final,ListC,FinalC);
+		corre3(X,List,FinalC,ListC,FinalC)).
+
+sugere(User1,Tag,User2):-no(User2,Tags,_,_),
+			(member(Tag,Tags),\+(ramo(User1,User2,_,_)))->(write(User2),write('['),write(Tag),write('],'));write('').
+/*---*/
+
+
+/*sugere(Tag,User2):-no(User2,Tags,_,_),
+			member(Tag,Tags)->(write(User2),write(' tem tag igual '),nl);write('nao tem'),nl.
+
+*/
+/*write('x-> '),write(X),write(' y-> '),write(Y),nl*/	
+
+	
+:-dynamic semantic_eq/2. 
+semantic_eq('c#',csharp). 
+semantic_eq(pimba,popular). 
+
+/*cria_figuras:-  assertz(semantic_eq(triângulo,3)), 
+asserta(semantic_eq(quadrado,4)), 
+assertz(semantic_eq(pentagono,5)).
+
+elimina_figuras:-  retract(semantic_eq(triângulo,3)), 
+retract(semantic_eq(quadrado,4)), 
+retract(semantic_eq(pentagono,5)).*/
+
+/*amigos_com_x_tags_iguais(User,X):-
+	listar_amigos_lista(User,L1),
+	no(User,Tags,_,_),
+	corre4(X,Tags,L1,Tags,L1).
+	
+
+corre4(X,[A|List],[Li|Final],ListC,FinalC):-
+	pesquisa_users(X,A,Li),
+	Final\==[]->(corre4(X,[A],Final,ListC,FinalC);
+		corre4(X,List,FinalC,ListC,FinalC)).
+
+pesquisa_users(X,Tag,User2):-no(User2,Tags,_,_),
+			member(Tag,Tags)->(write(User2),write('['),write(Tag),write('],'));write('').
+*/
+
+/*lista os amigos do User com N tags em comum*/
+amigos_com_x_tags_iguais(User,X):-
+	listar_amigos_lista(User,L1),
+	no(User,Tags,_,_),
+	corre4(X,Tags,L1,Tags,L1).
+	
+
+corre4(X,[A|List],[Li|Final],ListC,FinalC):-
+	pesquisa_users(X,A,Li),
+	Final\==[]->(corre4(X,[A],Final,ListC,FinalC);
+		corre4(X,List,FinalC,ListC,FinalC)).
+
+pesquisa_users(X,Tag,User2):-no(User2,Tags,_,_),
+			member(Tag,Tags)->(write(User2),write('['),write(Tag),write('],'));write('').
+/*---*/
+
+amigos_comuns(X,Y,L):-
+	findall(X1,ramo(X,X1,_,_),Amigos1),
+	(member(Y,Amigos1)->elimina(Y,Amigos1,L1);copiar(Amigos1,L1)), /*se o outro user faz parte dos amigos elimina-se pq não vai ser comum*/
+	findall(Y2,ramo(Y,Y2,_,_),Amigos2),
+	(member(X,Amigos2)->elimina(X,Amigos2,L2);copiar(Amigos2,L2)),
+	
+	write(L1),write(L2),
+	corre5(L1,L2,L3)
+	.
+
+corre5([],_).
+corre5(_,[]).
+
+corre5([A|L1],L2,[B|L3]):-
+	(member(A,L2)->B = A, write(B),nl;true),L1\==[]->corre5(L1,L2,L3);true.
+
+/*corre5([A|L1],L2,L3):-
+	(member(A,L2)->(add(A,L3,L4),L1\==[]->corre5(L1,L2,L4);true);L1\==[]->corre5(L1,L2,L3);true).
+*/	
+
+%add(X,L,L1).
+%adds element X to the beginning of the list L and returns L1
+
+add(X,L,[X|L]).
+
+
+
+copiar(L,R) :- accCp(L,R).
+accCp([],[]).
+accCp([H|T1],[H|T2]) :- accCp(T1,T2).
+

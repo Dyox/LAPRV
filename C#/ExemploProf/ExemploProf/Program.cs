@@ -37,7 +37,7 @@ namespace ExemploProf
                                 "menor([X|T],X):-menor(T,L) ,length(X,N),length(L,M),N =< M,!. "+
                                 "menor([X|T],L):-menor(T,L). "+
                                 "cam_min(X,Y,P):-findall(P,caminhos(X,Y,P),L),menor(L,P),verifica(P). "+
-                                "verifica(P):-(P==[]->write('nenhum caminho');write(P)),nl. " +
+                                "verifica(P):-(P==var(P)->write('nenhum caminho');write(P)),nl. " +
                                 "run:- tell('user_comando.txt'),cam_min(a,b,P),told,halt. "+
                                  ":-run. \n";
             

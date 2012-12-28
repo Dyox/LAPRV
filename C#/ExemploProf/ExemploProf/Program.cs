@@ -37,14 +37,12 @@ namespace ExemploProf
             //                    "menor([X|T],X):-menor(T,L) ,length(X,N),length(L,M),N =< M,!. "+
             //                    "menor([X|T],L):-menor(T,L). "+
             //                    "cam_min(X,Y,P):-findall(P,caminhos(X,Y,P),L),menor(L,P),write(P);write('Nenhum caminho...'). " +
-            //                    "run:- tell('user_comando.txt'),cam_min(a,c,P),told,halt. "+
-            //                     ":-run. \n";
-
-
-
-            //menorCaminho = cam_min(a,c,P)
-            PrologExec p = new PrologExec("user", "menorCaminho" );
-            string res = p.executaComandoProlog("cam_min(a,b,P)");
+                                "verifica(P):-(P==var(P)->write('nenhum caminho');write(P)),nl. " +
+                                "run:- tell('user_comando.txt'),cam_min(a,b,P),told,halt. "+
+                                 ":-run. \n";
+            
+            PrologExec p = new PrologExec(lines, "user", "add","user_comando");
+            string res = p.executaComandoProlog();
             Console.Write(res);
             Console.Read();
         }

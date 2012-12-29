@@ -10,6 +10,7 @@
 
 typedef struct No{
 	float x,y,z,largura;
+	int iduser;
 }No;
 
 typedef struct Arco{
@@ -26,7 +27,6 @@ void deleteNo(int);
 void imprimeNo(No);
 void listNos();
 No criaNo(float, float, float);
-
 void addArco(Arco);
 void deleteArco(int);
 void imprimeArco(Arco);

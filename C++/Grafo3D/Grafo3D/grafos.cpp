@@ -1,6 +1,13 @@
 #include "grafos.h"
 #include <iostream>
 #include <fstream>
+#include "stdafx.h"
+#include "WebServices.h"
+#include "schemas.microsoft.com.2003.10.Serialization.xsd.h"
+#include "tempuri.org.xsd.h"
+#include "tempuri.org.wsdl.h"
+#include "schema.xsd.h"
+#include "webservice.h"
 
 #define __GRAFO__FILE__ "exemplo.grafo"
 
@@ -96,34 +103,39 @@ void gravaGrafo(){
 	myfile.close();
 }
 void leGrafo(){
-	ifstream myfile;
-
-	myfile.open (__GRAFO__FILE__, ios::in);
-	if (!myfile.is_open()) {
-		cout << "Erro ao abrir " << __GRAFO__FILE__ << "para ler" <<endl;
-		exit(1);
-	}
-	myfile >> numNos;
-	for(int i=0; i<numNos;i++)
+	NoBD **nosbd=NULL;
+	getAllXY(nosbd);
+	numNos=(*(nosbd))->id;
+	for (int i=1;i<=numNos;i++)
 	{
-		myfile >> nos[i].x >> nos[i].y >> nos[i].z;
-		nos[i].z=0.0;
+		nos[i-1].x=(*(nosbd+i))->x;
+		nos[i-1].y=(*(nosbd+i))->y;
+		nos[i-1].z=0.0;
+		nos[i-1].iduser=(*(nosbd+i))->id;
+		nos[i-1].largura=0.8;
 	}
-	myfile >> numArcos ;
-	for(int i=0; i<numArcos;i++)
+	ArcoBD **arcosbd=NULL;
+	GetAllArcoBD(arcosbd);
+	numArcos=(*(arcosbd))->idRel;
+	for (int i=1;i<=numArcos;i++)
 	{
-		myfile >> arcos[i].noi >> arcos[i].nof >> arcos[i].peso >> arcos[i].largura ;
-		//calculo da cota conforme o nº de ligações de cada nó
-		nos[arcos[i].noi].z+=2;
-		nos[arcos[i].nof].z+=2;
+		for (int j=0;j<numNos;j++)
+		{
+			if (nos[j].iduser==(*(arcosbd+i))->idPrim)
+			{
+				arcos[i-1].noi=j;
+			}
+			if (nos[j].iduser==(*(arcosbd+i))->idSec)
+			{
+				arcos[i-1].nof=j;
+			}
+		}
+		//arcos[i-1].noi=(*(arcosbd+i))->idPrim;
+		//arcos[i-1].nof=(*(arcosbd+i))->idSec;
+		arcos[i-1].peso=(*(arcosbd+i))->forca;
+		arcos[i-1].largura=arcos[i].peso*0.1;
+		//arcos[i-1].largura=(*(arcosbd+i))->idRel;
+		nos[arcos[i-1].noi].z+=2;
+		nos[arcos[i-1].nof].z+=2;
 	}
-	myfile.close();
-
-	// calcula a largura de cada no = maior largura dos arcos que divergem/convergem desse/nesse no	
-	/*for(int i=0; i<numNos;i++){
-		nos[i].largura=0;
-		for(int j=0; j<numArcos; j++)
-			if ((arcos[j].noi == i || arcos[j].nof == i) && nos[i].largura < arcos[j].largura)
-				nos[i].largura = arcos[j].largura;
-	}	*/	
 }

@@ -1,7 +1,8 @@
 #define _USE_MATH_DEFINES
+#include "stdafx.h"
 #include <stdio.h>
 #include <string.h>
-//#include <string>
+#include <string>
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
@@ -11,23 +12,30 @@
 //#include <cstring>
 //#include <limits>
 #include "mathlib.h"
+//#include "mathlib2.h"
 //#include <sstream>
 #include "studio.h"
 //#include "mdlviewer.h"
 //#include "Model_3DS.h"
 #include <fstream>
+#include <sstream>
 #include <vector>
 #include "TextureLoader.h"
 #include <algorithm>
 #include "grafos.h"
 #include "glfont.h"
+#include "WebServices.h"
+#include "schemas.microsoft.com.2003.10.Serialization.xsd.h"
+#include "tempuri.org.xsd.h"
+#include "tempuri.org.wsdl.h"
+#include "schema.xsd.h"
 
 /*//musica
 #include <al.h>
 #include <alut.h>
 */
 #include "atlstr.h"
-
+/*
 //Ceu
 #include "SkyDome.h"
 
@@ -36,9 +44,9 @@
 
 //chuva
 #include "rain.h"
-
+*/
 //texto
-#include "font.h"
+//#include "font.h"
 
 using namespace std;
 
@@ -51,15 +59,16 @@ using namespace std;
 // função para ler jpegs do ficheiro readjpeg.c
 extern "C" int read_JPEG_file(char *, char **, int *, int *, int *);
 
-
+#define DEBUG_PICKING true
+#define DEBUG_CAMERA true
 #define graus(X) (double)((X)*180/M_PI)
 #define rad(X)   (double)((X)*M_PI/180)
-#define CHECKPOINT "http://imagens.filmes3d.com/2009/setembro/av6.jpg"
+#define AVATAR "http://imagens.filmes3d.com/2009/setembro/av6.jpg"
+#define CONTENTE "Texturas/contente.jpg"
 #define NUM_TEXTURAS 80
-#define DEBUG_PICKING true
+//#define DIMENSAO_CAMARA 500
 
 // luzes e materiais
-
 const GLfloat mat_ambient[][4] = {{0.33, 0.22, 0.03, 1.0},	// brass
 								  {0.0, 0.0, 0.0},			// red plastic
 								  {0.0215, 0.1745, 0.0215},	// emerald
@@ -137,10 +146,12 @@ typedef struct Modelo {
 	GLfloat escala;
 	GLUquadric *quad;
 }Modelo;
+
 Estado estado;
 Modelo modelo;
 TextureLoader *apTexLoad = new TextureLoader();
-glTexture checkpoint;
+glTexture avatar;
+glTexture contente;
 GLuint        texID[NUM_TEXTURAS];
 
 AUX_RGBImageRec *LoadBMP(char *Filename)				// Loads A Bitmap Image
@@ -176,7 +187,8 @@ void createTextures(GLuint texID[])
 	apTexLoad->SetHighQualityTextures(TRUE);
 	apTexLoad->SetTextureFilter(txTrilinear);
 
-	apTexLoad->LoadTextureFromDisk(CHECKPOINT,&checkpoint);
+	apTexLoad->LoadTextureFromDisk(AVATAR,&avatar);
+	apTexLoad->LoadTextureFromDisk(CONTENTE,&contente);
 	/*
 	//relva
 	if(	read_JPEG_file(TEXTURA_RELVA, &image, &w, &h, &bpp))
@@ -195,10 +207,10 @@ void createTextures(GLuint texID[])
 }
 
 void initEstado(){
-	estado.camera.dir_lat=M_PI/8;
+	estado.camera.dir_lat=0/*M_PI/8*/;
 	estado.camera.dir_long=0/*-M_PI/4*/;
 	estado.camera.fov=60;
-	estado.camera.dist=50;
+	estado.camera.dist=20;
 	estado.eixo[0]=0;
 	estado.eixo[1]=0;
 	estado.eixo[2]=0;
@@ -232,7 +244,8 @@ void setProjection(int x, int y, GLboolean picking){
 		gluPickMatrix(x, glutGet(GLUT_WINDOW_HEIGHT)  - y, 4, 4, vport); // Inverte o y do rato para corresponder à jana
 	}
 	    
-	gluPerspective(estado.camera.fov,(GLfloat)glutGet(GLUT_WINDOW_WIDTH) /glutGet(GLUT_WINDOW_HEIGHT) ,1,500);
+	gluPerspective(estado.camera.fov,(GLfloat)glutGet(GLUT_WINDOW_WIDTH) /glutGet(GLUT_WINDOW_HEIGHT) ,0.1,500);
+	//glOrtho(-DIMENSAO_CAMARA / 2.0, DIMENSAO_CAMARA / 2.0,-DIMENSAO_CAMARA / 2.0, DIMENSAO_CAMARA / 2.0,0.0, DIMENSAO_CAMARA / 2.0 + 1);
 
 }
 
@@ -351,17 +364,20 @@ void putLights(GLfloat* diffuse)
 
 void desenhaSolo(){
 #define STEP 10
-	glBegin(GL_QUADS);
-		glNormal3f(0,0,1);
-		material(preto);
-		for(int i=-300;i<300;i+=STEP)
-			for(int j=-300;j<300;j+=STEP){
-				glVertex2f(i,j);
-				glVertex2f(i+STEP,j);
-				glVertex2f(i+STEP,j+STEP);
-				glVertex2f(i,j+STEP);
-			}
-	glEnd();
+	glPushMatrix();
+		glTranslated(0,0,-2.0);
+		glBegin(GL_QUADS);
+			glNormal3f(0,0,1);
+			material(preto);
+			for(int i=-300;i<300;i+=STEP)
+				for(int j=-300;j<300;j+=STEP){
+					glVertex2f(i,j);
+					glVertex2f(i+STEP,j);
+					glVertex2f(i+STEP,j+STEP);
+					glVertex2f(i,j+STEP);
+				}
+		glEnd();
+	glPopMatrix();
 }
 
 void CrossProduct (GLdouble v1[], GLdouble v2[], GLdouble cross[])
@@ -518,7 +534,7 @@ void desenhaArco(Arco arco){
 
 void desenhaLabirinto(){
 	glPushMatrix();
-		glTranslatef(0,0,2.0);
+		glTranslatef(0,0,0);
 		glScalef(2,2,2);
 		material(red_plastic);
 		for(int i=0; i<numNos; i++){
@@ -533,12 +549,25 @@ void desenhaLabirinto(){
 				}
 				glTranslatef(nos[i].x,nos[i].y,nos[i].z);
 				glPushName(i+1);
-					glutSolidSphere(0.8,10,10);
+					glutSolidSphere(nos[i].largura,10,10);
 				glPopName();
 			glPopMatrix();
 			//desenhaNo(i);
 		}
-		material(emerald);
+		/*glPushMatrix();
+			glTranslatef(0,0,0);
+			glScalef(2,2,2);
+			glPushMatrix();
+				Vertice eye;
+				eye[0]=estado.camera.center[0]+estado.camera.dist*cos(estado.camera.dir_long)*cos(estado.camera.dir_lat);
+				eye[1]=estado.camera.center[1]+estado.camera.dist*sin(estado.camera.dir_long)*cos(estado.camera.dir_lat);
+				eye[2]=estado.camera.center[2]+estado.camera.dist*sin(estado.camera.dir_lat);
+				material(emerald);
+				glTranslatef(estado.camera.center[0],estado.camera.center[1],estado.camera.center[2]);
+				glutSolidSphere(5.8,10,10);
+			glPopMatrix();
+		glPopMatrix();*/
+		//material(emerald);
 		for(int i=0; i<numArcos; i++)
 		{
 			if (estado.itemSeleccionado==numNos+1+i)
@@ -607,7 +636,7 @@ void desenhaPlanoDrag(int eixo){
 }
 
 void desenhaEixos(){
-	/*
+	
 	estado.eixo[0]=estado.camera.center[0];
 	estado.eixo[1]=estado.camera.center[1];
 	estado.eixo[2]=estado.camera.center[2];
@@ -632,7 +661,7 @@ void desenhaEixos(){
 			glPopMatrix();
 		glPopName();
 	glPopMatrix();
-	*/
+	
 }
 
 void desenhaHUD(int width, int height){
@@ -656,6 +685,64 @@ void desenhaHUD(int width, int height){
 			itoa(estado.itemSeleccionado,idobj,10);
 			strcat(strobj,idobj);
 			printString(strobj);
+			glEnable(GL_LIGHTING);
+		glPopMatrix();
+		myReshape((GLint) width, (GLint) height);
+	}
+
+	if (DEBUG_CAMERA)
+	{
+		Vertice eye;
+		eye[0]=estado.camera.center[0]+estado.camera.dist*cos(estado.camera.dir_long)*cos(estado.camera.dir_lat);
+		eye[1]=estado.camera.center[1]+estado.camera.dist*sin(estado.camera.dir_long)*cos(estado.camera.dir_lat);
+		eye[2]=estado.camera.center[2]+estado.camera.dist*sin(estado.camera.dir_lat);
+
+		//Altera viewport e projecção
+		glViewport(0, 0, (GLint) width, (GLint) height);
+		glMatrixMode(GL_PROJECTION);
+
+		glLoadIdentity();
+		gluOrtho2D(0,100,100,0);
+		glMatrixMode(GL_MODELVIEW);
+		//glLoadIdentity();
+		glPushMatrix();
+			glDisable(GL_LIGHTING);
+			glColor3f(0.0,0.0,0.8);
+			glRasterPos2i(5, 90);
+			char strobj[50]="eye.x=";
+			string coord;          // string which will contain the result
+			ostringstream xpto;   // stream used for the conversion
+			xpto << eye[0];      // insert the textual representation of 'Number' in the characters in the stream
+			coord = xpto.str(); // set 'Result' to the contents of the stream
+			char *c=new char[coord.size()+1];
+			c[coord.size()]=0;
+			memcpy(c,coord.c_str(),coord.size());
+			strcat(strobj,c);
+			printString(strobj);
+
+			glRasterPos2i(5, 92);
+			char strobj2[50]="eye.y=";
+			//string coord;          // string which will contain the result
+			ostringstream xpto2;   // stream used for the conversion
+			xpto2 << eye[1];      // insert the textual representation of 'Number' in the characters in the stream
+			coord = xpto2.str(); // set 'Result' to the contents of the stream
+			c=new char[coord.size()+1];
+			c[coord.size()]=0;
+			memcpy(c,coord.c_str(),coord.size());
+			strcat(strobj2,c);
+			printString(strobj2);
+
+			glRasterPos2i(5, 94);
+			char strobj3[50]="eye.z=";
+			//string coord;          // string which will contain the result
+			ostringstream xpto3;   // stream used for the conversion
+			xpto3 << eye[2];      // insert the textual representation of 'Number' in the characters in the stream
+			coord = xpto3.str(); // set 'Result' to the contents of the stream
+			c=new char[coord.size()+1];
+			c[coord.size()]=0;
+			memcpy(c,coord.c_str(),coord.size());
+			strcat(strobj3,c);
+			printString(strobj3);
 			glEnable(GL_LIGHTING);
 		glPopMatrix();
 		myReshape((GLint) width, (GLint) height);
@@ -730,7 +817,7 @@ void desenhaHUD(int width, int height){
 					glColor3f(1.0,1.0,1.0);
 					glEnable(GL_BLEND);
 					glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-					glBindTexture(GL_TEXTURE_2D, checkpoint.TextureID);  
+					glBindTexture(GL_TEXTURE_2D, avatar.TextureID);  
 					glBegin(GL_QUADS);
 						glTexCoord2f(0,1);
 						glVertex2f(80,4);
@@ -774,20 +861,144 @@ void desenhaHUD(int width, int height){
 	}
 }
 
+void desenhaBillboards()
+{
+	for(int i=0;i<numNos;i++)
+	{
+		GLfloat x=nos[i].x;
+		GLfloat yi=nos[i].y-0.4;
+		GLfloat yf=nos[i].y+0.4;
+		GLfloat zi=nos[i].z+nos[i].largura;
+		GLfloat zf=nos[i].z+nos[i].largura+0.4;
+		glPushMatrix();
+			glScalef(2,2,2);
+			glTranslated(nos[i].x,nos[i].y,nos[i].z+nos[i].largura+0.2);
+			glRotatef(graus(estado.camera.dir_long),0,0,1);
+			glDisable(GL_LIGHTING);
+			glColor3f(1.0,1.0,1.0);
+			glEnable(GL_BLEND);
+			glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			glBindTexture(GL_TEXTURE_2D, contente.TextureID);  
+			glBegin(GL_QUADS);
+				glTexCoord2f(1,0);
+				glVertex3f(0,-0.4,-0.2);
+				glTexCoord2f(0,0);
+				glVertex3f(0,0.4,-0.2);
+				glTexCoord2f(0,1);
+				glVertex3f(0,0.4,0.2);
+				glTexCoord2f(1,1);
+				glVertex3f(0,-0.4,0.2);
+			glEnd();
+			glBindTexture(GL_TEXTURE_2D, NULL);  
+			glDisable(GL_BLEND);
+			glEnable(GL_LIGHTING);
+		glPopMatrix();
+	}
+}
 
+/*
+void RenderParticles(void)
+{
+   vec3_t x;
+   vec3_t y;
+   vec3_t a, b, c, d;
+   GLfloat *modelView;
+   float size = 0;
 
-void setCamera(){
+   for (int i = 0; i < numParticles; i++)
+   {
+      //particles[i].Frame(passed);
+
+      glPushMatrix();
+      glRotatef(particles[i].GetRot()[0], 1.0f, 0.0f, 0.0f);
+      glRotatef(particles[i].GetRot()[1], 0.0f, 1.0f, 0.0f);
+      glRotatef(particles[i].GetRot()[2], 0.0f, 0.0f, 1.0f);
+                  
+      // We need to billboard this particle
+      if (particles[i].GetBillboard())
+      {
+         glGetFloatv(GL_MODELVIEW_MATRIX, modelView);
+         x[0]=modelView[0];
+		 x[1]=modelView[4];
+		 x[2]=modelView[8];
+         y[0]=modelView[1];
+		 y[1]=modelView[5];
+		 y[2]=modelView[9];
+      }
+      else
+      {
+         x.Set(1.0f, 0.0f, 0.0f);
+         y.Set(0.0f, 1.0f, 0.0f);
+      }   
+      
+      size = particles[i].GetSize();
+
+      /*
+         Remember x and y are vectors. *not* points.  There is a lot going on in
+         the background thanks to the vec3_t class.  This stuff can be made
+         a lot faster, but that isn't important now.  
+      */
+/*
+      a = particles[i].GetPos() + ((-x - y) * size);
+      b = particles[i].GetPos() + ((x - y) * size);
+      c = particles[i].GetPos() + ((x + y) * size);
+      d = particles[i].GetPos() + ((-x + y) * size);
+
+      glBindTexture(GL_TEXTURE_2D, particles[i].GetTexId());
+      glBegin(GL_QUADS);
+         glTexCoord2f(0.0f, 0.0f);
+         glVertex3fv(a);
+         glTexCoord2f(1.0f, 0.0f);
+         glVertex3fv(b);
+         glTexCoord2f(1.0f, 1.0f);
+         glVertex3fv(c);
+         glTexCoord2f(0.0f, 1.0f);
+         glVertex3fv(d);
+      glEnd();
+
+      glPopMatrix();
+   }
+}
+*/
+bool detectacolisao()
+{
 	Vertice eye;
 	eye[0]=estado.camera.center[0]+estado.camera.dist*cos(estado.camera.dir_long)*cos(estado.camera.dir_lat);
 	eye[1]=estado.camera.center[1]+estado.camera.dist*sin(estado.camera.dir_long)*cos(estado.camera.dir_lat);
 	eye[2]=estado.camera.center[2]+estado.camera.dist*sin(estado.camera.dir_lat);
+	
+	for (int i=0;i<numNos;i++)
+	{
+		float range=nos[i].largura+0.2;
+		if ((eye[0]<nos[i].x+range) && (eye[0]>nos[i].x-range))
+		{
+			if ((eye[1]<nos[i].y+range) && (eye[1]>nos[i].y-range))
+			{
+				if((eye[2]<nos[i].z+range) && (eye[2]>nos[i].z-range))
+				{
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
 
-	if(estado.light){
-		gluLookAt(eye[0],eye[1],eye[2],estado.camera.center[0],estado.camera.center[1],estado.camera.center[2],0,0,1);
-		putLights((GLfloat*)white_light);
-	}else{
-		putLights((GLfloat*)white_light);
-		gluLookAt(eye[0],eye[1],eye[2],estado.camera.center[0],estado.camera.center[1],estado.camera.center[2],0,0,1);
+void setCamera(){
+	if (!detectacolisao())
+	{
+		Vertice eye;
+		eye[0]=estado.camera.center[0]+estado.camera.dist*cos(estado.camera.dir_long)*cos(estado.camera.dir_lat);
+		eye[1]=estado.camera.center[1]+estado.camera.dist*sin(estado.camera.dir_long)*cos(estado.camera.dir_lat);
+		eye[2]=estado.camera.center[2]+estado.camera.dist*sin(estado.camera.dir_lat);
+
+		if(estado.light){
+			gluLookAt(eye[0],eye[1],eye[2],estado.camera.center[0],estado.camera.center[1],estado.camera.center[2],0,0,1);
+			putLights((GLfloat*)white_light);
+		}else{
+			putLights((GLfloat*)white_light);
+			gluLookAt(eye[0],eye[1],eye[2],estado.camera.center[0],estado.camera.center[1],estado.camera.center[2],0,0,1);
+		}
 	}
 }
 
@@ -804,6 +1015,8 @@ void display(void)
 	desenhaEixos();
 	
 	desenhaLabirinto();
+
+	desenhaBillboards();
 
 	desenhaHUD(glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT));
 
@@ -933,15 +1146,15 @@ void Special(int key, int x, int y){
 			break;	
 		case GLUT_KEY_UP:
 				//estado.camera.dist-=1;
-				estado.camera.center[0]-=1*cos(estado.camera.dir_long);
-				estado.camera.center[1]-=1*sin(estado.camera.dir_long);
+				estado.camera.center[0]-=0.5*cos(estado.camera.dir_long);
+				estado.camera.center[1]-=0.5*sin(estado.camera.dir_long);
 				desenhaEixos();
 				glutPostRedisplay();
 			break;
 		case GLUT_KEY_DOWN:
 				//estado.camera.dist+=1;
-				estado.camera.center[0]+=1*cos(estado.camera.dir_long);
-				estado.camera.center[1]+=1*sin(estado.camera.dir_long);
+				estado.camera.center[0]+=0.5*cos(estado.camera.dir_long);
+				estado.camera.center[1]+=0.5*sin(estado.camera.dir_long);
 				desenhaEixos();
 				glutPostRedisplay();
 			break;

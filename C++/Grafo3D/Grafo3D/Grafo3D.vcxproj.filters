@@ -36,6 +36,30 @@
     <ClCompile Include="GLTexture.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="schema.xsd.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="schemas.microsoft.com.2003.10.Serialization.xsd.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tempuri.org.wsdl.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tempuri.org.xsd.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="webservice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tga.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utility.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grafos.h">
@@ -68,13 +92,49 @@
     <ClInclude Include="list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mathlib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="studio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TextureLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="schema.xsd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="schemas.microsoft.com.2003.10.Serialization.xsd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tempuri.org.wsdl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tempuri.org.xsd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="webservice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gltga.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tga.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ticker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mathlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

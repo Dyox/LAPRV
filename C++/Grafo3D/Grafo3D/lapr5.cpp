@@ -896,6 +896,60 @@ void desenhaBillboards()
 	}
 }
 
+void minimapacam(){
+	Vertice eye;
+	eye[0]=estado.camera.center[0]+200*cos(M_PI/2);
+	eye[1]=estado.camera.center[1];
+	eye[2]=250;
+
+	if(estado.light){
+		gluLookAt(eye[0],eye[1],eye[2],estado.camera.center[0],estado.camera.center[1],estado.camera.center[2],0,0,1);
+		putLights((GLfloat*)white_light);
+	}else{
+		putLights((GLfloat*)white_light);
+		gluLookAt(eye[0],eye[1],eye[2],estado.camera.center[0],estado.camera.center[1],estado.camera.center[2],0,0,1);
+	}
+}
+
+void desenhaMinimapa()
+{
+	int wh;
+	wh=glutGet(GLUT_WINDOW_HEIGHT);
+	glViewport(1, wh-172, (GLint) 180, (GLint) 170);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluOrtho2D(0,100,100,0);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	glDisable(GL_LIGHTING);
+	glPushMatrix();
+		glColor3f(1.0,1.0,1.0);
+		glBegin(GL_LINE_LOOP);
+			glVertex2i(1,1);
+			glVertex2i(99,1);
+			glVertex2i(99,99);
+			glVertex2i(1,99);
+		glEnd();
+	glPopMatrix();
+	glEnable(GL_LIGHTING);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	//gluPerspective(50, (float)(glutGet(GLUT_WINDOW_WIDTH)/(float)(glutGet(GLUT_WINDOW_HEIGHT))), 0.1, 1000 );
+	glOrtho(-100,100,-100,100,1,500);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	glClear(GL_DEPTH_BUFFER_BIT);
+	minimapacam();
+
+	desenhaLabirinto();
+
+	glFlush();
+	myReshape(glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT));
+}
+
+
 /*
 void RenderParticles(void)
 {
@@ -1020,6 +1074,7 @@ void display(void)
 
 	desenhaHUD(glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT));
 
+	desenhaMinimapa();
  
 	if(estado.eixoTranslaccao) {
 		// desenha plano de translacção

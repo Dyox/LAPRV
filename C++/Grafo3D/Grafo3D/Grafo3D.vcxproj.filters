@@ -60,6 +60,9 @@
     <ClCompile Include="utility.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="SkyDome.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grafos.h">
@@ -135,6 +138,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="mathlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyDome.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

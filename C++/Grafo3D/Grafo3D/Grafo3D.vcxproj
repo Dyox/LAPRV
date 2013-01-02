@@ -84,6 +84,7 @@
     <ClCompile Include="readjpeg.c" />
     <ClCompile Include="schema.xsd.c" />
     <ClCompile Include="schemas.microsoft.com.2003.10.Serialization.xsd.c" />
+    <ClCompile Include="SkyDome.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="studio_utils.cpp" />
     <ClCompile Include="tempuri.org.wsdl.c" />
@@ -110,6 +111,7 @@
     <ClInclude Include="random.h" />
     <ClInclude Include="schema.xsd.h" />
     <ClInclude Include="schemas.microsoft.com.2003.10.Serialization.xsd.h" />
+    <ClInclude Include="SkyDome.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="studio.h" />
     <ClInclude Include="tempuri.org.wsdl.h" />

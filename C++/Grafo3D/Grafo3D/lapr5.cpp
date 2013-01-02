@@ -35,10 +35,10 @@
 #include <alut.h>
 */
 #include "atlstr.h"
-/*
+
 //Ceu
 #include "SkyDome.h"
-
+/*
 //Neve
 #include "Neve.h"
 
@@ -64,7 +64,8 @@ extern "C" int read_JPEG_file(char *, char **, int *, int *, int *);
 #define graus(X) (double)((X)*180/M_PI)
 #define rad(X)   (double)((X)*M_PI/180)
 #define AVATAR "http://imagens.filmes3d.com/2009/setembro/av6.jpg"
-#define CONTENTE "Texturas/contente.jpg"
+#define CONTENTE "Texturas/contente.bmp"
+#define ESTRELAS "Texturas/stars.jpg"
 #define NUM_TEXTURAS 80
 //#define DIMENSAO_CAMARA 500
 
@@ -152,6 +153,7 @@ Modelo modelo;
 TextureLoader *apTexLoad = new TextureLoader();
 glTexture avatar;
 glTexture contente;
+glTexture estrelas;
 GLuint        texID[NUM_TEXTURAS];
 
 AUX_RGBImageRec *LoadBMP(char *Filename)				// Loads A Bitmap Image
@@ -189,6 +191,7 @@ void createTextures(GLuint texID[])
 
 	apTexLoad->LoadTextureFromDisk(AVATAR,&avatar);
 	apTexLoad->LoadTextureFromDisk(CONTENTE,&contente);
+	apTexLoad->LoadTextureFromDisk(ESTRELAS,&estrelas);
 	/*
 	//relva
 	if(	read_JPEG_file(TEXTURA_RELVA, &image, &w, &h, &bpp))
@@ -210,7 +213,7 @@ void initEstado(){
 	estado.camera.dir_lat=0/*M_PI/8*/;
 	estado.camera.dir_long=0/*-M_PI/4*/;
 	estado.camera.fov=60;
-	estado.camera.dist=20;
+	estado.camera.dist=1;
 	estado.eixo[0]=0;
 	estado.eixo[1]=0;
 	estado.eixo[2]=0;
@@ -463,7 +466,7 @@ void desenhaLigacao(GLfloat xi, GLfloat yi, GLfloat zi, GLfloat xf, GLfloat yf, 
 		glRotatef(270,1,0,0);
 		glRotatef(ang,0,1,0);
 		glRotatef(angz,1,0,0);
-		gluCylinder(modelo.quad,0.2,0.2,dist,10,1);
+		gluCylinder(modelo.quad,largura,largura,dist,10,1);
 	glPopMatrix();
 	if(estado.apresentaNormais) {
 		desenhaNormal(xi,yi,zi,cross,red_plastic);
@@ -502,7 +505,7 @@ void desenhaArco(Arco arco){
 			}
 		}
 
-		desenhaLigacao(noi->x,noi->y,noi->z,nof->x,nof->y,nof->z, NORTE_SUL);
+		desenhaLigacao(noi->x,noi->y,noi->z,nof->x,nof->y,nof->z, arco.largura);
 	}else{
 		if(nos[arco.noi].y==nos[arco.nof].y){
 			//arco horizontal
@@ -513,7 +516,7 @@ void desenhaArco(Arco arco){
 				nof=&nos[arco.noi];
 				noi=&nos[arco.nof];
 			}
-			desenhaLigacao(noi->x,noi->y,noi->z,nof->x,nof->y,nof->z, ESTE_OESTE);
+			desenhaLigacao(noi->x,noi->y,noi->z,nof->x,nof->y,nof->z, arco.largura);
 		}
 		else
 		{
@@ -636,7 +639,7 @@ void desenhaPlanoDrag(int eixo){
 }
 
 void desenhaEixos(){
-	
+	/*
 	estado.eixo[0]=estado.camera.center[0];
 	estado.eixo[1]=estado.camera.center[1];
 	estado.eixo[2]=estado.camera.center[2];
@@ -661,7 +664,7 @@ void desenhaEixos(){
 			glPopMatrix();
 		glPopName();
 	glPopMatrix();
-	
+	*/
 }
 
 void desenhaHUD(int width, int height){
@@ -949,6 +952,23 @@ void desenhaMinimapa()
 	myReshape(glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT));
 }
 
+void desenhaSkydome()
+{
+	glPushMatrix();
+		glDisable(GL_LIGHTING);
+		glEnable(GL_BLEND);
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glBindTexture(GL_TEXTURE_2D, estrelas.TextureID);
+		glTranslatef(0.0,0.0,50.0);
+		glRotatef(90.0,1,0,0);
+		GenerateDome(300.0f, 5.0f, 5.0f, 1.0f, 1.0f);
+		RenderSkyDome();
+		glBindTexture(GL_TEXTURE_2D, NULL);
+		glDisable(GL_BLEND);
+		glEnable(GL_LIGHTING);
+	glPopMatrix();
+}
+
 
 /*
 void RenderParticles(void)
@@ -1071,6 +1091,8 @@ void display(void)
 	desenhaLabirinto();
 
 	desenhaBillboards();
+
+	desenhaSkydome();
 
 	desenhaHUD(glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT));
 
@@ -1366,23 +1388,25 @@ void mouse(int btn, int state, int x, int y){
 		case GLUT_LEFT_BUTTON :
 					if(state == GLUT_DOWN){
 						idobj=picking(x,y);
-						estado.eixoTranslaccao=idobj;
+						/*estado.eixoTranslaccao=idobj;
 						if(estado.eixoTranslaccao)
 							glutMotionFunc(motionDrag);
+						*/
 							estado.itemSeleccionado=idobj;
 							//estado.itemSeleccionado=-1;
+							
 						glutPostRedisplay();
 						cout << "Left down - objecto:" << estado.eixoTranslaccao << endl;
 					}
 					else{
-						if(estado.eixoTranslaccao!=0) {
+						/*if(estado.eixoTranslaccao!=0) {
 							estado.camera.center[0]=estado.eixo[0];
 							estado.camera.center[1]=estado.eixo[1];
 							estado.camera.center[2]=estado.eixo[2];
 							glutMotionFunc(NULL);
 							estado.eixoTranslaccao=0;
 							glutPostRedisplay();
-						}
+						}*/
 						cout << "Left up\n";
 					}
 				break;

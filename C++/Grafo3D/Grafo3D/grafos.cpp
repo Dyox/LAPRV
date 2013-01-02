@@ -112,7 +112,7 @@ void leGrafo(){
 		nos[i-1].y=(*(nosbd+i))->y;
 		nos[i-1].z=0.0;
 		nos[i-1].iduser=(*(nosbd+i))->id;
-		nos[i-1].largura=0.8;
+		nos[i-1].largura=1.0;
 	}
 	ArcoBD **arcosbd=NULL;
 	GetAllArcoBD(arcosbd);
@@ -133,7 +133,7 @@ void leGrafo(){
 		//arcos[i-1].noi=(*(arcosbd+i))->idPrim;
 		//arcos[i-1].nof=(*(arcosbd+i))->idSec;
 		arcos[i-1].peso=(*(arcosbd+i))->forca;
-		arcos[i-1].largura=arcos[i].peso*0.1;
+		arcos[i-1].largura=arcos[i-1].peso*0.1;
 		//arcos[i-1].largura=(*(arcosbd+i))->idRel;
 		nos[arcos[i-1].noi].z+=2;
 		nos[arcos[i-1].nof].z+=2;

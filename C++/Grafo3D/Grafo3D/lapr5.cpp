@@ -54,7 +54,7 @@ using namespace std;
 #pragma comment (lib, "OpenAL32.lib")
 #pragma comment (lib, "alut.lib")
 #pragma comment (user, "Compiled on " __DATE__ " at " __TIME__)
-#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
+//#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 
 // função para ler jpegs do ficheiro readjpeg.c
 extern "C" int read_JPEG_file(char *, char **, int *, int *, int *);
@@ -66,7 +66,11 @@ extern "C" int read_JPEG_file(char *, char **, int *, int *, int *);
 #define AVATAR "http://imagens.filmes3d.com/2009/setembro/av6.jpg"
 #define CONTENTE "Texturas/contente.bmp"
 #define ESTRELAS "Texturas/stars.jpg"
+#define TEXT_LOGIN "Texturas/login.jpg"
 #define NUM_TEXTURAS 80
+#define CENA_LOGIN 1
+#define CENA_LOADING 2
+#define CENA_GRAFO 3
 //#define DIMENSAO_CAMARA 500
 
 // luzes e materiais
@@ -132,6 +136,9 @@ typedef struct Estado{
 	GLint		eixoTranslaccao;
 	GLdouble	eixo[3];
 	GLint		itemSeleccionado;
+	GLint		itemCursor;
+	GLint		tempo;
+	GLint		cena;
 }Estado;
 
 typedef struct Modelo {
@@ -154,6 +161,7 @@ TextureLoader *apTexLoad = new TextureLoader();
 glTexture avatar;
 glTexture contente;
 glTexture estrelas;
+glTexture text_login;
 GLuint        texID[NUM_TEXTURAS];
 
 AUX_RGBImageRec *LoadBMP(char *Filename)				// Loads A Bitmap Image
@@ -192,6 +200,7 @@ void createTextures(GLuint texID[])
 	apTexLoad->LoadTextureFromDisk(AVATAR,&avatar);
 	apTexLoad->LoadTextureFromDisk(CONTENTE,&contente);
 	apTexLoad->LoadTextureFromDisk(ESTRELAS,&estrelas);
+	apTexLoad->LoadTextureFromDisk(TEXT_LOGIN,&text_login);
 	/*
 	//relva
 	if(	read_JPEG_file(TEXTURA_RELVA, &image, &w, &h, &bpp))
@@ -274,6 +283,7 @@ void myInit()
 
 	glDepthFunc(GL_LESS);
 
+	estado.lightViewer=1;
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, LuzAmbiente); 
 	glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, estado.lightViewer); 
 	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE); 
@@ -284,10 +294,10 @@ void myInit()
 	gluQuadricDrawStyle(modelo.quad, GLU_FILL);
 	gluQuadricNormals(modelo.quad, GLU_OUTSIDE);
 
+	estado.cena=CENA_LOGIN;
 	estado.itemSeleccionado=-1;
 
 	leGrafo();
-	
 }
 
 void imprime_ajuda(void)
@@ -751,6 +761,26 @@ void desenhaHUD(int width, int height){
 		myReshape((GLint) width, (GLint) height);
 	}
 
+	if ((estado.itemCursor<=numNos) && (estado.itemCursor>0))
+	{
+		//Altera viewport e projecção
+		glViewport(0, 0, (GLint) width, (GLint) height);
+		glMatrixMode(GL_PROJECTION);
+
+		glLoadIdentity();
+		gluOrtho2D(0,width,height,0);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		glPushMatrix();
+			glDisable(GL_LIGHTING);
+			glColor3f(0.0,0.0,0.8);
+			glRasterPos2i(estado.xMouse, estado.yMouse);
+			printString("Nome");
+			glEnable(GL_LIGHTING);
+		glPopMatrix();
+		myReshape((GLint) width, (GLint) height);
+	}
+
 	if (estado.itemSeleccionado>numNos)
 	{
 		//Altera viewport e projecção
@@ -969,6 +999,39 @@ void desenhaSkydome()
 	glPopMatrix();
 }
 
+void desenhaLogin()
+{
+	int w,h;
+	w=glutGet(GLUT_WINDOW_WIDTH);
+	h=glutGet(GLUT_WINDOW_HEIGHT);
+	//Altera viewport e projecção
+	glViewport(0, 0, (GLint) w, (GLint) h);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluOrtho2D(0,100,100,0);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	glPushMatrix();
+		glDisable(GL_LIGHTING);
+		glEnable(GL_BLEND);
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glBindTexture(GL_TEXTURE_2D, text_login.TextureID);
+		glColor3f(1.0,1.0,1.0);
+		glBegin(GL_QUADS);
+			glTexCoord2f(0,1);
+			glVertex3f(0,0,0);
+			glTexCoord2f(1,1);
+			glVertex3f(100,0,0);
+			glTexCoord2f(1,0);
+			glVertex3f(100,100,0);
+			glTexCoord2f(0,0);
+			glVertex3f(0,100,0);
+		glEnd();
+		glBindTexture(GL_TEXTURE_2D, NULL);
+		glDisable(GL_BLEND);
+		glEnable(GL_LIGHTING);
+	glPopMatrix();
+}
 
 /*
 void RenderParticles(void)
@@ -1081,8 +1144,10 @@ void display(void)
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
+	
 	setCamera();
-
+	//desenhaLogin();
+	
 	material(slate);
 	desenhaSolo();
 
@@ -1104,7 +1169,7 @@ void display(void)
 		desenhaPlanoDrag(estado.eixoTranslaccao);
 
 	}
-
+	
 	glFlush();
 	glutSwapBuffers();
 
@@ -1178,6 +1243,7 @@ void keyboard(unsigned char key, int x, int y)
 		case 'q':
 		case 'Q':
 				//estado.camera.dist-=1;
+				estado.itemCursor=0;
 				estado.camera.center[2]+=1;
 				desenhaEixos();
 				glutPostRedisplay();
@@ -1185,6 +1251,7 @@ void keyboard(unsigned char key, int x, int y)
 		case 'a':
 		case 'A':
 				//estado.camera.dist+=1;
+				estado.itemCursor=0;
 				estado.camera.center[2]-=1;
 				desenhaEixos();
 				glutPostRedisplay();
@@ -1225,6 +1292,7 @@ void Special(int key, int x, int y){
 				//estado.camera.dist-=1;
 				estado.camera.center[0]-=0.5*cos(estado.camera.dir_long);
 				estado.camera.center[1]-=0.5*sin(estado.camera.dir_long);
+				estado.itemCursor=0;
 				desenhaEixos();
 				glutPostRedisplay();
 			break;
@@ -1232,15 +1300,18 @@ void Special(int key, int x, int y){
 				//estado.camera.dist+=1;
 				estado.camera.center[0]+=0.5*cos(estado.camera.dir_long);
 				estado.camera.center[1]+=0.5*sin(estado.camera.dir_long);
+				estado.itemCursor=0;
 				desenhaEixos();
 				glutPostRedisplay();
 			break;
 		case GLUT_KEY_LEFT:
 				estado.camera.dir_long+=0.05;
+				estado.itemCursor=0;
 				glutPostRedisplay();
 			break;
 		case GLUT_KEY_RIGHT:
 				estado.camera.dir_long-=0.05;
+				estado.itemCursor=0;
 				glutPostRedisplay();
 			break;	}
 		
@@ -1343,7 +1414,7 @@ int picking(int x, int y){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	setCamera();
-	desenhaEixos();
+	//desenhaEixos();
 	desenhaLabirinto();
 	
 	n = glRenderMode(GL_RENDER);
@@ -1359,12 +1430,10 @@ int picking(int x, int y){
 			ptr += 3 + ptr[0]; // ptr[0] contem o número de nomes (normalmente 1); 3 corresponde a numnomes, zmin e zmax
 		}
 	}
-
-
+	
 	glMatrixMode(GL_PROJECTION); //repõe matriz projecção
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
-	cout << "ID do objecto:" << objid << "\n";
 	return objid;
 }
 void mouse(int btn, int state, int x, int y){
@@ -1378,11 +1447,9 @@ void mouse(int btn, int state, int x, int y){
 							glutMotionFunc(motionZoom);
 						else
 							glutMotionFunc(motionRotate);
-						cout << "Right down\n";
 					}
 					else{
 						glutMotionFunc(NULL);
-						cout << "Right up\n";
 					}
 				break;
 		case GLUT_LEFT_BUTTON :
@@ -1396,7 +1463,6 @@ void mouse(int btn, int state, int x, int y){
 							//estado.itemSeleccionado=-1;
 							
 						glutPostRedisplay();
-						cout << "Left down - objecto:" << estado.eixoTranslaccao << endl;
 					}
 					else{
 						/*if(estado.eixoTranslaccao!=0) {
@@ -1407,10 +1473,23 @@ void mouse(int btn, int state, int x, int y){
 							estado.eixoTranslaccao=0;
 							glutPostRedisplay();
 						}*/
-						cout << "Left up\n";
 					}
 				break;
 	}
+}
+
+void mousePassive(int x, int y)
+{
+	estado.itemCursor=picking(x,y);
+	estado.xMouse=x;
+	estado.yMouse=y;
+	glutPostRedisplay();
+}
+
+void Timer(int value)
+{
+	estado.tempo++;
+	glutTimerFunc(1000,Timer,0);
 }
 
 void main(int argc, char **argv)
@@ -1427,6 +1506,8 @@ void main(int argc, char **argv)
 	glutKeyboardFunc(keyboard);
 	glutSpecialFunc(Special);
 	glutMouseFunc(mouse);
+	glutPassiveMotionFunc(mousePassive);
+	glutTimerFunc(1000,Timer,0);
 
 	myInit();
 

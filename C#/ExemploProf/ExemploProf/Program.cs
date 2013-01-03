@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Diagnostics;
+using Rede;
+using System.Collections;
 
 namespace ExemploProf
 {
@@ -39,12 +41,53 @@ namespace ExemploProf
             //                    "cam_min(X,Y,P):-findall(P,caminhos(X,Y,P),L),menor(L,P),write(P);write('Nenhum caminho...'). " +
             //                    "run:- tell('user_comando.txt'),cam_min(a,c,P),told,halt. "+
             //                     ":-run. \n";
+
             //menorCaminho = cam_min(a,c,P)
-            PrologExec p = new PrologExec("user", "menorCaminho" );
-            string res = p.executaComandoProlog("cam_min(a,b,P)");
+            //caminhoMaisForte = camMaisForte(X,Y)
+            PrologExec p = new PrologExec("user", "caminhoMaisForte");
+            string res = p.executaComandoProlog("camMaisForte(1,7,P)");
             Console.Write(res);
+
+
+            //int profileIDA, int profileIDB, int forca, string tag
+            //% ramo(No1_ID,No2_ID,Tag,Força)
+            //% no(NoID,PosX,PosY)
+            IList listaArcos = Rede.Relacao.LoadInfoForArcos();
+            //Console.WriteLine(((Rede.Relacao)listaArcos[4]).toFile());
+            //Console.WriteLine();
+            IList listaNos = Rede.Perfil.LoadInfoForNos();
+            //Console.WriteLine(((Rede.Perfil)listaNos[0]).toFile());
+            //Console.Read();
+
+            //string txt = "";
+            //foreach (Relacao r in listaArcos)
+            //{
+            //    txt += r.toFile() + " \n";
+            //}
+            //foreach (Perfil n in listaNos)
+            //{
+            //    txt += n.toFile() + " \n";
+            //}
+            //escrverTXT(txt);
+            //Console.Write(txt);
             Console.Read();
+            
         }
+
+        private static Boolean escrverTXT(string lines)
+        {
+            try
+            {
+                System.IO.File.WriteAllText(@"C:\\WIN-PROLOG 4800\" + "aaaaaaaaaanosArcos" + ".txt", lines);
+            }
+            catch (System.IO.IOException ex)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        
     }
 }
 

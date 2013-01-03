@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,13 +78,21 @@ namespace ExemploProf
 
         private void obterLines(string target)
         {
-            string nos = resultadoFicheiro("readNos");
-            string ramos = resultadoFicheiro("readRamos");
+            //string nos = resultadoFicheiro("readNos");
+            //string ramos = resultadoFicheiro("readRamos");
+            string nos = obterNos();
+            string ramos = obterRamos();
             string conteudo = null;
             switch (Comando)
             {
                 case "menorCaminho":
                     conteudo = resultadoFicheiro("menorCaminho");
+                    break;
+                case "caminhoMaisForte":
+                    conteudo = resultadoFicheiro("caminhoMaisForte");
+                    break;
+                case "recomendaAmizade":
+                    conteudo = resultadoFicheiro("recomendaAmizade");
                     break;
             }
             string fim ="run:- tell('" + NomeFich + ".txt'),_target_,told,halt."+ "\n" +
@@ -91,6 +101,32 @@ namespace ExemploProf
             if (nos == null && ramos == null && conteudo == null)
                 Lines = null;
             Lines = nos + "\n" + ramos + "\n" + conteudo + "\n" + fim;
+        }
+
+        private string obterNos()
+        {
+            IList listaNos = Rede.Perfil.LoadInfoForNos();
+
+            string txt = "";
+            foreach (Rede.Perfil n in listaNos)
+            {
+                txt += n.toFile() + " \n";
+            }
+
+            return txt;
+        }
+
+        private string obterRamos()
+        {
+            IList listaArcos = Rede.Relacao.LoadInfoForArcos();
+
+            string txt = "";
+            foreach (Rede.Relacao r in listaArcos)
+            {
+                txt += r.toFile() + " \n";
+            }
+
+            return txt;
         }
 
         private Boolean executaProlog()
@@ -185,6 +221,33 @@ namespace ExemploProf
             }
             return null;
         }
-    }
+
+        private static bool IsFileLocked(string path)
+        {
+            FileInfo file = new FileInfo(path);
+            FileStream stream = null;
+
+            try
+            {
+                stream = file.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+            }
+            catch (IOException)
+            {
+                //the file is unavailable because it is:
+                //still being written to
+                //or being processed by another thread
+                //or does not exist (has already been processed)
+                return true;
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
+
+            //file is not locked
+            return false;
+        }
     
+    }
 }

@@ -1,4 +1,4 @@
-% no(NoID,PosX,PosY)
+% no(NoID,[listaTags],PosX,PosY)
 no(a,[musica,rock],45,95).
 no(b,[musica,rock],90,95).
 no(c,[musica],45,95).

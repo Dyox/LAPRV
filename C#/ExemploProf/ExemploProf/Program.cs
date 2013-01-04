@@ -43,9 +43,11 @@ namespace ExemploProf
             //                     ":-run. \n";
 
             //menorCaminho = cam_min(a,c,P)
-            //caminhoMaisForte = camMaisForte(X,Y)
-            PrologExec p = new PrologExec("user", "caminhoMaisForte");
-            string res = p.executaComandoProlog("camMaisForte(1,7,P)");
+            //caminhoMaisForte = camMaisForte(1,7,P)
+
+            //PrologExec p = new PrologExec("user", "caminhoMaisForte");
+            PrologExec p = new PrologExec("user", "menorCaminho");
+            string res = p.executaComandoProlog("1,7,P");
             Console.Write(res);
 
 

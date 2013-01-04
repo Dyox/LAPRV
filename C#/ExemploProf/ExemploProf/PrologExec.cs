@@ -80,27 +80,39 @@ namespace ExemploProf
         {
             //string nos = resultadoFicheiro("readNos");
             //string ramos = resultadoFicheiro("readRamos");
+            //menorCaminho = cam_min(a,c,P)
+            //caminhoMaisForte = camMaisForte(X,Y)
+            //menorCaminho = cam_min(_target_)
+            //caminhoMaisForte = camMaisForte(_target_)
             string nos = obterNos();
             string ramos = obterRamos();
             string conteudo = null;
+            string metodo = null;
             switch (Comando)
             {
                 case "menorCaminho":
                     conteudo = resultadoFicheiro("menorCaminho");
+                    metodo = "cam_min(_target_)";
                     break;
                 case "caminhoMaisForte":
                     conteudo = resultadoFicheiro("caminhoMaisForte");
+                    metodo = "camMaisForte(_target_)";
                     break;
                 case "recomendaAmizade":
                     conteudo = resultadoFicheiro("recomendaAmizade");
                     break;
             }
-            string fim ="run:- tell('" + NomeFich + ".txt'),_target_,told,halt."+ "\n" +
+            string fim ="run:- tell('" + NomeFich + ".txt'),"+metodo+",told,halt."+ "\n" +
                                  ":-run. \n";
             fim = fim.Replace("_target_",target);
-            if (nos == null && ramos == null && conteudo == null)
+            if (nos == null && ramos == null && conteudo == null && metodo == null)
+            {
                 Lines = null;
-            Lines = nos + "\n" + ramos + "\n" + conteudo + "\n" + fim;
+            }
+            else
+            {
+                Lines = nos + "\n" + ramos + "\n" + conteudo + "\n" + fim;
+            }
         }
 
         private string obterNos()

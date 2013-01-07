@@ -28,9 +28,10 @@ using System.Collections;
             //IList xl = new ArrayList();
             //IList yl = new ArrayList();
             IList lista = Rede.Perfil.LoadAll();
+            ret.Add(new NoBD(lista.Count, 0, 0));
             for (int i = 0; i < lista.Count; i++)
             {
-                ret.Add(new NoBD(lista.Count, 0, 0));
+                
                 ret.Add(new NoBD(((Rede.Perfil)lista[i]).ID, ((Rede.Perfil)lista[i]).X, ((Rede.Perfil)lista[i]).Y));
                 //idl.Add(((Rede.Perfil)lista[i]).ID);
                 //xl.Add(((Rede.Perfil)lista[i]).X);
@@ -46,10 +47,12 @@ using System.Collections;
             //IList idl = new ArrayList();
             //IList xl = new ArrayList();
             //IList yl = new ArrayList();
+
             IList lista = Rede.Relacao.LoadAll();
+            ret.Add(new ArcoBD(lista.Count, 0, 0, 0));
             for (int i = 0; i < lista.Count; i++)
             {
-                ret.Add(new ArcoBD(lista.Count,0,0,0));
+                
                 ret.Add(new ArcoBD(((Rede.Relacao)lista[i]).ID, ((Rede.Relacao)lista[i]).ProfileIDA, ((Rede.Relacao)lista[i]).ProfileIDB, ((Rede.Relacao)lista[i]).Forca));
                 //idl.Add(((Rede.Perfil)lista[i]).ID);
                 //xl.Add(((Rede.Perfil)lista[i]).X
@@ -60,7 +63,36 @@ using System.Collections;
 
         }
 
+        public Utilizador GetUtilizadorByID(int uid)
+        {
+            
+         
 
+            Rede.Perfil perfil = Rede.Perfil.LoadById(uid);
+            Utilizador util = new Utilizador(perfil.Name,perfil.Nick,perfil.Morada,perfil.Telemovel,perfil.DataNascimento.ToString());
+            
+            
+
+            return util;
+
+        }
+
+        public IList GetTagsByUserID(int uid)
+        {
+
+            IList tags = Rede.Perfil.LoadTagsByUserID(uid);
+
+            return tags;
+
+        }
+        public string GetHumorByUserID(int uid)
+        {
+
+            string humor = Rede.Perfil.getHumorByPrefilID(uid);
+
+            return humor;
+
+        }
     }
 
     

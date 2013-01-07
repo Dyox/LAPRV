@@ -18,7 +18,12 @@ using System.Collections;
         IList<NoBD> GetAllXY();
         [OperationContract]
         IList<ArcoBD> GetAllArcoBD();
-
+        [OperationContract]
+        Utilizador GetUtilizadorByID(int uid);
+        [OperationContract]
+        IList GetTagsByUserID(int uid);
+        [OperationContract]
+        string GetHumorByUserID(int uid);
         [OperationContract]
         void DoWork();
     }

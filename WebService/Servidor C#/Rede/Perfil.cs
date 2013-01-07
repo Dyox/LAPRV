@@ -161,7 +161,40 @@ namespace Rede
             else
                 return new Perfil(ds.Tables[0].Rows[0]);
         }
+        public static IList LoadTagsByUserID(int userID)
+        {
+            IList ret = new ArrayList();
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT TagID FROM TTags where ProfileID=" + userID);
 
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    int TagID = (int)row["TagID"];
+                    try
+                    {
+                        DataSet dsTag = ExecuteQuery(GetConnection(false), "SELECT Designacao FROM TTag where TagID=" + TagID);
+
+                        foreach (DataRow r in dsTag.Tables[0].Rows)
+                        {
+                            string tag = (string)r["Designacao"];
+                            ret.Add(tag);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw new ApplicationException("Erro BD", ex);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //throw new ApplicationException("Erro BD", ex);
+            }
+
+            return ret;
+        }
         public static Perfil LoadByUserId(string customerID)
         {
             DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * FROM TProfile WHERE UserID='" + customerID+"'");
@@ -247,6 +280,40 @@ namespace Rede
 
                 
             }
+        }
+        public static string getHumorByPrefilID(int profileID)
+        {
+            IList ret = new ArrayList();
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT HumorID FROM TProfile where ProfileID=" + profileID);
+
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    int HumorID = (int)row["HumorID"];
+                    try
+                    {
+                        DataSet dsTag = ExecuteQuery(GetConnection(false), "SELECT Designacao FROM THumor where HumorID=" + HumorID);
+
+                        foreach (DataRow r in dsTag.Tables[0].Rows)
+                        {
+                            string humor = (string)r["Designacao"];
+                            return humor;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw new ApplicationException("Erro BD", ex);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //throw new ApplicationException("Erro BD", ex);
+            }
+
+            return "";
         }
     }
 }

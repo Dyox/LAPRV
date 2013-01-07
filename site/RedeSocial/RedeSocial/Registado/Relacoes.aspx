@@ -1,16 +1,53 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Relacoes.aspx.cs" Inherits="RedeSocial.Registado.Relacoes" %>
+﻿    <%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Relacoes.aspx.cs" Inherits="RedeSocial.Registado.Relacoes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    <br />
+    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+    <asp:Button ID="Button1" runat="server" Text="Procurar" OnClick="Button1_Click" />
+    <br />
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
         <Columns>
+            <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" />
             <asp:BoundField DataField="Nick" HeaderText="Nick" SortExpression="Nick" />
             <asp:ImageField DataImageUrlField="Avatar">
             </asp:ImageField>
-            <asp:CommandField ButtonType="Button" HeaderText="Adicionar" ShowHeader="True" ShowSelectButton="True" />
+            <asp:CommandField ButtonType="Button" HeaderText="Selecionar" ShowHeader="True" ShowSelectButton="True" />
         </Columns>
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>" SelectCommand="SELECT [Nick], [Avatar] FROM [TProfile]"></asp:SqlDataSource>
+    <br />
+<asp:TextBox ID="TextBoxTag" runat="server"></asp:TextBox>
+<asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Juntar" />
+<asp:DropDownList ID="DropDownTags" runat="server">
+</asp:DropDownList>
+<br />
+<asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="Large" Text="Força"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+<asp:DropDownList ID="DropDownForca" runat="server">
+    <asp:ListItem>1</asp:ListItem>
+    <asp:ListItem>2</asp:ListItem>
+    <asp:ListItem>3</asp:ListItem>
+    <asp:ListItem>4</asp:ListItem>
+    <asp:ListItem>5</asp:ListItem>
+</asp:DropDownList>
+<br />
+<asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Enviar" />
+    <br />
+    <br />
+    <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource2">
+        <Columns>
+            <asp:ImageField DataImageUrlField="Avatar"></asp:ImageField>
+            <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" />
+            </Columns>
+    </asp:GridView>
+    <br />
+<br />
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>">
+    </asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>">
+    </asp:SqlDataSource>
+    <br />
+    <br />
 </asp:Content>

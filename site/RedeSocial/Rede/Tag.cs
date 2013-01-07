@@ -12,6 +12,12 @@ namespace Rede
     {
         private string _desgina;
 
+        
+        public Tag()
+        {
+
+        }
+
         public Tag(String des)
         {
 

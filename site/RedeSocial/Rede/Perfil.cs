@@ -23,7 +23,6 @@ namespace Rede
         private string _avatar3D;
         private int _x;
         private int _y;
-        private IList _tags;
 
         public Perfil()
         {
@@ -65,14 +64,7 @@ namespace Rede
             this._x = x;
             this._y = y;
         }
-        public Perfil(int ID, int x, int y, IList tags)
-        {
-            // TODO: Complete member initialization
-            this.myID = ID;
-            this._x = x;
-            this._y = y;
-            this._tags = tags;
-        }
+
 
         public string UsID
         {
@@ -149,13 +141,6 @@ namespace Rede
             get { return _y; }
             set { _y = value; }
         }
-
-        public IList Tags
-        {
-            get { return _tags; }
-            set { _tags = value; }
-        }
-
         protected Perfil(DataRow row)
         {
             this.myID = (int)row["ProfileID"];
@@ -198,7 +183,7 @@ namespace Rede
         }
         public static Perfil LoadByName(string Nam)
         {
-            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * FROM TProfile WHERE Nome=" + Nam);
+            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * FROM TProfile WHERE Nome='" + Nam+"'");
             if (ds.Tables[0].Rows.Count != 1)
                 return null;
             else
@@ -256,95 +241,6 @@ namespace Rede
          
         }
 
-        public static IList LoadInfoForNos()
-        {//no(NoID,[listaTags],PosX,PosY)
-            try
-            {
-                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT ProfileID,X,Y FROM TProfile");
-
-                IList ret = new ArrayList();
-
-                foreach (DataRow row in ds.Tables[0].Rows)
-                {
-                    int ID = (int)row["ProfileID"];
-                    int x = (int)row["X"];
-                    int y = (int)row["Y"];
-                    IList tags = LoadTagsByUserID(ID);
-                    Perfil c = new Perfil(ID, x, y, tags);
-                    ret.Add(c);
-                }
-
-                return ret;
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException("Erro BD", ex);
-            }
-        }
-
-        public static IList LoadTagsByUserID(int userID)
-        {
-            IList ret = new ArrayList();
-            try
-            {
-                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT TagID FROM TTags where ProfileID=" + userID);
-
-                foreach (DataRow row in ds.Tables[0].Rows)
-                {
-                    int TagID = (int)row["TagID"];
-                    try
-                    {
-                        DataSet dsTag = ExecuteQuery(GetConnection(false), "SELECT Designacao FROM TTag where TagID=" + TagID);
-
-                        foreach (DataRow r in dsTag.Tables[0].Rows)
-                        {
-                            string tag = (string)r["Designacao"];
-                            ret.Add(tag);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        //throw new ApplicationException("Erro BD", ex);
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                //throw new ApplicationException("Erro BD", ex);
-            }
-
-            return ret;
-        }
-
-        public string toFile()
-        {   //no(NoID,[listaTags,listaTags],PosX,PosY)
-            String txt = "no(";
-            txt += ID + ",";
-            txt += "[";
-            if (Tags.Count == 0)
-            {
-                txt += "]";
-            }
-            else
-            {
-                for (int x = 0; x < Tags.Count; x++)
-                {
-                    if (x == Tags.Count - 1)
-                    {
-                        txt += Tags[x] += "]";
-                    }
-                    else
-                    {
-                        txt += Tags[x] + ",";
-                    }
-                }
-            }
-            txt += ",";
-            txt += X + ",";
-            txt += Y + ").";
-            return txt;
-        }
 
         public override void Save()
         {

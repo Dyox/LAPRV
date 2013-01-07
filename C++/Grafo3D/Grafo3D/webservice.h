@@ -6,3 +6,5 @@
 #include "schema.xsd.h"
 void getAllXY(NoBD **&no);
 void GetAllArcoBD(ArcoBD **&arco);
+void GetUtilizadorByID(int uid,Utilizador *&utilizador);
+void GetTagsByUserID(int uid,WS_XML_BUFFER **&tags);

@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://wvm022.dei.isep.ipp.pt/TesteWebService/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://wvm022.dei.isep.ipp.pt/TesteWebService/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://wvm022.dei.isep.ipp.pt/TesteWebService/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/" />
+      <xsd:import schemaLocation="http://wvm022.dei.isep.ipp.pt/TesteWebService/Service.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService_Add_InputMessage">
@@ -25,6 +26,24 @@
   <wsdl:message name="IService_GetAllArcoBD_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllArcoBDResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_GetUtilizadorByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUtilizadorByID" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetUtilizadorByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUtilizadorByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetTagsByUserID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTagsByUserID" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetTagsByUserID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTagsByUserIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetHumorByUserID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHumorByUserID" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetHumorByUserID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHumorByUserIDResponse" />
+  </wsdl:message>
   <wsdl:message name="IService_DoWork_InputMessage">
     <wsdl:part name="parameters" element="tns:DoWork" />
   </wsdl:message>
@@ -43,6 +62,18 @@
     <wsdl:operation name="GetAllArcoBD">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/GetAllArcoBD" message="tns:IService_GetAllArcoBD_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/GetAllArcoBDResponse" message="tns:IService_GetAllArcoBD_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUtilizadorByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetUtilizadorByID" message="tns:IService_GetUtilizadorByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetUtilizadorByIDResponse" message="tns:IService_GetUtilizadorByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTagsByUserID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetTagsByUserID" message="tns:IService_GetTagsByUserID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetTagsByUserIDResponse" message="tns:IService_GetTagsByUserID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHumorByUserID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetHumorByUserID" message="tns:IService_GetHumorByUserID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetHumorByUserIDResponse" message="tns:IService_GetHumorByUserID_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/DoWork" message="tns:IService_DoWork_InputMessage" />
@@ -71,6 +102,33 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllArcoBD">
       <soap:operation soapAction="http://tempuri.org/IService/GetAllArcoBD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUtilizadorByID">
+      <soap:operation soapAction="http://tempuri.org/IService/GetUtilizadorByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTagsByUserID">
+      <soap:operation soapAction="http://tempuri.org/IService/GetTagsByUserID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHumorByUserID">
+      <soap:operation soapAction="http://tempuri.org/IService/GetHumorByUserID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

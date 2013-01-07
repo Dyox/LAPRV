@@ -29,4 +29,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArcoBD" nillable="true" type="tns:ArcoBD" />
+  <xs:complexType name="Utilizador">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="morada" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nasc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nick" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nome" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tele" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Utilizador" nillable="true" type="tns:Utilizador" />
 </xs:schema>

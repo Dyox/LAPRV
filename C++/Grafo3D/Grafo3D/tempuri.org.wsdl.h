@@ -127,6 +127,9 @@ extern "C" {
 //     BasicHttpBinding_IService_Add
 //     BasicHttpBinding_IService_GetAllXY
 //     BasicHttpBinding_IService_GetAllArcoBD
+//     BasicHttpBinding_IService_GetUtilizadorByID
+//     BasicHttpBinding_IService_GetTagsByUserID
+//     BasicHttpBinding_IService_GetHumorByUserID
 //     BasicHttpBinding_IService_DoWork
 
 // The following server function tables were generated:
@@ -142,6 +145,7 @@ extern "C" {
 
 // #include <WebServices.h>
 // #include "schema.xsd.h"
+// #include "schemas.microsoft.com.2003.10.Serialization.Arrays.xsd.h"
 // #include "tempuri.org.xsd.h"
 
 ////////////////////////////////////////////////
@@ -210,6 +214,40 @@ HRESULT WINAPI BasicHttpBinding_IService_GetAllArcoBD(
     __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
     __in_opt WS_ERROR* _error);
 
+// operation: BasicHttpBinding_IService_GetUtilizadorByID
+HRESULT WINAPI BasicHttpBinding_IService_GetUtilizadorByID(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int uid, 
+    __deref_out_opt Utilizador** GetUtilizadorByIDResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+// operation: BasicHttpBinding_IService_GetTagsByUserID
+HRESULT WINAPI BasicHttpBinding_IService_GetTagsByUserID(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int uid, 
+    __out unsigned int* GetTagsByUserIDResultCount, 
+    __deref_out_ecount_opt(*GetTagsByUserIDResultCount) WS_XML_BUFFER*** GetTagsByUserIDResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+// operation: BasicHttpBinding_IService_GetHumorByUserID
+HRESULT WINAPI BasicHttpBinding_IService_GetHumorByUserID(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int uid, 
+    __out_opt __deref __nullterminated WCHAR** GetHumorByUserIDResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
 // operation: BasicHttpBinding_IService_DoWork
 HRESULT WINAPI BasicHttpBinding_IService_DoWork(
     __in WS_SERVICE_PROXY* _serviceProxy,
@@ -245,6 +283,28 @@ typedef HRESULT (CALLBACK* BasicHttpBinding_IService_GetAllArcoBDCallback) (
     __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
     __in_opt WS_ERROR* _error);
 
+typedef HRESULT (CALLBACK* BasicHttpBinding_IService_GetUtilizadorByIDCallback) (
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in int uid, 
+    __deref_out_opt Utilizador** GetUtilizadorByIDResult, 
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+typedef HRESULT (CALLBACK* BasicHttpBinding_IService_GetTagsByUserIDCallback) (
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in int uid, 
+    __out unsigned int* GetTagsByUserIDResultCount, 
+    __deref_out_ecount_opt(*GetTagsByUserIDResultCount) WS_XML_BUFFER*** GetTagsByUserIDResult, 
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+typedef HRESULT (CALLBACK* BasicHttpBinding_IService_GetHumorByUserIDCallback) (
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in int uid, 
+    __out_opt __deref __nullterminated WCHAR** GetHumorByUserIDResult, 
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
 typedef HRESULT (CALLBACK* BasicHttpBinding_IService_DoWorkCallback) (
     __in const WS_OPERATION_CONTEXT* _context,
     __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
@@ -256,6 +316,9 @@ typedef struct BasicHttpBinding_IServiceFunctionTable
     BasicHttpBinding_IService_AddCallback BasicHttpBinding_IService_Add;
     BasicHttpBinding_IService_GetAllXYCallback BasicHttpBinding_IService_GetAllXY;
     BasicHttpBinding_IService_GetAllArcoBDCallback BasicHttpBinding_IService_GetAllArcoBD;
+    BasicHttpBinding_IService_GetUtilizadorByIDCallback BasicHttpBinding_IService_GetUtilizadorByID;
+    BasicHttpBinding_IService_GetTagsByUserIDCallback BasicHttpBinding_IService_GetTagsByUserID;
+    BasicHttpBinding_IService_GetHumorByUserIDCallback BasicHttpBinding_IService_GetHumorByUserID;
     BasicHttpBinding_IService_DoWorkCallback BasicHttpBinding_IService_DoWork;
 } BasicHttpBinding_IServiceFunctionTable;
 
@@ -303,6 +366,42 @@ typedef struct _tempuri_org_wsdl
         // messageDescription: tempuri_org_wsdl.messages.IService_GetAllArcoBD_OutputMessage
         WS_MESSAGE_DESCRIPTION IService_GetAllArcoBD_OutputMessage;
         
+        // message: IService_GetUtilizadorByID_InputMessage
+        // c type: _GetUtilizadorByID
+        // action: "http://tempuri.org/IService/GetUtilizadorByID"
+        // messageDescription: tempuri_org_wsdl.messages.IService_GetUtilizadorByID_InputMessage
+        WS_MESSAGE_DESCRIPTION IService_GetUtilizadorByID_InputMessage;
+        
+        // message: IService_GetUtilizadorByID_OutputMessage
+        // c type: _GetUtilizadorByIDResponse
+        // action: "http://tempuri.org/IService/GetUtilizadorByIDResponse"
+        // messageDescription: tempuri_org_wsdl.messages.IService_GetUtilizadorByID_OutputMessage
+        WS_MESSAGE_DESCRIPTION IService_GetUtilizadorByID_OutputMessage;
+        
+        // message: IService_GetTagsByUserID_InputMessage
+        // c type: _GetTagsByUserID
+        // action: "http://tempuri.org/IService/GetTagsByUserID"
+        // messageDescription: tempuri_org_wsdl.messages.IService_GetTagsByUserID_InputMessage
+        WS_MESSAGE_DESCRIPTION IService_GetTagsByUserID_InputMessage;
+        
+        // message: IService_GetTagsByUserID_OutputMessage
+        // c type: _GetTagsByUserIDResponse
+        // action: "http://tempuri.org/IService/GetTagsByUserIDResponse"
+        // messageDescription: tempuri_org_wsdl.messages.IService_GetTagsByUserID_OutputMessage
+        WS_MESSAGE_DESCRIPTION IService_GetTagsByUserID_OutputMessage;
+        
+        // message: IService_GetHumorByUserID_InputMessage
+        // c type: _GetHumorByUserID
+        // action: "http://tempuri.org/IService/GetHumorByUserID"
+        // messageDescription: tempuri_org_wsdl.messages.IService_GetHumorByUserID_InputMessage
+        WS_MESSAGE_DESCRIPTION IService_GetHumorByUserID_InputMessage;
+        
+        // message: IService_GetHumorByUserID_OutputMessage
+        // c type: _GetHumorByUserIDResponse
+        // action: "http://tempuri.org/IService/GetHumorByUserIDResponse"
+        // messageDescription: tempuri_org_wsdl.messages.IService_GetHumorByUserID_OutputMessage
+        WS_MESSAGE_DESCRIPTION IService_GetHumorByUserID_OutputMessage;
+        
         // message: IService_DoWork_InputMessage
         // c type: _DoWork
         // action: "http://tempuri.org/IService/DoWork"
@@ -329,6 +428,15 @@ typedef struct _tempuri_org_wsdl
         // operation: BasicHttpBinding_IService_GetAllArcoBD
         //     input message: IService_GetAllArcoBD_InputMessage
         //     output message: IService_GetAllArcoBD_OutputMessage
+        // operation: BasicHttpBinding_IService_GetUtilizadorByID
+        //     input message: IService_GetUtilizadorByID_InputMessage
+        //     output message: IService_GetUtilizadorByID_OutputMessage
+        // operation: BasicHttpBinding_IService_GetTagsByUserID
+        //     input message: IService_GetTagsByUserID_InputMessage
+        //     output message: IService_GetTagsByUserID_OutputMessage
+        // operation: BasicHttpBinding_IService_GetHumorByUserID
+        //     input message: IService_GetHumorByUserID_InputMessage
+        //     output message: IService_GetHumorByUserID_OutputMessage
         // operation: BasicHttpBinding_IService_DoWork
         //     input message: IService_DoWork_InputMessage
         //     output message: IService_DoWork_OutputMessage

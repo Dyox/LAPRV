@@ -47,6 +47,12 @@ extern "C" {
 //     struct _GetAllXYResponse;
 //     struct _GetAllArcoBD;
 //     struct _GetAllArcoBDResponse;
+//     struct _GetUtilizadorByID;
+//     struct _GetUtilizadorByIDResponse;
+//     struct _GetTagsByUserID;
+//     struct _GetTagsByUserIDResponse;
+//     struct _GetHumorByUserID;
+//     struct _GetHumorByUserIDResponse;
 //     struct _DoWork;
 //     struct _DoWorkResponse;
 
@@ -54,6 +60,7 @@ extern "C" {
 
 // #include <WebServices.h>
 // #include "schema.xsd.h"
+// #include "schemas.microsoft.com.2003.10.Serialization.Arrays.xsd.h"
 
 ////////////////////////////////////////////////
 // C structure definitions for generated types
@@ -89,6 +96,43 @@ typedef struct _GetAllArcoBDResponse
     unsigned int GetAllArcoBDResultCount;
     __field_ecount_opt(GetAllArcoBDResultCount)struct ArcoBD** GetAllArcoBDResult; // optional
 } _GetAllArcoBDResponse;
+
+// typeDescription: n/a
+typedef struct _GetUtilizadorByID 
+{
+    int uid;
+} _GetUtilizadorByID;
+
+// typeDescription: n/a
+typedef struct _GetUtilizadorByIDResponse 
+{
+    struct Utilizador* GetUtilizadorByIDResult; // optional
+} _GetUtilizadorByIDResponse;
+
+// typeDescription: n/a
+typedef struct _GetTagsByUserID 
+{
+    int uid;
+} _GetTagsByUserID;
+
+// typeDescription: n/a
+typedef struct _GetTagsByUserIDResponse 
+{
+    unsigned int GetTagsByUserIDResultCount;
+    __field_ecount_opt(GetTagsByUserIDResultCount)WS_XML_BUFFER** GetTagsByUserIDResult; // optional
+} _GetTagsByUserIDResponse;
+
+// typeDescription: n/a
+typedef struct _GetHumorByUserID 
+{
+    int uid;
+} _GetHumorByUserID;
+
+// typeDescription: n/a
+typedef struct _GetHumorByUserIDResponse 
+{
+    WCHAR* GetHumorByUserIDResult; // optional
+} _GetHumorByUserIDResponse;
 
 typedef struct _DoWork _DoWork;
 
@@ -132,6 +176,36 @@ typedef struct _tempuri_org_xsd
         // elementDescription: tempuri_org_xsd.globalElements.GetAllArcoBDResponse
         WS_ELEMENT_DESCRIPTION GetAllArcoBDResponse;
         
+        // xml element: GetUtilizadorByID ("http://tempuri.org/")
+        // c type: _GetUtilizadorByID
+        // elementDescription: tempuri_org_xsd.globalElements.GetUtilizadorByID
+        WS_ELEMENT_DESCRIPTION GetUtilizadorByID;
+        
+        // xml element: GetUtilizadorByIDResponse ("http://tempuri.org/")
+        // c type: _GetUtilizadorByIDResponse
+        // elementDescription: tempuri_org_xsd.globalElements.GetUtilizadorByIDResponse
+        WS_ELEMENT_DESCRIPTION GetUtilizadorByIDResponse;
+        
+        // xml element: GetTagsByUserID ("http://tempuri.org/")
+        // c type: _GetTagsByUserID
+        // elementDescription: tempuri_org_xsd.globalElements.GetTagsByUserID
+        WS_ELEMENT_DESCRIPTION GetTagsByUserID;
+        
+        // xml element: GetTagsByUserIDResponse ("http://tempuri.org/")
+        // c type: _GetTagsByUserIDResponse
+        // elementDescription: tempuri_org_xsd.globalElements.GetTagsByUserIDResponse
+        WS_ELEMENT_DESCRIPTION GetTagsByUserIDResponse;
+        
+        // xml element: GetHumorByUserID ("http://tempuri.org/")
+        // c type: _GetHumorByUserID
+        // elementDescription: tempuri_org_xsd.globalElements.GetHumorByUserID
+        WS_ELEMENT_DESCRIPTION GetHumorByUserID;
+        
+        // xml element: GetHumorByUserIDResponse ("http://tempuri.org/")
+        // c type: _GetHumorByUserIDResponse
+        // elementDescription: tempuri_org_xsd.globalElements.GetHumorByUserIDResponse
+        WS_ELEMENT_DESCRIPTION GetHumorByUserIDResponse;
+        
         // xml element: DoWork ("http://tempuri.org/")
         // c type: _DoWork
         // elementDescription: tempuri_org_xsd.globalElements.DoWork
@@ -151,6 +225,12 @@ typedef struct _tempuri_org_xsd
         WS_STRUCT_DESCRIPTION GetAllXYResponse;
         WS_STRUCT_DESCRIPTION GetAllArcoBD;
         WS_STRUCT_DESCRIPTION GetAllArcoBDResponse;
+        WS_STRUCT_DESCRIPTION GetUtilizadorByID;
+        WS_STRUCT_DESCRIPTION GetUtilizadorByIDResponse;
+        WS_STRUCT_DESCRIPTION GetTagsByUserID;
+        WS_STRUCT_DESCRIPTION GetTagsByUserIDResponse;
+        WS_STRUCT_DESCRIPTION GetHumorByUserID;
+        WS_STRUCT_DESCRIPTION GetHumorByUserIDResponse;
         WS_STRUCT_DESCRIPTION DoWork;
         WS_STRUCT_DESCRIPTION DoWorkResponse;
     } externallyReferencedTypes;

@@ -45,10 +45,12 @@ extern "C" {
 //     struct NoBD;
 //     struct ArrayOfArcoBD;
 //     struct ArcoBD;
+//     struct Utilizador;
 //     struct ArrayOfNoBD;
 //     struct NoBD;
 //     struct ArrayOfArcoBD;
 //     struct ArcoBD;
+//     struct Utilizador;
 
 // The following header files must be included in this order before this one
 
@@ -89,6 +91,16 @@ typedef struct ArcoBD
     int idSec;
 } ArcoBD;
 
+// typeDescription: schema_xsd.globalTypes.Utilizador
+typedef struct Utilizador 
+{
+    WCHAR* morada; // optional
+    WCHAR* nasc; // optional
+    WCHAR* nick; // optional
+    WCHAR* nome; // optional
+    int tele;
+} Utilizador;
+
 ////////////////////////////////////////////////
 // Global web service descriptions.
 ////////////////////////////////////////////////
@@ -121,6 +133,12 @@ typedef struct _schema_xsd
         // typeDescription: schema_xsd.globalTypes.ArcoBD
         WS_STRUCT_DESCRIPTION ArcoBD;
         
+        // xml type: Utilizador ("http://schemas.datacontract.org/2004/07/")
+        // c type: Utilizador
+        // WS_TYPE: WS_STRUCT_TYPE
+        // typeDescription: schema_xsd.globalTypes.Utilizador
+        WS_STRUCT_DESCRIPTION Utilizador;
+        
     } globalTypes;
     struct // globalElements
     {
@@ -143,6 +161,11 @@ typedef struct _schema_xsd
         // c type: ArcoBD
         // elementDescription: schema_xsd.globalElements.ArcoBD
         WS_ELEMENT_DESCRIPTION ArcoBD;
+        
+        // xml element: Utilizador ("http://schemas.datacontract.org/2004/07/")
+        // c type: Utilizador
+        // elementDescription: schema_xsd.globalElements.Utilizador
+        WS_ELEMENT_DESCRIPTION Utilizador;
         
     } globalElements;
 } _schema_xsd;

@@ -33,6 +33,15 @@ typedef struct _schema_xsdLocalDefinitions
             WS_FIELD_DESCRIPTION ArcoBD;
             WS_FIELD_DESCRIPTION* ArrayOfArcoBDFields [1]; 
         } ArrayOfArcoBDdescs; // end of ArrayOfArcoBD
+        struct // Utilizador
+        {
+            WS_FIELD_DESCRIPTION morada;
+            WS_FIELD_DESCRIPTION nasc;
+            WS_FIELD_DESCRIPTION nick;
+            WS_FIELD_DESCRIPTION nome;
+            WS_FIELD_DESCRIPTION tele;
+            WS_FIELD_DESCRIPTION* UtilizadorFields [5]; 
+        } Utilizadordescs; // end of Utilizador
     } globalTypes;  // end of global types
     struct // XML dictionary
     {
@@ -50,6 +59,12 @@ typedef struct _schema_xsdLocalDefinitions
             WS_XML_STRING ArcoBDidPrimLocalName;  // idPrim
             WS_XML_STRING ArcoBDidRelLocalName;  // idRel
             WS_XML_STRING ArcoBDidSecLocalName;  // idSec
+            WS_XML_STRING UtilizadorTypeName;  // Utilizador
+            WS_XML_STRING UtilizadormoradaLocalName;  // morada
+            WS_XML_STRING UtilizadornascLocalName;  // nasc
+            WS_XML_STRING UtilizadornickLocalName;  // nick
+            WS_XML_STRING UtilizadornomeLocalName;  // nome
+            WS_XML_STRING UtilizadorteleLocalName;  // tele
         } xmlStrings; // end of XML string list
         WS_XML_DICTIONARY dict;  
     } dictionary;  // end of XML dictionary
@@ -189,6 +204,70 @@ const static _schema_xsdLocalDefinitions schema_xsdLocalDefinitions =
             (WS_FIELD_DESCRIPTION*)&schema_xsdLocalDefinitions.globalTypes.ArrayOfArcoBDdescs.ArcoBD,
             },
         },    // ArrayOfArcoBD
+        {   // Utilizador
+            { // field description for morada
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.UtilizadormoradaLocalName, // morada
+            (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfNoBDTypeNamespace, // http://schemas.datacontract.org/2004/07/
+            WS_WSZ_TYPE,
+            0,
+            WsOffsetOf(Utilizador, morada),
+             WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE,
+            0,
+            0xffffffff
+            },    // end of field description for morada
+            { // field description for nasc
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.UtilizadornascLocalName, // nasc
+            (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfNoBDTypeNamespace, // http://schemas.datacontract.org/2004/07/
+            WS_WSZ_TYPE,
+            0,
+            WsOffsetOf(Utilizador, nasc),
+             WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE,
+            0,
+            0xffffffff
+            },    // end of field description for nasc
+            { // field description for nick
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.UtilizadornickLocalName, // nick
+            (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfNoBDTypeNamespace, // http://schemas.datacontract.org/2004/07/
+            WS_WSZ_TYPE,
+            0,
+            WsOffsetOf(Utilizador, nick),
+             WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE,
+            0,
+            0xffffffff
+            },    // end of field description for nick
+            { // field description for nome
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.UtilizadornomeLocalName, // nome
+            (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfNoBDTypeNamespace, // http://schemas.datacontract.org/2004/07/
+            WS_WSZ_TYPE,
+            0,
+            WsOffsetOf(Utilizador, nome),
+             WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE,
+            0,
+            0xffffffff
+            },    // end of field description for nome
+            { // field description for tele
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.UtilizadorteleLocalName, // tele
+            (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfNoBDTypeNamespace, // http://schemas.datacontract.org/2004/07/
+            WS_INT32_TYPE,
+            0,
+            WsOffsetOf(Utilizador, tele),
+             WS_FIELD_OPTIONAL,
+            0,
+            0xffffffff
+            },    // end of field description for tele
+            {    // fields description for Utilizador
+            (WS_FIELD_DESCRIPTION*)&schema_xsdLocalDefinitions.globalTypes.Utilizadordescs.morada,
+            (WS_FIELD_DESCRIPTION*)&schema_xsdLocalDefinitions.globalTypes.Utilizadordescs.nasc,
+            (WS_FIELD_DESCRIPTION*)&schema_xsdLocalDefinitions.globalTypes.Utilizadordescs.nick,
+            (WS_FIELD_DESCRIPTION*)&schema_xsdLocalDefinitions.globalTypes.Utilizadordescs.nome,
+            (WS_FIELD_DESCRIPTION*)&schema_xsdLocalDefinitions.globalTypes.Utilizadordescs.tele,
+            },
+        },    // Utilizador
     }, // end of global types
     {    // dictionary 
         { // xmlStrings
@@ -204,13 +283,19 @@ const static _schema_xsdLocalDefinitions schema_xsdLocalDefinitions =
             WS_XML_STRING_DICTIONARY_VALUE("idPrim",&schema_xsdLocalDefinitions.dictionary.dict, 9),
             WS_XML_STRING_DICTIONARY_VALUE("idRel",&schema_xsdLocalDefinitions.dictionary.dict, 10),
             WS_XML_STRING_DICTIONARY_VALUE("idSec",&schema_xsdLocalDefinitions.dictionary.dict, 11),
+            WS_XML_STRING_DICTIONARY_VALUE("Utilizador",&schema_xsdLocalDefinitions.dictionary.dict, 12),
+            WS_XML_STRING_DICTIONARY_VALUE("morada",&schema_xsdLocalDefinitions.dictionary.dict, 13),
+            WS_XML_STRING_DICTIONARY_VALUE("nasc",&schema_xsdLocalDefinitions.dictionary.dict, 14),
+            WS_XML_STRING_DICTIONARY_VALUE("nick",&schema_xsdLocalDefinitions.dictionary.dict, 15),
+            WS_XML_STRING_DICTIONARY_VALUE("nome",&schema_xsdLocalDefinitions.dictionary.dict, 16),
+            WS_XML_STRING_DICTIONARY_VALUE("tele",&schema_xsdLocalDefinitions.dictionary.dict, 17),
         },  // end of xmlStrings
         
         {   // schema_xsddictionary
-        // 8206cb95-463c-473f-9ca3-35096812371a 
-        { 0x8206cb95, 0x463c, 0x473f, { 0x9c, 0xa3, 0x35,0x09, 0x68, 0x12, 0x37, 0x1a } },
+        // 5b3aacb9-8b0c-4587-b248-4d8bb0b1f9b2 
+        { 0x5b3aacb9, 0x8b0c, 0x4587, { 0xb2, 0x48, 0x4d,0x8b, 0xb0, 0xb1, 0xf9, 0xb2 } },
         (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings,
-        12,
+        18,
         TRUE,
         },
     },   //  end of dictionary
@@ -263,6 +348,17 @@ const _schema_xsd schema_xsd =
         0,
         0,
         },   // end of struct description for ArcoBD
+        {
+        sizeof(Utilizador),
+        __alignof(Utilizador),
+        (WS_FIELD_DESCRIPTION**)&schema_xsdLocalDefinitions.globalTypes.Utilizadordescs.UtilizadorFields,
+        WsCountOf(schema_xsdLocalDefinitions.globalTypes.Utilizadordescs.UtilizadorFields),
+        (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.UtilizadorTypeName, // Utilizador
+        (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfNoBDTypeNamespace, // http://schemas.datacontract.org/2004/07/
+        0,
+        0,
+        0,
+        },   // end of struct description for Utilizador
     }, // globalTypes
     {// globalElements
         {
@@ -288,6 +384,12 @@ const _schema_xsd schema_xsd =
             (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfNoBDTypeNamespace, // http://schemas.datacontract.org/2004/07/
             WS_STRUCT_TYPE,
             (void*)&schema_xsd.globalTypes.ArcoBD,
+        },
+        {
+            (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.UtilizadorTypeName, // Utilizador
+            (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfNoBDTypeNamespace, // http://schemas.datacontract.org/2004/07/
+            WS_STRUCT_TYPE,
+            (void*)&schema_xsd.globalTypes.Utilizador,
         },
     }, // globalElements
 }; // end of _schema_xsd

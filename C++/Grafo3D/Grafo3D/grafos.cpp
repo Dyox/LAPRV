@@ -103,6 +103,7 @@ void gravaGrafo(){
 	myfile.close();
 }
 void leGrafo(){
+	
 	NoBD **nosbd=NULL;
 	getAllXY(nosbd);
 	numNos=(*(nosbd))->id;
@@ -138,4 +139,32 @@ void leGrafo(){
 		nos[arcos[i-1].noi].z+=2;
 		nos[arcos[i-1].nof].z+=2;
 	}
+	WS_XML_BUFFER **tags=NULL;
+	GetTagsByUserID(1,tags);
+
+	/*
+	ifstream myfile;
+	myfile.open (__GRAFO__FILE__, ios::in);
+	if (!myfile.is_open()) {
+		cout << "Erro ao abrir " << __GRAFO__FILE__ << "para ler" <<endl;
+		exit(1);
+	}
+	myfile >> numNos;
+	for(int i=0; i<numNos;i++)
+	{
+		myfile >> nos[i].x >> nos[i].y >> nos[i].z;
+		nos[i].z=0.0;
+		nos[i].largura=1.0;
+	}
+	myfile >> numArcos ;
+	for(int i=0; i<numArcos;i++)
+	{
+		myfile >> arcos[i].noi >> arcos[i].nof >> arcos[i].peso >> arcos[i].largura ;
+		//calculo da cota conforme o nº de ligações de cada nó
+		arcos[i].largura=0.2;
+		nos[arcos[i].noi].z+=2;
+		nos[arcos[i].nof].z+=2;
+	}
+	myfile.close();
+	*/
 }

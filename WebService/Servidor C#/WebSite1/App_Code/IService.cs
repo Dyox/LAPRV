@@ -21,7 +21,7 @@ using System.Collections;
         [OperationContract]
         Utilizador GetUtilizadorByID(int uid);
         [OperationContract]
-        IList GetTagsByUserID(int uid);
+        IList<string> GetTagsByUserID(int uid);
         [OperationContract]
         string GetHumorByUserID(int uid);
         [OperationContract]

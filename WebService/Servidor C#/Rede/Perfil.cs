@@ -161,7 +161,7 @@ namespace Rede
             else
                 return new Perfil(ds.Tables[0].Rows[0]);
         }
-        public static IList LoadTagsByUserID(int userID)
+        public static IList<string> LoadTagsByUserID(int userID)
         {
             IList ret = new ArrayList();
             try

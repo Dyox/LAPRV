@@ -41,8 +41,8 @@ extern "C" {
 
 // The following types were generated:
 
-//     struct ArrayOfanyType;
-//     struct ArrayOfanyType;
+//     struct ArrayOfstring;
+//     struct ArrayOfstring;
 
 // The following header files must be included in this order before this one
 
@@ -52,12 +52,12 @@ extern "C" {
 // C structure definitions for generated types
 ////////////////////////////////////////////////
 
-// typeDescription: schemas_microsoft_com_2003_10_Serialization_Arrays_xsd.globalTypes.ArrayOfanyType
-typedef struct ArrayOfanyType 
+// typeDescription: schemas_microsoft_com_2003_10_Serialization_Arrays_xsd.globalTypes.ArrayOfstring
+typedef struct ArrayOfstring 
 {
-    unsigned int anyTypeCount;
-    __field_ecount(anyTypeCount)WS_XML_BUFFER** anyType; // optional
-} ArrayOfanyType;
+    unsigned int StringCount;
+    __field_ecount(StringCount)WCHAR** String; // optional
+} ArrayOfstring;
 
 ////////////////////////////////////////////////
 // Global web service descriptions.
@@ -67,19 +67,19 @@ typedef struct _schemas_microsoft_com_2003_10_Serialization_Arrays_xsd
 {
     struct // globalTypes
     {
-        // xml type: ArrayOfanyType ("http://schemas.microsoft.com/2003/10/Serialization/Arrays")
-        // c type: ArrayOfanyType
+        // xml type: ArrayOfstring ("http://schemas.microsoft.com/2003/10/Serialization/Arrays")
+        // c type: ArrayOfstring
         // WS_TYPE: WS_STRUCT_TYPE
-        // typeDescription: schemas_microsoft_com_2003_10_Serialization_Arrays_xsd.globalTypes.ArrayOfanyType
-        WS_STRUCT_DESCRIPTION ArrayOfanyType;
+        // typeDescription: schemas_microsoft_com_2003_10_Serialization_Arrays_xsd.globalTypes.ArrayOfstring
+        WS_STRUCT_DESCRIPTION ArrayOfstring;
         
     } globalTypes;
     struct // globalElements
     {
-        // xml element: ArrayOfanyType ("http://schemas.microsoft.com/2003/10/Serialization/Arrays")
-        // c type: ArrayOfanyType
-        // elementDescription: schemas_microsoft_com_2003_10_Serialization_Arrays_xsd.globalElements.ArrayOfanyType
-        WS_ELEMENT_DESCRIPTION ArrayOfanyType;
+        // xml element: ArrayOfstring ("http://schemas.microsoft.com/2003/10/Serialization/Arrays")
+        // c type: ArrayOfstring
+        // elementDescription: schemas_microsoft_com_2003_10_Serialization_Arrays_xsd.globalElements.ArrayOfstring
+        WS_ELEMENT_DESCRIPTION ArrayOfstring;
         
     } globalElements;
 } _schemas_microsoft_com_2003_10_Serialization_Arrays_xsd;

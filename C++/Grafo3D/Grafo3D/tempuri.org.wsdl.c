@@ -231,7 +231,7 @@ typedef struct BasicHttpBinding_IService_GetTagsByUserIDParamStruct
 {
     int* uid;
     unsigned int* GetTagsByUserIDResultCount;
-    WS_XML_BUFFER*** GetTagsByUserIDResult;
+    WCHAR*** GetTagsByUserIDResult;
 } BasicHttpBinding_IService_GetTagsByUserIDParamStruct;
 
 #if (_MSC_VER >=1400) 
@@ -550,8 +550,8 @@ const static _tempuri_org_wsdlLocalDefinitions tempuri_org_wsdlLocalDefinitions 
         },  // end of xmlStrings
         
         {   // tempuri_org_wsdldictionary
-        // 6468c73d-b3c5-4ac4-a1a1-ad34d0e89eca 
-        { 0x6468c73d, 0xb3c5, 0x4ac4, { 0xa1, 0xa1, 0xad,0x34, 0xd0, 0xe8, 0x9e, 0xca } },
+        // 2a776461-8cfb-4d64-ae9f-ce89b1a39f5e 
+        { 0x2a776461, 0x8cfb, 0x4d64, { 0xae, 0x9f, 0xce,0x89, 0xb1, 0xa3, 0x9f, 0x5e } },
         (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings,
         14,
         TRUE,
@@ -663,7 +663,7 @@ HRESULT WINAPI BasicHttpBinding_IService_GetTagsByUserID(
     __in WS_SERVICE_PROXY* _serviceProxy,
     __in int uid, 
     __out unsigned int* GetTagsByUserIDResultCount, 
-    __deref_out_ecount_opt(*GetTagsByUserIDResultCount) WS_XML_BUFFER*** GetTagsByUserIDResult, 
+    __deref_out_ecount_opt(*GetTagsByUserIDResultCount) __deref __nullterminated WCHAR*** GetTagsByUserIDResult, 
     __in WS_HEAP* _heap,
     __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
     __in const ULONG _callPropertyCount,

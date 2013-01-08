@@ -119,7 +119,7 @@ typedef struct _GetTagsByUserID
 typedef struct _GetTagsByUserIDResponse 
 {
     unsigned int GetTagsByUserIDResultCount;
-    __field_ecount_opt(GetTagsByUserIDResultCount)WS_XML_BUFFER** GetTagsByUserIDResult; // optional
+    __field_ecount_opt(GetTagsByUserIDResultCount)WCHAR** GetTagsByUserIDResult; // optional
 } _GetTagsByUserIDResponse;
 
 // typeDescription: n/a

@@ -8,19 +8,19 @@ typedef struct _schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefin
     struct  // global types
     {
         char unused;
-        struct // ArrayOfanyType
+        struct // ArrayOfstring
         {
-            WS_FIELD_DESCRIPTION anyType;
-            WS_FIELD_DESCRIPTION* ArrayOfanyTypeFields [1]; 
-        } ArrayOfanyTypedescs; // end of ArrayOfanyType
+            WS_FIELD_DESCRIPTION String;
+            WS_FIELD_DESCRIPTION* ArrayOfstringFields [1]; 
+        } ArrayOfstringdescs; // end of ArrayOfstring
     } globalTypes;  // end of global types
     struct // XML dictionary
     {
         struct // XML string list
         {
-            WS_XML_STRING ArrayOfanyTypeTypeName;  // ArrayOfanyType
-            WS_XML_STRING ArrayOfanyTypeTypeNamespace;  // http://schemas.microsoft.com/2003/10/Serialization/Arrays
-            WS_XML_STRING ArrayOfanyTypeanyTypeLocalName;  // anyType
+            WS_XML_STRING ArrayOfstringTypeName;  // ArrayOfstring
+            WS_XML_STRING ArrayOfstringTypeNamespace;  // http://schemas.microsoft.com/2003/10/Serialization/Arrays
+            WS_XML_STRING ArrayOfstringStringLocalName;  // string
         } xmlStrings; // end of XML string list
         WS_XML_DICTIONARY dict;  
     } dictionary;  // end of XML dictionary
@@ -30,36 +30,36 @@ const static _schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinit
 {
     { // global types
         0,
-        {   // ArrayOfanyType
-            { // field description for anyType
+        {   // ArrayOfstring
+            { // field description for String
             WS_REPEATING_ELEMENT_FIELD_MAPPING,
             0,
             0,
-            WS_XML_BUFFER_TYPE,
+            WS_WSZ_TYPE,
             0,
-            WsOffsetOf(ArrayOfanyType, anyType),
+            WsOffsetOf(ArrayOfstring, String),
              WS_FIELD_NILLABLE_ITEM,
             0,
-            WsOffsetOf(ArrayOfanyType, anyTypeCount),
-            (WS_XML_STRING*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfanyTypeanyTypeLocalName, // anyType
-            (WS_XML_STRING*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfanyTypeTypeNamespace, // http://schemas.microsoft.com/2003/10/Serialization/Arrays
+            WsOffsetOf(ArrayOfstring, StringCount),
+            (WS_XML_STRING*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfstringStringLocalName, // string
+            (WS_XML_STRING*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfstringTypeNamespace, // http://schemas.microsoft.com/2003/10/Serialization/Arrays
             0,
-            },    // end of field description for anyType
-            {    // fields description for ArrayOfanyType
-            (WS_FIELD_DESCRIPTION*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.globalTypes.ArrayOfanyTypedescs.anyType,
+            },    // end of field description for String
+            {    // fields description for ArrayOfstring
+            (WS_FIELD_DESCRIPTION*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.globalTypes.ArrayOfstringdescs.String,
             },
-        },    // ArrayOfanyType
+        },    // ArrayOfstring
     }, // end of global types
     {    // dictionary 
         { // xmlStrings
-            WS_XML_STRING_DICTIONARY_VALUE("ArrayOfanyType",&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.dict, 0),
+            WS_XML_STRING_DICTIONARY_VALUE("ArrayOfstring",&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.dict, 0),
             WS_XML_STRING_DICTIONARY_VALUE("http://schemas.microsoft.com/2003/10/Serialization/Arrays",&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.dict, 1),
-            WS_XML_STRING_DICTIONARY_VALUE("anyType",&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.dict, 2),
+            WS_XML_STRING_DICTIONARY_VALUE("string",&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.dict, 2),
         },  // end of xmlStrings
         
         {   // schemas_microsoft_com_2003_10_Serialization_Arrays_xsddictionary
-        // 78e5f7cc-e8a5-43f0-9d28-23016c20e9f7 
-        { 0x78e5f7cc, 0xe8a5, 0x43f0, { 0x9d, 0x28, 0x23,0x01, 0x6c, 0x20, 0xe9, 0xf7 } },
+        // 0a8a48d2-76e1-430d-84c4-794ac3d0ba13 
+        { 0x0a8a48d2, 0x76e1, 0x430d, { 0x84, 0xc4, 0x79,0x4a, 0xc3, 0xd0, 0xba, 0x13 } },
         (WS_XML_STRING*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.xmlStrings,
         3,
         TRUE,
@@ -71,23 +71,23 @@ const _schemas_microsoft_com_2003_10_Serialization_Arrays_xsd schemas_microsoft_
 {
     {// globalTypes
         {
-        sizeof(ArrayOfanyType),
-        __alignof(ArrayOfanyType),
-        (WS_FIELD_DESCRIPTION**)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.globalTypes.ArrayOfanyTypedescs.ArrayOfanyTypeFields,
-        WsCountOf(schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.globalTypes.ArrayOfanyTypedescs.ArrayOfanyTypeFields),
-        (WS_XML_STRING*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfanyTypeTypeName, // ArrayOfanyType
-        (WS_XML_STRING*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfanyTypeTypeNamespace, // http://schemas.microsoft.com/2003/10/Serialization/Arrays
+        sizeof(ArrayOfstring),
+        __alignof(ArrayOfstring),
+        (WS_FIELD_DESCRIPTION**)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.globalTypes.ArrayOfstringdescs.ArrayOfstringFields,
+        WsCountOf(schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.globalTypes.ArrayOfstringdescs.ArrayOfstringFields),
+        (WS_XML_STRING*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfstringTypeName, // ArrayOfstring
+        (WS_XML_STRING*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfstringTypeNamespace, // http://schemas.microsoft.com/2003/10/Serialization/Arrays
         0,
         0,
         0,
-        },   // end of struct description for ArrayOfanyType
+        },   // end of struct description for ArrayOfstring
     }, // globalTypes
     {// globalElements
         {
-            (WS_XML_STRING*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfanyTypeTypeName, // ArrayOfanyType
-            (WS_XML_STRING*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfanyTypeTypeNamespace, // http://schemas.microsoft.com/2003/10/Serialization/Arrays
+            (WS_XML_STRING*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfstringTypeName, // ArrayOfstring
+            (WS_XML_STRING*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfstringTypeNamespace, // http://schemas.microsoft.com/2003/10/Serialization/Arrays
             WS_STRUCT_TYPE,
-            (void*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsd.globalTypes.ArrayOfanyType,
+            (void*)&schemas_microsoft_com_2003_10_Serialization_Arrays_xsd.globalTypes.ArrayOfstring,
         },
     }, // globalElements
 }; // end of _schemas_microsoft_com_2003_10_Serialization_Arrays_xsd

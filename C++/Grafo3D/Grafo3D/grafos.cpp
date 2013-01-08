@@ -1,4 +1,4 @@
-#include "grafos.h"
+#include <string>
 #include <iostream>
 #include <fstream>
 #include "stdafx.h"
@@ -8,6 +8,7 @@
 #include "tempuri.org.wsdl.h"
 #include "schema.xsd.h"
 #include "webservice.h"
+#include "grafos.h"
 
 #define __GRAFO__FILE__ "exemplo.grafo"
 
@@ -107,6 +108,8 @@ void leGrafo(){
 	NoBD **nosbd=NULL;
 	getAllXY(nosbd);
 	numNos=(*(nosbd))->id;
+	char ch[260];
+	char DefChar = ' ';
 	for (int i=1;i<=numNos;i++)
 	{
 		nos[i-1].x=(*(nosbd+i))->x;
@@ -114,6 +117,13 @@ void leGrafo(){
 		nos[i-1].z=0.0;
 		nos[i-1].iduser=(*(nosbd+i))->id;
 		nos[i-1].largura=1.0;
+		//convert from wide char to narrow char array
+		WideCharToMultiByte(CP_ACP,0,(*(nosbd+i))->nome,-1, ch,260,&DefChar, NULL);
+		std::string ss(ch);
+		nos[i-1].nome=ss;
+		WideCharToMultiByte(CP_ACP,0,(*(nosbd+i))->humor,-1, ch,260,&DefChar, NULL);
+		std::string ss2(ch);
+		nos[i-1].humor=ss2;
 	}
 	ArcoBD **arcosbd=NULL;
 	GetAllArcoBD(arcosbd);
@@ -139,8 +149,6 @@ void leGrafo(){
 		nos[arcos[i-1].noi].z+=2;
 		nos[arcos[i-1].nof].z+=2;
 	}
-	WS_XML_BUFFER **tags=NULL;
-	GetTagsByUserID(1,tags);
 
 	/*
 	ifstream myfile;

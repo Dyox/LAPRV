@@ -230,7 +230,7 @@ HRESULT WINAPI BasicHttpBinding_IService_GetTagsByUserID(
     __in WS_SERVICE_PROXY* _serviceProxy,
     __in int uid, 
     __out unsigned int* GetTagsByUserIDResultCount, 
-    __deref_out_ecount_opt(*GetTagsByUserIDResultCount) WS_XML_BUFFER*** GetTagsByUserIDResult, 
+    __deref_out_ecount_opt(*GetTagsByUserIDResultCount) __deref __nullterminated WCHAR*** GetTagsByUserIDResult, 
     __in WS_HEAP* _heap,
     __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
     __in const ULONG _callPropertyCount,
@@ -294,7 +294,7 @@ typedef HRESULT (CALLBACK* BasicHttpBinding_IService_GetTagsByUserIDCallback) (
     __in const WS_OPERATION_CONTEXT* _context,
     __in int uid, 
     __out unsigned int* GetTagsByUserIDResultCount, 
-    __deref_out_ecount_opt(*GetTagsByUserIDResultCount) WS_XML_BUFFER*** GetTagsByUserIDResult, 
+    __deref_out_ecount_opt(*GetTagsByUserIDResultCount) __deref __nullterminated WCHAR*** GetTagsByUserIDResult, 
     __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
     __in_opt WS_ERROR* _error);
 

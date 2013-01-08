@@ -1,3 +1,4 @@
+using namespace std;
 #ifndef _GRAFO_INCLUDE
 #define _GRAFO_INCLUDE
 
@@ -11,6 +12,8 @@
 typedef struct No{
 	float x,y,z,largura;
 	int iduser;
+	string nome;
+	string humor;
 }No;
 
 typedef struct Arco{

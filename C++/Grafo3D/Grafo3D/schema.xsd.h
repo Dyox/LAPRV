@@ -70,7 +70,9 @@ typedef struct ArrayOfNoBD
 // typeDescription: schema_xsd.globalTypes.NoBD
 typedef struct NoBD 
 {
+    WCHAR* humor; // optional
     int id;
+    WCHAR* nome; // optional
     int x;
     int y;
 } NoBD;
@@ -94,6 +96,7 @@ typedef struct ArcoBD
 // typeDescription: schema_xsd.globalTypes.Utilizador
 typedef struct Utilizador 
 {
+    WCHAR* avatar; // optional
     WCHAR* morada; // optional
     WCHAR* nasc; // optional
     WCHAR* nick; // optional

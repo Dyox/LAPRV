@@ -164,6 +164,11 @@ typedef struct Login{
 	int objCursor;
 	int objClicked;
 }Login;
+/*
+typedef struct ListaTags{
+	string tag;
+	struct ListaTags *prox;
+}ListaTags;*/
 
 typedef struct UserSel{
 	string nome;
@@ -171,12 +176,15 @@ typedef struct UserSel{
 	string morada;
 	string dataNasc;
 	string telef;
+	int numTags;
+	string tags[100];
 }UserSel;
 
 Estado estado;
 Modelo modelo;
 Login login;
 UserSel userSel;
+//ListaTags listaTags;
 TextureLoader *apTexLoad = new TextureLoader();
 glTexture avatar;
 glTexture contente;
@@ -241,7 +249,7 @@ void createTextures(GLuint texID[])
 }
 
 void initEstado(){
-	estado.camera.dir_lat=0/*M_PI/8*/;
+	estado.camera.dir_lat=M_PI/8;
 	estado.camera.dir_long=0/*-M_PI/4*/;
 	estado.camera.fov=60;
 	estado.camera.dist=1;
@@ -810,7 +818,7 @@ void desenhaHUD(int width, int height){
 			glDisable(GL_LIGHTING);
 			glColor3f(0.0,0.0,0.8);
 			glRasterPos2i(estado.xMouse, estado.yMouse);
-			printString("Nome");
+			printString((char*)nos[estado.itemCursor-1].nome.c_str());
 			glEnable(GL_LIGHTING);
 		glPopMatrix();
 		myReshape((GLint) width, (GLint) height);
@@ -935,6 +943,17 @@ void desenhaHUD(int width, int height){
 				glRasterPos2i(80, 43);
 				printString((char*)userSel.telef.c_str());
 
+				glColor3f(0.0,0.0,0.8);
+				glRasterPos2i(80, 46);
+				printString("Tags:");
+				int lastPos=46;
+				glColor3f(0.0,0.0,1.0);
+				for (int i=0;i<userSel.numTags;i++)
+				{
+					lastPos+=2;
+					glRasterPos2i(80, lastPos);
+					printString((char*)userSel.tags[i].c_str());
+				}
 				glEnable(GL_LIGHTING);
 			glPopMatrix();
 
@@ -1439,10 +1458,15 @@ void Special(int key, int x, int y){
 
 void motionRotate(int x, int y){
 #define DRAG_SCALE	0.01
-	double lim=M_PI/2-0.1;
+	double lim=M_PI/8-0.1;
 	estado.camera.dir_long+=(estado.xMouse-x)*DRAG_SCALE;
-	estado.camera.dir_lat-=(estado.yMouse-y)*DRAG_SCALE*0.5;
-
+	//estado.camera.dir_lat-=(estado.yMouse-y)*DRAG_SCALE;
+	estado.camera.center[2]+=(estado.yMouse-y)*0.1;
+	if (detectacolisao())
+	{
+		estado.camera.dir_long-=(estado.xMouse-x)*DRAG_SCALE;
+		estado.camera.center[2]-=(estado.yMouse-y)*0.1;
+	}
 	if(estado.camera.dir_lat>lim)
 		estado.camera.dir_lat=lim;
 	else 
@@ -1664,6 +1688,16 @@ void mouse(int btn, int state, int x, int y){
 								stringstream ss5;
 								ss5 << (utilbd)->tele;
 								userSel.telef=ss5.str();
+								WCHAR **tags=NULL;
+								unsigned int numTags=0;
+								GetTagsByUserID(nos[idobj-1].iduser,numTags,tags);
+								userSel.numTags=numTags;
+								for (int i=0;i<numTags;i++)
+								{
+									WideCharToMultiByte(CP_ACP,0,(*(tags+i)),-1, ch,260,&DefChar, NULL);
+									std::string st(ch);
+									userSel.tags[i].assign(st);
+								}
 							}
 							glutPostRedisplay();
 						}

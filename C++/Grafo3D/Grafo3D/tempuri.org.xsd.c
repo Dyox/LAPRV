@@ -87,7 +87,7 @@ typedef struct _tempuri_org_xsdLocalDefinitions
             WS_XML_STRING _GetUtilizadorByIDResponseGetUtilizadorByIDResultLocalName;  // GetUtilizadorByIDResult
             WS_XML_STRING _GetTagsByUserIDTypeName;  // GetTagsByUserID
             WS_XML_STRING _GetTagsByUserIDResponseTypeName;  // GetTagsByUserIDResponse
-            WS_XML_STRING _GetTagsByUserIDResponseGetTagsByUserIDResultLocalName;  // anyType
+            WS_XML_STRING _GetTagsByUserIDResponseGetTagsByUserIDResultLocalName;  // string
             WS_XML_STRING _GetTagsByUserIDResponseGetTagsByUserIDResultNamespace;  // http://schemas.microsoft.com/2003/10/Serialization/Arrays
             WS_XML_STRING _GetTagsByUserIDResponseGetTagsByUserIDResultWrapperName;  // GetTagsByUserIDResult
             WS_XML_STRING _GetHumorByUserIDTypeName;  // GetHumorByUserID
@@ -239,13 +239,13 @@ const static _tempuri_org_xsdLocalDefinitions tempuri_org_xsdLocalDefinitions =
             WS_REPEATING_ELEMENT_FIELD_MAPPING,
             (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._GetTagsByUserIDResponseGetTagsByUserIDResultWrapperName, // GetTagsByUserIDResult
             (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
-            WS_XML_BUFFER_TYPE,
+            WS_WSZ_TYPE,
             0,
             WsOffsetOf(_GetTagsByUserIDResponse, GetTagsByUserIDResult),
              WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE| WS_FIELD_NILLABLE_ITEM,
             0,
             WsOffsetOf(_GetTagsByUserIDResponse, GetTagsByUserIDResultCount),
-            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._GetTagsByUserIDResponseGetTagsByUserIDResultLocalName, // anyType
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._GetTagsByUserIDResponseGetTagsByUserIDResultLocalName, // string
             (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._GetTagsByUserIDResponseGetTagsByUserIDResultNamespace, // http://schemas.microsoft.com/2003/10/Serialization/Arrays
             0,
             },    // end of field description for GetTagsByUserIDResult
@@ -309,7 +309,7 @@ const static _tempuri_org_xsdLocalDefinitions tempuri_org_xsdLocalDefinitions =
             WS_XML_STRING_DICTIONARY_VALUE("GetUtilizadorByIDResult",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 18),
             WS_XML_STRING_DICTIONARY_VALUE("GetTagsByUserID",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 19),
             WS_XML_STRING_DICTIONARY_VALUE("GetTagsByUserIDResponse",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 20),
-            WS_XML_STRING_DICTIONARY_VALUE("anyType",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 21),
+            WS_XML_STRING_DICTIONARY_VALUE("string",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 21),
             WS_XML_STRING_DICTIONARY_VALUE("http://schemas.microsoft.com/2003/10/Serialization/Arrays",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 22),
             WS_XML_STRING_DICTIONARY_VALUE("GetTagsByUserIDResult",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 23),
             WS_XML_STRING_DICTIONARY_VALUE("GetHumorByUserID",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 24),
@@ -320,8 +320,8 @@ const static _tempuri_org_xsdLocalDefinitions tempuri_org_xsdLocalDefinitions =
         },  // end of xmlStrings
         
         {   // tempuri_org_xsddictionary
-        // c7780069-c9f0-4bf8-891e-8ebd7b8ef432 
-        { 0xc7780069, 0xc9f0, 0x4bf8, { 0x89, 0x1e, 0x8e,0xbd, 0x7b, 0x8e, 0xf4, 0x32 } },
+        // 281c51a4-97be-4607-939c-40d249b10138 
+        { 0x281c51a4, 0x97be, 0x4607, { 0x93, 0x9c, 0x40,0xd2, 0x49, 0xb1, 0x01, 0x38 } },
         (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings,
         29,
         TRUE,

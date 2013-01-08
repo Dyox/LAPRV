@@ -84,7 +84,7 @@ void GetUtilizadorByID(int uid,Utilizador *&utilizador)
 	hr = BasicHttpBinding_IService_GetUtilizadorByID(proxy,uid,&utilizador, heap, NULL, 0, NULL, error);
 }
 
-void GetTagsByUserID(int uid,WS_XML_BUFFER **&tags)
+void GetTagsByUserID(int uid,unsigned int &numN,WCHAR **&tags)
 {
 	HRESULT hr = ERROR_SUCCESS;
 	WS_ERROR* error = NULL;
@@ -101,7 +101,7 @@ void GetTagsByUserID(int uid,WS_XML_BUFFER **&tags)
 	hr = BasicHttpBinding_IService_CreateServiceProxy(&templ, NULL, 0, &proxy, error);
 	hr = WsOpenServiceProxy(proxy, &address, NULL, error);
 	//NoBD **no1;
-	unsigned int numN;
+	//unsigned int numN;
 	//chamada de uma operação do service – getMusica. O resultado vem no parâmetro //musica
 	hr = BasicHttpBinding_IService_GetTagsByUserID(proxy,uid,&numN,&tags, heap, NULL, 0, NULL, error);
 }

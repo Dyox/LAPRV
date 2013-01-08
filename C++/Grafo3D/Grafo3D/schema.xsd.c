@@ -12,10 +12,12 @@ typedef struct _schema_xsdLocalDefinitions
         {
             struct // NoBD
             {
+                WS_FIELD_DESCRIPTION humor;
                 WS_FIELD_DESCRIPTION id;
+                WS_FIELD_DESCRIPTION nome;
                 WS_FIELD_DESCRIPTION x;
                 WS_FIELD_DESCRIPTION y;
-                WS_FIELD_DESCRIPTION* NoBDFields [3]; 
+                WS_FIELD_DESCRIPTION* NoBDFields [5]; 
             } NoBDdescs; // end of NoBD
             WS_FIELD_DESCRIPTION NoBD;
             WS_FIELD_DESCRIPTION* ArrayOfNoBDFields [1]; 
@@ -35,12 +37,13 @@ typedef struct _schema_xsdLocalDefinitions
         } ArrayOfArcoBDdescs; // end of ArrayOfArcoBD
         struct // Utilizador
         {
+            WS_FIELD_DESCRIPTION avatar;
             WS_FIELD_DESCRIPTION morada;
             WS_FIELD_DESCRIPTION nasc;
             WS_FIELD_DESCRIPTION nick;
             WS_FIELD_DESCRIPTION nome;
             WS_FIELD_DESCRIPTION tele;
-            WS_FIELD_DESCRIPTION* UtilizadorFields [5]; 
+            WS_FIELD_DESCRIPTION* UtilizadorFields [6]; 
         } Utilizadordescs; // end of Utilizador
     } globalTypes;  // end of global types
     struct // XML dictionary
@@ -50,7 +53,9 @@ typedef struct _schema_xsdLocalDefinitions
             WS_XML_STRING ArrayOfNoBDTypeName;  // ArrayOfNoBD
             WS_XML_STRING ArrayOfNoBDTypeNamespace;  // http://schemas.datacontract.org/2004/07/
             WS_XML_STRING NoBDTypeName;  // NoBD
+            WS_XML_STRING NoBDhumorLocalName;  // humor
             WS_XML_STRING NoBDidLocalName;  // id
+            WS_XML_STRING NoBDnomeLocalName;  // nome
             WS_XML_STRING NoBDxLocalName;  // x
             WS_XML_STRING NoBDyLocalName;  // y
             WS_XML_STRING ArrayOfArcoBDTypeName;  // ArrayOfArcoBD
@@ -60,10 +65,10 @@ typedef struct _schema_xsdLocalDefinitions
             WS_XML_STRING ArcoBDidRelLocalName;  // idRel
             WS_XML_STRING ArcoBDidSecLocalName;  // idSec
             WS_XML_STRING UtilizadorTypeName;  // Utilizador
+            WS_XML_STRING UtilizadoravatarLocalName;  // avatar
             WS_XML_STRING UtilizadormoradaLocalName;  // morada
             WS_XML_STRING UtilizadornascLocalName;  // nasc
             WS_XML_STRING UtilizadornickLocalName;  // nick
-            WS_XML_STRING UtilizadornomeLocalName;  // nome
             WS_XML_STRING UtilizadorteleLocalName;  // tele
         } xmlStrings; // end of XML string list
         WS_XML_DICTIONARY dict;  
@@ -76,6 +81,17 @@ const static _schema_xsdLocalDefinitions schema_xsdLocalDefinitions =
         0,
         {   // ArrayOfNoBD
             {   // NoBD
+                { // field description for humor
+                WS_ELEMENT_FIELD_MAPPING,
+                (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.NoBDhumorLocalName, // humor
+                (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfNoBDTypeNamespace, // http://schemas.datacontract.org/2004/07/
+                WS_WSZ_TYPE,
+                0,
+                WsOffsetOf(NoBD, humor),
+                 WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE,
+                0,
+                0xffffffff
+                },    // end of field description for humor
                 { // field description for id
                 WS_ELEMENT_FIELD_MAPPING,
                 (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.NoBDidLocalName, // id
@@ -87,6 +103,17 @@ const static _schema_xsdLocalDefinitions schema_xsdLocalDefinitions =
                 0,
                 0xffffffff
                 },    // end of field description for id
+                { // field description for nome
+                WS_ELEMENT_FIELD_MAPPING,
+                (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.NoBDnomeLocalName, // nome
+                (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfNoBDTypeNamespace, // http://schemas.datacontract.org/2004/07/
+                WS_WSZ_TYPE,
+                0,
+                WsOffsetOf(NoBD, nome),
+                 WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE,
+                0,
+                0xffffffff
+                },    // end of field description for nome
                 { // field description for x
                 WS_ELEMENT_FIELD_MAPPING,
                 (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.NoBDxLocalName, // x
@@ -110,7 +137,9 @@ const static _schema_xsdLocalDefinitions schema_xsdLocalDefinitions =
                 0xffffffff
                 },    // end of field description for y
                 {    // fields description for NoBD
+                (WS_FIELD_DESCRIPTION*)&schema_xsdLocalDefinitions.globalTypes.ArrayOfNoBDdescs.NoBDdescs.humor,
                 (WS_FIELD_DESCRIPTION*)&schema_xsdLocalDefinitions.globalTypes.ArrayOfNoBDdescs.NoBDdescs.id,
+                (WS_FIELD_DESCRIPTION*)&schema_xsdLocalDefinitions.globalTypes.ArrayOfNoBDdescs.NoBDdescs.nome,
                 (WS_FIELD_DESCRIPTION*)&schema_xsdLocalDefinitions.globalTypes.ArrayOfNoBDdescs.NoBDdescs.x,
                 (WS_FIELD_DESCRIPTION*)&schema_xsdLocalDefinitions.globalTypes.ArrayOfNoBDdescs.NoBDdescs.y,
                 },
@@ -205,6 +234,17 @@ const static _schema_xsdLocalDefinitions schema_xsdLocalDefinitions =
             },
         },    // ArrayOfArcoBD
         {   // Utilizador
+            { // field description for avatar
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.UtilizadoravatarLocalName, // avatar
+            (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfNoBDTypeNamespace, // http://schemas.datacontract.org/2004/07/
+            WS_WSZ_TYPE,
+            0,
+            WsOffsetOf(Utilizador, avatar),
+             WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE,
+            0,
+            0xffffffff
+            },    // end of field description for avatar
             { // field description for morada
             WS_ELEMENT_FIELD_MAPPING,
             (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.UtilizadormoradaLocalName, // morada
@@ -240,7 +280,7 @@ const static _schema_xsdLocalDefinitions schema_xsdLocalDefinitions =
             },    // end of field description for nick
             { // field description for nome
             WS_ELEMENT_FIELD_MAPPING,
-            (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.UtilizadornomeLocalName, // nome
+            (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.NoBDnomeLocalName, // nome
             (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings.ArrayOfNoBDTypeNamespace, // http://schemas.datacontract.org/2004/07/
             WS_WSZ_TYPE,
             0,
@@ -261,6 +301,7 @@ const static _schema_xsdLocalDefinitions schema_xsdLocalDefinitions =
             0xffffffff
             },    // end of field description for tele
             {    // fields description for Utilizador
+            (WS_FIELD_DESCRIPTION*)&schema_xsdLocalDefinitions.globalTypes.Utilizadordescs.avatar,
             (WS_FIELD_DESCRIPTION*)&schema_xsdLocalDefinitions.globalTypes.Utilizadordescs.morada,
             (WS_FIELD_DESCRIPTION*)&schema_xsdLocalDefinitions.globalTypes.Utilizadordescs.nasc,
             (WS_FIELD_DESCRIPTION*)&schema_xsdLocalDefinitions.globalTypes.Utilizadordescs.nick,
@@ -274,28 +315,30 @@ const static _schema_xsdLocalDefinitions schema_xsdLocalDefinitions =
             WS_XML_STRING_DICTIONARY_VALUE("ArrayOfNoBD",&schema_xsdLocalDefinitions.dictionary.dict, 0),
             WS_XML_STRING_DICTIONARY_VALUE("http://schemas.datacontract.org/2004/07/",&schema_xsdLocalDefinitions.dictionary.dict, 1),
             WS_XML_STRING_DICTIONARY_VALUE("NoBD",&schema_xsdLocalDefinitions.dictionary.dict, 2),
-            WS_XML_STRING_DICTIONARY_VALUE("id",&schema_xsdLocalDefinitions.dictionary.dict, 3),
-            WS_XML_STRING_DICTIONARY_VALUE("x",&schema_xsdLocalDefinitions.dictionary.dict, 4),
-            WS_XML_STRING_DICTIONARY_VALUE("y",&schema_xsdLocalDefinitions.dictionary.dict, 5),
-            WS_XML_STRING_DICTIONARY_VALUE("ArrayOfArcoBD",&schema_xsdLocalDefinitions.dictionary.dict, 6),
-            WS_XML_STRING_DICTIONARY_VALUE("ArcoBD",&schema_xsdLocalDefinitions.dictionary.dict, 7),
-            WS_XML_STRING_DICTIONARY_VALUE("forca",&schema_xsdLocalDefinitions.dictionary.dict, 8),
-            WS_XML_STRING_DICTIONARY_VALUE("idPrim",&schema_xsdLocalDefinitions.dictionary.dict, 9),
-            WS_XML_STRING_DICTIONARY_VALUE("idRel",&schema_xsdLocalDefinitions.dictionary.dict, 10),
-            WS_XML_STRING_DICTIONARY_VALUE("idSec",&schema_xsdLocalDefinitions.dictionary.dict, 11),
-            WS_XML_STRING_DICTIONARY_VALUE("Utilizador",&schema_xsdLocalDefinitions.dictionary.dict, 12),
-            WS_XML_STRING_DICTIONARY_VALUE("morada",&schema_xsdLocalDefinitions.dictionary.dict, 13),
-            WS_XML_STRING_DICTIONARY_VALUE("nasc",&schema_xsdLocalDefinitions.dictionary.dict, 14),
-            WS_XML_STRING_DICTIONARY_VALUE("nick",&schema_xsdLocalDefinitions.dictionary.dict, 15),
-            WS_XML_STRING_DICTIONARY_VALUE("nome",&schema_xsdLocalDefinitions.dictionary.dict, 16),
-            WS_XML_STRING_DICTIONARY_VALUE("tele",&schema_xsdLocalDefinitions.dictionary.dict, 17),
+            WS_XML_STRING_DICTIONARY_VALUE("humor",&schema_xsdLocalDefinitions.dictionary.dict, 3),
+            WS_XML_STRING_DICTIONARY_VALUE("id",&schema_xsdLocalDefinitions.dictionary.dict, 4),
+            WS_XML_STRING_DICTIONARY_VALUE("nome",&schema_xsdLocalDefinitions.dictionary.dict, 5),
+            WS_XML_STRING_DICTIONARY_VALUE("x",&schema_xsdLocalDefinitions.dictionary.dict, 6),
+            WS_XML_STRING_DICTIONARY_VALUE("y",&schema_xsdLocalDefinitions.dictionary.dict, 7),
+            WS_XML_STRING_DICTIONARY_VALUE("ArrayOfArcoBD",&schema_xsdLocalDefinitions.dictionary.dict, 8),
+            WS_XML_STRING_DICTIONARY_VALUE("ArcoBD",&schema_xsdLocalDefinitions.dictionary.dict, 9),
+            WS_XML_STRING_DICTIONARY_VALUE("forca",&schema_xsdLocalDefinitions.dictionary.dict, 10),
+            WS_XML_STRING_DICTIONARY_VALUE("idPrim",&schema_xsdLocalDefinitions.dictionary.dict, 11),
+            WS_XML_STRING_DICTIONARY_VALUE("idRel",&schema_xsdLocalDefinitions.dictionary.dict, 12),
+            WS_XML_STRING_DICTIONARY_VALUE("idSec",&schema_xsdLocalDefinitions.dictionary.dict, 13),
+            WS_XML_STRING_DICTIONARY_VALUE("Utilizador",&schema_xsdLocalDefinitions.dictionary.dict, 14),
+            WS_XML_STRING_DICTIONARY_VALUE("avatar",&schema_xsdLocalDefinitions.dictionary.dict, 15),
+            WS_XML_STRING_DICTIONARY_VALUE("morada",&schema_xsdLocalDefinitions.dictionary.dict, 16),
+            WS_XML_STRING_DICTIONARY_VALUE("nasc",&schema_xsdLocalDefinitions.dictionary.dict, 17),
+            WS_XML_STRING_DICTIONARY_VALUE("nick",&schema_xsdLocalDefinitions.dictionary.dict, 18),
+            WS_XML_STRING_DICTIONARY_VALUE("tele",&schema_xsdLocalDefinitions.dictionary.dict, 19),
         },  // end of xmlStrings
         
         {   // schema_xsddictionary
-        // 5b3aacb9-8b0c-4587-b248-4d8bb0b1f9b2 
-        { 0x5b3aacb9, 0x8b0c, 0x4587, { 0xb2, 0x48, 0x4d,0x8b, 0xb0, 0xb1, 0xf9, 0xb2 } },
+        // 10314a65-043e-40c3-9399-7978255d8520 
+        { 0x10314a65, 0x043e, 0x40c3, { 0x93, 0x99, 0x79,0x78, 0x25, 0x5d, 0x85, 0x20 } },
         (WS_XML_STRING*)&schema_xsdLocalDefinitions.dictionary.xmlStrings,
-        18,
+        20,
         TRUE,
         },
     },   //  end of dictionary

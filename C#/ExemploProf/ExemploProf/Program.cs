@@ -13,6 +13,8 @@ namespace ExemploProf
     {
         public static void Main()
         {
+
+
             //string[] lines = { "add(A,B,R):-R is A + B, write(R).",
             //                     "run:- tell('user_comando.txt'),add(1,5,R),told,halt.",
             //                     ":-run." };
@@ -46,10 +48,43 @@ namespace ExemploProf
             //caminhoMaisForte = camMaisForte(1,7,P)
 
             //PrologExec p = new PrologExec("user", "caminhoMaisForte");
-            PrologExec p = new PrologExec("user", "menorCaminho");
-            string res = p.executaComandoProlog("1,7,P");
-            Console.Write(res);
+            //PrologExec p = new PrologExec("user", "menorCaminho");
+            PrologExec p = new PrologExec("user", "recomendaAmizade");
+            //string res = p.executaComandoProlog("1,10,P");
+            string res = p.executaComandoProlog("1");
+            Console.WriteLine(res);
 
+           
+            List<string> texto = res.Split(',').ToList<string>();
+            List<string> users = new List<string>();
+            List<string> tags = new List<string>();
+
+            List<List<string>> matrix = new List<List<string>>();
+
+            for (int i = 0; i < texto.Count - 1; i++)
+            {
+
+                List<string> testeUser = texto[i].ToString().Split('[').ToList<string>();
+                String testeTag = testeUser[1].ToString().Split(']')[0];
+                Console.WriteLine("tag teste -> "+testeTag);
+
+                if (users.Contains(testeUser[0].ToString()))
+                {
+                    users.Add(testeUser[0].ToString());
+                    int index = users.IndexOf(testeUser[0].ToString());
+                    //users.Find(testeUser[0].ToString());
+                    matrix[index].Add(testeTag);
+                    Console.WriteLine("ja existe");
+                }
+                else
+                {
+                    users.Add(testeUser[0].ToString());
+                    int index = users.IndexOf(testeUser[0].ToString());
+                    //users.Find(testeUser[0].ToString());
+                    matrix[index].Add(testeTag);
+                    Console.WriteLine("nao existe");
+                }
+            }
 
             //int profileIDA, int profileIDB, int forca, string tag
             //% ramo(No1_ID,No2_ID,Tag,Força)

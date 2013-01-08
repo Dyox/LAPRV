@@ -1,33 +1,14 @@
 /**/
 listar_am(X):-findall(L,listar_amigos(X,L),Lista),
 		write(Lista),nl.
-
-
 listar_amigos(X,Y):-ramo(X,Y,_,_).
 
-
-
 listar_amigos_lista(X,Lista):-findall(L,listar_amigos(X,L),Lista).
-
-
-/*listar_amigos(X,L):-listar_amigos(X,[],L).
-listar_amigos(X,L,[Y|L]):-ramo(X,Y,_,_).
-*/
-
-
-
-
 
 /*conta os amigos de um user*/
 conta_amigos(X):-findall(L,listar_amigos(X,L),Lista),
 			conta_elem(Lista,Y),
 			write(Y),nl.
-
-
-
-
-
-
 
 /*lista os amigos dos amigos de um user*/
 /*p([[X|_]|L1]):-listar_amigos2(X,L),p(L1).*/

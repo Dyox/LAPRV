@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.Collections;
+using Prolog;
 
 // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service" in code, svc and config file together.
     public class Service : IService
@@ -96,6 +97,20 @@ using System.Collections;
 
             return humor;
 
+        }
+
+        public string getMenorCaminho(int uid)
+        {
+            PrologExec p = new PrologExec(uid+"", "menorCaminho");
+            string res = p.executaComandoProlog("1,10,P");
+            return res;
+        }
+
+        public string getCaminhoForte(int uid)
+        {
+            PrologExec p = new PrologExec(uid + "", "caminhoMaisForte");
+            string res = p.executaComandoProlog("1,10,P");
+            return res;
         }
     }
 

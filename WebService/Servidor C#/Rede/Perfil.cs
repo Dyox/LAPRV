@@ -163,7 +163,7 @@ namespace Rede
         }
         public static IList<string> LoadTagsByUserID(int userID)
         {
-            IList ret = new ArrayList();
+            IList<string> ret = new List<string>();
             try
             {
                 DataSet ds = ExecuteQuery(GetConnection(false), "SELECT TagID FROM TTags where ProfileID=" + userID);

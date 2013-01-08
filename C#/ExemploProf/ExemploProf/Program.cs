@@ -46,8 +46,10 @@ namespace ExemploProf
             //caminhoMaisForte = camMaisForte(1,7,P)
 
             //PrologExec p = new PrologExec("user", "caminhoMaisForte");
-            PrologExec p = new PrologExec("user", "menorCaminho");
-            string res = p.executaComandoProlog("1,7,P");
+            //PrologExec p = new PrologExec("user", "menorCaminho");
+            PrologExec p = new PrologExec("user", "recomendaAmizade");
+            //string res = p.executaComandoProlog("1,10,P");
+            string res = p.executaComandoProlog("1");
             Console.Write(res);
 
 

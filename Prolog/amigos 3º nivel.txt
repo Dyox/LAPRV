@@ -1,4 +1,3 @@
-/**/
 listar_am(X):-findall(L,listar_amigos(X,L),Lista),
 		write(Lista),nl.
 
@@ -153,54 +152,3 @@ tamanho_rede_user_3(X,N):-
 	listar_amigos_amigos_amigos_lista(X,L4),
 	uniao(L3,L4,L5),
 	conta_elem(L5,N).
-
-/*recebe duas listas e junta na terceira, tambem limpa repetidos*/	
-uniao([ ],L,L).
-uniao([X|L],L1,L2):- member(X,L1),!,uniao(L,L1,L2).
-uniao([X|L],L1,[X|L2]):- uniao(L,L1,L2).
-/*---*/
-
-/*dada uma lista conta os seus elementos*/
-conta_elem([],0).
-conta_elem([_|T],N):-len(T,M),N is M+1.
-/*---*/
-
-
-
-
-
-/*cam_min(a,b,L) retorna o caminho minimo entre dois pontos*/
-caminhos(X,Y,P):-todos_caminhos(X,Y,[Y],P).
-todos_caminhos(X,Y,L,[X|L]):-ramo(X,Y,_,_).
-todos_caminhos(X,Y,L,P):-ramo(Z,Y,_,_),Z\==X,(not member(Z,L)),
-				todos_caminhos(X,Z,[Z|L],P).
-
-lstcaminhos(X,Y,L):-findall(P,caminhos(X,Y,P),L).
-
-menor([X],X).
-menor([X|T],X):-menor(T,L),
-				length(X,N),
-				length(L,M),
-				N =< M,!.
-menor([X|T],L):-menor(T,L).
-cam_min(X,Y,P):-findall(P,caminhos(X,Y,P),L),	
-			menor(L,P),write(P);write('Nenhum caminho...').
-/*---------------------*/	
-
-/*sugere users para amizade com o user X q tenham alguma tag comum*/
-sugerir_users(X):-
-	listar_amigos_amigos_lista(X,L1),
-	listar_amigos_amigos_amigos_lista(X,L2),
-	uniao(L1,L2,L3),
-	no(X,Tags,_,_),
-	corre3(X,Tags,L3,Tags,L3).
-	
-
-corre3(X,[A|List],[Li|Final],ListC,FinalC):-
-	sugere(X,A,Li),
-	Final\==[]->(corre3(X,[A],Final,ListC,FinalC);
-		corre3(X,List,FinalC,ListC,FinalC)).
-
-sugere(User1,Tag,User2):-no(User2,Tags,_,_),
-			(member(Tag,Tags),\+(ramo(User1,User2,_,_)))->(write(User2),write('['),write(Tag),write('],'));write('').
-/*---*/

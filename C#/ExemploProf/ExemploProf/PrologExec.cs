@@ -100,12 +100,13 @@ namespace ExemploProf
                     break;
                 case "recomendaAmizade":
                     conteudo = resultadoFicheiro("recomendaAmizade");
+                    metodo = "sugerir_users(_target_)";
                     break;
             }
             string fim ="run:- tell('" + NomeFich + ".txt'),"+metodo+",told,halt."+ "\n" +
                                  ":-run. \n";
             fim = fim.Replace("_target_",target);
-            if (nos == null && ramos == null && conteudo == null && metodo == null)
+            if (nos =="" || ramos =="" || conteudo == null || metodo == null)
             {
                 Lines = null;
             }
@@ -231,7 +232,7 @@ namespace ExemploProf
                     return resultado;
                 }
             }
-            return null;
+            return "erro";
         }
 
         private static bool IsFileLocked(string path)

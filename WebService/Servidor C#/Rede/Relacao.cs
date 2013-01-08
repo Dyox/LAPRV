@@ -15,6 +15,7 @@ namespace Rede
         private int _forca;
         private string _tag;
         private string _estado;
+        private IList _tagList;
 
         public Relacao(int profileIDA, int profileIDB, int forca, string tag, string estado )
         {
@@ -36,12 +37,24 @@ namespace Rede
             this._estado= (string)row["Estado"];
         }
 
+        public Relacao(int _profileIDA, int _profileIDB, int _forca, IList _tag)
+        {
+            this._profileIDA = _profileIDA;
+            this._profileIDB = _profileIDB;
+            this._forca = _forca;
+            this._tagList = _tag;
+        }
 
         public int ProfileIDA { get { return _profileIDA; } set { _profileIDA = value; } }
         public int ProfileIDB { get { return _profileIDB; } set { _profileIDB = value; } }
         public int Forca { get { return _forca; } set { _forca = value; } }
         public string TTag { get { return _tag; } set { _tag = value; } }
         public string Estado { get { return _estado; } set { _estado = value; } }
+        public IList TagList
+        {
+            get { return _tagList; }
+            set { _tagList = value; }
+        }
 
         public override string ToString()
         {
@@ -105,8 +118,99 @@ namespace Rede
             }
         }
 
-       
 
+        public static IList LoadInfoForArcos()
+        {
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT IDRelacao,ProfileIDA, ProfileIDB, Forca from TRelacao where Estado='feito'");
+
+                IList ret = new ArrayList();
+
+                foreach (DataRow r in ds.Tables[0].Rows)
+                {
+                    int idR = (int)r["IDRelacao"];
+                    int _profileIDA = (int)r["ProfileIDA"];
+                    int _profileIDB = (int)r["ProfileIDB"];
+                    int _forca = (int)r["Forca"];
+                    IList _tag = obterTagByIDrelacao(idR);
+
+                    Relacao re = new Relacao(_profileIDA, _profileIDB, _forca, _tag);
+                    ret.Add(re);
+
+                }
+
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro BD", ex);
+            }
+        }
+
+        private static IList obterTagByIDrelacao(int idR)
+        {
+            IList ret = new ArrayList();
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT ID_Tag FROM Rel_Tag where ID_Rel=" + idR);
+
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    int IDrel = (int)row["ID_Tag"];
+                    try
+                    {
+                        DataSet dsTag = ExecuteQuery(GetConnection(false), "SELECT Designacao FROM TTag where TagID=" + IDrel);
+
+                        foreach (DataRow r in dsTag.Tables[0].Rows)
+                        {
+                            string tag = (string)r["Designacao"];
+                            ret.Add(tag);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw new ApplicationException("Erro BD", ex);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //throw new ApplicationException("Erro BD", ex);
+            }
+
+            return ret;
+        }
+
+        public string toFile()
+        {   //ramo(No1_ID,No2_ID,Tag,Força)
+            //ramo(d,f,[amiga,irma],1).
+            String txt = "ramo(";
+            txt += _profileIDA + ",";
+            txt += _profileIDB + ",";
+            txt += "[";
+            if (TagList.Count == 0)
+            {
+                txt += "]";
+            }
+            else
+            {
+                for (int x = 0; x < TagList.Count; x++)
+                {
+                    if (x == TagList.Count - 1)
+                    {
+                        txt += TagList[x] += "]";
+                    }
+                    else
+                    {
+                        txt += TagList[x] + ",";
+                    }
+                }
+            }
+            txt += ",";
+            txt += _forca + ").";
+            return txt;
+        }
 
         public override void Save()
         {

@@ -9,7 +9,7 @@ no(f,['c#'],90,95).
 % ramo(No1_ID,No2_ID,Tag,Força)
 ramo(a,b,[namorada],1).
 ramo(a,c,[namorada],8).
-ramo(b,c,[namorada],5).
+ramo(b,c,[namorada],2).
 
 
 caminhos(X,Y,P):-todos_caminhos(X,Y,[Y],P).
@@ -33,7 +33,7 @@ max_list([H|T], M2) :- max_list(T, M), M2 is max(H, M).
 indexOf([Element|_], Element, 0):- !.
 indexOf([_|Tail], Element, Index):- indexOf(Tail, Element, Index1), !, Index is Index1+1.
 
-cam_min(X,Y,Element):-findall(P,caminhos(X,Y,P),L),findall(F,forca(X,Y,F),LF),
+camMaisForte(X,Y,Element):-findall(P,caminhos(X,Y,P),L),findall(F,forca(X,Y,F),LF),
 			max_list(LF,T),indexOf(LF,T,POS),indexOf(L, Element, POS),write(Element);write('Nenhum caminho...').
 
 

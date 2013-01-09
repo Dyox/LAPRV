@@ -54,38 +54,36 @@ namespace ExemploProf
             string res = p.executaComandoProlog("1");
             Console.WriteLine(res);
 
-           
+        /*inicio do codigo de sugestoes*/   
             List<string> texto = res.Split(',').ToList<string>();
-            List<string> users = new List<string>();
-            List<string> tags = new List<string>();
-
-            List<List<string>> matrix = new List<List<string>>();
+            Dictionary<string, List<string>> dictionary = new Dictionary<string,List<string>>();
 
             for (int i = 0; i < texto.Count - 1; i++)
             {
-
                 List<string> testeUser = texto[i].ToString().Split('[').ToList<string>();
                 String testeTag = testeUser[1].ToString().Split(']')[0];
-                Console.WriteLine("tag teste -> "+testeTag);
+                //Console.WriteLine("tag teste -> "+testeTag);
 
-                if (users.Contains(testeUser[0].ToString()))
+                if (!dictionary.ContainsKey(testeUser[0].ToString()))
                 {
-                    users.Add(testeUser[0].ToString());
-                    int index = users.IndexOf(testeUser[0].ToString());
-                    //users.Find(testeUser[0].ToString());
-                    matrix[index].Add(testeTag);
-                    Console.WriteLine("ja existe");
+                    dictionary.Add(testeUser[0].ToString(), new List<String>());
+                    dictionary[testeUser[0].ToString()].Add(testeTag);
                 }
                 else
                 {
-                    users.Add(testeUser[0].ToString());
-                    int index = users.IndexOf(testeUser[0].ToString());
-                    //users.Find(testeUser[0].ToString());
-                    matrix[index].Add(testeTag);
-                    Console.WriteLine("nao existe");
+                    dictionary[testeUser[0].ToString()].Add(testeTag);
                 }
             }
 
+            foreach (var entry in dictionary)
+            {
+                Console.WriteLine(entry.Key);
+                foreach (var tag in entry.Value)
+                    Console.WriteLine(tag);              
+            }
+        /*fim do codiog de sugestoes*/
+
+           
             //int profileIDA, int profileIDB, int forca, string tag
             //% ramo(No1_ID,No2_ID,Tag,Força)
             //% no(NoID,PosX,PosY)

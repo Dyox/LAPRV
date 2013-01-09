@@ -102,6 +102,10 @@ namespace ExemploProf
                     conteudo = resultadoFicheiro("recomendaAmizade");
                     metodo = "sugerir_users(_target_)";
                     break;
+                case "xTagsEmComum":
+                    conteudo = resultadoFicheiro("xTagsEmComum");
+                    metodo = "amigos_com_x_tags_iguais(_target_)";
+                    break;
             }
             string fim ="run:- tell('" + NomeFich + ".txt'),"+metodo+",told,halt."+ "\n" +
                                  ":-run. \n";

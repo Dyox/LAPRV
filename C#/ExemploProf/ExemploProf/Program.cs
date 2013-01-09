@@ -50,11 +50,44 @@ namespace ExemploProf
             //PrologExec p = new PrologExec("user", "caminhoMaisForte");
             //PrologExec p = new PrologExec("user", "menorCaminho");
             PrologExec p = new PrologExec("user", "recomendaAmizade");
+            //PrologExec p = new PrologExec("user", "xTagsEmComum");
+            
             //string res = p.executaComandoProlog("1,10,P");
             string res = p.executaComandoProlog("1");
+            //string res = p.executaComandoProlog("1,1");
             Console.WriteLine(res);
 
-        /*inicio do codigo de sugestoes*/   
+            sugere_amigos(res);
+
+           
+            //int profileIDA, int profileIDB, int forca, string tag
+            //% ramo(No1_ID,No2_ID,Tag,Força)
+            //% no(NoID,PosX,PosY)
+            IList listaArcos = Rede.Relacao.LoadInfoForArcos();
+            //Console.WriteLine(((Rede.Relacao)listaArcos[4]).toFile());
+            //Console.WriteLine();
+            IList listaNos = Rede.Perfil.LoadInfoForNos();
+            //Console.WriteLine(((Rede.Perfil)listaNos[0]).toFile());
+            //Console.Read();
+
+            //string txt = "";
+            //foreach (Relacao r in listaArcos)
+            //{
+            //    txt += r.toFile() + " \n";
+            //}
+            //foreach (Perfil n in listaNos)
+            //{
+            //    txt += n.toFile() + " \n";
+            //}
+            //escrverTXT(txt);
+            //Console.Write(txt);
+            Console.Read();
+            
+        }
+
+        private static void sugere_amigos(String res)
+        {
+            /*inicio do codigo de sugestoes*/   
             List<string> texto = res.Split(',').ToList<string>();
             Dictionary<string, List<string>> dictionary = new Dictionary<string,List<string>>();
 
@@ -82,31 +115,6 @@ namespace ExemploProf
                     Console.WriteLine(tag);              
             }
         /*fim do codiog de sugestoes*/
-
-           
-            //int profileIDA, int profileIDB, int forca, string tag
-            //% ramo(No1_ID,No2_ID,Tag,Força)
-            //% no(NoID,PosX,PosY)
-            IList listaArcos = Rede.Relacao.LoadInfoForArcos();
-            //Console.WriteLine(((Rede.Relacao)listaArcos[4]).toFile());
-            //Console.WriteLine();
-            IList listaNos = Rede.Perfil.LoadInfoForNos();
-            //Console.WriteLine(((Rede.Perfil)listaNos[0]).toFile());
-            //Console.Read();
-
-            //string txt = "";
-            //foreach (Relacao r in listaArcos)
-            //{
-            //    txt += r.toFile() + " \n";
-            //}
-            //foreach (Perfil n in listaNos)
-            //{
-            //    txt += n.toFile() + " \n";
-            //}
-            //escrverTXT(txt);
-            //Console.Write(txt);
-            Console.Read();
-            
         }
 
         private static Boolean escrverTXT(string lines)

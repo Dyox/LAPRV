@@ -241,7 +241,8 @@ tamanho_rede_user_3(X,N):-
 	uniao(L1,L2,L3),
 	listar_amigos_amigos_amigos_lista(X,L4),
 	uniao(L3,L4,L5),
-	conta_elem(L5,N).
+	conta_elem(L5,N),
+	write(N).
 
 /*recebe duas listas e junta na terceira, tambem limpa repetidos*/	
 uniao([ ],L,L).

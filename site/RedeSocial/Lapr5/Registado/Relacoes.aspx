@@ -3,7 +3,23 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
+
+
+
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    <section id="loginForm">
+        <h2>titulo</h2>
+    <asp:Table runat="server">
+        <asp:TableRow>
+            <asp:TableCell>
+                asd
+            </asp:TableCell>
+            <asp:TableCell>
+
+                asdfsa
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
     <asp:Label ID="Label4" runat="server" Text="Procurar Amigos:"></asp:Label>
     <br />
     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
@@ -69,4 +85,10 @@
     </asp:SqlDataSource>
     <br />
     <br />
+        </section> <section id="Section1">
+        <h2>Pessoas que possa conhecer...</h2>
+
+        </section>
 </asp:Content>
+
+    

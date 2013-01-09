@@ -49,16 +49,18 @@ namespace ExemploProf
 
             //PrologExec p = new PrologExec("user", "caminhoMaisForte");
             //PrologExec p = new PrologExec("user", "menorCaminho");
-            PrologExec p = new PrologExec("user", "recomendaAmizade");
+            //PrologExec p = new PrologExec("user", "recomendaAmizade");
             //PrologExec p = new PrologExec("user", "xTagsEmComum");
+            PrologExec p = new PrologExec("user", "tamanhoRedeUtilizador");
             
             //string res = p.executaComandoProlog("1,10,P");
+            //string res = p.executaComandoProlog("1");
             string res = p.executaComandoProlog("1");
-            //string res = p.executaComandoProlog("1,1");
             Console.WriteLine(res);
 
-            sugere_amigos(res);
+            //sugere_amigos(res);
 
+            xTagsEmComum(res);
            
             //int profileIDA, int profileIDB, int forca, string tag
             //% ramo(No1_ID,No2_ID,Tag,Força)
@@ -85,11 +87,11 @@ namespace ExemploProf
             
         }
 
-        private static void sugere_amigos(String res)
+        //cria um dicionário com o user e as suas tags
+        private static Dictionary<string, List<string>> dicUserTag (String res)
         {
-            /*inicio do codigo de sugestoes*/   
             List<string> texto = res.Split(',').ToList<string>();
-            Dictionary<string, List<string>> dictionary = new Dictionary<string,List<string>>();
+            Dictionary<string, List<string>> dictionary = new Dictionary<string, List<string>>();
 
             for (int i = 0; i < texto.Count - 1; i++)
             {
@@ -107,14 +109,35 @@ namespace ExemploProf
                     dictionary[testeUser[0].ToString()].Add(testeTag);
                 }
             }
+            return dictionary;
+        }
 
+
+
+        private static void xTagsEmComum(String res)
+        {
+            Dictionary<string, List<string>> dictionary = dicUserTag(res);
+            int x=3;
+            foreach (var entry in dictionary)
+            {
+                if (entry.Value.Count == x)
+                {
+                    Console.WriteLine("O user " + entry.Key + " tem " + x + " tags em comum.");
+                    foreach (var tag in entry.Value)
+                        Console.WriteLine(tag);
+                }
+            }
+        }
+
+        private static void sugere_amigos(String res)
+        {
+            Dictionary<string, List<string>> dictionary = dicUserTag(res);
             foreach (var entry in dictionary)
             {
                 Console.WriteLine(entry.Key);
                 foreach (var tag in entry.Value)
                     Console.WriteLine(tag);              
             }
-        /*fim do codiog de sugestoes*/
         }
 
         private static Boolean escrverTXT(string lines)

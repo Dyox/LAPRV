@@ -106,6 +106,10 @@ namespace ExemploProf
                     conteudo = resultadoFicheiro("xTagsEmComum");
                     metodo = "amigos_com_x_tags_iguais(_target_)";
                     break;
+                case "tamanhoRedeUtilizador":
+                    conteudo = resultadoFicheiro("tamanhoRedeUtilizador");
+                    metodo = "tamanho_rede_user_3(_target_,N)";
+                    break;
             }
             string fim ="run:- tell('" + NomeFich + ".txt'),"+metodo+",told,halt."+ "\n" +
                                  ":-run. \n";

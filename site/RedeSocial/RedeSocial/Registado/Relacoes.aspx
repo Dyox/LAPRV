@@ -36,10 +36,22 @@
 <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Enviar" />
     <br />
     <br />
+    <asp:Label ID="Label2" runat="server" Text="Lista de Amigos:"></asp:Label>
+    <br />
+    <br />
+    <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource3">
+        <Columns>
+            <asp:ImageField DataImageUrlField="Avatar"></asp:ImageField>
+            <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" />
+            </Columns>
+    </asp:GridView>
+    <br />
+    <asp:Label ID="Label3" runat="server" Text="Lista de Pedidos de Amizades:"></asp:Label>
     <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource2">
         <Columns>
             <asp:ImageField DataImageUrlField="Avatar"></asp:ImageField>
             <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" />
+            <asp:BoundField DataField="Estado" HeaderText="Estado" />
             </Columns>
     </asp:GridView>
     <br />
@@ -47,6 +59,8 @@
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>">
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>">
+    </asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>">
     </asp:SqlDataSource>
     <br />
     <br />

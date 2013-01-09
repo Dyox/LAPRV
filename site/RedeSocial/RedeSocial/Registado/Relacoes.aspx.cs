@@ -19,9 +19,12 @@ namespace RedeSocial.Registado
             string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
             Rede.Perfil ProfileIDA = Rede.Perfil.LoadByUserId(id);
             
-            SqlDataSource2.SelectCommand="SELECT [Avatar], [Nome] from [ViewFriends] WHERE ([ProfileIDA]=" + ProfileIDA.ID+")";
+            SqlDataSource2.SelectCommand="SELECT [Avatar], [Nome], [Estado] from [ViewFriends] WHERE ([ProfileIDA]=" + ProfileIDA.ID+" AND [Estado]='Pendente')";
+
+            SqlDataSource3.SelectCommand = "SELECT [Avatar], [Nome] from [ViewFriends] WHERE ([ProfileIDA]=" + ProfileIDA.ID + " AND [Estado]='feito')";
 
             GridView2.DataBind();
+            GridView3.DataBind();
             if (!Page.IsPostBack)
             {
                 Session.Add("lista", listtag); 
@@ -60,7 +63,6 @@ namespace RedeSocial.Registado
             GridView2.DataBind();
 
         }
-
 
         protected void Button3_Click(object sender, EventArgs e)
         {

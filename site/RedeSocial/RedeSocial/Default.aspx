@@ -17,7 +17,16 @@
         </div>
     </section>
 </asp:Content>
+
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>">
+    </asp:SqlDataSource>
+    <ol class="round">
+        <li class="four" runat="Server" id="classF">
+            <h5>Tem &nbsp; <asp:Label ID="namigosp" runat="server" Text=""></asp:Label> Amizades Pendentes.</h5>
+        </li>
+    </ol>
+
     <ol class="round">
         <li class="one">
             <h5>Dimensão da rede (Utilizadores Registados):&nbsp;&nbsp;&nbsp; <asp:Label ID="nusers" runat="server" Text="Label"></asp:Label>

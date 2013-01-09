@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Rede;
 using System.Text;
+using System.Web.Security;
+using System.Data;
 
 namespace RedeSocial
 {
@@ -16,7 +18,7 @@ namespace RedeSocial
             Dimensao_rede();
             Cloud_taguser();
             Cloud_tagrelacao();
-
+            ContarAmizades();
           
 
         }
@@ -98,6 +100,20 @@ namespace RedeSocial
             }
 
             Labelclouduser.Text = sb.ToString();
+        }
+        protected void ContarAmizades()
+        {
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+            MembershipUser currentLoggedInUser = Membership.GetUser();
+            string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
+            Rede.Perfil ProfileIDA = Rede.Perfil.LoadByUserId(id);
+            SqlDataSource1.SelectCommand = "SELECT * from [ViewFriends] WHERE ([Nome]='" + ProfileIDA.Name + "' AND [Estado]='Pendente')";
+            DataView dvSql = (DataView)SqlDataSource1.Select(DataSourceSelectArguments.Empty);
+            
+            namigosp.Text = dvSql.Count.ToString();
+            classF.Visible = true;
+            }
         }
 
     }

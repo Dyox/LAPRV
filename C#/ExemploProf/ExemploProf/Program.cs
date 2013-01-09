@@ -50,11 +50,12 @@ namespace ExemploProf
             //PrologExec p = new PrologExec("user", "caminhoMaisForte");
             //PrologExec p = new PrologExec("user", "menorCaminho");
             //PrologExec p = new PrologExec("user", "recomendaAmizade");
-            PrologExec p = new PrologExec("user", "xTagsEmComum");
+            //PrologExec p = new PrologExec("user", "xTagsEmComum");
+            PrologExec p = new PrologExec("user", "tamanhoRedeUtilizador");
             
             //string res = p.executaComandoProlog("1,10,P");
             //string res = p.executaComandoProlog("1");
-            string res = p.executaComandoProlog("1,1");
+            string res = p.executaComandoProlog("1");
             Console.WriteLine(res);
 
             //sugere_amigos(res);

@@ -77,6 +77,7 @@
 <asp:Button ID="Button2" runat="server" Text="Enviar" OnClick="Button2_Click" />
 <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Limpar" Visible="False" />
     <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Editar" />
+    <asp:Label ID="Label13" runat="server" Text="Label"></asp:Label>
 <br />
 <br />
 </asp:Content>

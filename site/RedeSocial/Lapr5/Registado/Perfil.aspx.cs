@@ -82,9 +82,9 @@ namespace RedeSocial.Registado
             Rede.Humor h = Rede.Humor.LoadById(Convert.ToInt32(DropDownList1.SelectedValue));
             prof.humor = h;
             prof.Telemovel = Convert.ToInt32(TextTlm.Text);
-            prof.avatar3D = @"/Registado/Avatar3D/3D_" + lblfile.Text;
+            prof.avatar3D = @"/Lapr5/Registado/Avatar3D/3D_" + lblfile.Text;
             lblfile.Text = "";
-            prof.avatar = avatarIMG.Src;
+            prof.avatar = "ola";//avatarIMG.Src;
             prof.X = 1;
             prof.Y = 1;
             prof.Save();
@@ -128,7 +128,8 @@ namespace RedeSocial.Registado
 
                 // Specify the upload directory
                 string directory = Server.MapPath(@"Avatar\");
-
+                imglabel.Text = directory;
+                Label3.Text = directory;
                 // Create a bitmap of the content of the fileUpload control in memory
                 Bitmap originalBMP = new Bitmap(UploadAvatar.FileContent);
 
@@ -150,7 +151,7 @@ namespace RedeSocial.Registado
                 oGraphics.DrawImage(originalBMP, 0, 0, newWidth, newHeight);
 
                 // Save the new graphic file to the server
-                newBMP.Save(directory + "tn_" + filename);
+                newBMP.Save(directory + filename);
 
                 // Once finished with the bitmap objects, we deallocate them.
                 originalBMP.Dispose();
@@ -161,7 +162,7 @@ namespace RedeSocial.Registado
                 imglabel.Text = "File Name: <b style='color: red;'>" + filename + "</b><br>";
                 // Display the image to the user
                 avatarIMG.Visible = true;
-                avatarIMG.Src = @"/Registado/Avatar/tn_" + filename;
+                avatarIMG.Src = @"/Lapr5/Registado/Avatar/"+ filename;
             }
             else
             {
@@ -216,17 +217,17 @@ namespace RedeSocial.Registado
 
                 if (UploadAvatar3D.PostedFile.ContentType == "application/x-3ds" || UploadAvatar3D.PostedFile.ContentType == "application/octet-stream")
                 {
-                    if (UploadAvatar3D.PostedFile.ContentLength < 10485760)
+                    if (UploadAvatar3D.PostedFile.ContentLength < 8485760)
                     {
 
-                        string directory = Server.MapPath(@"Avatar3D\");
-                        UploadAvatar3D.SaveAs(directory + "3D_" + filename);
+                        string directory = Server.MapPath(@"Avatar3D");
+                        UploadAvatar3D.SaveAs(directory + filename);
                         lblfile.Text = filename;
                         StatusLabel.Text = "Upload status: File uploaded!";
 
                     }
                     else
-                        StatusLabel.Text = "Upload status: The file has to be less than 10 Mb!";
+                        StatusLabel.Text = "Upload status: The file has to be less than 8 Mb!";
                     }
                     else
                         StatusLabel.Text = "Upload status: Only 3DS, OBJ files are accepted!";           

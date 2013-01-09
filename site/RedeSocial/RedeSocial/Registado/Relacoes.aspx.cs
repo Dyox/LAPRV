@@ -22,9 +22,12 @@ namespace RedeSocial.Registado
             SqlDataSource2.SelectCommand="SELECT [Avatar], [Nome], [Estado] from [ViewFriends] WHERE ([ProfileIDA]=" + ProfileIDA.ID+" AND [Estado]='Pendente')";
 
             SqlDataSource3.SelectCommand = "SELECT [Avatar], [Nome] from [ViewFriends] WHERE ([ProfileIDA]=" + ProfileIDA.ID + " AND [Estado]='feito')";
-
+            
             GridView2.DataBind();
             GridView3.DataBind();
+
+            
+            
             if (!Page.IsPostBack)
             {
                 Session.Add("lista", listtag); 
@@ -74,5 +77,17 @@ namespace RedeSocial.Registado
             DropDownTags.DataSource = this.listtag;
             DropDownTags.DataBind();
         }
+
+        
+
+        protected void GridView3_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string name = GridView3.SelectedRow.Cells[1].Text;
+            Rede.Perfil ProfileIDB = Rede.Perfil.LoadByName(name);
+            SqlDataSource3.DeleteCommand = "DELETE from [TRelacao] WHERE ([ProfileIDB]=" + ProfileIDB.ID + ")";
+            
+        }
+
+        
     }
 }

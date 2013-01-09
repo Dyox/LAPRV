@@ -4,6 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:Label ID="Label4" runat="server" Text="Procurar Amigos:"></asp:Label>
     <br />
     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
     <asp:Button ID="Button1" runat="server" Text="Procurar" OnClick="Button1_Click" />
@@ -17,6 +18,8 @@
             <asp:CommandField ButtonType="Button" HeaderText="Selecionar" ShowHeader="True" ShowSelectButton="True" />
         </Columns>
     </asp:GridView>
+    <br />
+    <asp:Label ID="Label5" runat="server" Text="Tags da Relação:"></asp:Label>
     <br />
 <asp:TextBox ID="TextBoxTag" runat="server"></asp:TextBox>
 <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Juntar" />
@@ -36,15 +39,8 @@
 <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Enviar" />
     <br />
     <br />
-    <asp:Label ID="Label2" runat="server" Text="Lista de Amigos:"></asp:Label>
     <br />
     <br />
-    <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource3">
-        <Columns>
-            <asp:ImageField DataImageUrlField="Avatar"></asp:ImageField>
-            <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" />
-            </Columns>
-    </asp:GridView>
     <br />
     <asp:Label ID="Label3" runat="server" Text="Lista de Pedidos de Amizades:"></asp:Label>
     <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource2">
@@ -55,6 +51,15 @@
             </Columns>
     </asp:GridView>
     <br />
+    <asp:Label ID="Label2" runat="server" Text="Lista de Amigos:"></asp:Label>
+    <br />
+    <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource3" OnRowDeleting="GridView3_RowDeleting" >
+        <Columns>
+            <asp:ImageField DataImageUrlField="Avatar"></asp:ImageField>
+            <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" />
+            <asp:CommandField ButtonType="Button" ShowDeleteButton="True"  />
+            </Columns>
+    </asp:GridView>
 <br />
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>">
     </asp:SqlDataSource>

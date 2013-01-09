@@ -22,8 +22,8 @@
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>">
     </asp:SqlDataSource>
     <ol class="round">
-        <li class="four" runat="Server" id="classF">
-            <h5>Tem &nbsp; <asp:Label ID="namigosp" runat="server" Text=""></asp:Label> Amizades Pendentes.</h5>
+        <li >
+            <h5><asp:Label ID="namigosp" runat="server" Text=""></asp:Label></h5>
         </li>
     </ol>
 
@@ -35,14 +35,14 @@
     </ol>
     <ol class="round">
         <li class="two">
-            <h5 id="Clouduser">Cloud users:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <h5 id="Clouduser">Cloud Tags users:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Label ID="Labelclouduser" runat="server" Text="Label"></asp:Label>
             </h5>
         </li>
     </ol>
     <ol class="round">
         <li class="three">
-            <h5>Cloud Relacoes:&nbsp;&nbsp;&nbsp;
+            <h5>Cloud Tags Relacoes:&nbsp;&nbsp;&nbsp;
                 <asp:Label ID="Labelcloudrel" runat="server" Text="Label"></asp:Label>
             </h5>
         </li>

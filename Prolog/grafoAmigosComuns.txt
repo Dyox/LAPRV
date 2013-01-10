@@ -1,0 +1,25 @@
+amigos_comuns(X,Y,L):-
+	findall(X1,ramo(X,X1,_,_),Amigos1),
+	(member(Y,Amigos1)->elimina(Y,Amigos1,L1);copiar(Amigos1,L1)), /*se o outro user faz parte dos amigos elimina-se pq não vai ser comum*/
+	findall(Y2,ramo(Y,Y2,_,_),Amigos2),
+	(member(X,Amigos2)->elimina(X,Amigos2,L2);copiar(Amigos2,L2)),
+	/*write(L1),write(L2),*/
+	corre5(L1,L2,L),
+	write(L).
+
+corre5([],_,[]).
+corre5([A|L1],L2,[A|L3]):-
+     member(A,L2),!,
+    corre5(L1,L2,L3).
+corre5([_|L1],L2,L3):-
+    corre5(L1,L2,L3).
+
+copiar(L,R) :- accCp(L,R).
+accCp([],[]).
+accCp([H|T1],[H|T2]) :- accCp(T1,T2).
+
+/*elimina o elemento X da lista*/
+elimina(_,[],[]).
+elimina(X,[X|T],T):-!.
+elimina(X,[H|T],[H|L]):-elimina(X,T,L).
+/*---*/

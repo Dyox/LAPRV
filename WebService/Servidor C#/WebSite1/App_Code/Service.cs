@@ -157,6 +157,13 @@ using System.Web.Security;
             string res = p.executaComandoProlog(id+"");
             return res;
         }
+
+        public string grafoAmigosComuns(int user1, int user2)
+        {
+            PrologExec p = new PrologExec(user1+"_"+user2, "grafoAmigosComuns");
+            string res = p.executaComandoProlog(user1+","+user2);
+            return res;
+        }
     }
 
      

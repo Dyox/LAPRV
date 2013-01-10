@@ -1,0 +1,23 @@
+/*lista os amigos do User com N tags em comum*/
+
+amigos_com_x_tags_iguais(User,X):-
+	listar_amigos_lista(User,L1),
+	no(User,Tags,_,_),
+	corre4(X,Tags,L1,Tags,L1),!;true.
+	
+
+corre4(X,[A|List],[Li|Final],ListC,FinalC):-
+	pesquisa_users(A,Li),
+	Final\==[]->(corre4(X,[A],Final,ListC,FinalC);
+		corre4(X,List,FinalC,ListC,FinalC)).
+
+pesquisa_users(Tag,User2):-no(User2,Tags,_,_),
+			member(Tag,Tags)->(write(User2),write('['),write(Tag),write('],'));write('').
+/*---*/
+
+
+listar_amigos(X,Y):-ramo(X,Y,_,_).
+
+
+
+listar_amigos_lista(X,Lista):-findall(L,listar_amigos(X,L),Lista).

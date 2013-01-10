@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Collections;
 using Prolog;
+using System.Web.Security;
 
 // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service" in code, svc and config file together.
     public class Service : IService
@@ -99,21 +100,72 @@ using Prolog;
 
         }
 
-        public string getMenorCaminho(int uid)
+        public string getMenorCaminho(int no1,int no2 )
         {
-            PrologExec p = new PrologExec(uid+"", "menorCaminho");
-            string res = p.executaComandoProlog("1,10,P");
+            PrologExec p = new PrologExec(no1+"_"+no2, "menorCaminho");
+            string res = p.executaComandoProlog(no1+","+no2+",P");
             return res;
         }
 
-        public string getCaminhoForte(int uid)
+        public string getCaminhoForte(int no1, int no2)
         {
-            PrologExec p = new PrologExec(uid + "", "caminhoMaisForte");
-            string res = p.executaComandoProlog("1,10,P");
+            PrologExec p = new PrologExec(no1+"_"+no2, "caminhoMaisForte");
+            string res = p.executaComandoProlog(no1+","+no2+",P");
+            return res;
+        }
+
+        public int validateLogin(string userName, string password)
+        {
+            if (Membership.ValidateUser(userName, password))
+            {
+                var userId = (Guid)(Membership.GetUser(userName,false).ProviderUserKey);
+                Rede.Perfil user=Rede.Perfil.LoadByUserId(userId.ToString());
+                return user.ID;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public string xTagsEmComum(int id,int n)
+        {
+            ///*lista os amigos do User com N tags em comum*/
+            PrologExec p = new PrologExec(""+id, "xTagsEmComum");
+            string res = p.executaComandoProlog(id+","+n);
+            return res;
+        }
+
+        public int tamanhoRedeUtilizador(int id)
+        {
+            PrologExec p = new PrologExec(""+id, "tamanhoRedeUtilizador");
+            string res = p.executaComandoProlog(""+id);
+            try
+            {
+                return Convert.ToInt32(res);
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Input string is not a sequence of digits.");
+            }
+            return -1;
+        }
+
+        public string sugereAmigos(int id)
+        {
+            PrologExec p = new PrologExec(id+"", "recomendaAmizade");
+            string res = p.executaComandoProlog(id+"");
+            return res;
+        }
+
+        public string grafoAmigosComuns(int user1, int user2)
+        {
+            PrologExec p = new PrologExec(user1+"_"+user2, "grafoAmigosComuns");
+            string res = p.executaComandoProlog(user1+","+user2);
             return res;
         }
     }
 
-    
+     
 
    

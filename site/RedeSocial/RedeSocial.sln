@@ -6,6 +6,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Lapr5", "Lapr5\", "{8EAF345F-CDCC-4663-BDCD-DD54C4A9E80E}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = "{d233accd-bb9b-4ccd-baf9-1bd42d73a179}|Rede.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Lapr5"
 		Debug.AspNetCompiler.PhysicalPath = "Lapr5\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Lapr5\"

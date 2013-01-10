@@ -11,10 +11,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 
-namespace RedeSocial.Registado
+public partial class Registado_Perfil : System.Web.UI.Page
 {
-    public partial class Perfil : System.Web.UI.Page
-    {
         protected void Page_Load(object sender, EventArgs e)
         {
             TextNome.Enabled = false;
@@ -84,7 +82,7 @@ namespace RedeSocial.Registado
             prof.Telemovel = Convert.ToInt32(TextTlm.Text);
             prof.avatar3D = @"/Lapr5/Registado/Avatar3D/3D_" + lblfile.Text;
             lblfile.Text = "";
-            prof.avatar = "ola";//avatarIMG.Src;
+            prof.avatar = avatarIMG.Src;
             prof.X = 1;
             prof.Y = 1;
             prof.Save();
@@ -129,7 +127,7 @@ namespace RedeSocial.Registado
                 // Specify the upload directory
                 string directory = Server.MapPath(@"Avatar\");
                 imglabel.Text = directory;
-                Label3.Text = directory;
+                
                 // Create a bitmap of the content of the fileUpload control in memory
                 Bitmap originalBMP = new Bitmap(UploadAvatar.FileContent);
 
@@ -159,10 +157,11 @@ namespace RedeSocial.Registado
                 oGraphics.Dispose();
 
                 // Write a message to inform the user all is OK
-                imglabel.Text = "File Name: <b style='color: red;'>" + filename + "</b><br>";
+                //imglabel.Text = "File Name: <b style='color: red;'>" + filename + "</b><br>";
                 // Display the image to the user
                 avatarIMG.Visible = true;
-                avatarIMG.Src = @"/Lapr5/Registado/Avatar/"+ filename;
+             
+                avatarIMG.Src = @"/Lapr5/Registado/Avatar/" + filename;
             }
             else
             {
@@ -235,5 +234,4 @@ namespace RedeSocial.Registado
                 }
             }
         }
-    }
 

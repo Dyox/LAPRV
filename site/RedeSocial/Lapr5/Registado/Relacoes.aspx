@@ -1,4 +1,7 @@
-﻿    <%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Relacoes.aspx.cs" Inherits="RedeSocial.Registado.Relacoes" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Relacoes.aspx.cs" Inherits="Registado_Relacoes" MasterPageFile="~/Site.Master" %>
+
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">

@@ -23,6 +23,7 @@ namespace Rede
         private string _avatar3D;
         private int _x;
         private int _y;
+        private IList _tags;
 
         public Perfil()
         {
@@ -141,6 +142,11 @@ namespace Rede
             get { return _y; }
             set { _y = value; }
         }
+        public IList Tags
+        {
+            get { return _tags; }
+            set { _tags = value; }
+        }
         protected Perfil(DataRow row)
         {
             this.myID = (int)row["ProfileID"];
@@ -158,6 +164,15 @@ namespace Rede
             this._x = (int)row["X"];
             this._y = (int)row["Y"];
         }
+        public Perfil(int ID, int x, int y, IList tags)
+        {
+            // TODO: Complete member initialization
+            this.myID = ID;
+            this._x = x;
+            this._y = y;
+            this._tags = tags;
+        }
+
 
         public override string ToString()
         {
@@ -241,6 +256,36 @@ namespace Rede
          
         }
 
+        public string toFile()
+        {   //no(NoID,[listaTags,listaTags],PosX,PosY)
+            String txt = "no(";
+            txt += ID + ",";
+            txt += "[";
+            if (Tags.Count == 0)
+            {
+                txt += "]";
+            }
+            else
+            {
+                for (int x = 0; x < Tags.Count; x++)
+                {
+                    if (x == Tags.Count - 1)
+                    {
+                        txt += Tags[x] += "]";
+                    }
+                    else
+                    {
+                        txt += Tags[x] + ",";
+                    }
+                }
+            }
+            txt += ",";
+            txt += X + ",";
+            txt += Y + ").";
+            return txt;
+        }
+    
+
 
         public override void Save()
         {
@@ -259,5 +304,133 @@ namespace Rede
                 
             }
         }
+        public static IList<string> LoadTagsByUserID(int userID)
+        {
+            IList<string> ret = new List<string>();
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT TagID FROM TTags where ProfileID=" + userID);
+
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    int TagID = (int)row["TagID"];
+                    try
+                    {
+                        DataSet dsTag = ExecuteQuery(GetConnection(false), "SELECT Designacao FROM TTag where TagID=" + TagID);
+
+                        foreach (DataRow r in dsTag.Tables[0].Rows)
+                        {
+                            string tag = (string)r["Designacao"];
+                            ret.Add(tag);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw new ApplicationException("Erro BD", ex);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //throw new ApplicationException("Erro BD", ex);
+            }
+
+            return ret;
+        }
+        public static string getHumorByPrefilID(int profileID)
+        {
+            IList ret = new ArrayList();
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT HumorID FROM TProfile where ProfileID=" + profileID);
+
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    int HumorID = (int)row["HumorID"];
+                    try
+                    {
+                        DataSet dsTag = ExecuteQuery(GetConnection(false), "SELECT Designacao FROM THumor where HumorID=" + HumorID);
+
+                        foreach (DataRow r in dsTag.Tables[0].Rows)
+                        {
+                            string humor = (string)r["Designacao"];
+                            return humor;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw new ApplicationException("Erro BD", ex);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //throw new ApplicationException("Erro BD", ex);
+            }
+
+            return "";
+        }
+        public static IList LoadInfoForNos()
+        {//no(NoID,[listaTags],PosX,PosY)
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT ProfileID,X,Y FROM TProfile");
+
+                IList ret = new ArrayList();
+
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    int ID = (int)row["ProfileID"];
+                    int x = (int)row["X"];
+                    int y = (int)row["Y"];
+                    IList tags = TagsByUserID(ID);
+                    Perfil c = new Perfil(ID, x, y, tags);
+                    ret.Add(c);
+                }
+
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro BD", ex);
+            }
+        }
+        public static IList TagsByUserID(int userID)
+        {
+            IList ret = new ArrayList();
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT TagID FROM TTags where ProfileID=" + userID);
+
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    int TagID = (int)row["TagID"];
+                    try
+                    {
+                        DataSet dsTag = ExecuteQuery(GetConnection(false), "SELECT Designacao FROM TTag where TagID=" + TagID);
+
+                        foreach (DataRow r in dsTag.Tables[0].Rows)
+                        {
+                            string tag = (string)r["Designacao"];
+                            ret.Add(tag);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw new ApplicationException("Erro BD", ex);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //throw new ApplicationException("Erro BD", ex);
+            }
+
+            return ret;
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Perfil.aspx.cs" Inherits="RedeSocial.Registado.Perfil" %>
+﻿<%@ Page MasterPageFile="~/Site.Master" Language="C#" AutoEventWireup="true" CodeFile="Perfil.aspx.cs" Inherits="Registado_Perfil" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">
         .auto-style1
@@ -65,6 +66,7 @@
     <asp:TextBox ID="TextTag" runat="server"></asp:TextBox>
 &nbsp;&nbsp;
     <asp:Button ID="Button5" runat="server" OnClick="Button5_Click" Text="Adicionar" />
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>" SelectCommand="SELECT [Designacao] FROM [ViewTagsUser] WHERE ([ProfileID] = @ProfileID)">
         <SelectParameters>
@@ -77,7 +79,6 @@
 <asp:Button ID="Button2" runat="server" Text="Enviar" OnClick="Button2_Click" />
 <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Limpar" Visible="False" />
     <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Editar" />
-    <asp:Label ID="Label13" runat="server" Text="Label"></asp:Label>
 <br />
 <br />
 </asp:Content>

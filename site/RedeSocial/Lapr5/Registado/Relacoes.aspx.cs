@@ -6,10 +6,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace RedeSocial.Registado
-{
-
-    public partial class Relacoes : System.Web.UI.Page
+public partial class Registado_Relacoes : System.Web.UI.Page
     {
         private List<string> listtag= new List<string>();
 
@@ -19,13 +16,13 @@ namespace RedeSocial.Registado
             string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
             Rede.Perfil ProfileIDA = Rede.Perfil.LoadByUserId(id);
             
-            SqlDataSource2.SelectCommand="SELECT [Avatar], [Nome], [Estado] from [ViewFriends] WHERE ([ProfileIDA]=" + ProfileIDA.ID+" AND [Estado]='Pendente')";
+            SqlDataSource2.SelectCommand="SELECT [Avatar], [Nome], [Estado] from [ViewFriends] WHERE ([ProfileIDA]=" + ProfileIDA.ID+" AND [Estado]='pendente')";
 
             SqlDataSource3.SelectCommand = "SELECT [Avatar], [Nome] from [ViewFriends] WHERE ([ProfileIDA]=" + ProfileIDA.ID + " AND [Estado]='feito')";
             
             GridView2.DataBind();
             GridView3.DataBind();
-
+            
             
             
             if (!Page.IsPostBack)
@@ -90,4 +87,3 @@ namespace RedeSocial.Registado
 
         
     }
-}

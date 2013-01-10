@@ -99,17 +99,17 @@ using Prolog;
 
         }
 
-        public string getMenorCaminho(int uid)
+        public string getMenorCaminho(int no1,int no2 )
         {
-            PrologExec p = new PrologExec(uid+"", "menorCaminho");
-            string res = p.executaComandoProlog("1,10,P");
+            PrologExec p = new PrologExec(no1+"_"+no2, "menorCaminho");
+            string res = p.executaComandoProlog(no1+","+no2+",P");
             return res;
         }
 
-        public string getCaminhoForte(int uid)
+        public string getCaminhoForte(int no1, int no2)
         {
-            PrologExec p = new PrologExec(uid + "", "caminhoMaisForte");
-            string res = p.executaComandoProlog("1,10,P");
+            PrologExec p = new PrologExec(no1+"_"+no2, "caminhoMaisForte");
+            string res = p.executaComandoProlog(no1+","+no2+",P");
             return res;
         }
     }

@@ -25,5 +25,10 @@ using System.Collections;
         [OperationContract]
         string GetHumorByUserID(int uid);
         [OperationContract]
+        string getMenorCaminho(int no1, int no2);
+        [OperationContract]
+        string getCaminhoForte(int no1, int no2);
+
+        [OperationContract]
         void DoWork();
     }

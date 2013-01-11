@@ -9,8 +9,6 @@ using System.Text;
 using System.Web.Security;
 using System.Data;
 
-namespace RedeSocial
-{
     public partial class _Default : Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -19,8 +17,6 @@ namespace RedeSocial
             Cloud_taguser();
             Cloud_tagrelacao();
             ContarAmizades();
-          
-
         }
 
         protected void Cloud_tagrelacao()
@@ -117,4 +113,3 @@ namespace RedeSocial
         }
 
     }
-}

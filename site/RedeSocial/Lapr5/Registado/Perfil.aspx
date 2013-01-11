@@ -14,6 +14,9 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
+    <asp:Label ID="Label14" runat="server" Text=""></asp:Label>
+    <div _designerregion="0">
+    </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="Medium" Height="35px" Text="Nome" Width="95px"></asp:Label>
@@ -40,9 +43,7 @@
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>" SelectCommand="SELECT * FROM [THumor]"></asp:SqlDataSource>
     <br />
 <asp:Label ID="Label12" runat="server" Font-Bold="True" Font-Size="Medium" Height="35px" Text="Avatar 3D" Width="95px"></asp:Label>
-    <asp:FileUpload ID="UploadAvatar3D" runat="server" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:Button ID="uploadButton0" runat="server" Text="Upload 3D" OnClick="UploadFile3D" CssClass="auto-style2" />
     <asp:Label ID="StatusLabel" runat="server"></asp:Label>
     <asp:Label ID="lblfile" runat="server"></asp:Label>
 <br />

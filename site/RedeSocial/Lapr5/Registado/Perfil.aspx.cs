@@ -24,7 +24,7 @@ public partial class Registado_Perfil : System.Web.UI.Page
             TextTlm.Enabled = false;
             DropDownList1.Enabled = false;
             TextTag.Enabled = false;
-            uploadButton0.Enabled = false;
+            //uploadButton0.Enabled = false;
             uploadButton.Enabled = false;
             Button5.Enabled = false;
 
@@ -34,6 +34,10 @@ public partial class Registado_Perfil : System.Web.UI.Page
             Rede.Perfil prof = Rede.Perfil.LoadByUserId(id);
             if (!Page.IsPostBack)
             {
+                if (prof.Premium)
+                {
+                    Label14.Text = "PREMIUM!!!!!!";
+                }
                 TextNome.Text = prof.Name;
                 TextNick.Text = prof.Nick;
                 TextMorada.Text = prof.Morada;
@@ -100,7 +104,7 @@ public partial class Registado_Perfil : System.Web.UI.Page
         {
             TextNome.Enabled = true;
             uploadButton.Enabled = true;
-            uploadButton0.Enabled = true;
+            //uploadButton0.Enabled = true;
             Button5.Enabled = true;
             TextMorada.Enabled = true;
             TextData.Enabled = true;
@@ -202,41 +206,41 @@ public partial class Registado_Perfil : System.Web.UI.Page
 
 
 
-        protected void UploadFile3D(Object s, EventArgs e)
-        {
-            // First we check to see if the user has selected a file
-            if (UploadAvatar3D.HasFile)
-            {
-                // Find the fileUpload control
-                string filename = UploadAvatar3D.FileName;
+        //protected void UploadFile3D(Object s, EventArgs e)
+        //{
+        //    // First we check to see if the user has selected a file
+        //    if (UploadAvatar3D.HasFile)
+        //    {
+        //        // Find the fileUpload control
+        //        string filename = UploadAvatar3D.FileName;
                 
-                // Check if the directory we want the image uploaded to actually exists or not
-                if (!Directory.Exists(MapPath(@"Avatar3D")))
-                {
-                    // If it doesn't then we just create it before going any further
-                    Directory.CreateDirectory(MapPath(@"Avatar3D"));
-                }
+        //        // Check if the directory we want the image uploaded to actually exists or not
+        //        if (!Directory.Exists(MapPath(@"Avatar3D")))
+        //        {
+        //            // If it doesn't then we just create it before going any further
+        //            Directory.CreateDirectory(MapPath(@"Avatar3D"));
+        //        }
 
-                // Specify the upload directory
+        //        // Specify the upload directory
 
-                if (UploadAvatar3D.PostedFile.ContentType == "application/x-3ds" || UploadAvatar3D.PostedFile.ContentType == "application/octet-stream")
-                {
-                    if (UploadAvatar3D.PostedFile.ContentLength < 8485760)
-                    {
+        //        if (UploadAvatar3D.PostedFile.ContentType == "application/x-3ds" || UploadAvatar3D.PostedFile.ContentType == "application/octet-stream")
+        //        {
+        //            if (UploadAvatar3D.PostedFile.ContentLength < 8485760)
+        //            {
 
-                        string directory = Server.MapPath(@"Avatar3D\");
-                        UploadAvatar3D.SaveAs(directory + filename);
-                        lblfile.Text = filename;
-                        StatusLabel.Text = "Upload status: File uploaded!";
+        //                string directory = Server.MapPath(@"Avatar3D\");
+        //                UploadAvatar3D.SaveAs(directory + filename);
+        //                lblfile.Text = filename;
+        //                StatusLabel.Text = "Upload status: File uploaded!";
 
-                    }
-                    else
-                        StatusLabel.Text = "Upload status: The file has to be less than 8 Mb!";
-                    }
-                    else
-                        StatusLabel.Text = "Upload status: Only 3DS, OBJ files are accepted!";           
+        //            }
+        //            else
+        //                StatusLabel.Text = "Upload status: The file has to be less than 8 Mb!";
+        //            }
+        //            else
+        //                StatusLabel.Text = "Upload status: Only 3DS, OBJ files are accepted!";           
 
-                }
-            }
+        //        }
+        //    }
         }
 

@@ -41,7 +41,15 @@ public partial class Registado_Relacoes : System.Web.UI.Page
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            SqlDataSource1.SelectCommand = "SELECT [Nome] ,[Nick], [Avatar] FROM [TProfile] WHERE ([Nome] LIKE '%" + TextBox1.Text + "%')";
+            if (System.Web.HttpContext.Current.User.IsInRole("Administrador"))
+            {
+                //CheckBox1.Visible = true;
+                
+                    Label9.Text = "Admin";
+                
+            }
+
+            SqlDataSource1.SelectCommand = "SELECT [Nome] ,[Nick], [Avatar], [Premium] FROM [TProfile] WHERE ([Nome] LIKE '%" + TextBox1.Text + "%')";
             GridView1.DataBind();
         }
 

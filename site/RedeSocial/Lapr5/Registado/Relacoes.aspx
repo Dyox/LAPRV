@@ -3,6 +3,12 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <style type="text/css">
+        .auto-style1
+        {
+            margin-left: 524px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
@@ -23,7 +29,10 @@
             <asp:ImageField DataImageUrlField="Avatar" meta:resourcekey="ImageFieldResource1">
             </asp:ImageField>
             <asp:CommandField ButtonType="Button" HeaderText="Selecionar" ShowHeader="True" ShowSelectButton="True" meta:resourcekey="CommandFieldResource1" />
+            <asp:CheckBoxField DataField="Premium" AccessibleHeaderText="Premium" Visible="False" ShowHeader="False"  />
         </Columns>
+
+<SelectedRowStyle BackColor="Red"></SelectedRowStyle>
     </asp:GridView>
     <br />
     <asp:Label ID="Label5" runat="server" Text="Tags da Relação:" meta:resourcekey="Label5Resource1"></asp:Label>
@@ -110,9 +119,13 @@
     <br />
     <br />
         </section> <section id="Section1">
-        <h2>Pessoas que possa conhecer...</h2>
+        <h2 class="auto-style1">Pessoas que possa conhecer...</h2>
 
         </section>
+    <br />
+    <br />
+    <br />
+    <asp:Label ID="Label9" runat="server" Text=""></asp:Label>
 </asp:Content>
 
     

@@ -30,5 +30,6 @@ menor([X|T],X):-menor(T,L),
 				length(L,M),
 				N =< M,!.
 menor([X|T],L):-menor(T,L).
+cam_min(X,Y,P):-!,write('Nenhum caminho...').
 cam_min(X,Y,P):-findall(P,caminhos(X,Y,P),L),	
 			menor(L,P),write(P);write('Nenhum caminho...').

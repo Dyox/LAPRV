@@ -33,6 +33,7 @@ max_list([H|T], M2) :- max_list(T, M), M2 is max(H, M).
 indexOf([Element|_], Element, 0):- !.
 indexOf([_|Tail], Element, Index):- indexOf(Tail, Element, Index1), !, Index is Index1+1.
 
+camMaisForte(X,X,Element):-!,write('Nenhum caminho...').
 camMaisForte(X,Y,Element):-findall(P,caminhos(X,Y,P),L),findall(F,forca(X,Y,F),LF),
 			max_list(LF,T),indexOf(LF,T,POS),indexOf(L, Element, POS),write(Element);write('Nenhum caminho...').
 

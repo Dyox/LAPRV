@@ -13,6 +13,8 @@ public partial class Registado_Relacoes : System.Web.UI.Page
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Aceitar.Enabled = false;
+            Rejeitar.Enabled = false;
             MembershipUser currentLoggedInUser = Membership.GetUser();
             string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
             Rede.Perfil ProfileIDA = Rede.Perfil.LoadByUserId(id);
@@ -95,31 +97,8 @@ public partial class Registado_Relacoes : System.Web.UI.Page
 
         protected void GridView4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string name = GridView4.SelectedRow.Cells[1].Text;
-            MembershipUser currentLoggedInUser = Membership.GetUser();
-            string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
-            //perfis
-            Rede.Perfil this_user = Rede.Perfil.LoadByUserId(id);
-            Rede.Perfil Request_Perfil = Rede.Perfil.LoadByName(name);
-            //relacoes 
-            Rede.Relacao request_update = Rede.Relacao.LoadByRelacao(Request_Perfil.ID,this_user.ID);
-           
-            request_update.Estado="feito";
-            request_update.Save();
-
-            Rede.Relacao request_insert = new Rede.Relacao();
-            request_insert.ProfileIDA = this_user.ID;
-            request_insert.ProfileIDB = Request_Perfil.ID;
-             request_insert.Forca = Convert.ToInt32(DropDownForca0.SelectedValue);
-            request_insert.TagList=listtag_aceitar;
-            request_insert.Estado = "feito";
-            request_insert.Save();
-             
-
-
-            //SqlDataSource3.DeleteCommand = "DELETE from [TRelacao] WHERE [ProfileIDA]=" + this_user.ID + " AND [ProfileIDB]=" + ProfileIDB.ID;
-            GridView3.DataBind();
-            GridView4.DataBind();
+            Aceitar.Enabled = true;
+            Rejeitar.Enabled = true;
         }
 
         protected void Button4_Click(object sender, EventArgs e)
@@ -131,4 +110,47 @@ public partial class Registado_Relacoes : System.Web.UI.Page
             DropDownTags0.DataSource = this.listtag_aceitar;
             DropDownTags0.DataBind();
         }
+      
+    
+    protected void Aceitar_Click(object sender, EventArgs e)
+        {
+            string name = GridView4.SelectedRow.Cells[1].Text;
+            MembershipUser currentLoggedInUser = Membership.GetUser();
+            string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
+            //perfis
+            Rede.Perfil this_user = Rede.Perfil.LoadByUserId(id);
+            Rede.Perfil Request_Perfil = Rede.Perfil.LoadByName(name);
+            //relacoes 
+            Rede.Relacao request_update = Rede.Relacao.LoadByRelacao(Request_Perfil.ID, this_user.ID);
+
+            request_update.Estado = "feito";
+            request_update.Save();
+
+            Rede.Relacao request_insert = new Rede.Relacao();
+            request_insert.ProfileIDA = this_user.ID;
+            request_insert.ProfileIDB = Request_Perfil.ID;
+            request_insert.Forca = Convert.ToInt32(DropDownForca0.SelectedValue);
+            request_insert.TagList = listtag_aceitar;
+            request_insert.Estado = "feito";
+            request_insert.Save();
+
+
+
+            //SqlDataSource3.DeleteCommand = "DELETE from [TRelacao] WHERE [ProfileIDA]=" + this_user.ID + " AND [ProfileIDB]=" + ProfileIDB.ID;
+            GridView3.DataBind();
+            GridView4.DataBind();
+        }
+    protected void Rejeitar_Click(object sender, EventArgs e)
+    {
+        string name = GridView4.SelectedRow.Cells[1].Text;
+        MembershipUser currentLoggedInUser = Membership.GetUser();
+        string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
+        Rede.Perfil this_user = Rede.Perfil.LoadByUserId(id);
+        Rede.Perfil ProfileIDB = Rede.Perfil.LoadByName(name);
+        Rede.Relacao.RemoveRelashionship(ProfileIDB.ID,this_user.ID);
+
+
+        //SqlDataSource3.DeleteCommand = "DELETE from [TRelacao] WHERE [ProfileIDA]=" + this_user.ID + " AND [ProfileIDB]=" + ProfileIDB.ID;
+        GridView4.DataBind();
+    }
 }

@@ -23,7 +23,7 @@
     </asp:SqlDataSource>
     <ol class="round">
         <li >
-            <h5><a href="Relacoes.aspx"><asp:Label ID="namigosp" runat="server" Text=""></asp:Label></a></h5>
+            <h5><a href="Registado\Relacoes.aspx"><asp:Label ID="namigosp" runat="server" Text=""></asp:Label></a></h5>
         </li>
     </ol>
 

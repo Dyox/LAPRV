@@ -11,19 +11,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <section id="loginForm">
-        <h2>titulo</h2>
-    <asp:Table runat="server" meta:resourcekey="TableResource1">
-        <asp:TableRow meta:resourcekey="TableRowResource1">
-            <asp:TableCell meta:resourcekey="TableCellResource1">
-                asd
-            </asp:TableCell>
-            <asp:TableCell meta:resourcekey="TableCellResource2">
-
-                asdfsa
-            </asp:TableCell>
-        </asp:TableRow>
-    </asp:Table>
-    <asp:Label ID="Label4" runat="server" Text="Procurar Amigos:" meta:resourcekey="Label4Resource1"></asp:Label>
+        <h2>Procurar amigos:</h2>
     <br />
     <asp:TextBox ID="TextBox1" runat="server" meta:resourcekey="TextBox1Resource1"></asp:TextBox>
     <asp:Button ID="Button1" runat="server" Text="Procurar" OnClick="Button1_Click" meta:resourcekey="Button1Resource1" />
@@ -90,13 +78,15 @@
         <br />
     <asp:Label ID="Label6" runat="server" Text="Pedidos de Amizades recebidos:"></asp:Label>
         <br />
-    <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource4"  OnSelectedIndexChanged="GridView4_SelectedIndexChanged" >
+    <asp:GridView ID="GridView4" SelectedRowStyle-BackColor="#009999" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource4"  OnSelectedIndexChanged="GridView4_SelectedIndexChanged" >
         <Columns>
             <asp:ImageField DataImageUrlField="Avatar"></asp:ImageField>
             <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" />
-            <asp:CommandField SelectText="Aceitar" ShowSelectButton="True"  />
+            <asp:CommandField SelectText="Marcar" ShowSelectButton="True"  />
             </Columns>
     </asp:GridView>
+        <asp:Button ID="Aceitar" runat="server" OnClick="Aceitar_Click" Text="Aceitar" />
+        <asp:Button ID="Rejeitar" runat="server" OnClick="Rejeitar_Click" Text="Rejeitar" />
         <br />
         <br />
     <asp:Label ID="Label7" runat="server" Text="Tags da Relação:"></asp:Label>

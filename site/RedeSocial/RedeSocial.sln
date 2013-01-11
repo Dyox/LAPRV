@@ -3,8 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rede", "Rede\Rede.csproj", "{D233ACCD-BB9B-4CCD-BAF9-1BD42D73A179}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Lapr5", "Lapr5\", "{8EAF345F-CDCC-4663-BDCD-DD54C4A9E80E}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Lapr5", "http://localhost:3872", "{8EAF345F-CDCC-4663-BDCD-DD54C4A9E80E}"
 	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
 		ProjectReferences = "{d233accd-bb9b-4ccd-baf9-1bd42d73a179}|Rede.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Lapr5"
@@ -21,7 +22,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Lapr5", "Lapr5\", "{8EAF345
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "3872"
+		SlnRelativePath = "Lapr5\"
 	EndProjectSection
 EndProject
 Global

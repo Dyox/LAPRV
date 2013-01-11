@@ -71,11 +71,18 @@ public partial class Registado_Perfil : System.Web.UI.Page
 
             string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
             Rede.Perfil prof = Rede.Perfil.LoadByUserId(id);
+            
             prof.Nick = TextNick.Text;
             prof.Name = TextNome.Text;
             prof.Morada = TextMorada.Text;
             prof.FaceBook = TextFace.Text;
-            prof.DataNascimento = Convert.ToDateTime(TextData.Text);
+            if (TextData.Text== "")
+            {
+                prof.DataNascimento = Convert.ToDateTime(1900-01-01);
+                Label13.Text = "Não inseriu a data de nacimento";
+            }
+            else
+                prof.DataNascimento = Convert.ToDateTime(TextData.Text);
             prof.Linkedin = TextLinkedin.Text;
             Rede.Humor h = Rede.Humor.LoadById(Convert.ToInt32(DropDownList1.SelectedValue));
             prof.humor = h;
@@ -126,7 +133,7 @@ public partial class Registado_Perfil : System.Web.UI.Page
 
                 // Specify the upload directory
                 string directory = Server.MapPath(@"Avatar\");
-                imglabel.Text = directory;
+                //imglabel.Text = directory;
                 
                 // Create a bitmap of the content of the fileUpload control in memory
                 Bitmap originalBMP = new Bitmap(UploadAvatar.FileContent);
@@ -157,7 +164,7 @@ public partial class Registado_Perfil : System.Web.UI.Page
                 oGraphics.Dispose();
 
                 // Write a message to inform the user all is OK
-                //imglabel.Text = "File Name: <b style='color: red;'>" + filename + "</b><br>";
+                imglabel.Text = "File Name: <b style='color: red;'>" + filename + "</b><br>";
                 // Display the image to the user
                 avatarIMG.Visible = true;
              
@@ -219,7 +226,7 @@ public partial class Registado_Perfil : System.Web.UI.Page
                     if (UploadAvatar3D.PostedFile.ContentLength < 8485760)
                     {
 
-                        string directory = Server.MapPath(@"Avatar3D");
+                        string directory = Server.MapPath(@"Avatar3D\");
                         UploadAvatar3D.SaveAs(directory + filename);
                         lblfile.Text = filename;
                         StatusLabel.Text = "Upload status: File uploaded!";

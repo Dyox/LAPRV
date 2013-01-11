@@ -31,4 +31,16 @@ using System.Collections;
 
         [OperationContract]
         void DoWork();
+
+        [OperationContract]
+        int validateLogin(string userName, string password);
+
+        [OperationContract]
+        string xTagsEmComum(int id,int n);
+
+        [OperationContract]
+        int tamanhoRedeUtilizador(int id);
+
+        [OperationContract]
+        string sugereAmigos(int id);
     }

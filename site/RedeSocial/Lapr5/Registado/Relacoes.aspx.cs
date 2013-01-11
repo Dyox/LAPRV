@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 public partial class Registado_Relacoes : System.Web.UI.Page
     {
         private List<string> listtag= new List<string>();
+        private List<string> listtag_aceitar = new List<string>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,7 +20,8 @@ public partial class Registado_Relacoes : System.Web.UI.Page
             SqlDataSource2.SelectCommand="SELECT [Avatar], [Nome], [Estado] from [ViewFriends] WHERE ([ProfileIDA]=" + ProfileIDA.ID+" AND [Estado]='pendente')";
 
             SqlDataSource3.SelectCommand = "SELECT [Avatar], [Nome] from [ViewFriends] WHERE ([ProfileIDA]=" + ProfileIDA.ID + " AND [Estado]='feito')";
-            
+            SqlDataSource4.SelectCommand = "SELECT [Avatar], [Nome] from [ViewRequest] WHERE ([ProfileIDB]=" + ProfileIDA.ID + " AND [Estado]='pendente')";
+
             GridView2.DataBind();
             GridView3.DataBind();
             
@@ -57,7 +59,7 @@ public partial class Registado_Relacoes : System.Web.UI.Page
                 rel.ProfileIDB = ProfileIDB.ID;
                 rel.Forca = Convert.ToInt32(DropDownForca.SelectedValue);
                 rel.TagList = this.listtag;
-                rel.Estado= "Pendente";
+                rel.Estado= "pendente";
                 rel.Save();
              }
             GridView2.DataBind();
@@ -75,15 +77,58 @@ public partial class Registado_Relacoes : System.Web.UI.Page
             DropDownTags.DataBind();
         }
 
-        
 
-        protected void GridView3_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void GridView3_SelectedIndexChanged(object sender, EventArgs e)
         {
             string name = GridView3.SelectedRow.Cells[1].Text;
+            MembershipUser currentLoggedInUser = Membership.GetUser();
+            string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
+            Rede.Perfil this_user = Rede.Perfil.LoadByUserId(id);
             Rede.Perfil ProfileIDB = Rede.Perfil.LoadByName(name);
-            SqlDataSource3.DeleteCommand = "DELETE from [TRelacao] WHERE ([ProfileIDB]=" + ProfileIDB.ID + ")";
-            
+            Rede.Relacao.RemoveRelashionship(this_user.ID, ProfileIDB.ID);
+
+
+            //SqlDataSource3.DeleteCommand = "DELETE from [TRelacao] WHERE [ProfileIDA]=" + this_user.ID + " AND [ProfileIDB]=" + ProfileIDB.ID;
+            GridView3.DataBind();
         }
 
-        
-    }
+
+        protected void GridView4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string name = GridView4.SelectedRow.Cells[1].Text;
+            MembershipUser currentLoggedInUser = Membership.GetUser();
+            string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
+            //perfis
+            Rede.Perfil this_user = Rede.Perfil.LoadByUserId(id);
+            Rede.Perfil Request_Perfil = Rede.Perfil.LoadByName(name);
+            //relacoes 
+            Rede.Relacao request_update = Rede.Relacao.LoadByRelacao(Request_Perfil.ID,this_user.ID);
+           
+            request_update.Estado="feito";
+            request_update.Save();
+
+            Rede.Relacao request_insert = new Rede.Relacao();
+            request_insert.ProfileIDA = this_user.ID;
+            request_insert.ProfileIDB = Request_Perfil.ID;
+             request_insert.Forca = Convert.ToInt32(DropDownForca0.SelectedValue);
+            request_insert.TagList=listtag_aceitar;
+            request_insert.Estado = "feito";
+            request_insert.Save();
+             
+
+
+            //SqlDataSource3.DeleteCommand = "DELETE from [TRelacao] WHERE [ProfileIDA]=" + this_user.ID + " AND [ProfileIDB]=" + ProfileIDB.ID;
+            GridView3.DataBind();
+            GridView4.DataBind();
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            string tag = TextBoxTag0.Text;
+
+            this.listtag_aceitar.Add(tag);
+
+            DropDownTags0.DataSource = this.listtag_aceitar;
+            DropDownTags0.DataBind();
+        }
+}

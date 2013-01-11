@@ -28,7 +28,7 @@
     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
     <asp:Button ID="Button1" runat="server" Text="Procurar" OnClick="Button1_Click" />
     <br />
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+    <asp:GridView ID="GridView1" SelectedRowStyle-BackColor="Red" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" >
         <Columns>
             <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" />
             <asp:BoundField DataField="Nick" HeaderText="Nick" SortExpression="Nick" />
@@ -61,7 +61,7 @@
     <br />
     <br />
     <br />
-    <asp:Label ID="Label3" runat="server" Text="Lista de Pedidos de Amizades:"></asp:Label>
+    <asp:Label ID="Label3" runat="server" Text="Pedidos de Amizades Enviados:"></asp:Label>
     <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource2">
         <Columns>
             <asp:ImageField DataImageUrlField="Avatar"></asp:ImageField>
@@ -72,11 +72,11 @@
     <br />
     <asp:Label ID="Label2" runat="server" Text="Lista de Amigos:"></asp:Label>
     <br />
-    <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource3" OnRowDeleting="GridView3_RowDeleting" >
+    <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource3"  OnSelectedIndexChanged="GridView3_SelectedIndexChanged" >
         <Columns>
             <asp:ImageField DataImageUrlField="Avatar"></asp:ImageField>
             <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" />
-            <asp:CommandField ButtonType="Button" ShowDeleteButton="True"  />
+            <asp:CommandField SelectText="Remover" ShowSelectButton="True"  />
             </Columns>
     </asp:GridView>
 <br />
@@ -85,6 +85,37 @@
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>">
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>">
+    </asp:SqlDataSource>
+        <br />
+        <br />
+    <asp:Label ID="Label6" runat="server" Text="Pedidos de Amizades recebidos:"></asp:Label>
+        <br />
+    <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource4"  OnSelectedIndexChanged="GridView4_SelectedIndexChanged" >
+        <Columns>
+            <asp:ImageField DataImageUrlField="Avatar"></asp:ImageField>
+            <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" />
+            <asp:CommandField SelectText="Aceitar" ShowSelectButton="True"  />
+            </Columns>
+    </asp:GridView>
+        <br />
+        <br />
+    <asp:Label ID="Label7" runat="server" Text="Tags da Relação:"></asp:Label>
+        <br />
+<asp:TextBox ID="TextBoxTag0" runat="server"></asp:TextBox>
+&nbsp;<asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Juntar" />
+<asp:DropDownList ID="DropDownTags0" runat="server">
+</asp:DropDownList>
+        <br />
+<asp:Label ID="Label8" runat="server" Font-Bold="True" Font-Size="Large" Text="Força"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+<asp:DropDownList ID="DropDownForca0" runat="server">
+    <asp:ListItem>1</asp:ListItem>
+    <asp:ListItem>2</asp:ListItem>
+    <asp:ListItem>3</asp:ListItem>
+    <asp:ListItem>4</asp:ListItem>
+    <asp:ListItem>5</asp:ListItem>
+</asp:DropDownList>
+    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>">
     </asp:SqlDataSource>
     <br />
     <br />

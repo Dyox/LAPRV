@@ -23,13 +23,13 @@
     </asp:SqlDataSource>
     <ol class="round">
         <li >
-            <h5><asp:Label ID="namigosp" runat="server" Text=""></asp:Label></h5>
+            <h5><a href="Relacoes.aspx"><asp:Label ID="namigosp" runat="server" Text=""></asp:Label></a></h5>
         </li>
     </ol>
 
     <ol class="round">
         <li class="one">
-            <h5>Dimensão da rede (Utilizadores Registados):&nbsp;&nbsp;&nbsp; <asp:Label ID="nusers" runat="server" Text="Label"></asp:Label>
+            <h5>Utilizadores Registados:&nbsp;&nbsp;&nbsp; <asp:Label ID="nusers" runat="server" Text="Label"></asp:Label>
 &nbsp;&nbsp;&nbsp; </h5>
         </li>
     </ol>

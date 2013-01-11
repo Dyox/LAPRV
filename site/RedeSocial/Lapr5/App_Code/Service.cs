@@ -35,7 +35,7 @@ using System.Web.Security;
             {
                 int id = ((Rede.Perfil)lista[i]).ID;
                 Utilizador nome = GetUtilizadorByID(id);
-                ret.Add(new NoBD(id, ((Rede.Perfil)lista[i]).X, ((Rede.Perfil)lista[i]).Y, Rede.Perfil.getHumorByPrefilID(id), nome.nome));
+                ret.Add(new NoBD(id, ((Rede.Perfil)lista[i]).X, ((Rede.Perfil)lista[i]).Y,Rede.Perfil.getHumorByPrefilID(id),nome.nome));
                 //idl.Add(((Rede.Perfil)lista[i]).ID);
                 //xl.Add(((Rede.Perfil)lista[i]).X);
                 //yl.Add(((Rede.Perfil)lista[i]).Y);

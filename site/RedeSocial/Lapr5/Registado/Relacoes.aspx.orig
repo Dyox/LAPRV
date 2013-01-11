@@ -28,7 +28,11 @@
     <asp:TextBox ID="TextBox1" runat="server" meta:resourcekey="TextBox1Resource1"></asp:TextBox>
     <asp:Button ID="Button1" runat="server" Text="Procurar" OnClick="Button1_Click" meta:resourcekey="Button1Resource1" />
     <br />
+<<<<<<< HEAD
     <asp:GridView ID="GridView1" SelectedRowStyle-BackColor="Red" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" >
+=======
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" meta:resourcekey="GridView1Resource1">
+>>>>>>> 630a5e0a4e5121661b123cacf1bf69aa07a3a9e7
         <Columns>
             <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" meta:resourcekey="BoundFieldResource1" />
             <asp:BoundField DataField="Nick" HeaderText="Nick" SortExpression="Nick" meta:resourcekey="BoundFieldResource2" />
@@ -61,8 +65,13 @@
     <br />
     <br />
     <br />
+<<<<<<< HEAD
     <asp:Label ID="Label3" runat="server" Text="Pedidos de Amizades Enviados:"></asp:Label>
+    <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource2">
+=======
+    <asp:Label ID="Label3" runat="server" Text="Lista de Pedidos de Amizades:" meta:resourcekey="Label3Resource1"></asp:Label>
     <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource2" meta:resourcekey="GridView2Resource1">
+>>>>>>> 630a5e0a4e5121661b123cacf1bf69aa07a3a9e7
         <Columns>
             <asp:ImageField DataImageUrlField="Avatar" meta:resourcekey="ImageFieldResource2"></asp:ImageField>
             <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" meta:resourcekey="BoundFieldResource3" />
@@ -72,11 +81,19 @@
     <br />
     <asp:Label ID="Label2" runat="server" Text="Lista de Amigos:" meta:resourcekey="Label2Resource1"></asp:Label>
     <br />
+<<<<<<< HEAD
     <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource3"  OnSelectedIndexChanged="GridView3_SelectedIndexChanged" >
+        <Columns>
+            <asp:ImageField DataImageUrlField="Avatar"></asp:ImageField>
+            <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" />
+            <asp:CommandField SelectText="Remover" ShowSelectButton="True"  />
+=======
+    <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource3" OnRowDeleting="GridView3_RowDeleting" meta:resourcekey="GridView3Resource1" >
         <Columns>
             <asp:ImageField DataImageUrlField="Avatar" meta:resourcekey="ImageFieldResource3"></asp:ImageField>
             <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" meta:resourcekey="BoundFieldResource5" />
-            <asp:CommandField SelectText="Remover" ShowSelectButton="True"  />
+            <asp:CommandField ButtonType="Button" ShowDeleteButton="True" meta:resourcekey="CommandFieldResource2"  />
+>>>>>>> 630a5e0a4e5121661b123cacf1bf69aa07a3a9e7
             </Columns>
     </asp:GridView>
 <br />

@@ -72,11 +72,21 @@ namespace Rede
             return m;
         }
 
+
+        public static Relacao LoadByRelacao(int IDA,int IDB)
+        {
+
+            DataSet ds = ExecuteQuery("SELECT * FROM TRelacao WHERE ProfileIDA=" + IDA + "AND ProfileIDB="+IDB);
+            Relacao m = new Relacao(ds.Tables[0].Rows[0]);
+
+            return m;
+        }
+
         public static IList LoadAll()
         {
             try
             {
-                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * from TRelacao");
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * from TRelacao WHERE Estado='feito'");
 
                 IList ret = new ArrayList();
 
@@ -189,8 +199,6 @@ namespace Rede
             return txt;
         }
 
-
-
         public override void Save()
         {
 
@@ -198,7 +206,7 @@ namespace Rede
 
             if (this.ID != 0)
             {
-                ExecuteNonQuery("UPDATE TRelacao SET ProfileIDA=" + this._profileIDA + ", ProfileIDB=" + this._profileIDB + ",Forca=" + this._forca + "',Estado='" + this._estado + "'WHERE RelacaoID=" + this.ID);
+                ExecuteNonQuery("UPDATE TRelacao SET ProfileIDA=" + this._profileIDA + ", ProfileIDB=" + this._profileIDB + ",Forca=" + this._forca + ",Estado='" + this._estado + "' WHERE IDRelacao=" + this.ID);
             }
             else
             {
@@ -221,6 +229,20 @@ namespace Rede
 
             }
         }
+
+
+
+        public static void RemoveRelashionship(int user, int amigo)
+        {
+            int op = ExecuteNonQuery("DELETE from [TRelacao] WHERE [ProfileIDA]=" + user + " AND [ProfileIDB]=" + amigo);
+
+            int op2 = ExecuteNonQuery("DELETE from [TRelacao] WHERE [ProfileIDA]=" + amigo + " AND [ProfileIDB]=" + user);
+        }
+
+
+
+
+      
     }
 }
 

@@ -111,8 +111,6 @@ public partial class Registado_Perfil : System.Web.UI.Page
             Button3.Visible = true;
             DropDownList1.Enabled = true;
             TextTag.Enabled = true;
-
-
         }
 
 

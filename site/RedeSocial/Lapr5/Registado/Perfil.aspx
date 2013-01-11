@@ -36,7 +36,7 @@
     <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Designacao" DataValueField="HumorID" >
     </asp:DropDownList>
     <br />
-    <asp:Label ID="Label13" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="Label13" runat="server" Text=""></asp:Label>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>" SelectCommand="SELECT * FROM [THumor]"></asp:SqlDataSource>
     <br />
 <asp:Label ID="Label12" runat="server" Font-Bold="True" Font-Size="Medium" Height="35px" Text="Avatar 3D" Width="95px"></asp:Label>

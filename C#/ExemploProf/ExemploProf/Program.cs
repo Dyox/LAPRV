@@ -48,16 +48,16 @@ namespace ExemploProf
             //caminhoMaisForte = camMaisForte(1,7,P)
 
             //PrologExec p = new PrologExec("user", "caminhoMaisForte");
-            //PrologExec p = new PrologExec("user", "menorCaminho");
+            PrologExec p = new PrologExec("user", "menorCaminho");
             //PrologExec p = new PrologExec("user", "recomendaAmizade");
             //PrologExec p = new PrologExec("user", "xTagsEmComum");
             ///PrologExec p = new PrologExec("user", "tamanhoRedeUtilizador");
-            PrologExec p = new PrologExec("user", "grafoAmigosComuns");
+            //PrologExec p = new PrologExec("user", "grafoAmigosComuns");
 
-            //string res = p.executaComandoProlog("1,10,P");
+            string res = p.executaComandoProlog("1,1,P");
             //string res = p.executaComandoProlog("1");
             //string res = p.executaComandoProlog("1");
-            string res = p.executaComandoProlog("1,7");
+            //string res = p.executaComandoProlog("1,7");
             Console.WriteLine(res);
 
             //sugere_amigos(res);

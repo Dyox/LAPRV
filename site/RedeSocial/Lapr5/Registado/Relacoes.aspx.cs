@@ -67,13 +67,12 @@ public partial class Registado_Relacoes : System.Web.UI.Page
         {
                 if (System.Web.HttpContext.Current.User.IsInRole("Administrador"))
                 {
-                    //parte do admin, com bugs
                     if (e.Row.RowType == DataControlRowType.DataRow)
                     {
                         CheckBox cmdChk = (CheckBox)e.Row.FindControl("CheckBox1");
                         cmdChk.Visible = true;
                     }      
-            }
+                }
         }
 
         protected void Button2_Click(object sender, EventArgs e)

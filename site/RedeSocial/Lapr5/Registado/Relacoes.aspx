@@ -29,7 +29,7 @@
             <asp:ImageField DataImageUrlField="Avatar" meta:resourcekey="ImageFieldResource1">
             </asp:ImageField>
             <asp:CommandField ButtonType="Button" HeaderText="Selecionar" ShowHeader="True" ShowSelectButton="True" meta:resourcekey="CommandFieldResource1" />
-            <asp:TemplateField AccessibleHeaderText="Premium" ShowHeader="True">
+            <asp:TemplateField AccessibleHeaderText="Premium" ShowHeader="True" HeaderText="Premium">
                 
                 <ItemTemplate>
                     <asp:CheckBox ID="CheckBox1" runat="server" Checked='<%# Bind("Premium") %>' Enabled="true" OnCheckedChanged="CheckedChanged" Visible="false" />

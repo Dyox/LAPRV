@@ -14,8 +14,9 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
-    <div _designerregion="0">
-    </div>
+    <p>
+        <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/Premium.png" />
+</p>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="Medium" Height="35px" Text="Nome" Width="95px"></asp:Label>
@@ -83,7 +84,6 @@
     <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Editar" />
     <br />
     <br />
-    <asp:Label ID="Label14" runat="server" Text=""></asp:Label>
 <br />
 <br />
 </asp:Content>

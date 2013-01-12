@@ -35,9 +35,12 @@ public partial class Registado_Perfil : System.Web.UI.Page
             if (!Page.IsPostBack)
             {
                 if (prof.Premium)
-                {
-                    Label14.Text = "PREMIUM!!!!!!";
-                }
+                
+                    Image1.Visible = true;
+                
+                else
+                    Image1.Visible = false;
+
                 TextNome.Text = prof.Name;
                 TextNick.Text = prof.Nick;
                 TextMorada.Text = prof.Morada;

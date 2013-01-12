@@ -5,12 +5,29 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Threading;
+using System.Globalization;
 
 public partial class Registado_Relacoes : System.Web.UI.Page
     {
         private List<string> listtag= new List<string>();
         private List<string> listtag_aceitar = new List<string>();
 
+        protected override void InitializeCulture()
+        {
+            if (Request.Form["Language"] != null)
+            {
+                String selectedLanguage = Request.Form["Language"];
+                UICulture = selectedLanguage;
+                Culture = selectedLanguage;
+
+                Thread.CurrentThread.CurrentCulture =
+                    CultureInfo.CreateSpecificCulture(selectedLanguage);
+                Thread.CurrentThread.CurrentUICulture = new
+                    CultureInfo(selectedLanguage);
+            }
+            base.InitializeCulture();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             Aceitar.Enabled = false;

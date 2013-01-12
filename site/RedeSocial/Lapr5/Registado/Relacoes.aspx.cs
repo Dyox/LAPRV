@@ -59,8 +59,7 @@ public partial class Registado_Relacoes : System.Web.UI.Page
 
             ProfileIDB.Premium = CheckBox.Checked;
             ProfileIDB.Save();
-            //ja altera na bd, esta OK
-
+            
         }
 
         protected void RowCreated(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
@@ -71,6 +70,7 @@ public partial class Registado_Relacoes : System.Web.UI.Page
                     {
                         CheckBox cmdChk = (CheckBox)e.Row.FindControl("CheckBox1");
                         cmdChk.Visible = true;
+                        
                     }      
                 }
         }

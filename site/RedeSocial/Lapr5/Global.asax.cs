@@ -5,10 +5,9 @@ using System.Web;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
-using RedeSocial;
+//using RedeSocial;
 
-namespace RedeSocial
-{
+
     public class Global : HttpApplication
     {
         void Application_Start(object sender, EventArgs e)
@@ -30,4 +29,4 @@ namespace RedeSocial
 
         }
     }
-}
+

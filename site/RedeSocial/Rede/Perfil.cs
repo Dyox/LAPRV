@@ -301,7 +301,7 @@ namespace Rede
         {
             if (this.ID != 0)
             {
-                ExecuteNonQuery("UPDATE TProfile SET Nome='"+this._name+"',Nick= '"+this._nick+"',Morada= '"+ this._morada +"',DataNascimento='"+this._datanasc.ToString("yyyy-MM-dd") +"',Telemovel="+this._tlm+",Linkedin='"+ this._lk+"', Facebook='"+ this._fb+"',HumorID="+this._humor.ID+", Avatar3D='"+this._avatar3D+"', Avatar='"+this._avatar+"',X="+this._x+", Y="+this._y+"Premium="+this._premium+ "WHERE ProfileID=" + this.ID );
+                ExecuteNonQuery("UPDATE TProfile SET Nome='"+this._name+"',Nick= '"+this._nick+"',Morada= '"+ this._morada +"',DataNascimento='"+this._datanasc.ToString("yyyy-MM-dd") +"',Telemovel="+this._tlm+",Linkedin='"+ this._lk+"', Facebook='"+ this._fb+"',HumorID="+this._humor.ID+", Avatar3D='"+this._avatar3D+"', Avatar='"+this._avatar+"',X="+this._x+", Y="+this._y+",Premium='"+this._premium+ "'WHERE ProfileID=" + this.ID );
             }
             else
             {
@@ -309,7 +309,7 @@ namespace Rede
                 
                 this.humor= Humor.LoadById(2);
 
-                this.myID = ExecuteNonQuery("INSERT INTO TProfile(UserID, Nome, Nick, Morada, DataNascimento, Telemovel, Facebook, Linkedin, Avatar3D, Avatar, HumorID, X, Y, Premium)   VALUES('" + this.UsID + "','" + this.Name + "','" + this.Nick + "','" + this.Morada + "','" + this.DataNascimento.ToString("yyyy-MM-dd") + "'," + this.Telemovel + ",'" + this.Linkedin + "','" + this.FaceBook + "','" + this.avatar3D+ "','" + this.avatar + "'," + this.humor.ID + "," + this.X + "," + this.Y +","+this.Premium+ ")");
+                this.myID = ExecuteNonQuery("INSERT INTO TProfile(UserID, Nome, Nick, Morada, DataNascimento, Telemovel, Facebook, Linkedin, Avatar3D, Avatar, HumorID, X, Y, Premium)   VALUES('" + this.UsID + "','" + this.Name + "','" + this.Nick + "','" + this.Morada + "','" + this.DataNascimento.ToString("yyyy-MM-dd") + "'," + this.Telemovel + ",'" + this.Linkedin + "','" + this.FaceBook + "','" + this.avatar3D+ "','" + this.avatar + "'," + this.humor.ID + "," + this.X + "," + this.Y +",'"+this.Premium+ "')");
 
                 
             }

@@ -28,6 +28,18 @@ using System.Collections;
         string getMenorCaminho(int no1, int no2);
         [OperationContract]
         string getCaminhoForte(int no1, int no2);
+        [OperationContract]
+        int validateLogin(string userName, string password);
+
+        [OperationContract]
+        string xTagsEmComum(int id, int n);
+        [OperationContract]
+        int tamanhoRedeUtilizador(int id);
+        [OperationContract]
+        string sugereAmigos(int id);
+        [OperationContract]
+        string grafoAmigosComuns(int user1, int user2);
+
 
         [OperationContract]
         void DoWork();

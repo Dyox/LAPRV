@@ -22,7 +22,6 @@ using System.Web.Security;
             return x + y;
         }
 
-      
         public IList<NoBD> GetAllXY()
         {
             IList<NoBD> ret = new List<NoBD>();
@@ -30,12 +29,14 @@ using System.Web.Security;
             //IList xl = new ArrayList();
             //IList yl = new ArrayList();
             IList lista = Rede.Perfil.LoadAll();
-            ret.Add(new NoBD(lista.Count, 0, 0,"",""));
+            ret.Add(new NoBD(lista.Count, 0, 0, "", "", "", 0));
             for (int i = 0; i < lista.Count; i++)
             {
                 int id = ((Rede.Perfil)lista[i]).ID;
                 Utilizador nome = GetUtilizadorByID(id);
-                ret.Add(new NoBD(id, ((Rede.Perfil)lista[i]).X, ((Rede.Perfil)lista[i]).Y,Rede.Perfil.getHumorByPrefilID(id),nome.nome));
+                string avatar3d = Rede.Perfil.getAvatar3DByID(id);
+                int numtags = Rede.Perfil.LoadTagsByUserID(id).Count;
+                ret.Add(new NoBD(id, ((Rede.Perfil)lista[i]).X, ((Rede.Perfil)lista[i]).Y, Rede.Perfil.getHumorByPrefilID(id), nome.nome, avatar3d, numtags));
                 //idl.Add(((Rede.Perfil)lista[i]).ID);
                 //xl.Add(((Rede.Perfil)lista[i]).X);
                 //yl.Add(((Rede.Perfil)lista[i]).Y);

@@ -441,6 +441,15 @@ namespace Rede
 
             return ret;
         }
+        public static string getAvatar3DByID(int profid)
+        {
+            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT Avatar3D FROM TProfile WHERE ProfileID=" + profid);
+            if (ds.Tables[0].Rows.Count != 1)
+                return "Não tem";
+            else
+                return (string)ds.Tables[0].Rows[0]["Avatar3D"];
+
+        }
 
     }
 }

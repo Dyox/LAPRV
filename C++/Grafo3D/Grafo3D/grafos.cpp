@@ -104,7 +104,6 @@ void gravaGrafo(){
 	myfile.close();
 }
 void leGrafo(){
-	
 	NoBD **nosbd=NULL;
 	getAllXY(nosbd);
 	numNos=(*(nosbd))->id;
@@ -144,7 +143,7 @@ void leGrafo(){
 		//arcos[i-1].noi=(*(arcosbd+i))->idPrim;
 		//arcos[i-1].nof=(*(arcosbd+i))->idSec;
 		arcos[i-1].peso=(*(arcosbd+i))->forca;
-		arcos[i-1].largura=arcos[i-1].peso*0.1;
+		arcos[i-1].largura=arcos[i-1].peso*0.07;
 		//arcos[i-1].largura=(*(arcosbd+i))->idRel;
 		nos[arcos[i-1].noi].z+=2;
 		nos[arcos[i-1].nof].z+=2;
@@ -175,4 +174,74 @@ void leGrafo(){
 	}
 	myfile.close();
 	*/
+}
+
+void caminhoCurto(int uid1,int uid2,int &count,int nos[])
+{
+	WCHAR *strnosmenor;
+	getMenorCaminho(uid1,uid2,strnosmenor);
+	char ch[260];
+	char DefChar = ' ';
+	WideCharToMultiByte(CP_ACP,0,strnosmenor,-1, ch,260,&DefChar, NULL);
+	std::string ss(ch);
+	if (ss.compare(0,2,"Ne")!=0)
+	{
+		ss.erase(0,1);
+		int i=0;
+		int virg=ss.find(",",0);
+		while(virg>=0)
+		{
+			string no=ss.substr(0,ss.find(",",0));
+			ss.erase(0,ss.find(",",0)+1);
+			nos[i]=atoi(no.c_str());
+			virg=ss.find(",",0);
+			i++;
+		}
+		string no=ss.substr(0,ss.find("]",0));
+		nos[i]=atoi(no.c_str());
+		virg=ss.find(",",0);
+		i++;
+		//nos=caminho;
+		count=i;
+	}
+	else
+	{
+		nos=NULL;
+		count=0;
+	}
+}
+
+void caminhoForte(int uid1,int uid2,int &count,int nos[])
+{
+	WCHAR *strnosforte;
+	getCaminhoForte(uid1,uid2,strnosforte);
+	char ch[260];
+	char DefChar = ' ';
+	WideCharToMultiByte(CP_ACP,0,strnosforte,-1, ch,260,&DefChar, NULL);
+	std::string ss(ch);
+	if (ss.compare(0,2,"Ne")!=0)
+	{
+		ss.erase(0,1);
+		int i=0;
+		int virg=ss.find(",",0);
+		while(virg>=0)
+		{
+			string no=ss.substr(0,ss.find(",",0));
+			ss.erase(0,ss.find(",",0)+1);
+			nos[i]=atoi(no.c_str());
+			virg=ss.find(",",0);
+			i++;
+		}
+		string no=ss.substr(0,ss.find("]",0));
+		nos[i]=atoi(no.c_str());
+		virg=ss.find(",",0);
+		i++;
+		//nos=caminho;
+		count=i;
+	}
+	else
+	{
+		nos=NULL;
+		count=0;
+	}
 }

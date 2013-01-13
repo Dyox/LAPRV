@@ -19,6 +19,7 @@ typedef struct No{
 typedef struct Arco{
 	int noi,nof;
 	float peso,largura;
+	float ang,angz,dist;
 }Arco;
 
 extern No nos[];
@@ -38,5 +39,8 @@ Arco criaArco(int, int, float, float);
 
 void gravaGrafo();
 void leGrafo();
+
+void caminhoCurto(int uid1,int uid2,int &count,int nos[]);
+void caminhoForte(int uid1,int uid2,int &count,int nos[]);
 
 #endif

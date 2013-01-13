@@ -2,10 +2,10 @@
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://wvm022.dei.isep.ipp.pt/TesteWebService/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://wvm022.dei.isep.ipp.pt/TesteWebService/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://wvm022.dei.isep.ipp.pt/TesteWebService/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/" />
-      <xsd:import schemaLocation="http://wvm022.dei.isep.ipp.pt/TesteWebService/Service.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://wvm022.dei.isep.ipp.pt/Lapr5/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://wvm022.dei.isep.ipp.pt/Lapr5/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://wvm022.dei.isep.ipp.pt/Lapr5/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/" />
+      <xsd:import schemaLocation="http://wvm022.dei.isep.ipp.pt/Lapr5/Service.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService_Add_InputMessage">
@@ -44,11 +44,47 @@
   <wsdl:message name="IService_GetHumorByUserID_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetHumorByUserIDResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_getMenorCaminho_InputMessage">
+    <wsdl:part name="parameters" element="tns:getMenorCaminho" />
+  </wsdl:message>
+  <wsdl:message name="IService_getMenorCaminho_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getMenorCaminhoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_getCaminhoForte_InputMessage">
+    <wsdl:part name="parameters" element="tns:getCaminhoForte" />
+  </wsdl:message>
+  <wsdl:message name="IService_getCaminhoForte_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getCaminhoForteResponse" />
+  </wsdl:message>
   <wsdl:message name="IService_DoWork_InputMessage">
     <wsdl:part name="parameters" element="tns:DoWork" />
   </wsdl:message>
   <wsdl:message name="IService_DoWork_OutputMessage">
     <wsdl:part name="parameters" element="tns:DoWorkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_validateLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:validateLogin" />
+  </wsdl:message>
+  <wsdl:message name="IService_validateLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:validateLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_xTagsEmComum_InputMessage">
+    <wsdl:part name="parameters" element="tns:xTagsEmComum" />
+  </wsdl:message>
+  <wsdl:message name="IService_xTagsEmComum_OutputMessage">
+    <wsdl:part name="parameters" element="tns:xTagsEmComumResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_tamanhoRedeUtilizador_InputMessage">
+    <wsdl:part name="parameters" element="tns:tamanhoRedeUtilizador" />
+  </wsdl:message>
+  <wsdl:message name="IService_tamanhoRedeUtilizador_OutputMessage">
+    <wsdl:part name="parameters" element="tns:tamanhoRedeUtilizadorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_sugereAmigos_InputMessage">
+    <wsdl:part name="parameters" element="tns:sugereAmigos" />
+  </wsdl:message>
+  <wsdl:message name="IService_sugereAmigos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:sugereAmigosResponse" />
   </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="Add">
@@ -75,9 +111,33 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService/GetHumorByUserID" message="tns:IService_GetHumorByUserID_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/GetHumorByUserIDResponse" message="tns:IService_GetHumorByUserID_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="getMenorCaminho">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/getMenorCaminho" message="tns:IService_getMenorCaminho_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/getMenorCaminhoResponse" message="tns:IService_getMenorCaminho_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getCaminhoForte">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/getCaminhoForte" message="tns:IService_getCaminhoForte_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/getCaminhoForteResponse" message="tns:IService_getCaminhoForte_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/DoWork" message="tns:IService_DoWork_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/DoWorkResponse" message="tns:IService_DoWork_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="validateLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/validateLogin" message="tns:IService_validateLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/validateLoginResponse" message="tns:IService_validateLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="xTagsEmComum">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/xTagsEmComum" message="tns:IService_xTagsEmComum_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/xTagsEmComumResponse" message="tns:IService_xTagsEmComum_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="tamanhoRedeUtilizador">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/tamanhoRedeUtilizador" message="tns:IService_tamanhoRedeUtilizador_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/tamanhoRedeUtilizadorResponse" message="tns:IService_tamanhoRedeUtilizador_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="sugereAmigos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/sugereAmigos" message="tns:IService_sugereAmigos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/sugereAmigosResponse" message="tns:IService_sugereAmigos_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
@@ -136,8 +196,62 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getMenorCaminho">
+      <soap:operation soapAction="http://tempuri.org/IService/getMenorCaminho" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCaminhoForte">
+      <soap:operation soapAction="http://tempuri.org/IService/getCaminhoForte" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DoWork">
       <soap:operation soapAction="http://tempuri.org/IService/DoWork" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validateLogin">
+      <soap:operation soapAction="http://tempuri.org/IService/validateLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="xTagsEmComum">
+      <soap:operation soapAction="http://tempuri.org/IService/xTagsEmComum" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="tamanhoRedeUtilizador">
+      <soap:operation soapAction="http://tempuri.org/IService/tamanhoRedeUtilizador" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sugereAmigos">
+      <soap:operation soapAction="http://tempuri.org/IService/sugereAmigos" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -148,7 +262,7 @@
   </wsdl:binding>
   <wsdl:service name="Service">
     <wsdl:port name="BasicHttpBinding_IService" binding="tns:BasicHttpBinding_IService">
-      <soap:address location="http://wvm022.dei.isep.ipp.pt/TesteWebService/Service.svc" />
+      <soap:address location="http://wvm022.dei.isep.ipp.pt/Lapr5/Service.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

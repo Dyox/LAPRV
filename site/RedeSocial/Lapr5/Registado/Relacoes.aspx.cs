@@ -35,15 +35,17 @@ public partial class Registado_Relacoes : System.Web.UI.Page
             MembershipUser currentLoggedInUser = Membership.GetUser();
             string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
             Rede.Perfil ProfileIDA = Rede.Perfil.LoadByUserId(id);
-            
-            SqlDataSource2.SelectCommand="SELECT [Avatar], [Nome], [Estado] from [ViewFriends] WHERE ([ProfileIDA]=" + ProfileIDA.ID+" AND [Estado]='pendente')";
+            if (ProfileIDA != null)
+            {
 
-            SqlDataSource3.SelectCommand = "SELECT [Avatar], [Nome] from [ViewFriends] WHERE ([ProfileIDA]=" + ProfileIDA.ID + " AND [Estado]='feito')";
-            SqlDataSource4.SelectCommand = "SELECT [Avatar], [Nome] from [ViewRequest] WHERE ([ProfileIDB]=" + ProfileIDA.ID + " AND [Estado]='pendente')";
+                SqlDataSource2.SelectCommand = "SELECT [Avatar], [Nome], [Estado] from [ViewFriends] WHERE ([ProfileIDA]=" + ProfileIDA.ID + " AND [Estado]='pendente')";
 
-            GridView2.DataBind();
-            GridView3.DataBind();
-            
+                SqlDataSource3.SelectCommand = "SELECT [Avatar], [Nome] from [ViewFriends] WHERE ([ProfileIDA]=" + ProfileIDA.ID + " AND [Estado]='feito')";
+                SqlDataSource4.SelectCommand = "SELECT [Avatar], [Nome] from [ViewRequest] WHERE ([ProfileIDB]=" + ProfileIDA.ID + " AND [Estado]='pendente')";
+
+                GridView2.DataBind();
+                GridView3.DataBind();
+            }
             
             
             if (!Page.IsPostBack)
@@ -208,63 +210,71 @@ public partial class Registado_Relacoes : System.Web.UI.Page
         Service a = new Service();
         Guid userGuid = (Guid)Membership.GetUser().ProviderUserKey;
         String userID = userGuid.ToString();
-
-
-        int profileID = Rede.Perfil.LoadProfileIDByUserId(userID);
-
-
-        //a.sugereAmigos(profileID);
-
-        String res = a.sugereAmigos(profileID);
-        sugere_amigos(res);
-
-        Dictionary<string, List<string>> dictionary = dicUserTag(res);
-
-
-        foreach (var entry in dictionary)
+        Rede.Perfil prof = Rede.Perfil.LoadByUserId(userID);
+        int profileID = 0;
+        if (prof == null)
         {
-            //Console.WriteLine(entry.Key);
-            TableRow tr = new TableRow();
-            TableCell tcNome = new TableCell();
-            TableCell tcNick = new TableCell();
-            TableCell tcTags = new TableCell();
+            prof = new Rede.Perfil(userID);
+            prof.Save();
+        }
+        profileID = Rede.Perfil.LoadProfileIDByUserId(userID);
+        if (profileID == 0)
+        {
+        }
+        else
+        {
+            //a.sugereAmigos(profileID);
 
-            String nome = Rede.Perfil.LoadNameByProfileId(Convert.ToInt32(entry.Key));
-            String nick = Rede.Perfil.LoadNickByProfileId(Convert.ToInt32(entry.Key));
+            String res = a.sugereAmigos(profileID);
+            sugere_amigos(res);
 
-            //tc1.Text = entry.Key;
-            tcNome.Text = nome;
-            tcNick.Text = nick;
+            Dictionary<string, List<string>> dictionary = dicUserTag(res);
 
-            CheckBox check = new CheckBox();
-            check.ID = entry.Key;
-
-            //Button b = new Button();
-            //b.OnClientClick = "convidar";
-            //b.ID = "convidar"+entry.Key;
-            //b.Text = "Convidar";
-            //b.Click += b_Click;
-
-            String tags = "";
-            foreach (var tag in entry.Value)
+            foreach (var entry in dictionary)
             {
-                if (tags.Equals(""))
-                    tags = tag;
-                else
-                    tags += ", " + tag;
+                //Console.WriteLine(entry.Key);
+                TableRow tr = new TableRow();
+                TableCell tcNome = new TableCell();
+                TableCell tcNick = new TableCell();
+                TableCell tcTags = new TableCell();
+
+                String nome = Rede.Perfil.LoadNameByProfileId(Convert.ToInt32(entry.Key));
+                String nick = Rede.Perfil.LoadNickByProfileId(Convert.ToInt32(entry.Key));
+
+                //tc1.Text = entry.Key;
+                tcNome.Text = nome;
+                tcNick.Text = nick;
+
+                CheckBox check = new CheckBox();
+                check.ID = entry.Key;
+
+                //Button b = new Button();
+                //b.OnClientClick = "convidar";
+                //b.ID = "convidar"+entry.Key;
+                //b.Text = "Convidar";
+                //b.Click += b_Click;
+
+                String tags = "";
+                foreach (var tag in entry.Value)
+                {
+                    if (tags.Equals(""))
+                        tags = tag;
+                    else
+                        tags += ", " + tag;
+                }
+                tcTags.Text = tags;
+
+
+                tr.Cells.Add(tcNome);
+                tr.Cells.Add(tcNick);
+                tr.Cells.Add(tcTags);
+
+                TableCell tcBtn = new TableCell();
+                tcBtn.Controls.Add(check);
+                tr.Cells.Add(tcBtn);
+                Table1.Rows.Add(tr);
+
             }
-            tcTags.Text = tags;
-
-
-            tr.Cells.Add(tcNome);
-            tr.Cells.Add(tcNick);
-            tr.Cells.Add(tcTags);
-
-            TableCell tcBtn = new TableCell();
-            tcBtn.Controls.Add(check);
-            tr.Cells.Add(tcBtn);
-            Table1.Rows.Add(tr);
-
         }
     }
     void b_Click(object sender, EventArgs e)

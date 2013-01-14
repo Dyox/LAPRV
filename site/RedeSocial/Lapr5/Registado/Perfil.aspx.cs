@@ -32,6 +32,13 @@ public partial class Registado_Perfil : System.Web.UI.Page
 
             string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
             Rede.Perfil prof = Rede.Perfil.LoadByUserId(id);
+            if (prof == null)
+            {
+               
+                prof = new Rede.Perfil(id);
+                prof.Save();
+            }
+
             if (!Page.IsPostBack)
             {
                 if (prof.Premium)
@@ -53,12 +60,7 @@ public partial class Registado_Perfil : System.Web.UI.Page
                 DropDownList1.SelectedValue = Convert.ToString(prof.humor.ID);
                 SqlDataSource2.SelectParameters["ProfileID"].DefaultValue = Convert.ToString(prof.ID);
             }
-            if (prof == null)
-            {
-                id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
-                prof = new Rede.Perfil(id);
-                prof.Save();
-            }
+            
 
         }
 

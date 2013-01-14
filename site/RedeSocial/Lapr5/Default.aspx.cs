@@ -9,7 +9,7 @@ using System.Text;
 using System.Web.Security;
 using System.Data;
 
-    public partial class _Default : Page
+    public partial class _Default : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -106,7 +106,7 @@ using System.Data;
             Rede.Perfil ProfileIDA = Rede.Perfil.LoadByUserId(id);
             if (ProfileIDA == null)
             {
-                namigosp.Text = "Não tem o perfile criado";
+                namigosp.Text = "Não tem o perfil criado";
             }
             else
             {

@@ -48,19 +48,19 @@ namespace ExemploProf
             //caminhoMaisForte = camMaisForte(1,7,P)
 
             //PrologExec p = new PrologExec("user", "caminhoMaisForte");
-            PrologExec p = new PrologExec("user", "menorCaminho");
-            //PrologExec p = new PrologExec("user", "recomendaAmizade");
+            //PrologExec p = new PrologExec("user", "menorCaminho");
+            PrologExec p = new PrologExec("user", "recomendaAmizade");
             //PrologExec p = new PrologExec("user", "xTagsEmComum");
             ///PrologExec p = new PrologExec("user", "tamanhoRedeUtilizador");
             //PrologExec p = new PrologExec("user", "grafoAmigosComuns");
 
-            string res = p.executaComandoProlog("1,1,P");
-            //string res = p.executaComandoProlog("1");
+            //string res = p.executaComandoProlog("1,1,P");
+            string res = p.executaComandoProlog("10");
             //string res = p.executaComandoProlog("1");
             //string res = p.executaComandoProlog("1,7");
             Console.WriteLine(res);
 
-            //sugere_amigos(res);
+            sugere_amigos(res);
 
             //xTagsEmComum(res);
            
@@ -104,11 +104,13 @@ namespace ExemploProf
                 if (!dictionary.ContainsKey(testeUser[0].ToString()))
                 {
                     dictionary.Add(testeUser[0].ToString(), new List<String>());
-                    dictionary[testeUser[0].ToString()].Add(testeTag);
+                    if (!dictionary[testeUser[0].ToString()].Contains(testeTag))
+                        dictionary[testeUser[0].ToString()].Add(testeTag);
                 }
                 else
                 {
-                    dictionary[testeUser[0].ToString()].Add(testeTag);
+                    if (!dictionary[testeUser[0].ToString()].Contains(testeTag))
+                        dictionary[testeUser[0].ToString()].Add(testeTag);
                 }
             }
             return dictionary;

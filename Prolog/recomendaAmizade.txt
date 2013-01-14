@@ -1,35 +1,21 @@
+semantic_eq(['c#',csharp]). 
+semantic_eq([pimba,popular]). 
+semantic_eq([wtv,whatever]).
+semantic_eq([js, javascript).
+semantic_eq([net, internet]).
+semantic_eq([pt, portugal]).
+semantic_eq([es, espanha]).
+
 /**/
 listar_am(X):-findall(L,listar_amigos(X,L),Lista),
 		write(Lista),nl.
 listar_amigos(X,Y):-ramo(X,Y,_,_).
-
 listar_amigos_lista(X,Lista):-findall(L,listar_amigos(X,L),Lista).
 
 /*conta os amigos de um user*/
 conta_amigos(X):-findall(L,listar_amigos(X,L),Lista),
 			conta_elem(Lista,Y),
 			write(Y),nl.
-
-/*lista os amigos dos amigos de um user*/
-/*p([[X|_]|L1]):-listar_amigos2(X,L),p(L1).*/
-/*listar_amigos_amigos(X):-findall(L,listar_amigos(X,L),Lista),
-				p(Lista).
-
-p([X|L1]):-listar_amigos(X|Y),p(L1).*/
-
-/**a funcionar listar_amigos_amigos(X):-findall(L,listar_amigos(X,L),Lista),
-				findall(Y,listar_amigos_amigos(Lista,Y),Li),
-				write(Li),nl.
-
-listar_amigos_amigos([X|L],Y):-ramo(X,Y,_,_).*/
-
-/*listar_amigos_amigos(X):-findall(L,listar_amigos(X,L),Lista),corre(Lista),write(Li).
-				corre([]).
-				corre([A|List]):-
-					findall(Y,listar_amigos_amigos(A,Y),Li),write(Li),nl,
-				corre(List).
-
-listar_amigos_amigos(X,Y):-ramo(X,Y,_,_).*/
 
 /*Lista os amigos dos amigos do user X*/
 listar_amigos_amigos(X):-
@@ -92,16 +78,6 @@ elimina(X,[X|T],T):-!.
 elimina(X,[H|T],[H|L]):-elimina(X,T,L).
 /*---*/
 
-
-/*listar_amigos2(X,L),p(L1).*/
-/*listar_amigos2(X,L):-listar_amigos2(X,[],L).
-listar_amigos2(X,L,[Y|L]):-ramo(X,Y,_,_),write(Y),nl.
-
-listar_am_am(X):-findall(_,listar_amigos_amigos(X),Lista),
-		nl,write(Lista),nl.
-
-*/
-
 listar_amigos_amigos_amigos(X):-
 			findall(L,listar_amigos(X,L),Lista),
 			corre(Lista,F),
@@ -147,34 +123,13 @@ conta_elem([_|T],N):-len(T,M),N is M+1.
 /*---*/
 
 
-
-
-
-/*cam_min(a,b,L) retorna o caminho minimo entre dois pontos*/
-caminhos(X,Y,P):-todos_caminhos(X,Y,[Y],P).
-todos_caminhos(X,Y,L,[X|L]):-ramo(X,Y,_,_).
-todos_caminhos(X,Y,L,P):-ramo(Z,Y,_,_),Z\==X,(not member(Z,L)),
-				todos_caminhos(X,Z,[Z|L],P).
-
-lstcaminhos(X,Y,L):-findall(P,caminhos(X,Y,P),L).
-
-menor([X],X).
-menor([X|T],X):-menor(T,L),
-				length(X,N),
-				length(L,M),
-				N =< M,!.
-menor([X|T],L):-menor(T,L).
-cam_min(X,Y,P):-findall(P,caminhos(X,Y,P),L),	
-			menor(L,P),write(P);write('Nenhum caminho...').
-/*---------------------*/	
-
 /*sugere users para amizade com o user X q tenham alguma tag comum*/
 sugerir_users(X):-
 	listar_amigos_amigos_lista(X,L1),
 	listar_amigos_amigos_amigos_lista(X,L2),
 	uniao(L1,L2,L3),
 	no(X,Tags,_,_),
-	corre3(X,Tags,L3,Tags,L3).
+	corre3(X,Tags,L3,Tags,L3),!;true.
 	
 
 corre3(X,[A|List],[Li|Final],ListC,FinalC):-
@@ -183,5 +138,20 @@ corre3(X,[A|List],[Li|Final],ListC,FinalC):-
 		corre3(X,List,FinalC,ListC,FinalC)).
 
 sugere(User1,Tag,User2):-no(User2,Tags,_,_),
+			findall(L, semantic_eq(L),Lista),
+			lista_de_lista(Tag, Tags, Lista,User2,User1),
 			(member(Tag,Tags),\+(ramo(User1,User2,_,_)))->(write(User2),write('['),write(Tag),write('],'));write('').
-/*---*/
+
+
+	
+lista_de_lista(X, Tags, [],User2,User1).
+lista_de_lista(X, Tags, [L|Lista],User2,User1):-lista_de_lista(X, Tags, Lista,User2,User1),
+	((member(X,L),intersects(Tags,L),
+	\+(ramo(User1,User2,_,_)),
+	\+(ramo(User2,User1,_,_)))->(write(User2),write('['),write(X),write('],'));write('')).
+
+intersects([H|_],List) :-
+    member(H,List),
+    !.
+intersects([_|T],List) :-
+    intersects(T,List).

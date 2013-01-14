@@ -23,6 +23,7 @@ namespace Rede
         private string _avatar3D;
         private int _x;
         private int _y;
+        private bool _premium;
         private IList _tags;
 
         public Perfil()
@@ -35,7 +36,7 @@ namespace Rede
             this._userID= uid;
             
            
-            this._name = "";
+            this._name = "Sem_Nome";
             this._nick = "";
             this._datanasc = DateTime.Today.Date;
             this._morada = "";
@@ -47,8 +48,9 @@ namespace Rede
             this._avatar3D = "";
             this._x = 1;
             this._y = 2;
+            this._premium = false;
         }
-        public Perfil(int id, string uID, string Name, string Nick, DateTime dataNasc, string morada, int tlm, string lk, string fb, Humor humor,string avatar3D, string avatar, int x, int y)
+        public Perfil(int id, string uID, string Name, string Nick, DateTime dataNasc, string morada, int tlm, string lk, string fb, Humor humor,string avatar3D, string avatar, int x, int y, bool prem)
         {
             this.myID = id;
             this._userID = uID;
@@ -64,6 +66,7 @@ namespace Rede
             this._avatar = avatar;
             this._x = x;
             this._y = y;
+            this._premium = prem;
         }
 
 
@@ -147,6 +150,12 @@ namespace Rede
             get { return _tags; }
             set { _tags = value; }
         }
+
+        public bool Premium
+        {
+            get { return _premium; }
+            set { _premium = value; }
+        }
         protected Perfil(DataRow row)
         {
             this.myID = (int)row["ProfileID"];
@@ -163,6 +172,7 @@ namespace Rede
             this._humor = Humor.LoadById((int)row["HumorID"]);
             this._x = (int)row["X"];
             this._y = (int)row["Y"];
+            this._premium= (bool)row["Premium"];
         }
         public Perfil(int ID, int x, int y, IList tags)
         {
@@ -291,7 +301,7 @@ namespace Rede
         {
             if (this.ID != 0)
             {
-                ExecuteNonQuery("UPDATE TProfile SET Nome='"+this._name+"',Nick= '"+this._nick+"',Morada= '"+ this._morada +"',DataNascimento='"+this._datanasc.ToString("yyyy-MM-dd") +"',Telemovel="+this._tlm+",Linkedin='"+ this._lk+"', Facebook='"+ this._fb+"',HumorID="+this._humor.ID+", Avatar3D='"+this._avatar3D+"', Avatar='"+this._avatar+"',X="+this._x+", Y="+this._y+"WHERE ProfileID=" + this.ID );
+                ExecuteNonQuery("UPDATE TProfile SET Nome='"+this._name+"',Nick= '"+this._nick+"',Morada= '"+ this._morada +"',DataNascimento='"+this._datanasc.ToString("yyyy-MM-dd") +"',Telemovel="+this._tlm+",Linkedin='"+ this._lk+"', Facebook='"+ this._fb+"',HumorID="+this._humor.ID+", Avatar3D='"+this._avatar3D+"', Avatar='"+this._avatar+"',X="+this._x+", Y="+this._y+",Premium='"+this._premium+ "'WHERE ProfileID=" + this.ID );
             }
             else
             {
@@ -299,7 +309,7 @@ namespace Rede
                 
                 this.humor= Humor.LoadById(2);
 
-                this.myID = ExecuteNonQuery("INSERT INTO TProfile(UserID, Nome, Nick, Morada, DataNascimento, Telemovel, Facebook, Linkedin, Avatar3D, Avatar, HumorID, X, Y)   VALUES('" + this.UsID + "','" + this.Name + "','" + this.Nick + "','" + this.Morada + "','" + this.DataNascimento.ToString("yyyy-MM-dd") + "'," + this.Telemovel + ",'" + this.Linkedin + "','" + this.FaceBook + "','" + this.avatar3D+ "','" + this.avatar + "'," + this.humor.ID + "," + this.X + "," + this.Y + ")");
+                this.myID = ExecuteNonQuery("INSERT INTO TProfile(UserID, Nome, Nick, Morada, DataNascimento, Telemovel, Facebook, Linkedin, Avatar3D, Avatar, HumorID, X, Y, Premium)   VALUES('" + this.UsID + "','" + this.Name + "','" + this.Nick + "','" + this.Morada + "','" + this.DataNascimento.ToString("yyyy-MM-dd") + "'," + this.Telemovel + ",'" + this.Linkedin + "','" + this.FaceBook + "','" + this.avatar3D+ "','" + this.avatar + "'," + this.humor.ID + "," + this.X + "," + this.Y +",'"+this.Premium+ "')");
 
                 
             }
@@ -430,6 +440,15 @@ namespace Rede
             }
 
             return ret;
+        }
+        public static string getAvatar3DByID(int profid)
+        {
+            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT Avatar3D FROM TProfile WHERE ProfileID=" + profid);
+            if (ds.Tables[0].Rows.Count != 1)
+                return "Não tem";
+            else
+                return (string)ds.Tables[0].Rows[0]["Avatar3D"];
+
         }
 
     }

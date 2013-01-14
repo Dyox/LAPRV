@@ -5,6 +5,7 @@
 #include "setjmp.h"
 
 #pragma comment (lib, "libjpeg.lib")    /* link with Win32 libjpeg lib */
+
 #ifdef _DEBUG
 #pragma comment(linker, "/nodefaultlib:\"libc.lib\"")
 #endif

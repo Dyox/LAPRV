@@ -3,6 +3,12 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <style type="text/css">
+        .auto-style1
+        {
+            margin-left: 524px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
@@ -16,14 +22,22 @@
     <asp:TextBox ID="TextBox1" runat="server" meta:resourcekey="TextBox1Resource1"></asp:TextBox>
     <asp:Button ID="Button1" runat="server" Text="Procurar" OnClick="Button1_Click" meta:resourcekey="Button1Resource1" />
     <br />
-    <asp:GridView ID="GridView1" SelectedRowStyle-BackColor="Red" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" >
+    <asp:GridView ID="GridView1" SelectedRowStyle-BackColor="Red" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnRowCreated="RowCreated" >
         <Columns>
             <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" meta:resourcekey="BoundFieldResource1" />
             <asp:BoundField DataField="Nick" HeaderText="Nick" SortExpression="Nick" meta:resourcekey="BoundFieldResource2" />
             <asp:ImageField DataImageUrlField="Avatar" meta:resourcekey="ImageFieldResource1">
             </asp:ImageField>
             <asp:CommandField ButtonType="Button" HeaderText="Selecionar" ShowHeader="True" ShowSelectButton="True" meta:resourcekey="CommandFieldResource1" />
+            <asp:TemplateField AccessibleHeaderText="Premium" ShowHeader="True" HeaderText="Premium">
+                
+                <ItemTemplate>
+                    <asp:CheckBox ID="CheckBox1" runat="server" Checked='<%# Bind("Premium") %>' Enabled="true" OnCheckedChanged="CheckedChanged" Visible="false" />
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
+
+<SelectedRowStyle BackColor="Red"></SelectedRowStyle>
     </asp:GridView>
     <br />
     <asp:Label ID="Label5" runat="server" Text="Tags da Relação:" meta:resourcekey="Label5Resource1"></asp:Label>
@@ -53,7 +67,11 @@
     <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource2" meta:resourcekey="GridView2Resource1">
         <Columns>
             <asp:ImageField DataImageUrlField="Avatar" meta:resourcekey="ImageFieldResource2"></asp:ImageField>
-            <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" meta:resourcekey="BoundFieldResource3" />
+            <asp:TemplateField HeaderText="Nome" SortExpression="Nome">
+                <ItemTemplate>
+                    <asp:HyperLink ID="Label1" runat="server" NavigateUrl='<%# "PerfilP.aspx?Nome=" + Eval("Nome").ToString()%>'  Text='<%# Bind("Nome") %>'>  </asp:HyperLink>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="Estado" HeaderText="Estado" meta:resourcekey="BoundFieldResource4" />
             </Columns>
     </asp:GridView>
@@ -63,7 +81,11 @@
     <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource3"  OnSelectedIndexChanged="GridView3_SelectedIndexChanged" >
         <Columns>
             <asp:ImageField DataImageUrlField="Avatar" meta:resourcekey="ImageFieldResource3"></asp:ImageField>
-            <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" meta:resourcekey="BoundFieldResource5" />
+            <asp:TemplateField HeaderText="Nome" SortExpression="Nome">
+                <ItemTemplate>
+                    <asp:HyperLink ID="Label1" runat="server" NavigateUrl='<%# "PerfilP.aspx?Nome=" + Eval("Nome").ToString()%>'  Text='<%# Bind("Nome") %>'>  </asp:HyperLink>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:CommandField SelectText="Remover" ShowSelectButton="True"  />
             </Columns>
     </asp:GridView>
@@ -81,7 +103,11 @@
     <asp:GridView ID="GridView4" SelectedRowStyle-BackColor="#009999" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource4"  OnSelectedIndexChanged="GridView4_SelectedIndexChanged" >
         <Columns>
             <asp:ImageField DataImageUrlField="Avatar"></asp:ImageField>
-            <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" />
+            <asp:TemplateField HeaderText="Nome" SortExpression="Nome">
+                <ItemTemplate>
+                    <asp:HyperLink ID="Label1" runat="server" NavigateUrl='<%# "PerfilP.aspx?Nome=" + Eval("Nome").ToString()%>'  Text='<%# Bind("Nome") %>'>  </asp:HyperLink>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:CommandField SelectText="Marcar" ShowSelectButton="True"  />
             </Columns>
     </asp:GridView>
@@ -110,9 +136,12 @@
     <br />
     <br />
         </section> <section id="Section1">
-        <h2>Pessoas que possa conhecer...</h2>
+        <h2 class="auto-style1">Pessoas que possa conhecer...</h2>
 
         </section>
-</asp:Content>
+    <br />
+    <br />
+    <br />
+    </asp:Content>
 
     

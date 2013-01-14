@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="RedeSocial._Default" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="RedeSocial._Default" culture="auto" meta:resourcekey="PageResource1" uiculture="auto" %>
 
 
 <asp:Content runat="server" ID="FeaturedContent" ContentPlaceHolderID="FeaturedContent">
@@ -23,27 +23,27 @@
     </asp:SqlDataSource>
     <ol class="round">
         <li >
-            <h5><a href="Registado\Relacoes.aspx"><asp:Label ID="namigosp" runat="server" Text=""></asp:Label></a></h5>
+            <h5><a href="Registado\Relacoes.aspx"><asp:Label ID="namigosp" runat="server" meta:resourcekey="namigospResource1"></asp:Label></a></h5>
         </li>
     </ol>
 
     <ol class="round">
         <li class="one">
-            <h5>Utilizadores Registados:&nbsp;&nbsp;&nbsp; <asp:Label ID="nusers" runat="server" Text="Label"></asp:Label>
+            <h5>Utilizadores Registados:&nbsp;&nbsp;&nbsp; <asp:Label ID="nusers" runat="server" Text="Label" meta:resourcekey="nusersResource1"></asp:Label>
 &nbsp;&nbsp;&nbsp; </h5>
         </li>
     </ol>
     <ol class="round">
         <li class="two">
             <h5 id="Clouduser">Cloud Tags users:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Label ID="Labelclouduser" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="Labelclouduser" runat="server" Text="Label" meta:resourcekey="LabelclouduserResource1"></asp:Label>
             </h5>
         </li>
     </ol>
     <ol class="round">
         <li class="three">
             <h5>Cloud Tags Relacoes:&nbsp;&nbsp;&nbsp;
-                <asp:Label ID="Labelcloudrel" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="Labelcloudrel" runat="server" Text="Label" meta:resourcekey="LabelcloudrelResource1"></asp:Label>
             </h5>
         </li>
     </ol>

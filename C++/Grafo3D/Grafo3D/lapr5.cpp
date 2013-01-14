@@ -30,6 +30,9 @@
 #include "tempuri.org.wsdl.h"
 #include "schema.xsd.h"
 #include "webservice.h"
+//avatar3d
+#include "Model_3DS.h"
+//#include "objloader.h"
 //musica
 #include <al/al.h>
 #include <al/alut.h>
@@ -61,18 +64,27 @@ extern "C" int read_JPEG_file(char *, char **, int *, int *, int *);
 
 #define DEBUG_PICKING true
 #define DEBUG_CAMERA true
+#define SERVER "http://wvm022.dei.isep.ipp.pt"
 #define graus(X) (double)((X)*180/M_PI)
 #define rad(X)   (double)((X)*M_PI/180)
-#define AVATAR "http://imagens.filmes3d.com/2009/setembro/av6.jpg"
+//#define AVATAR "http://imagens.filmes3d.com/2009/setembro/av6.jpg"
+#define AVATAR "http://wvm022.dei.isep.ipp.pt/TesteWebService/osamabin.jpg"
+//#define AVATAR "http://wvm022.dei.isep.ipp.pt/Lapr5/Registado/Avatar/tn_Cat-Avatar.jpg"
+//#define AVATAR "http://www.cartoonwatcher.com/avatar-last-airbender/avatar-airbender-wallpapers/avatar-last-airbender-wallpaper-07.jpg"
 #define CONTENTE "Texturas/contente.bmp"
+#define TRISTE "Texturas/triste.bmp"
 #define ESTRELAS "Texturas/stars.jpg"
 #define TEXT_LOGIN "Texturas/login.jpg"
+#define BOTAO "Texturas/botao.bmp"
 #define NUM_TEXTURAS 80
+#define NUM_AVATARS 1
 #define CENA_LOGIN 1
 #define CENA_LOADING 2
 #define CENA_GRAFO 3
 #define BOX_USERNAME 1
 #define BOX_PASSWORD 2
+#define CAMINHO_CURTO 0
+#define CAMINHO_FORTE 1
 //#define DIMENSAO_CAMARA 500
 
 // luzes e materiais
@@ -80,35 +92,39 @@ const GLfloat mat_ambient[][4] = {{0.33, 0.22, 0.03, 1.0},	// brass
 								  {0.0, 0.0, 0.0},			// red plastic
 								  {0.0215, 0.1745, 0.0215},	// emerald
 								  {0.02, 0.02, 0.02},		// slate
-								  {0.0, 0.0, 0.1745},		// azul
+								  {0.0, 0.0, 0.1745},		// azul caminho
 								  {0.02, 0.02, 0.02},		// preto
-								  {0.1745, 0.1745, 0.1745}};// cinza
+								  {0.1745, 0.1745, 0.1745},// cinza
+								  {0.0, 0.0, 0.1745}};		// azul logado
 
 const GLfloat mat_diffuse[][4] = {{0.78, 0.57, 0.11, 1.0},		// brass
 								  {0.5, 0.0, 0.0},				// red plastic
 								  {0.07568, 0.61424, 0.07568},	// emerald
 								  {0.78, 0.78, 0.78},			// slate
-								  {0.0, 0.0,  0.61424},			// azul
-								  {0.08, 0.08, 0.08},			// preto
-								  {0.61424, 0.61424, 0.61424}};	// cinza
+								  {0.0, 0.0,  0.61424},			// azul caminho
+								  {0.05, 0.05, 0.05},			// preto
+								  {0.61424, 0.61424, 0.61424},	// cinza
+								  {0.0, 0.0,  0.51424}};		//azul logado
 
 const GLfloat mat_specular[][4] = {{0.99, 0.91, 0.81, 1.0},			// brass
 								   {0.7, 0.6, 0.6},					// red plastic
 								   {0.633, 0.727811, 0.633},		// emerald
 								   {0.14, 0.14, 0.14},				// slate
-								   {0.0, 0.0, 0.727811},			// azul
-								   {0.03, 0.03, 0.03},				// preto
-								   {0.727811, 0.727811, 0.727811}};	// cinza
+								   {0.0, 0.0, 0.927811},			// azul caminho
+								   {0.01, 0.01, 0.01},				// preto
+								   {0.727811, 0.727811, 0.727811},	// cinza
+								   {0.0, 0.0, 0.427811}}; //azul logado
 
 const GLfloat mat_shininess[] = {27.8,	// brass
 								 32.0,	// red plastic
 								 76.8,	// emerald
 								 18.78,	// slate
-								 30.0,	// azul
-								 75.0,	// preto
-								 60.0};	// cinza
+								 30.0,	// azul caminho
+								 30.0,	// preto
+								 60.0,	// cinza
+								 15.0}; //azul logado
 
-enum tipo_material {brass, red_plastic, emerald, slate, azul, preto, cinza};
+enum tipo_material {brass, red_plastic, emerald, slate, azul, preto, cinza, azull};
 
 #ifdef __cplusplus
 	inline tipo_material operator++(tipo_material &rs, int ) {
@@ -129,6 +145,7 @@ typedef struct Camera{
 
 }Camera;
 
+
 typedef struct Estado{
 	Camera		camera;
 	int			xMouse,yMouse;
@@ -139,8 +156,10 @@ typedef struct Estado{
 	GLdouble	eixo[3];
 	GLint		itemSeleccionado;
 	GLint		itemCursor;
+	GLint		itemBotao;
 	GLint		tempo;
 	GLint		cena;
+	bool		caminhoEscolhido;/*0-mais curto 1-mais forte*/
 }Estado;
 
 typedef struct Modelo {
@@ -163,12 +182,12 @@ typedef struct Login{
 	int boxSeleccionada;
 	int objCursor;
 	int objClicked;
+	string estado;
 }Login;
-/*
-typedef struct ListaTags{
-	string tag;
-	struct ListaTags *prox;
-}ListaTags;*/
+
+typedef struct UserLog{
+	int id;
+}UserLog;
 
 typedef struct UserSel{
 	string nome;
@@ -178,21 +197,28 @@ typedef struct UserSel{
 	string telef;
 	int numTags;
 	string tags[100];
+	string avatar;
+	int caminho[100];
+	int numNosCaminho;
 }UserSel;
 
 Estado estado;
 Modelo modelo;
 Login login;
 UserSel userSel;
+UserLog userLog;
 //ListaTags listaTags;
 TextureLoader *apTexLoad = new TextureLoader();
 glTexture avatar;
 glTexture contente;
+glTexture triste;
 glTexture estrelas;
 glTexture text_login;
+glTexture botao;
 GLuint        texID[NUM_TEXTURAS];
 ALuint alBuffer[1];
 ALuint alSource[1];
+Model_3DS Avatar3D[NUM_AVATARS];
 
 AUX_RGBImageRec *LoadBMP(char *Filename)				// Loads A Bitmap Image
 {
@@ -226,11 +252,12 @@ void createTextures(GLuint texID[])
 
 	apTexLoad->SetHighQualityTextures(TRUE);
 	apTexLoad->SetTextureFilter(txTrilinear);
+	/*string link=SERVER;
+	link.append(userSel.avatar);
+	apTexLoad->LoadTextureFromDisk((char*)link.c_str(),&avatar);*/
 
-	apTexLoad->LoadTextureFromDisk(AVATAR,&avatar);
-	apTexLoad->LoadTextureFromDisk(CONTENTE,&contente);
-	apTexLoad->LoadTextureFromDisk(ESTRELAS,&estrelas);
 	apTexLoad->LoadTextureFromDisk(TEXT_LOGIN,&text_login);
+	
 	/*
 	//relva
 	if(	read_JPEG_file(TEXTURA_RELVA, &image, &w, &h, &bpp))
@@ -246,6 +273,24 @@ void createTextures(GLuint texID[])
 	}*/
 	glBindTexture(GL_TEXTURE_2D, NULL);
 	
+}
+
+void carregaTexturas()
+{
+	apTexLoad->LoadTextureFromDisk(AVATAR,&avatar);
+	apTexLoad->LoadTextureFromDisk(CONTENTE,&contente);
+	apTexLoad->LoadTextureFromDisk(TRISTE,&triste);
+	apTexLoad->LoadTextureFromDisk(ESTRELAS,&estrelas);
+	apTexLoad->LoadTextureFromDisk(BOTAO,&botao);
+}
+
+void carregaAvatar()
+{
+	/*string link=SERVER;
+	link.append(userSel.avatar);
+	apTexLoad->LoadTextureFromDisk((char*)link.c_str(),&avatar);
+	//createTextures(texID);
+	glBindTexture(GL_TEXTURE_2D, NULL);*/
 }
 
 void initEstado(){
@@ -309,6 +354,14 @@ void myReshape(int w, int h){
 	glMatrixMode(GL_MODELVIEW);
 }
 
+void carregar3ds()
+{
+	Avatar3D[0].Load("Avatars3d/3D_F612.3ds");
+	Avatar3D[0].scale=0.0001;
+	Avatar3D[0].rot.x=90;
+	Avatar3D[0].lit=true;
+}
+
 void myInit()
 {
 	makeRasterFont();
@@ -338,9 +391,14 @@ void myInit()
 	estado.cena=CENA_LOGIN;
 	login.username="";
 	login.password="";
+	login.estado="";
 	estado.itemSeleccionado=-1;
+	userSel.numNosCaminho=0;
 
-	leGrafo();
+	userLog.id=1;
+
+	//leGrafo();
+	//carregar3ds();
 }
 
 void imprime_ajuda(void)
@@ -418,6 +476,15 @@ void putLights(GLfloat* diffuse)
 	glEnable(GL_LIGHT1);
 }
 
+int getNoByUserId(int userid)
+{
+	for (int i=0;i<numNos;i++)
+	{
+		if (nos[i].iduser==userid)
+			return i;
+	}
+}
+
 void desenhaSolo(){
 #define STEP 10
 	glPushMatrix();
@@ -491,7 +558,7 @@ void desenhaNormal(GLdouble x, GLdouble y, GLdouble z, GLdouble normal[], tipo_m
 	glEnable(GL_LIGHTING);
 }
 
-void desenhaLigacao(GLfloat xi, GLfloat yi, GLfloat zi, GLfloat xf, GLfloat yf, GLfloat zf, GLfloat largura)
+void desenhaLigacao(GLfloat xi, GLfloat yi, GLfloat zi, GLfloat xf, GLfloat yf, GLfloat zf, Arco &arco)
 {
 	GLdouble v1[3],v2[3],cross[3];
 	GLdouble length;
@@ -519,17 +586,20 @@ void desenhaLigacao(GLfloat xi, GLfloat yi, GLfloat zi, GLfloat xf, GLfloat yf, 
 		glRotatef(270,1,0,0);
 		glRotatef(ang,0,1,0);
 		glRotatef(angz,1,0,0);
-		gluCylinder(modelo.quad,largura,largura,dist,10,1);
+		gluCylinder(modelo.quad,arco.largura,arco.largura,dist,10,1);
 	glPopMatrix();
+	arco.ang=ang;
+	arco.angz=angz;
+	arco.dist=dist;
 	if(estado.apresentaNormais) {
 		desenhaNormal(xi,yi,zi,cross,red_plastic);
-		desenhaNormal(xf,yf-largura,zf,cross,red_plastic);
+		desenhaNormal(xf,yf-arco.largura,zf,cross,red_plastic);
 		desenhaNormal(xf,yf,zf,cross,red_plastic);
-		desenhaNormal(xi,yi+largura,zi,cross,red_plastic);
+		desenhaNormal(xi,yi+arco.largura,zi,cross,red_plastic);
 	}
 }
 
-void desenhaArco(Arco arco){
+void desenhaArco(Arco &arco){
 	No *noi,*nof;
 
 	if(nos[arco.noi].x==nos[arco.nof].x){
@@ -558,7 +628,7 @@ void desenhaArco(Arco arco){
 			}
 		}
 
-		desenhaLigacao(noi->x,noi->y,noi->z,nof->x,nof->y,nof->z, arco.largura);
+		desenhaLigacao(noi->x,noi->y,noi->z,nof->x,nof->y,nof->z, arco);
 	}else{
 		if(nos[arco.noi].y==nos[arco.nof].y){
 			//arco horizontal
@@ -569,7 +639,7 @@ void desenhaArco(Arco arco){
 				nof=&nos[arco.noi];
 				noi=&nos[arco.nof];
 			}
-			desenhaLigacao(noi->x,noi->y,noi->z,nof->x,nof->y,nof->z, arco.largura);
+			desenhaLigacao(noi->x,noi->y,noi->z,nof->x,nof->y,nof->z, arco);
 		}
 		else
 		{
@@ -583,9 +653,43 @@ void desenhaArco(Arco arco){
 				nof=&nos[arco.noi];
 				noi=&nos[arco.nof];
 			}
-			desenhaLigacao(noi->x,noi->y,noi->z,nof->x,nof->y,nof->z,arco.largura);
+			desenhaLigacao(noi->x,noi->y,noi->z,nof->x,nof->y,nof->z,arco);
 		}
 	}
+}
+
+bool indicaCaminhoArco(Arco arc)
+{
+	if (userSel.numNosCaminho>0)
+	{
+		bool enoi=false;
+		bool enof=false;
+		int origem=getNoByUserId(userSel.caminho[0]);
+		int final=getNoByUserId(userSel.caminho[userSel.numNosCaminho-1]);
+		for(int j=0;j<userSel.numNosCaminho;j++)
+		{
+			int no=getNoByUserId(userSel.caminho[j]);
+			if((userSel.numNosCaminho>2) && (((arc.noi==origem) && (arc.nof==final)) || ((arc.noi==final) && (arc.nof==origem))))
+			{
+				break;
+			}
+			if (arc.noi==no)
+			{
+				enoi=true;
+			}
+			if (arc.nof==no)
+			{
+				enof=true;
+			}
+			if((enoi) && (enof))
+				break;
+		}
+		if((enoi) && (enof))
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 void desenhaLabirinto(){
@@ -602,6 +706,24 @@ void desenhaLabirinto(){
 				else
 				{
 					material(cinza);
+					if (nos[i].iduser==userLog.id)
+					{
+						material(azull);
+					}
+					else
+					{
+						if (userSel.numNosCaminho>0)
+						{
+							for(int j=0;j<userSel.numNosCaminho;j++)
+							{
+								if(nos[i].iduser==userSel.caminho[j])
+								{
+									material(azul);
+									break;
+								}
+							}
+						}
+					}
 				}
 				glTranslatef(nos[i].x,nos[i].y,nos[i].z);
 				glPushName(i+1);
@@ -632,7 +754,10 @@ void desenhaLabirinto(){
 			}
 			else
 			{
-				material(red_plastic);
+				if (indicaCaminhoArco(arcos[i]))
+					material(azul);
+				else
+					material(red_plastic);
 			}
 			glPushName(numNos+1+i);
 				desenhaArco(arcos[i]);
@@ -640,6 +765,20 @@ void desenhaLabirinto(){
 		}
 		
 	glPopMatrix();
+}
+
+void desenhaAvatars()
+{
+	//avatar3d
+	for (int i=0;i<numNos;i++)
+	{
+		glPushMatrix();			
+			glTranslatef(nos[i].x,nos[i].y,nos[i].z+nos[i].largura+0.06);
+			glDisable(GL_LIGHTING);	
+			Avatar3D[0].Draw();
+			glEnable(GL_LIGHTING);
+		glPopMatrix();
+	}
 }
 
 void desenhaEixo(){
@@ -954,6 +1093,29 @@ void desenhaHUD(int width, int height){
 					glRasterPos2i(80, lastPos);
 					printString((char*)userSel.tags[i].c_str());
 				}
+
+				glColor3f(1.0,1.0,1.0);
+				glEnable(GL_BLEND);
+				glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+				glBindTexture(GL_TEXTURE_2D, botao.TextureID);  
+				glBegin(GL_QUADS);
+					glTexCoord2f(0,1);
+					glVertex3f(80,93,-0.1);
+					glTexCoord2f(0,0);
+					glVertex3f(80,96,-0.1);
+					glTexCoord2f(1,0);
+					glVertex3f(97,96,-0.1);
+					glTexCoord2f(1,1);
+					glVertex3f(97,93,-0.1);
+				glEnd();
+				glBindTexture(GL_TEXTURE_2D, NULL);  
+				glDisable(GL_BLEND);
+				glColor3f(0.0,0.0,0.8);
+				glRasterPos2f(80.8, 95);
+				if (estado.caminhoEscolhido==CAMINHO_FORTE)
+					printString("Caminho mais forte");
+				else
+					printString("Caminho mais curto");
 				glEnable(GL_LIGHTING);
 			glPopMatrix();
 
@@ -966,34 +1128,42 @@ void desenhaBillboards()
 {
 	for(int i=0;i<numNos;i++)
 	{
-		GLfloat x=nos[i].x;
-		GLfloat yi=nos[i].y-0.4;
-		GLfloat yf=nos[i].y+0.4;
-		GLfloat zi=nos[i].z+nos[i].largura;
-		GLfloat zf=nos[i].z+nos[i].largura+0.4;
-		glPushMatrix();
-			//glScalef(2,2,2);
-			glTranslated(nos[i].x,nos[i].y,nos[i].z+nos[i].largura+0.2);
-			glRotatef(graus(estado.camera.dir_long),0,0,1);
-			glDisable(GL_LIGHTING);
-			glColor3f(1.0,1.0,1.0);
-			glEnable(GL_BLEND);
-			glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			glBindTexture(GL_TEXTURE_2D, contente.TextureID);  
-			glBegin(GL_QUADS);
-				glTexCoord2f(1,0);
-				glVertex3f(0,-0.4,-0.2);
-				glTexCoord2f(0,0);
-				glVertex3f(0,0.4,-0.2);
-				glTexCoord2f(0,1);
-				glVertex3f(0,0.4,0.2);
-				glTexCoord2f(1,1);
-				glVertex3f(0,-0.4,0.2);
-			glEnd();
-			glBindTexture(GL_TEXTURE_2D, NULL);  
-			glDisable(GL_BLEND);
-			glEnable(GL_LIGHTING);
-		glPopMatrix();
+		GLuint txid=0;
+		if (nos[i].humor=="contente")
+			txid=contente.TextureID;
+		if (nos[i].humor=="triste")
+			txid=triste.TextureID;
+		if (txid>0)
+		{
+			/*GLfloat x=nos[i].x;
+			GLfloat yi=nos[i].y-0.4;
+			GLfloat yf=nos[i].y+0.4;
+			GLfloat zi=nos[i].z+nos[i].largura;
+			GLfloat zf=nos[i].z+nos[i].largura+0.4;*/
+			glPushMatrix();
+				//glScalef(2,2,2);
+				glTranslated(nos[i].x,nos[i].y,nos[i].z+nos[i].largura+0.35);
+				glRotatef(graus(estado.camera.dir_long),0,0,1);
+				glDisable(GL_LIGHTING);
+				glColor3f(1.0,1.0,1.0);
+				glEnable(GL_BLEND);
+				glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+				glBindTexture(GL_TEXTURE_2D, txid);
+				glBegin(GL_QUADS);
+					glTexCoord2f(1,0);
+					glVertex3f(0,-0.4,-0.2);
+					glTexCoord2f(0,0);
+					glVertex3f(0,0.4,-0.2);
+					glTexCoord2f(0,1);
+					glVertex3f(0,0.4,0.2);
+					glTexCoord2f(1,1);
+					glVertex3f(0,-0.4,0.2);
+				glEnd();
+				glBindTexture(GL_TEXTURE_2D, NULL);  
+				glDisable(GL_BLEND);
+				glEnable(GL_LIGHTING);
+			glPopMatrix();
+		}
 	}
 }
 
@@ -1037,7 +1207,7 @@ void desenhaMinimapa()
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	//gluPerspective(50, (float)(glutGet(GLUT_WINDOW_WIDTH)/(float)(glutGet(GLUT_WINDOW_HEIGHT))), 0.1, 1000 );
-	glOrtho(-100,100,-100,100,1,500);
+	glOrtho(-50,50,-50,50,1,500);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
@@ -1116,6 +1286,19 @@ void desenhaLogin()
 			glRasterPos2f(35.0+(0.86*login.password.length()), 57.5);
 			printString("|");
 		}
+		if(login.estado.length()>0)
+		{
+			if (login.estado=="Dados incorretos.")
+			{
+				glColor3f(0.9,0.0,0.0);
+			}
+			else
+			{
+				glColor3f(1.0,1.0,1.0);
+			}
+			glRasterPos2i(34, 67);
+			printString((char*)login.estado.c_str());
+		}
 		glEnable(GL_LIGHTING);
 	glPopMatrix();
 }
@@ -1184,12 +1367,79 @@ void RenderParticles(void)
    }
 }
 */
+
+void multiplicaMatrix(float x,float y,float z,float ang, int eixo, int result[])//eixo: x=0, y=1, z=2
+{
+	int matrix[4][4];
+	int vector[4];
+	vector[0]=x;
+	vector[1]=y;
+	vector[2]=z;
+	vector[3]=1;
+	if (eixo==0)
+	{
+		matrix[0][0]=1;
+		matrix[0][1]=0;
+		matrix[0][2]=0;
+		matrix[0][3]=0;
+		matrix[1][0]=0;
+		matrix[1][1]=cos(rad(ang));
+		matrix[1][2]=sin(rad(ang));
+		matrix[1][3]=0;
+		matrix[2][0]=0;
+		matrix[2][1]=-sin(rad(ang));
+		matrix[2][2]=cos(rad(ang));
+		matrix[2][3]=0;
+		matrix[3][0]=0;
+		matrix[3][1]=0;
+		matrix[3][2]=0;
+		matrix[3][3]=1;
+	}
+	if (eixo==1)
+	{
+		matrix[0][0]=cos(rad(ang));
+		matrix[0][1]=0;
+		matrix[0][2]=sin(rad(ang));
+		matrix[0][3]=0;
+		matrix[1][0]=0;
+		matrix[1][1]=1;
+		matrix[1][2]=0;
+		matrix[1][3]=0;
+		matrix[2][0]=-sin(rad(ang));
+		matrix[2][1]=0;
+		matrix[2][2]=cos(rad(ang));
+		matrix[2][3]=0;
+		matrix[3][0]=0;
+		matrix[3][1]=0;
+		matrix[3][2]=0;
+		matrix[3][3]=1;
+	}
+
+	int tmp[4];
+	for (int linha=0;linha<4;linha++)
+	{
+		for (int coluna=0;coluna<4;coluna++)
+		{
+			tmp[coluna]=matrix[linha][coluna]*vector[coluna];
+		}
+		int res=0;
+		for(int i=0;i<4;i++)
+		{
+			res+=tmp[i];
+		}
+		result[linha]=res;
+	}
+}
+
 bool detectacolisao()
 {
 	Vertice eye;
 	eye[0]=estado.camera.center[0]+estado.camera.dist*cos(estado.camera.dir_long)*cos(estado.camera.dir_lat);
 	eye[1]=estado.camera.center[1]+estado.camera.dist*sin(estado.camera.dir_long)*cos(estado.camera.dir_lat);
 	eye[2]=estado.camera.center[2]+estado.camera.dist*sin(estado.camera.dir_lat);
+
+	if (eye[2]<-1.0)
+		return true;
 	
 	for (int i=0;i<numNos;i++)
 	{
@@ -1205,6 +1455,41 @@ bool detectacolisao()
 			}
 		}
 	}
+
+	//GLfloat eyex,eyey,eyez;
+	float range;
+	int noi;
+	for(int i=0;i<numArcos;i++)
+	{
+		int vec[4];
+	/*vec[0]=eye[0];
+	vec[1]=eye[1];
+	vec[2]=eye[2];*/
+		multiplicaMatrix(eye[0],eye[1],eye[2],270.0,0,vec);
+		multiplicaMatrix(vec[0],vec[1],vec[2],arcos[i].ang,1,vec);
+		multiplicaMatrix(vec[0],vec[1],vec[2],arcos[i].angz,0,vec);
+		/*eyex=eye[0]+arcos[i].dist*cos(rad(270.0));
+		eyey=eye[1];
+		eyez=eye[2]+arcos[i].dist*sin(rad(270.0));
+		eyex=eye[0]+arcos[i].dist*(-sin(rad(arcos[i].ang)));
+		eyez=eye[1]+arcos[i].dist*cos(rad(arcos[i].ang));
+		eyex=eye[0]+arcos[i].dist*cos(rad(arcos[i].angz));
+		eyez=eye[1]+arcos[i].dist*sin(rad(arcos[i].angz));*/
+		
+		range=arcos[i].largura+0.1;
+		noi=arcos[i].noi;
+		if ((vec[0]<nos[noi].x+range) && (vec[0]>nos[noi].x-range))
+		{
+			if ((vec[1]<nos[noi].y+range) && (vec[1]>nos[noi].y-range))
+			{
+				if ((vec[2]<nos[noi].z+arcos[i].dist) && (vec[2]>nos[noi].z))
+				{
+					return true;
+				}
+			}
+		}
+	}
+
 	return false;
 }
 
@@ -1240,10 +1525,12 @@ void display(void)
 		desenhaSolo();
 		desenhaEixos();
 		desenhaLabirinto();
+		desenhaAvatars();
 		desenhaBillboards();
 		desenhaSkydome();
 		desenhaHUD(glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT));
 		desenhaMinimapa();
+		
 		/*
 		if(estado.eixoTranslaccao) {
 			// desenha plano de translacção
@@ -1540,6 +1827,14 @@ void motionDrag(int x, int y){
 	glutPostRedisplay();
 }
 
+void mudaCaminho()
+{
+	if (estado.caminhoEscolhido==CAMINHO_CURTO)
+		estado.caminhoEscolhido=CAMINHO_FORTE;
+	else
+		estado.caminhoEscolhido=CAMINHO_CURTO;
+}
+
 int picking(int x, int y){
 	if (estado.cena==CENA_LOGIN)
 	{
@@ -1587,11 +1882,8 @@ int picking(int x, int y){
 
 		glMatrixMode(GL_PROJECTION);
 		glPushMatrix(); // guarda a projecção
-			glLoadIdentity();
-			if (estado.cena==CENA_LOGIN)
-				setProjectionLogin(x,y,GL_TRUE);
-			else
-				setProjection(x,y,GL_TRUE);
+		glLoadIdentity();
+		setProjection(x,y,GL_TRUE);
 	
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
@@ -1654,49 +1946,116 @@ void mouse(int btn, int state, int x, int y){
 							}
 							if (login.objClicked==4)
 							{
-								estado.cena=CENA_GRAFO;
+								login.estado="A efectuar o login...";
+								glutPostRedisplay();
+								std::wstring u = std::wstring(login.username.begin(), login.username.end());
+								wchar_t* user = (wchar_t*)u.c_str();
+								std::wstring p = std::wstring(login.password.begin(), login.password.end());
+								wchar_t* pw = (wchar_t*)p.c_str();
+								int res;
+								validateLogin(user,pw,res);
+								if (res>0)
+								{
+									login.estado="Login efectuado. A carregar grafo...";
+									glutPostRedisplay();
+									userLog.id=res;
+									carregaTexturas();
+									leGrafo();
+									carregar3ds();
+									estado.camera.center[0]=nos[getNoByUserId(res)].x+1.0;
+									estado.camera.center[1]=nos[getNoByUserId(res)].y;
+									estado.camera.center[2]=nos[getNoByUserId(res)].z+1.0;
+									estado.cena=CENA_GRAFO;
+								}
+								else
+								{
+									login.estado="Dados incorretos.";
+									//glutPostRedisplay();
+								}
+								glutPostRedisplay();
 							}
 						}
 						else
 						{
-							idobj=picking(x,y);
-							/*estado.eixoTranslaccao=idobj;
-							if(estado.eixoTranslaccao)
-								glutMotionFunc(motionDrag);
-							*/
-								estado.itemSeleccionado=idobj;
-								//estado.itemSeleccionado=-1;
-							if((idobj>0) && (idobj<=numNos))
+							glMatrixMode(GL_PROJECTION);
+							glPushMatrix(); // guarda a projecção
+							glLoadIdentity();
+							setProjectionLogin(x,y,GL_TRUE);
+							glMatrixMode(GL_MODELVIEW);
+							glLoadIdentity();
+							GLint vp[4];
+							GLdouble proj[16], mv[16];
+							GLdouble objx,objy,objz;
+							glGetIntegerv(GL_VIEWPORT, vp);
+							glGetDoublev(GL_PROJECTION_MATRIX, proj);
+							glGetDoublev(GL_MODELVIEW_MATRIX, mv);
+							gluUnProject(x,y,0,mv,proj,vp,&objx,&objy,&objz);
+							if(((objx>=80.0) && (objx<=97.0)) && ((objy>=93.0) && (objy<=96.0)))
 							{
-								Utilizador *utilbd=NULL;
-								GetUtilizadorByID(nos[idobj-1].iduser,utilbd);
-								//convert from wide char to narrow char array
-								char ch[260];
-								char DefChar = ' ';
-								WideCharToMultiByte(CP_ACP,0,(utilbd)->nome,-1, ch,260,&DefChar, NULL);
-								std::string ss(ch);
-								userSel.nome=ss;
-								WideCharToMultiByte(CP_ACP,0,(utilbd)->nick,-1, ch,260,&DefChar, NULL);
-								std::string ss2(ch);
-								userSel.nick=ss2;
-								WideCharToMultiByte(CP_ACP,0,(utilbd)->morada,-1, ch,260,&DefChar, NULL);
-								std::string ss3(ch);
-								userSel.morada=ss3;
-								WideCharToMultiByte(CP_ACP,0,(utilbd)->nasc,-1, ch,260,&DefChar, NULL);
-								std::string ss4(ch);
-								userSel.dataNasc=ss4;
-								stringstream ss5;
-								ss5 << (utilbd)->tele;
-								userSel.telef=ss5.str();
-								WCHAR **tags=NULL;
-								unsigned int numTags=0;
-								GetTagsByUserID(nos[idobj-1].iduser,numTags,tags);
-								userSel.numTags=numTags;
-								for (int i=0;i<numTags;i++)
+								mudaCaminho();
+								if (estado.caminhoEscolhido==CAMINHO_CURTO)		
+									caminhoCurto(userLog.id,nos[estado.itemSeleccionado-1].iduser,userSel.numNosCaminho,userSel.caminho);
+								else
+									caminhoForte(userLog.id,nos[estado.itemSeleccionado-1].iduser,userSel.numNosCaminho,userSel.caminho);
+								myReshape((GLint) glutGet(GLUT_WINDOW_WIDTH), (GLint) glutGet(GLUT_WINDOW_HEIGHT));
+							}
+							else
+							{
+								myReshape((GLint) glutGet(GLUT_WINDOW_WIDTH), (GLint) glutGet(GLUT_WINDOW_HEIGHT));
+								idobj=picking(x,y);
+								estado.itemSeleccionado=idobj;
+								if (idobj<=0)//não selecionou nda
 								{
-									WideCharToMultiByte(CP_ACP,0,(*(tags+i)),-1, ch,260,&DefChar, NULL);
-									std::string st(ch);
-									userSel.tags[i].assign(st);
+									userSel.numNosCaminho=0;
+								}
+								else
+								{
+									if((idobj>0) && (idobj<=numNos))
+									{
+										Utilizador *utilbd=NULL;
+										GetUtilizadorByID(nos[idobj-1].iduser,utilbd);
+										//convert from wide char to narrow char array
+										char ch[260];
+										char DefChar = ' ';
+										WideCharToMultiByte(CP_ACP,0,(utilbd)->nome,-1, ch,260,&DefChar, NULL);
+										std::string ss(ch);
+										userSel.nome=ss;
+										WideCharToMultiByte(CP_ACP,0,(utilbd)->nick,-1, ch,260,&DefChar, NULL);
+										std::string ss2(ch);
+										userSel.nick=ss2;
+										WideCharToMultiByte(CP_ACP,0,(utilbd)->morada,-1, ch,260,&DefChar, NULL);
+										std::string ss3(ch);
+										userSel.morada=ss3;
+										WideCharToMultiByte(CP_ACP,0,(utilbd)->nasc,-1, ch,260,&DefChar, NULL);
+										std::string ss4(ch);
+										userSel.dataNasc=ss4;
+										stringstream ss5;
+										ss5 << (utilbd)->tele;
+										userSel.telef=ss5.str();
+										WideCharToMultiByte(CP_ACP,0,(utilbd)->avatar,-1, ch,260,&DefChar, NULL);
+										std::string ss6(ch);
+										userSel.avatar=ss6;
+										carregaAvatar();
+										WCHAR **tags=NULL;
+										unsigned int numTags=0;
+										GetTagsByUserID(nos[idobj-1].iduser,numTags,tags);
+										userSel.numTags=numTags;
+										for (int i=0;i<numTags;i++)
+										{
+											WideCharToMultiByte(CP_ACP,0,(*(tags+i)),-1, ch,260,&DefChar, NULL);
+											std::string st(ch);
+											userSel.tags[i].assign(st);
+										}
+							
+										if (estado.caminhoEscolhido==CAMINHO_CURTO)		
+											caminhoCurto(userLog.id,nos[idobj-1].iduser,userSel.numNosCaminho,userSel.caminho);
+										else
+											caminhoForte(userLog.id,nos[idobj-1].iduser,userSel.numNosCaminho,userSel.caminho);
+									}
+									else//selecionou uma ligação
+									{
+										userSel.numNosCaminho=0;
+									}
 								}
 							}
 							glutPostRedisplay();
@@ -1752,6 +2111,10 @@ void Timer(int value)
 	glutTimerFunc(1000,Timer,0);
 }
 
+
+
+
+
 void main(int argc, char **argv)
 {
     glutInit(&argc, argv);
@@ -1778,7 +2141,6 @@ void main(int argc, char **argv)
 	alGenSources(1, alSource);
 	alSourcei(alSource[0], AL_BUFFER, alBuffer[0]);
 	alSourcePlay(alSource[0]);
-
 
 	imprime_ajuda();
 

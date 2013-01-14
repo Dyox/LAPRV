@@ -5,12 +5,29 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Threading;
+using System.Globalization;
 
 public partial class Registado_Relacoes : System.Web.UI.Page
     {
         private List<string> listtag= new List<string>();
         private List<string> listtag_aceitar = new List<string>();
 
+        protected override void InitializeCulture()
+        {
+            if (Request.Form["Language"] != null)
+            {
+                String selectedLanguage = Request.Form["Language"];
+                UICulture = selectedLanguage;
+                Culture = selectedLanguage;
+
+                Thread.CurrentThread.CurrentCulture =
+                    CultureInfo.CreateSpecificCulture(selectedLanguage);
+                Thread.CurrentThread.CurrentUICulture = new
+                    CultureInfo(selectedLanguage);
+            }
+            base.InitializeCulture();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             Aceitar.Enabled = false;
@@ -41,8 +58,38 @@ public partial class Registado_Relacoes : System.Web.UI.Page
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            SqlDataSource1.SelectCommand = "SELECT [Nome] ,[Nick], [Avatar] FROM [TProfile] WHERE ([Nome] LIKE '%" + TextBox1.Text + "%')";
+            
+
+            SqlDataSource1.SelectCommand = "SELECT [Nome] ,[Nick], [Avatar], [Premium] FROM [TProfile] WHERE ([Nome] LIKE '%" + TextBox1.Text + "%')";
             GridView1.DataBind();
+
+           
+        }
+        protected void CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox CheckBox;
+            
+            CheckBox = (CheckBox)sender;
+
+            string nome = GridView1.SelectedRow.Cells[0].Text;
+            Rede.Perfil ProfileIDB = Rede.Perfil.LoadByName(nome);
+
+            ProfileIDB.Premium = CheckBox.Checked;
+            ProfileIDB.Save();
+            
+        }
+
+        protected void RowCreated(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+                if (System.Web.HttpContext.Current.User.IsInRole("Administrador"))
+                {
+                    if (e.Row.RowType == DataControlRowType.DataRow)
+                    {
+                        CheckBox cmdChk = (CheckBox)e.Row.FindControl("CheckBox1");
+                        cmdChk.Visible = true;
+                        
+                    }      
+                }
         }
 
         protected void Button2_Click(object sender, EventArgs e)

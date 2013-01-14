@@ -4,7 +4,7 @@
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <title><%: Page.Title %>- My ASP.NET Application</title>
     <asp:PlaceHolder runat="server">     
           <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>  
@@ -38,7 +38,12 @@
         <div class="content-wrapper">
             <div class="float-left">
                 <p class="site-title">
-                    <a runat="server" href="~/">your logo here</a>
+                    <a runat="server" href="~/"><a runat="server" href="~/About.aspx">
+                    <asp:ListBox ID="Language" runat="server">
+                        <asp:ListItem value="pt-PT" selected="True">Português</asp:ListItem>
+                        <asp:ListItem value="en-US">English</asp:ListItem>
+                    </asp:ListBox>
+                    </a>your logo here</a>
                 </p>
             </div>
             <div class="float-right">
@@ -80,7 +85,7 @@
     <footer>
         <div class="content-wrapper">
             <div class="float-left">
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                <p>&copy; <%--Framework Scripts--%>- My ASP.NET Application</p>
             </div>
         </div>
     </footer>

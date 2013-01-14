@@ -139,11 +139,13 @@ public partial class Registado_Relacoes : System.Web.UI.Page
                 if (!dictionary.ContainsKey(testeUser[0].ToString()))
                 {
                     dictionary.Add(testeUser[0].ToString(), new List<String>());
-                    dictionary[testeUser[0].ToString()].Add(testeTag);
+                    if (!dictionary[testeUser[0].ToString()].Contains(testeTag))
+                        dictionary[testeUser[0].ToString()].Add(testeTag);
                 }
                 else
                 {
-                    dictionary[testeUser[0].ToString()].Add(testeTag);
+                    if (!dictionary[testeUser[0].ToString()].Contains(testeTag))
+                        dictionary[testeUser[0].ToString()].Add(testeTag);
                 }
             }
             return dictionary;

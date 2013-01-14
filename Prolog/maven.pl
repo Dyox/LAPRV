@@ -46,4 +46,4 @@ amigos_tag(Tag,[],[]):-!.
 amigos_tag(Tag,[ID|Resto],Res):-amigos_tag(Tag,Resto,Res1),listar_amigos_lista(ID,LA),procurar_tag(Tag,LA,LAT),length(LAT,T),append(Res1,[T],Res),!.
 
 maven(Tag,Element):-findall(NoID,no(NoID,_,_,_),L),amigos_tag(Tag,L,Ltam),max_list(Ltam,T),
-			se_entao_senao(T>2,write('Nenhum Maven...'),(item_at(POS,Ltam,T),item_at(POS,L, Element),write(Element))).
+			se_entao_senao(T<2,write('Nenhum Maven...'),(item_at(POS,Ltam,T),item_at(POS,L, Element),write(Element))).

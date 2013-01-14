@@ -11,12 +11,17 @@
         {
             margin-top: 5px;
         }
+        .auto-style3
+        {
+            width: 100px;
+            height: 100px;
+            float: left;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
     <p>
-        <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/Premium.png" meta:resourcekey="Image1Resource1" Height="79px" Width="91px" />
-</p>
+        &nbsp;</p>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="Medium" Height="35px" Text="Nome" Width="95px" meta:resourcekey="Label1Resource1"></asp:Label>
@@ -52,7 +57,7 @@
 &nbsp;&nbsp;&nbsp;
 <asp:Label ID="Label8" runat="server" Font-Bold="True" Font-Size="Medium" Height="35px" Text="Avatar" Width="95px" meta:resourcekey="Label8Resource1"></asp:Label>
     <asp:FileUpload ID="UploadAvatar" runat="server" meta:resourcekey="UploadAvatarResource1" />
-    <img id="avatarIMG" alt="" class="auto-style1" runat="server"  />
+    <img id="avatarIMG" alt="" class="auto-style3" runat="server"  />
     <br />
     <asp:Label ID="Label9" runat="server" Text="Nick" Font-Bold="True" Font-Size="Medium" Height="35px" Width="95px" meta:resourcekey="Label9Resource1"></asp:Label>
     <asp:TextBox ID="TextNick" runat="server" meta:resourcekey="TextNickResource1"></asp:TextBox>
@@ -82,6 +87,9 @@
 <asp:Button ID="Button2" runat="server" Text="Enviar" OnClick="Button2_Click" meta:resourcekey="Button2Resource1" />
 <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Limpar" Visible="False" meta:resourcekey="Button3Resource1" />
     <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Editar" meta:resourcekey="Button4Resource1" />
+    <br />
+    <br />
+        <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/Premium.png" meta:resourcekey="Image1Resource1" Height="79px" Width="91px" />
     <br />
     <br />
 <br />

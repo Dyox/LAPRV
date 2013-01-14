@@ -29,13 +29,14 @@ public partial class Registado_Perfil : System.Web.UI.Page
             Button5.Enabled = false;
 
             MembershipUser currentLoggedInUser = Membership.GetUser();
-
+            
             string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
+
             Rede.Perfil prof = Rede.Perfil.LoadByUserId(id);
             if (prof == null)
             {
-               
-                prof = new Rede.Perfil(id);
+
+                prof = new Rede.Perfil(id, currentLoggedInUser.UserName);
                 prof.Save();
             }
 

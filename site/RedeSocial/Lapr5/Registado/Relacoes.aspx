@@ -104,7 +104,7 @@
         <br />
     <asp:Label ID="Label6" runat="server" Text="Pedidos de Amizades recebidos:"></asp:Label>
         <br />
-    <asp:GridView ID="GridView4" SelectedRowStyle-BackColor="#009999" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource4">
+    <asp:GridView ID="GridView4" SelectedRowStyle-BackColor="#009999" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource4" OnSelectedIndexChanged="GridView4_SelectedIndexChanged">
         <Columns>
             <asp:ImageField DataImageUrlField="Avatar"></asp:ImageField>
              <asp:TemplateField HeaderText="Nome" SortExpression="Nome">
@@ -115,8 +115,8 @@
             <asp:CommandField SelectText="Marcar" ShowSelectButton="True"  />
             </Columns>
     </asp:GridView>
-        <asp:Button ID="Aceitar" runat="server" OnClick="Aceitar_Click" Text="Aceitar" />
-        <asp:Button ID="Rejeitar" runat="server" OnClick="Rejeitar_Click" Text="Rejeitar" />
+        <asp:Button ID="Aceitar" runat="server" OnClick="Aceitar_Click" Text="Aceitar"/>
+        <asp:Button ID="Rejeitar" runat="server" OnClick="Rejeitar_Click" Text="Rejeitar"/>
         <br />
         <br />
     <asp:Label ID="Label7" runat="server" Text="Tags da Relação:"></asp:Label>

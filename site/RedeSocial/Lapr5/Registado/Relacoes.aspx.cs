@@ -208,13 +208,14 @@ public partial class Registado_Relacoes : System.Web.UI.Page
     protected void sugestoes()
     {
         Service a = new Service();
+        MembershipUser currentLoggedInUser = Membership.GetUser();
         Guid userGuid = (Guid)Membership.GetUser().ProviderUserKey;
         String userID = userGuid.ToString();
         Rede.Perfil prof = Rede.Perfil.LoadByUserId(userID);
         int profileID = 0;
         if (prof == null)
         {
-            prof = new Rede.Perfil(userID);
+            prof = new Rede.Perfil(userID, currentLoggedInUser.UserName);
             prof.Save();
         }
         profileID = Rede.Perfil.LoadProfileIDByUserId(userID);
@@ -394,4 +395,9 @@ public partial class Registado_Relacoes : System.Web.UI.Page
                 lblTags.ForeColor = System.Drawing.Color.Red;
         }
 
+    protected void GridView4_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        Aceitar.Enabled = true;
+        Rejeitar.Enabled = true;
+    }
 }

@@ -30,13 +30,12 @@ namespace Rede
         {
 
         }
-        public Perfil(string uid)
+        public Perfil(string uid, string nm)
         {
            
             this._userID= uid;
             
-           
-            this._name = "Sem_Nome";
+            this._name = nm;
             this._nick = "";
             this._datanasc = DateTime.Today.Date;
             this._morada = "";
@@ -46,8 +45,9 @@ namespace Rede
             this._humor = Rede.Humor.LoadById(2);
             this._avatar = "";
             this._avatar3D = "";
-            this._x = 1;
-            this._y = 2;
+            Random r = new Random();
+            this._x = r.Next(-100,100);
+            this._y = r.Next(-100,100);
             this._premium = false;
         }
         public Perfil(int id, string uID, string Name, string Nick, DateTime dataNasc, string morada, int tlm, string lk, string fb, Humor humor,string avatar3D, string avatar, int x, int y, bool prem)

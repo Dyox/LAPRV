@@ -1,12 +1,13 @@
 % grafo
 
 % no(NoID,PosX,PosY)
-no(a,[musica,rock,pimba,zumba],45,95).
+no(a,[csharp,musica,rock,pimba,zumba,'java script'],45,95).
 no(b,[musica,rock],90,95).
 no(c,[musica],45,95).
 no(d,[],90,95).
 no(e,[pimba],45,95).
-no(f,['c#',zumba],90,95).
+no(f,['c#',zumba,pimba,js],90,95).
+
 
 % ramo(No1_ID,No2_ID,Tag,Força)
 ramo(a,b,[namorada],1).
@@ -241,8 +242,7 @@ tamanho_rede_user_3(X,N):-
 	uniao(L1,L2,L3),
 	listar_amigos_amigos_amigos_lista(X,L4),
 	uniao(L3,L4,L5),
-	conta_elem(L5,N),
-	write(N).
+	conta_elem(L5,N).
 
 /*recebe duas listas e junta na terceira, tambem limpa repetidos*/	
 uniao([ ],L,L).
@@ -273,6 +273,7 @@ menor([X|T],X):-menor(T,L),
 				length(L,M),
 				N =< M,!.
 menor([X|T],L):-menor(T,L).
+cam_min(X,X,P):-!,write('Nenhum caminho...').
 cam_min(X,Y,P):-findall(P,caminhos(X,Y,P),L),	
 			menor(L,P),write(P);write('Nenhum caminho...').
 /*---------------------*/	
@@ -283,7 +284,7 @@ sugerir_users(X):-
 	listar_amigos_amigos_amigos_lista(X,L2),
 	uniao(L1,L2,L3),
 	no(X,Tags,_,_),
-	corre3(X,Tags,L3,Tags,L3).
+	corre3(X,Tags,L3,Tags,L3),!;true.
 	
 
 corre3(X,[A|List],[Li|Final],ListC,FinalC):-
@@ -292,7 +293,26 @@ corre3(X,[A|List],[Li|Final],ListC,FinalC):-
 		corre3(X,List,FinalC,ListC,FinalC)).
 
 sugere(User1,Tag,User2):-no(User2,Tags,_,_),
+			findall(L, semantic_eq(L),Lista),
+			lista_de_lista(Tag, Tags, Lista,User2,User1),
 			(member(Tag,Tags),\+(ramo(User1,User2,_,_)))->(write(User2),write('['),write(Tag),write('],'));write('').
+
+
+	
+lista_de_lista(X, Tags, [],User2,User1).
+lista_de_lista(X, Tags, [L|Lista],User2,User1):-lista_de_lista(X, Tags, Lista,User2,User1),
+	((member(X,L),intersects(Tags,L),
+	\+(ramo(User1,User2,_,_)),
+	\+(ramo(User2,User1,_,_)))->(write(User2),write('['),write(X),write('],'));write('')).
+
+/*(not(ramo(User1,User2,_,_)));not(ramo(User2,User1,_,_)))*/
+
+intersects([H|_],List) :-
+    member(H,List),
+    !.
+intersects([_|T],List) :-
+    intersects(T,List).
+
 /*---*/
 
 
@@ -303,10 +323,20 @@ sugere(User1,Tag,User2):-no(User2,Tags,_,_),
 /*write('x-> '),write(X),write(' y-> '),write(Y),nl*/	
 
 	
-:-dynamic semantic_eq/2. 
-semantic_eq('c#',csharp). 
-semantic_eq(pimba,popular). 
 
+semantic_eq(['c#',csharp]). 
+semantic_eq([pimba,popular]). 
+semantic_eq([wtv,whatever]).
+semantic_eq([fds,'fim de semana', 'fim-de-semana']). 
+semantic_eq([vb,'visual basic']). 
+semantic_eq([js, 'java script']). 
+/*
+teste(X):-findall(L, semantic_eq(L),Lista),
+	lista_de_lista(X, Lista).
+	
+lista_de_lista(X, []).
+lista_de_lista(X, [L|Lista]):-lista_de_lista(X, Lista),(member(X,L)->write(L);write('')).
+*/
 /*cria_figuras:-  assertz(semantic_eq(triângulo,3)), 
 asserta(semantic_eq(quadrado,4)), 
 assertz(semantic_eq(pentagono,5)).
@@ -330,7 +360,27 @@ pesquisa_users(X,Tag,User2):-no(User2,Tags,_,_),
 			member(Tag,Tags)->(write(User2),write('['),write(Tag),write('],'));write('').
 */
 
+
+
 /*lista os amigos do User com N tags em comum*/
+
+amigos_com_x_tags_iguais(User,X):-
+	listar_amigos_lista(User,L1),
+	no(User,Tags,_,_),
+	corre4(X,Tags,L1,Tags,L1),!;true.
+	
+
+corre4(X,[A|List],[Li|Final],ListC,FinalC):-
+	pesquisa_users(A,Li),
+	Final\==[]->(corre4(X,[A],Final,ListC,FinalC);
+		corre4(X,List,FinalC,ListC,FinalC)).
+
+pesquisa_users(Tag,User2):-no(User2,Tags,_,_),
+			member(Tag,Tags)->(write(User2),write('['),write(Tag),write('],'));write('').
+/*---*/
+
+
+/*/*lista os amigos do User com N tags em comum
 amigos_com_x_tags_iguais(User,X):-
 	listar_amigos_lista(User,L1),
 	no(User,Tags,_,_),
@@ -351,19 +401,20 @@ amigos_comuns(X,Y,L):-
 	(member(Y,Amigos1)->elimina(Y,Amigos1,L1);copiar(Amigos1,L1)), /*se o outro user faz parte dos amigos elimina-se pq não vai ser comum*/
 	findall(Y2,ramo(Y,Y2,_,_),Amigos2),
 	(member(X,Amigos2)->elimina(X,Amigos2,L2);copiar(Amigos2,L2)),
-	
-	write(L1),write(L2),
-	corre5(L1,L2,L3)
-	.
+	/*write(L1),write(L2),*/
+	corre5(L1,L2,L).
 
-corre5([],_).
-corre5(_,[]).
+corre5([],_,[]).
+corre5([A|L1],L2,[A|L3]):-
+     member(A,L2),!,
+    corre5(L1,L2,L3).
+corre5([_|L1],L2,L3):-
+    corre5(L1,L2,L3).
 
-corre5([A|L1],L2,[B|L3]):-
-	(member(A,L2)->B = A, write(B),nl;true),L1\==[]->corre5(L1,L2,L3);true.
-
-/*corre5([A|L1],L2,L3):-
-	(member(A,L2)->(add(A,L3,L4),L1\==[]->corre5(L1,L2,L4);true);L1\==[]->corre5(L1,L2,L3);true).
+/*
+corre5([A|L1],L2):-
+	(member(A,L2)->write(A),nl;true),
+	(L1\==[]->corre5(L1,L2);true).
 */	
 
 %add(X,L,L1).

@@ -92,11 +92,11 @@ namespace Prolog
             {
                 case "menorCaminho":
                     conteudo = resultadoFicheiro("menorCaminho");
-                    metodo = "cam_min(_target_)";
+                    metodo = "cam_min(_target_,L)";
                     break;
                 case "caminhoMaisForte":
                     conteudo = resultadoFicheiro("caminhoMaisForte");
-                    metodo = "camMaisForte(_target_)";
+                    metodo = "camMaisForte(_target_,L)";
                     break;
                 case "recomendaAmizade":
                     conteudo = resultadoFicheiro("recomendaAmizade");
@@ -114,6 +114,19 @@ namespace Prolog
                     conteudo = resultadoFicheiro("grafoAmigosComuns");
                     metodo = "amigos_comuns(_target_,N)";
                     break;
+                case "maven":
+                    conteudo = resultadoFicheiro("Maven");
+                    metodo = "maven('_target_',E)";
+                    break;
+                case "grafoUser3":
+                    conteudo = resultadoFicheiro("RedeUser3");
+                    metodo = "rede_user_3(_target_,L)";
+                    break;
+                case "separacao":
+                    conteudo = resultadoFicheiro("Separacao");
+                    metodo = "grau(_target_,L)";
+                    break;
+                
             }
             string fim ="run:- tell('" + NomeFich + ".txt'),"+metodo+",told,halt."+ "\n" +
                                  ":-run. \n";

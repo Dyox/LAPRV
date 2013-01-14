@@ -25,7 +25,7 @@ ramo(d,b,[namorada],1).
 se_entao_senao(X,Y,Z):-X,!,Y.
 se_entao_senao(X,Y,Z):-Z.
 
-/*elemento numa possição da lista*/
+/*elemento numa possi??o da lista*/
 item_at( N, L, Item ) :- item_at( N, 0, L, Item ).   
 item_at( N, Count, [H|_], Item ) :- CountNew is Count + 1,CountNew = N, Item = H.
 item_at( N, Count, [_|T], Item ) :- CountNew is Count + 1,item_at( N, CountNew, T, Item ).
@@ -40,10 +40,11 @@ listar_amigos_lista(X,Lista):-findall(L,listar_amigos(X,L),Lista).
 
 /*procurar amigos com numa dada tag*/
 procurar_tag(Tag,[],[]):-!.
-procurar_tag(Tag,[ID|Resto],Res):-procurar_tag(Tag,Resto,Res1),no(ID,Lista,_,_),se_entao_senao(member(Tag,Lista),append(Res1,[ID],Res),append(Res1,[],Res)),!.
+procurar_tag(Tag,[ID|Resto],Res):-procurar_tag(Tag,Resto,Res1),no(ID,Lista,_,_),
+		se_entao_senao(member(Tag,Lista),append([ID],Res1,Res),append([],Res1,Res)),!.
 
 amigos_tag(Tag,[],[]):-!.
-amigos_tag(Tag,[ID|Resto],Res):-amigos_tag(Tag,Resto,Res1),listar_amigos_lista(ID,LA),procurar_tag(Tag,LA,LAT),length(LAT,T),append(Res1,[T],Res),!.
+amigos_tag(Tag,[ID|Resto],Res):-amigos_tag(Tag,Resto,Res1),listar_amigos_lista(ID,LA),procurar_tag(Tag,LA,LAT),length(LAT,T),append([T],Res1,Res),!.
 
 maven(Tag,Element):-findall(NoID,no(NoID,_,_,_),L),amigos_tag(Tag,L,Ltam),max_list(Ltam,T),
 			se_entao_senao(T<2,write('Nenhum Maven...'),(item_at(POS,Ltam,T),item_at(POS,L, Element),write(Element))).

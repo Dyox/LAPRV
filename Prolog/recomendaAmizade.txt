@@ -1,7 +1,7 @@
 semantic_eq(['c#',csharp]). 
 semantic_eq([pimba,popular]). 
 semantic_eq([wtv,whatever]).
-semantic_eq([js, javascript).
+semantic_eq([js, javascript]).
 semantic_eq([net, internet]).
 semantic_eq([pt, portugal]).
 semantic_eq([es, espanha]).

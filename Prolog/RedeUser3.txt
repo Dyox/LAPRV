@@ -160,3 +160,95 @@ rede_user_3(X,L5):-
 	listar_amigos_amigos_amigos_lista(X,L4),
 	uniao(L3,L4,L5),
 	write(L5).
+
+
+/*recebe duas listas e junta na terceira, tambem limpa repetidos*/	
+uniao([ ],L,L).
+uniao([X|L],L1,L2):- member(X,L1),!,uniao(L,L1,L2).
+uniao([X|L],L1,[X|L2]):- uniao(L,L1,L2).
+/*---*/
+
+/*dada uma lista conta os seus elementos*/
+conta_elem([],0).
+conta_elem([_|T],N):-len(T,M),N is M+1.
+/*---*/
+
+/*cam_min(a,b,L) retorna o caminho minimo entre dois pontos*/
+caminhos(X,Y,P):-todos_caminhos(X,Y,[Y],P).
+todos_caminhos(X,Y,L,[X|L]):-ramo(X,Y,_,_).
+todos_caminhos(X,Y,L,P):-ramo(Z,Y,_,_),Z\==X,(not member(Z,L)),
+				todos_caminhos(X,Z,[Z|L],P).
+
+lstcaminhos(X,Y,L):-findall(P,caminhos(X,Y,P),L).
+
+menor([X],X).
+menor([X|T],X):-menor(T,L),
+				length(X,N),
+				length(L,M),
+				N =< M,!.
+menor([X|T],L):-menor(T,L).
+cam_min(X,Y,P):-findall(P,caminhos(X,Y,P),L),	
+			menor(L,P),write(P);write('Nenhum caminho...').
+/*---------------------*/	
+
+/*sugere users para amizade com o user X q tenham alguma tag comum*/
+sugerir_users(X):-
+	listar_amigos_amigos_lista(X,L1),
+	listar_amigos_amigos_amigos_lista(X,L2),
+	uniao(L1,L2,L3),
+	no(X,Tags,_,_),
+	corre3(X,Tags,L3,Tags,L3).
+	
+
+corre3(X,[A|List],[Li|Final],ListC,FinalC):-
+	sugere(X,A,Li),
+	Final\==[]->(corre3(X,[A],Final,ListC,FinalC);
+		corre3(X,List,FinalC,ListC,FinalC)).
+
+sugere(User1,Tag,User2):-no(User2,Tags,_,_),
+			(member(Tag,Tags),\+(ramo(User1,User2,_,_)))->(write(User2),write('['),write(Tag),write('],'));write('').
+/*---*/
+
+
+/*sugere(Tag,User2):-no(User2,Tags,_,_),
+			member(Tag,Tags)->(write(User2),write(' tem tag igual '),nl);write('nao tem'),nl.
+
+*/
+/*write('x-> '),write(X),write(' y-> '),write(Y),nl*/	
+
+	
+/*lista os amigos do User com N tags em comum*/
+amigos_com_x_tags_iguais(User,X):-
+	listar_amigos_lista(User,L1),
+	no(User,Tags,_,_),
+	corre4(X,Tags,L1,Tags,L1).
+	
+
+corre4(X,[A|List],[Li|Final],ListC,FinalC):-
+	pesquisa_users(X,A,Li),
+	Final\==[]->(corre4(X,[A],Final,ListC,FinalC);
+		corre4(X,List,FinalC,ListC,FinalC)).
+
+pesquisa_users(X,Tag,User2):-no(User2,Tags,_,_),
+			member(Tag,Tags)->(write(User2),write('['),write(Tag),write('],'));write('').
+/*---*/
+
+amigos_comuns(X,Y,L):-
+	findall(X1,ramo(X,X1,_,_),Amigos1),
+	(member(Y,Amigos1)->elimina(Y,Amigos1,L1);copiar(Amigos1,L1)), /*se o outro user faz parte dos amigos elimina-se pq não vai ser comum*/
+	findall(Y2,ramo(Y,Y2,_,_),Amigos2),
+	(member(X,Amigos2)->elimina(X,Amigos2,L2);copiar(Amigos2,L2)),
+	
+	write(L1),write(L2),
+	corre5(L1,L2,L3)
+	.
+
+corre5([],_).
+corre5(_,[]).
+
+corre5([A|L1],L2,[B|L3]):-
+	(member(A,L2)->B = A, write(B),nl;true),L1\==[]->corre5(L1,L2,L3);true.
+
+copiar(L,R) :- accCp(L,R).
+accCp([],[]).
+accCp([H|T1],[H|T2]) :- accCp(T1,T2).

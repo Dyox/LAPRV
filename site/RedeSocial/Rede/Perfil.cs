@@ -189,6 +189,36 @@ namespace Rede
             return _name;
         }
 
+        public static Perfil LoadByProfileId(string profileID)
+        {
+            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * FROM TProfile WHERE ProfileID=" + profileID);
+            if (ds.Tables[0].Rows.Count != 1)
+                return null;
+            else
+                return new Perfil(ds.Tables[0].Rows[0]);
+        }
+
+        public static String LoadNameByProfileId(int profileID)
+        {
+            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT Nome FROM TProfile WHERE ProfileID=" + profileID);
+
+            return ds.Tables[0].Rows[0]["Nome"].ToString();
+        }
+
+        public static String LoadNickByProfileId(int profileID)
+        {
+            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT Nick FROM TProfile WHERE ProfileID=" + profileID);
+
+            return ds.Tables[0].Rows[0]["Nick"].ToString();
+        }
+
+        public static int LoadProfileIDByUserId(String userID)
+        {
+            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT ProfileID FROM TProfile WHERE UserID='" + userID + "'");
+
+            return Convert.ToInt32(ds.Tables[0].Rows[0]["ProfileID"].ToString());
+        }
+
         public static Perfil LoadById(int customerID)
         {
             DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * FROM TProfile WHERE ProfileID=" + customerID);

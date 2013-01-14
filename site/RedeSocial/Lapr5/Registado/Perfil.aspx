@@ -15,7 +15,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
     <p>
-        <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/Premium.png" meta:resourcekey="Image1Resource1" />
+        <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/Premium.png" meta:resourcekey="Image1Resource1" Height="79px" Width="91px" />
 </p>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">

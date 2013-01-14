@@ -61,7 +61,14 @@ namespace Rede
             return Estado;
         }
 
-
+        public static bool VerificaSeExisteRelacao(int profileIdA, int profileIdB)
+        {
+            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * FROM TRelacao WHERE ProfileIDA=" + profileIdA + " and ProfileIDB=" + profileIdB);
+            if (ds.Tables[0].Rows.Count == 0)
+                return false;
+            else
+                return true;
+        }
 
         public static Relacao LoadById(int ID)
         {
@@ -211,21 +218,22 @@ namespace Rede
             else
             {
                 this.myID = ExecuteNonQuery("INSERT INTO TRelacao(ProfileIDA, ProfileIDB, Forca, Estado) VALUES(" + this.ProfileIDA + "," + this.ProfileIDB + "," + this.Forca + ",'" + this.Estado + "')");
-                foreach (string s in TagList)
-                {
-                    Rede.Tag tagnova = new Rede.Tag();
-                    if (Rede.Tag.ExisteTag(s) == false)
+                if (TagList != null)
+                    foreach (string s in TagList)
                     {
+                        Rede.Tag tagnova = new Rede.Tag();
+                        if (Rede.Tag.ExisteTag(s) == false)
+                        {
 
-                        tagnova.Designacao = s;
-                        tagnova.Save();
+                            tagnova.Designacao = s;
+                            tagnova.Save();
+                        }
+                        else { tagnova = Rede.Tag.LoadByName(s); }
+                        this.myID = ExecuteNonQuery("INSERT INTO Rel_Tag(ID_Rel, ID_Tag ) VALUES(" + this.ID + "," + tagnova.ID + ")");
+
+
+
                     }
-                    else { tagnova = Rede.Tag.LoadByName(s); }
-                    this.myID = ExecuteNonQuery("INSERT INTO Rel_Tag(ID_Rel, ID_Tag ) VALUES(" + this.ID + "," + tagnova.ID + ")");
-
-
-
-                }
 
             }
         }

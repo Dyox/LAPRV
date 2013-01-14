@@ -11,7 +11,7 @@
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" Runat="Server">
-    <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/Premium.png" meta:resourcekey="Image1Resource1" />
+    <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/Premium.png" meta:resourcekey="Image1Resource1" Height="98px" Width="96px" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" Runat="Server">
     <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="Medium" Height="35px" Text="Nome" Width="95px" meta:resourcekey="Label1Resource1"></asp:Label>

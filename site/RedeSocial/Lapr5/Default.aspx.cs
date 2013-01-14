@@ -104,11 +104,16 @@ using System.Data;
             MembershipUser currentLoggedInUser = Membership.GetUser();
             string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
             Rede.Perfil ProfileIDA = Rede.Perfil.LoadByUserId(id);
-            SqlDataSource1.SelectCommand = "SELECT * from [ViewFriends] WHERE ([Nome]='" + ProfileIDA.Name + "' AND [Estado]='Pendente')";
-            DataView dvSql = (DataView)SqlDataSource1.Select(DataSourceSelectArguments.Empty);
-
-            namigosp.Text = "Tem " + dvSql.Count.ToString() + " Amizades Pendentes.";
-            
+            if (ProfileIDA == null)
+            {
+                namigosp.Text = "Não tem o perfile criado";
+            }
+            else
+            {
+                SqlDataSource1.SelectCommand = "SELECT * from [ViewFriends] WHERE ([Nome]='" + ProfileIDA.Name + "' AND [Estado]='Pendente')";
+                DataView dvSql = (DataView)SqlDataSource1.Select(DataSourceSelectArguments.Empty);
+                namigosp.Text = "Tem " + dvSql.Count.ToString() + " Amizades Pendentes.";
+            }
             }
         }
 

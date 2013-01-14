@@ -104,7 +104,7 @@
         <br />
     <asp:Label ID="Label6" runat="server" Text="Pedidos de Amizades recebidos:"></asp:Label>
         <br />
-    <asp:GridView ID="GridView4" SelectedRowStyle-BackColor="#009999" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource4"  OnSelectedIndexChanged="GridView4_SelectedIndexChanged" >
+    <asp:GridView ID="GridView4" SelectedRowStyle-BackColor="#009999" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource4">
         <Columns>
             <asp:ImageField DataImageUrlField="Avatar"></asp:ImageField>
              <asp:TemplateField HeaderText="Nome" SortExpression="Nome">
@@ -139,9 +139,21 @@
     </asp:SqlDataSource>
     <br />
     <br />
-        </section> <section id="Section1">
-        <h2 class="auto-style1">Pessoas que possa conhecer...</h2>
-
+        </section>
+        <section id="Section1">
+        <h2>Pessoas que talvez conheças...</h2>
+        <p>&nbsp;</p>
+        <asp:Table ID="Table1" runat="server" CellPadding="10">
+            <asp:TableRow >
+                <asp:TableHeaderCell>Nome</asp:TableHeaderCell>
+                <asp:TableHeaderCell>Nick</asp:TableHeaderCell>
+                <asp:TableHeaderCell>Tags comuns</asp:TableHeaderCell>
+            </asp:TableRow>
+        </asp:Table>
+        <br />
+        <asp:Label ID="lblTags" runat="server"></asp:Label>
+        <br />
+        <asp:Button ID="Button5" runat="server" OnClick="Button4_Click1" Text="Convidar seleccionados" />
         </section>
     <br />
     <br />

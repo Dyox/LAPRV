@@ -39,6 +39,8 @@ using System.Collections;
         string sugereAmigos(int id);
         [OperationContract]
         string grafoAmigosComuns(int user1, int user2);
+        [OperationContract]
+        Ligacao getLigacao(int userreg, int user1, int user2);
 
 
         [OperationContract]

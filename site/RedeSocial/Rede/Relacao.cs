@@ -240,7 +240,37 @@ namespace Rede
         }
 
 
-
+        public static IList<string> getTagsByUsers(int user1, int user2)
+        {
+            IList<string> ret = new List<string>();
+            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT IDRelacao FROM TRelacao WHERE ProfileIDA=" + user1 + " and ProfileIDB=" + user2);
+            if (ds.Tables[0].Rows.Count != 1)
+            {
+                ret.Add("Sem Tags");
+                return ret;
+            }
+            else
+            {
+                int rel = (int)ds.Tables[0].Rows[0]["IDRelacao"];
+                ds = ExecuteQuery(GetConnection(false), "SELECT ID_Tag FROM Rel_Tag WHERE ID_Rel=" + rel);
+                if (ds.Tables[0].Rows.Count != 1)
+                {
+                    ret.Add("Sem Tags");
+                    return ret;
+                }
+                else
+                {
+                    int tag = (int)ds.Tables[0].Rows[0]["ID_Tag"];
+                    ds = ExecuteQuery(GetConnection(false), "SELECT Designacao FROM TTag where TagID=" + tag);
+                    foreach (DataRow r in ds.Tables[0].Rows)
+                    {
+                        string tagtxt = (string)r["Designacao"];
+                        ret.Add(tagtxt);
+                    }
+                    return ret;
+                }
+            }
+        }
 
       
     }

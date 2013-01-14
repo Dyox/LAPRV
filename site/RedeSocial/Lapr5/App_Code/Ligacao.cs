@@ -12,7 +12,7 @@ using System.Web;
 [DataContract]
 public class Ligacao
 {
-    
+
     [DataMember]
     public int id1 { get; set; }
     [DataMember]
@@ -21,15 +21,14 @@ public class Ligacao
     public IList<string> tags { get; set; }
 
 
-	public Ligacao(int idp, int ids, IList<string> t)
-
-	{
+    public Ligacao(int idp, int ids, IList<string> t)
+    {
         id1 = idp;
         id2 = ids;
         tags = t;
 
-		//
-		// TODO: Add constructor logic here
-		//
-	}
+        //
+        // TODO: Add constructor logic here
+        //
+    }
 }

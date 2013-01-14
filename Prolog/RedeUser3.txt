@@ -1,0 +1,162 @@
+listar_am(X):-findall(L,listar_amigos(X,L),Lista),
+		write(Lista),nl.
+
+
+listar_amigos(X,Y):-ramo(X,Y,_,_).
+
+
+
+listar_amigos_lista(X,Lista):-findall(L,listar_amigos(X,L),Lista).
+
+
+/*listar_amigos(X,L):-listar_amigos(X,[],L).
+listar_amigos(X,L,[Y|L]):-ramo(X,Y,_,_).
+*/
+
+
+
+
+
+/*conta os amigos de um user*/
+conta_amigos(X):-findall(L,listar_amigos(X,L),Lista),
+			conta_elem(Lista,Y),
+			write(Y),nl.
+
+
+
+
+
+
+
+/*lista os amigos dos amigos de um user*/
+/*p([[X|_]|L1]):-listar_amigos2(X,L),p(L1).*/
+/*listar_amigos_amigos(X):-findall(L,listar_amigos(X,L),Lista),
+				p(Lista).
+
+p([X|L1]):-listar_amigos(X|Y),p(L1).*/
+
+/**a funcionar listar_amigos_amigos(X):-findall(L,listar_amigos(X,L),Lista),
+				findall(Y,listar_amigos_amigos(Lista,Y),Li),
+				write(Li),nl.
+
+listar_amigos_amigos([X|L],Y):-ramo(X,Y,_,_).*/
+
+/*listar_amigos_amigos(X):-findall(L,listar_amigos(X,L),Lista),corre(Lista),write(Li).
+				corre([]).
+				corre([A|List]):-
+					findall(Y,listar_amigos_amigos(A,Y),Li),write(Li),nl,
+				corre(List).
+
+listar_amigos_amigos(X,Y):-ramo(X,Y,_,_).*/
+
+/*Lista os amigos dos amigos do user X*/
+listar_amigos_amigos(X):-
+			findall(L,listar_amigos(X,L),Lista),
+			corre(Lista,F),
+			elimina_listas(F,F2),
+			elimina_repetidos(F2,F3),
+			elimina(X,F3,F4),
+			write(F4),nl.
+				
+corre([],[]).
+corre([A|List],[Li|Final]):-
+			findall(Y,listar_amigos_amigos(A,Y),Li),
+			corre(List,Final).
+
+listar_amigos_amigos(X,Y):-ramo(X,Y,_,_).
+/*---*/
+
+listar_amigos_amigos_lista(X,F4):-
+			findall(L,listar_amigos(X,L),Lista),
+		
+			corre(Lista,F),
+			elimina_listas(F,F2),
+			elimina_repetidos(F2,F3),
+			elimina(X,F3,F4).
+
+
+/*elimina lista de lista e mete tudo numa única lista*/
+elimina_listas([],[]):- !.
+elimina_listas([H|T],[H|R]):- \+ is_list(H), !, elimina_listas(T,R).
+elimina_listas([H|T],L):- elimina_listas(H,L1), elimina_listas(T,L2), append(L1,L2,L).
+/*---*/
+
+/*verifica se é lista*/
+is_list(X) :-
+        var(X), !,
+        fail.
+is_list([]).
+is_list([_|T]) :-
+        is_list(T).
+/*--*/
+
+/*elimina os registos repetidos de uma lista*/
+member2(X,[X|_]):- !.
+member2(X,[_|T]) :- member2(X,T).
+
+elimina_repetidos([],[]).
+elimina_repetidos([H|T],[H|Out]) :-
+   not(member2(H,T)),
+   !,
+elimina_repetidos(T,Out).
+elimina_repetidos([H|T],Out) :-
+   member2(H,T),
+   elimina_repetidos(T,Out).
+/*---*/
+
+/*elimina o elemento X da lista*/
+elimina(_,[],[]).
+elimina(X,[X|T],T):-!.
+elimina(X,[H|T],[H|L]):-elimina(X,T,L).
+/*---*/
+
+
+/*listar_amigos2(X,L),p(L1).*/
+/*listar_amigos2(X,L):-listar_amigos2(X,[],L).
+listar_amigos2(X,L,[Y|L]):-ramo(X,Y,_,_),write(Y),nl.
+
+listar_am_am(X):-findall(_,listar_amigos_amigos(X),Lista),
+		nl,write(Lista),nl.
+
+*/
+
+listar_amigos_amigos_amigos(X):-
+			findall(L,listar_amigos(X,L),Lista),
+			corre(Lista,F),
+			elimina_listas(F,F2),
+			elimina_repetidos(F2,F3),
+			elimina(X,F3,F4),
+	
+			corre(F4,F5),
+			elimina_listas(F5,F6),
+			elimina_repetidos(F6,F7),
+			elimina(X,F7,F8),
+			write(F8),nl.
+
+listar_amigos_amigos_amigos_lista(X,F8):-
+			findall(L,listar_amigos(X,L),Lista),
+			corre(Lista,F),
+			elimina_listas(F,F2),
+			elimina_repetidos(F2,F3),
+			elimina(X,F3,F4),
+	
+			corre(F4,F5),
+			elimina_listas(F5,F6),
+			elimina_repetidos(F6,F7),
+			elimina(X,F7,F8).
+
+tamanho_rede_user_3(X,N):-
+	listar_amigos_lista(X,L1),
+	listar_amigos_amigos_lista(X,L2),
+	uniao(L1,L2,L3),
+	listar_amigos_amigos_amigos_lista(X,L4),
+	uniao(L3,L4,L5),
+	conta_elem(L5,N).
+
+rede_user_3(X,L5):-
+	listar_amigos_lista(X,L1),
+	listar_amigos_amigos_lista(X,L2),
+	uniao(L1,L2,L3),
+	listar_amigos_amigos_amigos_lista(X,L4),
+	uniao(L3,L4,L5),
+	write(L5).

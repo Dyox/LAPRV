@@ -1,0 +1,16 @@
+caminhos(X,Y,P):-todos_caminhos(X,Y,[Y],P).
+todos_caminhos(X,Y,L,[X|L]):-ramo(X,Y,_,_).
+todos_caminhos(X,Y,L,P):-ramo(Z,Y,_,_),Z\==X,(not member(Z,L)),
+				todos_caminhos(X,Z,[Z|L],P).
+
+lstcaminhos(X,Y,L):-findall(P,caminhos(X,Y,P),L).
+
+menor([X],X).
+menor([X|T],X):-menor(T,L),
+				length(X,N),
+				length(L,M),
+				N =< M,!.
+menor([X|T],L):-menor(T,L).
+cam_min(X,Y,P):-!,write('Nenhum caminho...').
+cam_min(X,Y,P):-findall(P,caminhos(X,Y,P),L),	
+			menor(L,P),write(P);write('Nenhum caminho...').

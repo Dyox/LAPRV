@@ -1,4 +1,4 @@
-﻿
+﻿/*
 listar_amigos(X,L):-listar_amigos(X,[],L).
 listar_amigos(X,L,[Y|L]):-ramo(X,Y,_).*/
 

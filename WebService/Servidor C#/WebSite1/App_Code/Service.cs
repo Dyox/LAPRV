@@ -178,11 +178,13 @@ public class Service : IService
         {
             return null;
         }
-
-
-
     }
-
+    public string getAmigosNivel3(int userID)
+    {
+        PrologExec p = new PrologExec(userID + "", "grafoUser3");
+        string res = p.executaComandoProlog(userID + "");
+        return res;
+    }
 }
 
    

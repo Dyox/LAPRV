@@ -114,6 +114,10 @@ namespace Prolog
                     conteudo = resultadoFicheiro("grafoAmigosComuns");
                     metodo = "amigos_comuns(_target_,N)";
                     break;
+                case "grafoUser3":
+                    conteudo = resultadoFicheiro("RedeUser3");
+                    metodo = "rede_user_3(_target_,L)";
+                    break;
             }
             string fim ="run:- tell('" + NomeFich + ".txt'),"+metodo+",told,halt."+ "\n" +
                                  ":-run. \n";

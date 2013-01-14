@@ -105,14 +105,14 @@ public class Service : IService
     public string getMenorCaminho(int no1, int no2)
     {
         PrologExec p = new PrologExec(no1 + "_" + no2, "menorCaminho");
-        string res = p.executaComandoProlog(no1 + "," + no2 + ",P");
+        string res = p.executaComandoProlog(no1 + "," + no2);
         return res;
     }
 
     public string getCaminhoForte(int no1, int no2)
     {
         PrologExec p = new PrologExec(no1 + "_" + no2, "caminhoMaisForte");
-        string res = p.executaComandoProlog(no1 + "," + no2 + ",P");
+        string res = p.executaComandoProlog(no1 + "," + no2);
         return res;
     }
 
@@ -183,6 +183,18 @@ public class Service : IService
     {
         PrologExec p = new PrologExec(userID + "", "grafoUser3");
         string res = p.executaComandoProlog(userID + "");
+        return res;
+    }
+    public string getMavenOfTag(string tag)
+    {
+        PrologExec p = new PrologExec(tag + "", "maven");
+        string res = p.executaComandoProlog(tag + "");
+        return res;
+    }
+    public string getSeparacao(int no1, int no2)
+    {
+        PrologExec p = new PrologExec(no1 + "_" + no2, "separacao");
+        string res = p.executaComandoProlog(no1 + "," + no2);
         return res;
     }
 }

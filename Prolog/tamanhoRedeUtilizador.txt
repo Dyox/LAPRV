@@ -1,19 +1,4 @@
-﻿/*tamanho_rede_user_3(X,N)*/
-/*todos os caminhos entre dois pontos*/
-
-go(Orig,Dest,L) :- go(Orig,Dest,[Orig],L). 
-go(Dest,Dest,_,[Dest]). 
-go(Orig,Dest,LA,[Orig|L]) :- ramo(Orig,X,_), 
-not member(X,LA), 
-go(X,Dest,[X|LA],L).
-
-/*verifica se dois user são amigos*/
-amigos(X,Y):-ramo(X,Y,_);ramo(Y,X,_).
-
-/*lista uma lista com os amigos de um user*/
-/*listar(X):-findall(L,listar_amigos(X,L),Lista),
-		write(Lista),nl.
-
+﻿
 listar_amigos(X,L):-listar_amigos(X,[],L).
 listar_amigos(X,L,[Y|L]):-ramo(X,Y,_).*/
 
@@ -21,85 +6,23 @@ listar_amigos(X,L,[Y|L]):-ramo(X,Y,_).*/
 listar_amigos_tag(X,Tag,L):-listar_amigos_tag(X,Tag,[],L).
 listar_amigos_tag(X,Tag,L,[Y|L]):-ramo(X,Y,Tag,_).
 
-/*listar_tags(X,L):-listar_tags(X,[],L).
-listar_tags(X,L,[Y|L]):-no(X,Y,_,_).*/
-
-/*
-listar_tags(X,L):-listar_tags(X,[],L).
-listar_tags(X,L,[H|L]):-no(X,[H|T],_,_),compara(X,H,L).
-
-compara(X,H,L):-findall(L,listar_amigos(X,L),Lista),
-		no([[A|Lista]|L1],L2,_,_),write(L1).
-*/
-
-
 /*procurar users com uma dada tag */
 listar_users_tag(Tag,L):-listar_users_tag(Tag,[],L).
 listar_users_tag(Tag,L,[Y|L]):-no(Y,Lista,_,_),member(Tag,Lista).
 
-/*
-conta_tag(Tag,L):-conta_tag(Tag,[],L).
-conta_tag(Tag,L,[Y|L]):-no(_,Lista,_,_),member(Tag,Lista),Y is + 1, write(Y).
-*/
-
-/*verifica se um user ja tem aquela tag*/
-/*recebe o user e a tag, retorna yes or no*/
-
 verifica_tag(X,Tag):-no(X,L,_,_),member(Tag,L).
-
-
 
 /**/
 listar_am(X):-findall(L,listar_amigos(X,L),Lista),
 		write(Lista),nl.
-
-
 listar_amigos(X,Y):-ramo(X,Y,_,_).
 
-
-
 listar_amigos_lista(X,Lista):-findall(L,listar_amigos(X,L),Lista).
-
-
-/*listar_amigos(X,L):-listar_amigos(X,[],L).
-listar_amigos(X,L,[Y|L]):-ramo(X,Y,_,_).
-*/
-
-
-
-
 
 /*conta os amigos de um user*/
 conta_amigos(X):-findall(L,listar_amigos(X,L),Lista),
 			conta_elem(Lista,Y),
 			write(Y),nl.
-
-
-
-
-
-
-
-/*lista os amigos dos amigos de um user*/
-/*p([[X|_]|L1]):-listar_amigos2(X,L),p(L1).*/
-/*listar_amigos_amigos(X):-findall(L,listar_amigos(X,L),Lista),
-				p(Lista).
-
-p([X|L1]):-listar_amigos(X|Y),p(L1).*/
-
-/**a funcionar listar_amigos_amigos(X):-findall(L,listar_amigos(X,L),Lista),
-				findall(Y,listar_amigos_amigos(Lista,Y),Li),
-				write(Li),nl.
-
-listar_amigos_amigos([X|L],Y):-ramo(X,Y,_,_).*/
-
-/*listar_amigos_amigos(X):-findall(L,listar_amigos(X,L),Lista),corre(Lista),write(Li).
-				corre([]).
-				corre([A|List]):-
-					findall(Y,listar_amigos_amigos(A,Y),Li),write(Li),nl,
-				corre(List).
-
-listar_amigos_amigos(X,Y):-ramo(X,Y,_,_).*/
 
 /*Lista os amigos dos amigos do user X*/
 listar_amigos_amigos(X):-
@@ -162,16 +85,6 @@ elimina(X,[X|T],T):-!.
 elimina(X,[H|T],[H|L]):-elimina(X,T,L).
 /*---*/
 
-
-/*listar_amigos2(X,L),p(L1).*/
-/*listar_amigos2(X,L):-listar_amigos2(X,[],L).
-listar_amigos2(X,L,[Y|L]):-ramo(X,Y,_,_),write(Y),nl.
-
-listar_am_am(X):-findall(_,listar_amigos_amigos(X),Lista),
-		nl,write(Lista),nl.
-
-*/
-
 listar_amigos_amigos_amigos(X):-
 			findall(L,listar_amigos(X,L),Lista),
 			corre(Lista,F),
@@ -198,6 +111,7 @@ listar_amigos_amigos_amigos_lista(X,F8):-
 			elimina(X,F7,F8).
 
 tamanho_rede_user_3(X,N):-
+	no(X,_,_,_),
 	listar_amigos_lista(X,L1),
 	listar_amigos_amigos_lista(X,L2),
 	uniao(L1,L2,L3),
@@ -216,10 +130,6 @@ uniao([X|L],L1,[X|L2]):- uniao(L,L1,L2).
 conta_elem([],0).
 conta_elem([_|T],N):-len(T,M),N is M+1.
 /*---*/
-
-
-
-
 
 /*cam_min(a,b,L) retorna o caminho minimo entre dois pontos*/
 caminhos(X,Y,P):-todos_caminhos(X,Y,[Y],P).
@@ -265,33 +175,6 @@ sugere(User1,Tag,User2):-no(User2,Tags,_,_),
 /*write('x-> '),write(X),write(' y-> '),write(Y),nl*/	
 
 	
-:-dynamic semantic_eq/2. 
-semantic_eq('c#',csharp). 
-semantic_eq(pimba,popular). 
-
-/*cria_figuras:-  assertz(semantic_eq(triângulo,3)), 
-asserta(semantic_eq(quadrado,4)), 
-assertz(semantic_eq(pentagono,5)).
-
-elimina_figuras:-  retract(semantic_eq(triângulo,3)), 
-retract(semantic_eq(quadrado,4)), 
-retract(semantic_eq(pentagono,5)).*/
-
-/*amigos_com_x_tags_iguais(User,X):-
-	listar_amigos_lista(User,L1),
-	no(User,Tags,_,_),
-	corre4(X,Tags,L1,Tags,L1).
-	
-
-corre4(X,[A|List],[Li|Final],ListC,FinalC):-
-	pesquisa_users(X,A,Li),
-	Final\==[]->(corre4(X,[A],Final,ListC,FinalC);
-		corre4(X,List,FinalC,ListC,FinalC)).
-
-pesquisa_users(X,Tag,User2):-no(User2,Tags,_,_),
-			member(Tag,Tags)->(write(User2),write('['),write(Tag),write('],'));write('').
-*/
-
 /*lista os amigos do User com N tags em comum*/
 amigos_com_x_tags_iguais(User,X):-
 	listar_amigos_lista(User,L1),
@@ -324,18 +207,6 @@ corre5(_,[]).
 corre5([A|L1],L2,[B|L3]):-
 	(member(A,L2)->B = A, write(B),nl;true),L1\==[]->corre5(L1,L2,L3);true.
 
-/*corre5([A|L1],L2,L3):-
-	(member(A,L2)->(add(A,L3,L4),L1\==[]->corre5(L1,L2,L4);true);L1\==[]->corre5(L1,L2,L3);true).
-*/	
-
-%add(X,L,L1).
-%adds element X to the beginning of the list L and returns L1
-
-add(X,L,[X|L]).
-
-
-
 copiar(L,R) :- accCp(L,R).
 accCp([],[]).
 accCp([H|T1],[H|T2]) :- accCp(T1,T2).
-

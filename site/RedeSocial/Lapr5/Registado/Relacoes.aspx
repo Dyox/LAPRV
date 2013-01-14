@@ -24,7 +24,11 @@
     <br />
     <asp:GridView ID="GridView1" SelectedRowStyle-BackColor="Red" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnRowCreated="RowCreated" >
         <Columns>
-            <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" meta:resourcekey="BoundFieldResource1" />
+             <asp:TemplateField HeaderText="Nome" SortExpression="Nome">
+                <ItemTemplate>
+                    <asp:HyperLink ID="Lknome1" runat="server" NavigateUrl='<%# "PerfilP.aspx?Nome=" + Eval("Nome").ToString()%>'  Text='<%# Bind("Nome") %>'>  </asp:HyperLink>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="Nick" HeaderText="Nick" SortExpression="Nick" meta:resourcekey="BoundFieldResource2" />
             <asp:ImageField DataImageUrlField="Avatar" meta:resourcekey="ImageFieldResource1">
             </asp:ImageField>
@@ -83,7 +87,7 @@
             <asp:ImageField DataImageUrlField="Avatar" meta:resourcekey="ImageFieldResource3"></asp:ImageField>
             <asp:TemplateField HeaderText="Nome" SortExpression="Nome">
                 <ItemTemplate>
-                    <asp:HyperLink ID="Label1" runat="server" NavigateUrl='<%# "PerfilP.aspx?Nome=" + Eval("Nome").ToString()%>'  Text='<%# Bind("Nome") %>'>  </asp:HyperLink>
+                    <asp:HyperLink ID="Lknome1" runat="server" NavigateUrl='<%# "PerfilP.aspx?Nome=" + Eval("Nome").ToString()%>'  Text='<%# Bind("Nome") %>'>  </asp:HyperLink>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:CommandField SelectText="Remover" ShowSelectButton="True"  />
@@ -103,9 +107,9 @@
     <asp:GridView ID="GridView4" SelectedRowStyle-BackColor="#009999" runat="server" AutoGenerateColumns="False" DataSourceID ="SqlDataSource4"  OnSelectedIndexChanged="GridView4_SelectedIndexChanged" >
         <Columns>
             <asp:ImageField DataImageUrlField="Avatar"></asp:ImageField>
-            <asp:TemplateField HeaderText="Nome" SortExpression="Nome">
+             <asp:TemplateField HeaderText="Nome" SortExpression="Nome">
                 <ItemTemplate>
-                    <asp:HyperLink ID="Label1" runat="server" NavigateUrl='<%# "PerfilP.aspx?Nome=" + Eval("Nome").ToString()%>'  Text='<%# Bind("Nome") %>'>  </asp:HyperLink>
+                    <asp:HyperLink ID="Lknome1" runat="server" NavigateUrl='<%# "PerfilP.aspx?Nome=" + Eval("Nome").ToString()%>'  Text='<%# Bind("Nome") %>'>  </asp:HyperLink>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:CommandField SelectText="Marcar" ShowSelectButton="True"  />

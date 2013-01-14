@@ -42,6 +42,7 @@ using System.Collections;
 
         [OperationContract]
         string sugereAmigos(int id);
-        [OperationContract]
-        string grafoAmigosComuns(int user1, int user2);
+
+        //[OperationContract]
+        //string grafoAmigosComuns(int user1, int user2);
     }

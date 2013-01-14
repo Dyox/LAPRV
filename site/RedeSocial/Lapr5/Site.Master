@@ -12,7 +12,14 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
-</head>
+    <style type="text/css">
+        .auto-style1
+        {
+            float: left;
+            width: 162px;
+        }
+    </style>
+    </head>
 <body>
     <form runat="server">
     <asp:ScriptManager runat="server">
@@ -38,12 +45,14 @@
         <div class="content-wrapper">
             <div class="float-left">
                 <p class="site-title">
-                    <a runat="server" href="~/"><a runat="server" href="~/About.aspx">
-                    <asp:ListBox ID="Language" runat="server">
+                    Royal Solution
+                <a runat="server" href="~/About.aspx">
+                    
+                    </a>
+                    <asp:DropDownList ID="Language" runat="server">
                         <asp:ListItem value="pt-PT" selected="True">Português</asp:ListItem>
                         <asp:ListItem value="en-US">English</asp:ListItem>
-                    </asp:ListBox>
-                    </a>your logo here</a>
+                    </asp:DropDownList>
                 </p>
             </div>
             <div class="float-right">
@@ -84,8 +93,8 @@
     </div>
     <footer>
         <div class="content-wrapper">
-            <div class="float-left">
-                <p>&copy; <%--Framework Scripts--%>- My ASP.NET Application</p>
+            <div class="auto-style1">
+                <p>&copy; <%--Framework Scripts--%>- Royal Solution</p>
             </div>
         </div>
     </footer>

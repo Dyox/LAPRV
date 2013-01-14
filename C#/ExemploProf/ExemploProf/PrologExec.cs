@@ -114,6 +114,10 @@ namespace ExemploProf
                     conteudo = resultadoFicheiro("grafoAmigosComuns");
                     metodo = "amigos_comuns(_target_,N)";
                     break;
+                case "maven":
+                    conteudo = resultadoFicheiro("Maven");
+                    metodo = "maven('_target_',E)";
+                    break;
             }
             string fim ="run:- tell('" + NomeFich + ".txt'),"+metodo+",told,halt."+ "\n" +
                                  ":-run. \n";

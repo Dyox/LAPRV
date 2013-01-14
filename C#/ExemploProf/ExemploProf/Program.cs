@@ -49,28 +49,28 @@ namespace ExemploProf
 
             //PrologExec p = new PrologExec("user", "caminhoMaisForte");
             //PrologExec p = new PrologExec("user", "menorCaminho");
-            PrologExec p = new PrologExec("user", "recomendaAmizade");
+            //PrologExec p = new PrologExec("user", "recomendaAmizade");
             //PrologExec p = new PrologExec("user", "xTagsEmComum");
             ///PrologExec p = new PrologExec("user", "tamanhoRedeUtilizador");
             //PrologExec p = new PrologExec("user", "grafoAmigosComuns");
-
+            PrologExec p = new PrologExec("user", "maven");
             //string res = p.executaComandoProlog("1,1,P");
             string res = p.executaComandoProlog("10");
             //string res = p.executaComandoProlog("1");
             //string res = p.executaComandoProlog("1,7");
             Console.WriteLine(res);
 
-            sugere_amigos(res);
+            //sugere_amigos(res);
 
             //xTagsEmComum(res);
            
             //int profileIDA, int profileIDB, int forca, string tag
             //% ramo(No1_ID,No2_ID,Tag,Força)
             //% no(NoID,PosX,PosY)
-            IList listaArcos = Rede.Relacao.LoadInfoForArcos();
+            //IList listaArcos = Rede.Relacao.LoadInfoForArcos();
             //Console.WriteLine(((Rede.Relacao)listaArcos[4]).toFile());
             //Console.WriteLine();
-            IList listaNos = Rede.Perfil.LoadInfoForNos();
+            //IList listaNos = Rede.Perfil.LoadInfoForNos();
             //Console.WriteLine(((Rede.Perfil)listaNos[0]).toFile());
             //Console.Read();
 

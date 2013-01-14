@@ -53,8 +53,20 @@ extern "C" {
 //     struct _GetTagsByUserIDResponse;
 //     struct _GetHumorByUserID;
 //     struct _GetHumorByUserIDResponse;
+//     struct _getMenorCaminho;
+//     struct _getMenorCaminhoResponse;
+//     struct _getCaminhoForte;
+//     struct _getCaminhoForteResponse;
 //     struct _DoWork;
 //     struct _DoWorkResponse;
+//     struct _validateLogin;
+//     struct _validateLoginResponse;
+//     struct _xTagsEmComum;
+//     struct _xTagsEmComumResponse;
+//     struct _tamanhoRedeUtilizador;
+//     struct _tamanhoRedeUtilizadorResponse;
+//     struct _sugereAmigos;
+//     struct _sugereAmigosResponse;
 
 // The following header files must be included in this order before this one
 
@@ -134,9 +146,85 @@ typedef struct _GetHumorByUserIDResponse
     WCHAR* GetHumorByUserIDResult; // optional
 } _GetHumorByUserIDResponse;
 
+// typeDescription: n/a
+typedef struct _getMenorCaminho 
+{
+    int no1;
+    int no2;
+} _getMenorCaminho;
+
+// typeDescription: n/a
+typedef struct _getMenorCaminhoResponse 
+{
+    WCHAR* getMenorCaminhoResult; // optional
+} _getMenorCaminhoResponse;
+
+// typeDescription: n/a
+typedef struct _getCaminhoForte 
+{
+    int no1;
+    int no2;
+} _getCaminhoForte;
+
+// typeDescription: n/a
+typedef struct _getCaminhoForteResponse 
+{
+    WCHAR* getCaminhoForteResult; // optional
+} _getCaminhoForteResponse;
+
 typedef struct _DoWork _DoWork;
 
 typedef struct _DoWorkResponse _DoWorkResponse;
+
+// typeDescription: n/a
+typedef struct _validateLogin 
+{
+    WCHAR* userName; // optional
+    WCHAR* password; // optional
+} _validateLogin;
+
+// typeDescription: n/a
+typedef struct _validateLoginResponse 
+{
+    int validateLoginResult;
+} _validateLoginResponse;
+
+// typeDescription: n/a
+typedef struct _xTagsEmComum 
+{
+    int id;
+    int n;
+} _xTagsEmComum;
+
+// typeDescription: n/a
+typedef struct _xTagsEmComumResponse 
+{
+    WCHAR* xTagsEmComumResult; // optional
+} _xTagsEmComumResponse;
+
+// typeDescription: n/a
+typedef struct _tamanhoRedeUtilizador 
+{
+    int id;
+} _tamanhoRedeUtilizador;
+
+// typeDescription: n/a
+typedef struct _tamanhoRedeUtilizadorResponse 
+{
+    int tamanhoRedeUtilizadorResult;
+} _tamanhoRedeUtilizadorResponse;
+
+// typeDescription: n/a
+typedef struct _sugereAmigos 
+{
+    int id;
+} _sugereAmigos;
+
+// typeDescription: n/a
+typedef struct _sugereAmigosResponse 
+{
+    WCHAR* sugereAmigosResult; // optional
+} _sugereAmigosResponse;
 
 ////////////////////////////////////////////////
 // Global web service descriptions.
@@ -206,6 +294,26 @@ typedef struct _tempuri_org_xsd
         // elementDescription: tempuri_org_xsd.globalElements.GetHumorByUserIDResponse
         WS_ELEMENT_DESCRIPTION GetHumorByUserIDResponse;
         
+        // xml element: getMenorCaminho ("http://tempuri.org/")
+        // c type: _getMenorCaminho
+        // elementDescription: tempuri_org_xsd.globalElements.getMenorCaminho
+        WS_ELEMENT_DESCRIPTION getMenorCaminho;
+        
+        // xml element: getMenorCaminhoResponse ("http://tempuri.org/")
+        // c type: _getMenorCaminhoResponse
+        // elementDescription: tempuri_org_xsd.globalElements.getMenorCaminhoResponse
+        WS_ELEMENT_DESCRIPTION getMenorCaminhoResponse;
+        
+        // xml element: getCaminhoForte ("http://tempuri.org/")
+        // c type: _getCaminhoForte
+        // elementDescription: tempuri_org_xsd.globalElements.getCaminhoForte
+        WS_ELEMENT_DESCRIPTION getCaminhoForte;
+        
+        // xml element: getCaminhoForteResponse ("http://tempuri.org/")
+        // c type: _getCaminhoForteResponse
+        // elementDescription: tempuri_org_xsd.globalElements.getCaminhoForteResponse
+        WS_ELEMENT_DESCRIPTION getCaminhoForteResponse;
+        
         // xml element: DoWork ("http://tempuri.org/")
         // c type: _DoWork
         // elementDescription: tempuri_org_xsd.globalElements.DoWork
@@ -215,6 +323,46 @@ typedef struct _tempuri_org_xsd
         // c type: _DoWorkResponse
         // elementDescription: tempuri_org_xsd.globalElements.DoWorkResponse
         WS_ELEMENT_DESCRIPTION DoWorkResponse;
+        
+        // xml element: validateLogin ("http://tempuri.org/")
+        // c type: _validateLogin
+        // elementDescription: tempuri_org_xsd.globalElements.validateLogin
+        WS_ELEMENT_DESCRIPTION validateLogin;
+        
+        // xml element: validateLoginResponse ("http://tempuri.org/")
+        // c type: _validateLoginResponse
+        // elementDescription: tempuri_org_xsd.globalElements.validateLoginResponse
+        WS_ELEMENT_DESCRIPTION validateLoginResponse;
+        
+        // xml element: xTagsEmComum ("http://tempuri.org/")
+        // c type: _xTagsEmComum
+        // elementDescription: tempuri_org_xsd.globalElements.xTagsEmComum
+        WS_ELEMENT_DESCRIPTION xTagsEmComum;
+        
+        // xml element: xTagsEmComumResponse ("http://tempuri.org/")
+        // c type: _xTagsEmComumResponse
+        // elementDescription: tempuri_org_xsd.globalElements.xTagsEmComumResponse
+        WS_ELEMENT_DESCRIPTION xTagsEmComumResponse;
+        
+        // xml element: tamanhoRedeUtilizador ("http://tempuri.org/")
+        // c type: _tamanhoRedeUtilizador
+        // elementDescription: tempuri_org_xsd.globalElements.tamanhoRedeUtilizador
+        WS_ELEMENT_DESCRIPTION tamanhoRedeUtilizador;
+        
+        // xml element: tamanhoRedeUtilizadorResponse ("http://tempuri.org/")
+        // c type: _tamanhoRedeUtilizadorResponse
+        // elementDescription: tempuri_org_xsd.globalElements.tamanhoRedeUtilizadorResponse
+        WS_ELEMENT_DESCRIPTION tamanhoRedeUtilizadorResponse;
+        
+        // xml element: sugereAmigos ("http://tempuri.org/")
+        // c type: _sugereAmigos
+        // elementDescription: tempuri_org_xsd.globalElements.sugereAmigos
+        WS_ELEMENT_DESCRIPTION sugereAmigos;
+        
+        // xml element: sugereAmigosResponse ("http://tempuri.org/")
+        // c type: _sugereAmigosResponse
+        // elementDescription: tempuri_org_xsd.globalElements.sugereAmigosResponse
+        WS_ELEMENT_DESCRIPTION sugereAmigosResponse;
         
     } globalElements;
     struct // externallyReferencedTypes
@@ -231,8 +379,20 @@ typedef struct _tempuri_org_xsd
         WS_STRUCT_DESCRIPTION GetTagsByUserIDResponse;
         WS_STRUCT_DESCRIPTION GetHumorByUserID;
         WS_STRUCT_DESCRIPTION GetHumorByUserIDResponse;
+        WS_STRUCT_DESCRIPTION getMenorCaminho;
+        WS_STRUCT_DESCRIPTION getMenorCaminhoResponse;
+        WS_STRUCT_DESCRIPTION getCaminhoForte;
+        WS_STRUCT_DESCRIPTION getCaminhoForteResponse;
         WS_STRUCT_DESCRIPTION DoWork;
         WS_STRUCT_DESCRIPTION DoWorkResponse;
+        WS_STRUCT_DESCRIPTION validateLogin;
+        WS_STRUCT_DESCRIPTION validateLoginResponse;
+        WS_STRUCT_DESCRIPTION xTagsEmComum;
+        WS_STRUCT_DESCRIPTION xTagsEmComumResponse;
+        WS_STRUCT_DESCRIPTION tamanhoRedeUtilizador;
+        WS_STRUCT_DESCRIPTION tamanhoRedeUtilizadorResponse;
+        WS_STRUCT_DESCRIPTION sugereAmigos;
+        WS_STRUCT_DESCRIPTION sugereAmigosResponse;
     } externallyReferencedTypes;
 } _tempuri_org_xsd;
 

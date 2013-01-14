@@ -8,3 +8,6 @@ void getAllXY(NoBD **&no);
 void GetAllArcoBD(ArcoBD **&arco);
 void GetUtilizadorByID(int uid,Utilizador *&utilizador);
 void GetTagsByUserID(int uid,unsigned int &numN,WCHAR **&tags);
+void getMenorCaminho(int uid1,int uid2,WCHAR *&nos);
+void getCaminhoForte(int uid1,int uid2,WCHAR *&nos);
+void validateLogin(WCHAR *&user,WCHAR *&pw,int &res);

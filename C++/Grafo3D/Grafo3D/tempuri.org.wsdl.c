@@ -22,8 +22,20 @@ typedef struct _tempuri_org_wsdlLocalDefinitions
         WS_MESSAGE_DESCRIPTION IService_GetTagsByUserID_OutputMessage;
         WS_MESSAGE_DESCRIPTION IService_GetHumorByUserID_InputMessage;
         WS_MESSAGE_DESCRIPTION IService_GetHumorByUserID_OutputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getMenorCaminho_InputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getMenorCaminho_OutputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getCaminhoForte_InputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getCaminhoForte_OutputMessage;
         WS_MESSAGE_DESCRIPTION IService_DoWork_InputMessage;
         WS_MESSAGE_DESCRIPTION IService_DoWork_OutputMessage;
+        WS_MESSAGE_DESCRIPTION IService_validateLogin_InputMessage;
+        WS_MESSAGE_DESCRIPTION IService_validateLogin_OutputMessage;
+        WS_MESSAGE_DESCRIPTION IService_xTagsEmComum_InputMessage;
+        WS_MESSAGE_DESCRIPTION IService_xTagsEmComum_OutputMessage;
+        WS_MESSAGE_DESCRIPTION IService_tamanhoRedeUtilizador_InputMessage;
+        WS_MESSAGE_DESCRIPTION IService_tamanhoRedeUtilizador_OutputMessage;
+        WS_MESSAGE_DESCRIPTION IService_sugereAmigos_InputMessage;
+        WS_MESSAGE_DESCRIPTION IService_sugereAmigos_OutputMessage;
     } messages; // end of messages
     struct // contracts
     {
@@ -59,11 +71,41 @@ typedef struct _tempuri_org_wsdlLocalDefinitions
                 WS_PARAMETER_DESCRIPTION params[2];
                 WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_GetHumorByUserID;
             } BasicHttpBinding_IService_GetHumorByUserID;
+            struct // BasicHttpBinding_IService_getMenorCaminho
+            {
+                WS_PARAMETER_DESCRIPTION params[3];
+                WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_getMenorCaminho;
+            } BasicHttpBinding_IService_getMenorCaminho;
+            struct // BasicHttpBinding_IService_getCaminhoForte
+            {
+                WS_PARAMETER_DESCRIPTION params[3];
+                WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_getCaminhoForte;
+            } BasicHttpBinding_IService_getCaminhoForte;
             struct // BasicHttpBinding_IService_DoWork
             {
                 WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_DoWork;
             } BasicHttpBinding_IService_DoWork;
-            WS_OPERATION_DESCRIPTION* operations[7];
+            struct // BasicHttpBinding_IService_validateLogin
+            {
+                WS_PARAMETER_DESCRIPTION params[3];
+                WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_validateLogin;
+            } BasicHttpBinding_IService_validateLogin;
+            struct // BasicHttpBinding_IService_xTagsEmComum
+            {
+                WS_PARAMETER_DESCRIPTION params[3];
+                WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_xTagsEmComum;
+            } BasicHttpBinding_IService_xTagsEmComum;
+            struct // BasicHttpBinding_IService_tamanhoRedeUtilizador
+            {
+                WS_PARAMETER_DESCRIPTION params[2];
+                WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_tamanhoRedeUtilizador;
+            } BasicHttpBinding_IService_tamanhoRedeUtilizador;
+            struct // BasicHttpBinding_IService_sugereAmigos
+            {
+                WS_PARAMETER_DESCRIPTION params[2];
+                WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_sugereAmigos;
+            } BasicHttpBinding_IService_sugereAmigos;
+            WS_OPERATION_DESCRIPTION* operations[13];
             WS_CONTRACT_DESCRIPTION contractDesc;
         } BasicHttpBinding_IService;
     } contracts;  // endof contracts 
@@ -93,8 +135,20 @@ typedef struct _tempuri_org_wsdlLocalDefinitions
             WS_XML_STRING IService_GetTagsByUserID_OutputMessageactionName;  // http://tempuri.org/IService/GetTagsByUserIDResponse
             WS_XML_STRING IService_GetHumorByUserID_InputMessageactionName;  // http://tempuri.org/IService/GetHumorByUserID
             WS_XML_STRING IService_GetHumorByUserID_OutputMessageactionName;  // http://tempuri.org/IService/GetHumorByUserIDResponse
+            WS_XML_STRING IService_getMenorCaminho_InputMessageactionName;  // http://tempuri.org/IService/getMenorCaminho
+            WS_XML_STRING IService_getMenorCaminho_OutputMessageactionName;  // http://tempuri.org/IService/getMenorCaminhoResponse
+            WS_XML_STRING IService_getCaminhoForte_InputMessageactionName;  // http://tempuri.org/IService/getCaminhoForte
+            WS_XML_STRING IService_getCaminhoForte_OutputMessageactionName;  // http://tempuri.org/IService/getCaminhoForteResponse
             WS_XML_STRING IService_DoWork_InputMessageactionName;  // http://tempuri.org/IService/DoWork
             WS_XML_STRING IService_DoWork_OutputMessageactionName;  // http://tempuri.org/IService/DoWorkResponse
+            WS_XML_STRING IService_validateLogin_InputMessageactionName;  // http://tempuri.org/IService/validateLogin
+            WS_XML_STRING IService_validateLogin_OutputMessageactionName;  // http://tempuri.org/IService/validateLoginResponse
+            WS_XML_STRING IService_xTagsEmComum_InputMessageactionName;  // http://tempuri.org/IService/xTagsEmComum
+            WS_XML_STRING IService_xTagsEmComum_OutputMessageactionName;  // http://tempuri.org/IService/xTagsEmComumResponse
+            WS_XML_STRING IService_tamanhoRedeUtilizador_InputMessageactionName;  // http://tempuri.org/IService/tamanhoRedeUtilizador
+            WS_XML_STRING IService_tamanhoRedeUtilizador_OutputMessageactionName;  // http://tempuri.org/IService/tamanhoRedeUtilizadorResponse
+            WS_XML_STRING IService_sugereAmigos_InputMessageactionName;  // http://tempuri.org/IService/sugereAmigos
+            WS_XML_STRING IService_sugereAmigos_OutputMessageactionName;  // http://tempuri.org/IService/sugereAmigosResponse
         } xmlStrings; // end of XML string list
         WS_XML_DICTIONARY dict;  
     } dictionary;  // end of XML dictionary
@@ -291,6 +345,72 @@ HRESULT CALLBACK BasicHttpBinding_IService_GetHumorByUserIDOperationStub(
 #pragma warning(pop)
 #endif
 
+typedef struct BasicHttpBinding_IService_getMenorCaminhoParamStruct 
+{
+    int* no1;
+    int* no2;
+    WCHAR** getMenorCaminhoResult;
+} BasicHttpBinding_IService_getMenorCaminhoParamStruct;
+
+#if (_MSC_VER >=1400) 
+#pragma warning(push)
+#endif
+#pragma warning(disable: 4055) // conversion from data pointer to function pointer
+HRESULT CALLBACK BasicHttpBinding_IService_getMenorCaminhoOperationStub(
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in void* _stackStruct,
+    __in const void* _callback,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    BasicHttpBinding_IService_getMenorCaminhoCallback _operation = (BasicHttpBinding_IService_getMenorCaminhoCallback)_callback;
+    BasicHttpBinding_IService_getMenorCaminhoParamStruct *_stack =(BasicHttpBinding_IService_getMenorCaminhoParamStruct*)_stackStruct;
+    return _operation( 
+        _context,
+        *(_stack->no1),
+        *(_stack->no2),
+        (_stack->getMenorCaminhoResult),
+        (WS_ASYNC_CONTEXT*)_asyncContext,
+        _error);
+}
+#pragma warning(default: 4055)  // conversion from data pointer to function pointer
+#if (_MSC_VER >=1400) 
+#pragma warning(pop)
+#endif
+
+typedef struct BasicHttpBinding_IService_getCaminhoForteParamStruct 
+{
+    int* no1;
+    int* no2;
+    WCHAR** getCaminhoForteResult;
+} BasicHttpBinding_IService_getCaminhoForteParamStruct;
+
+#if (_MSC_VER >=1400) 
+#pragma warning(push)
+#endif
+#pragma warning(disable: 4055) // conversion from data pointer to function pointer
+HRESULT CALLBACK BasicHttpBinding_IService_getCaminhoForteOperationStub(
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in void* _stackStruct,
+    __in const void* _callback,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    BasicHttpBinding_IService_getCaminhoForteCallback _operation = (BasicHttpBinding_IService_getCaminhoForteCallback)_callback;
+    BasicHttpBinding_IService_getCaminhoForteParamStruct *_stack =(BasicHttpBinding_IService_getCaminhoForteParamStruct*)_stackStruct;
+    return _operation( 
+        _context,
+        *(_stack->no1),
+        *(_stack->no2),
+        (_stack->getCaminhoForteResult),
+        (WS_ASYNC_CONTEXT*)_asyncContext,
+        _error);
+}
+#pragma warning(default: 4055)  // conversion from data pointer to function pointer
+#if (_MSC_VER >=1400) 
+#pragma warning(pop)
+#endif
+
 #if (_MSC_VER >=1400) 
 #pragma warning(push)
 #endif
@@ -306,6 +426,134 @@ HRESULT CALLBACK BasicHttpBinding_IService_DoWorkOperationStub(
     _stackStruct;
     return _operation( 
         _context,
+        (WS_ASYNC_CONTEXT*)_asyncContext,
+        _error);
+}
+#pragma warning(default: 4055)  // conversion from data pointer to function pointer
+#if (_MSC_VER >=1400) 
+#pragma warning(pop)
+#endif
+
+typedef struct BasicHttpBinding_IService_validateLoginParamStruct 
+{
+    WCHAR** userName;
+    WCHAR** password;
+    int* validateLoginResult;
+} BasicHttpBinding_IService_validateLoginParamStruct;
+
+#if (_MSC_VER >=1400) 
+#pragma warning(push)
+#endif
+#pragma warning(disable: 4055) // conversion from data pointer to function pointer
+HRESULT CALLBACK BasicHttpBinding_IService_validateLoginOperationStub(
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in void* _stackStruct,
+    __in const void* _callback,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    BasicHttpBinding_IService_validateLoginCallback _operation = (BasicHttpBinding_IService_validateLoginCallback)_callback;
+    BasicHttpBinding_IService_validateLoginParamStruct *_stack =(BasicHttpBinding_IService_validateLoginParamStruct*)_stackStruct;
+    return _operation( 
+        _context,
+        *(_stack->userName),
+        *(_stack->password),
+        (_stack->validateLoginResult),
+        (WS_ASYNC_CONTEXT*)_asyncContext,
+        _error);
+}
+#pragma warning(default: 4055)  // conversion from data pointer to function pointer
+#if (_MSC_VER >=1400) 
+#pragma warning(pop)
+#endif
+
+typedef struct BasicHttpBinding_IService_xTagsEmComumParamStruct 
+{
+    int* id;
+    int* n;
+    WCHAR** xTagsEmComumResult;
+} BasicHttpBinding_IService_xTagsEmComumParamStruct;
+
+#if (_MSC_VER >=1400) 
+#pragma warning(push)
+#endif
+#pragma warning(disable: 4055) // conversion from data pointer to function pointer
+HRESULT CALLBACK BasicHttpBinding_IService_xTagsEmComumOperationStub(
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in void* _stackStruct,
+    __in const void* _callback,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    BasicHttpBinding_IService_xTagsEmComumCallback _operation = (BasicHttpBinding_IService_xTagsEmComumCallback)_callback;
+    BasicHttpBinding_IService_xTagsEmComumParamStruct *_stack =(BasicHttpBinding_IService_xTagsEmComumParamStruct*)_stackStruct;
+    return _operation( 
+        _context,
+        *(_stack->id),
+        *(_stack->n),
+        (_stack->xTagsEmComumResult),
+        (WS_ASYNC_CONTEXT*)_asyncContext,
+        _error);
+}
+#pragma warning(default: 4055)  // conversion from data pointer to function pointer
+#if (_MSC_VER >=1400) 
+#pragma warning(pop)
+#endif
+
+typedef struct BasicHttpBinding_IService_tamanhoRedeUtilizadorParamStruct 
+{
+    int* id;
+    int* tamanhoRedeUtilizadorResult;
+} BasicHttpBinding_IService_tamanhoRedeUtilizadorParamStruct;
+
+#if (_MSC_VER >=1400) 
+#pragma warning(push)
+#endif
+#pragma warning(disable: 4055) // conversion from data pointer to function pointer
+HRESULT CALLBACK BasicHttpBinding_IService_tamanhoRedeUtilizadorOperationStub(
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in void* _stackStruct,
+    __in const void* _callback,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    BasicHttpBinding_IService_tamanhoRedeUtilizadorCallback _operation = (BasicHttpBinding_IService_tamanhoRedeUtilizadorCallback)_callback;
+    BasicHttpBinding_IService_tamanhoRedeUtilizadorParamStruct *_stack =(BasicHttpBinding_IService_tamanhoRedeUtilizadorParamStruct*)_stackStruct;
+    return _operation( 
+        _context,
+        *(_stack->id),
+        (_stack->tamanhoRedeUtilizadorResult),
+        (WS_ASYNC_CONTEXT*)_asyncContext,
+        _error);
+}
+#pragma warning(default: 4055)  // conversion from data pointer to function pointer
+#if (_MSC_VER >=1400) 
+#pragma warning(pop)
+#endif
+
+typedef struct BasicHttpBinding_IService_sugereAmigosParamStruct 
+{
+    int* id;
+    WCHAR** sugereAmigosResult;
+} BasicHttpBinding_IService_sugereAmigosParamStruct;
+
+#if (_MSC_VER >=1400) 
+#pragma warning(push)
+#endif
+#pragma warning(disable: 4055) // conversion from data pointer to function pointer
+HRESULT CALLBACK BasicHttpBinding_IService_sugereAmigosOperationStub(
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in void* _stackStruct,
+    __in const void* _callback,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    BasicHttpBinding_IService_sugereAmigosCallback _operation = (BasicHttpBinding_IService_sugereAmigosCallback)_callback;
+    BasicHttpBinding_IService_sugereAmigosParamStruct *_stack =(BasicHttpBinding_IService_sugereAmigosParamStruct*)_stackStruct;
+    return _operation( 
+        _context,
+        *(_stack->id),
+        (_stack->sugereAmigosResult),
         (WS_ASYNC_CONTEXT*)_asyncContext,
         _error);
 }
@@ -364,6 +612,22 @@ const static _tempuri_org_wsdlLocalDefinitions tempuri_org_wsdlLocalDefinitions 
             (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_GetHumorByUserID_OutputMessageactionName, // http://tempuri.org/IService/GetHumorByUserIDResponse
             (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.GetHumorByUserIDResponse, 
         },    // message description for IService_GetHumorByUserID_OutputMessage
+        {    // message description for IService_getMenorCaminho_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getMenorCaminho_InputMessageactionName, // http://tempuri.org/IService/getMenorCaminho
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getMenorCaminho, 
+        },    // message description for IService_getMenorCaminho_InputMessage
+        {    // message description for IService_getMenorCaminho_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getMenorCaminho_OutputMessageactionName, // http://tempuri.org/IService/getMenorCaminhoResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getMenorCaminhoResponse, 
+        },    // message description for IService_getMenorCaminho_OutputMessage
+        {    // message description for IService_getCaminhoForte_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getCaminhoForte_InputMessageactionName, // http://tempuri.org/IService/getCaminhoForte
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getCaminhoForte, 
+        },    // message description for IService_getCaminhoForte_InputMessage
+        {    // message description for IService_getCaminhoForte_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getCaminhoForte_OutputMessageactionName, // http://tempuri.org/IService/getCaminhoForteResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getCaminhoForteResponse, 
+        },    // message description for IService_getCaminhoForte_OutputMessage
         {    // message description for IService_DoWork_InputMessage
             (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_DoWork_InputMessageactionName, // http://tempuri.org/IService/DoWork
             (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.DoWork, 
@@ -372,6 +636,38 @@ const static _tempuri_org_wsdlLocalDefinitions tempuri_org_wsdlLocalDefinitions 
             (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_DoWork_OutputMessageactionName, // http://tempuri.org/IService/DoWorkResponse
             (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.DoWorkResponse, 
         },    // message description for IService_DoWork_OutputMessage
+        {    // message description for IService_validateLogin_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_validateLogin_InputMessageactionName, // http://tempuri.org/IService/validateLogin
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.validateLogin, 
+        },    // message description for IService_validateLogin_InputMessage
+        {    // message description for IService_validateLogin_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_validateLogin_OutputMessageactionName, // http://tempuri.org/IService/validateLoginResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.validateLoginResponse, 
+        },    // message description for IService_validateLogin_OutputMessage
+        {    // message description for IService_xTagsEmComum_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_xTagsEmComum_InputMessageactionName, // http://tempuri.org/IService/xTagsEmComum
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.xTagsEmComum, 
+        },    // message description for IService_xTagsEmComum_InputMessage
+        {    // message description for IService_xTagsEmComum_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_xTagsEmComum_OutputMessageactionName, // http://tempuri.org/IService/xTagsEmComumResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.xTagsEmComumResponse, 
+        },    // message description for IService_xTagsEmComum_OutputMessage
+        {    // message description for IService_tamanhoRedeUtilizador_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_tamanhoRedeUtilizador_InputMessageactionName, // http://tempuri.org/IService/tamanhoRedeUtilizador
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.tamanhoRedeUtilizador, 
+        },    // message description for IService_tamanhoRedeUtilizador_InputMessage
+        {    // message description for IService_tamanhoRedeUtilizador_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_tamanhoRedeUtilizador_OutputMessageactionName, // http://tempuri.org/IService/tamanhoRedeUtilizadorResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.tamanhoRedeUtilizadorResponse, 
+        },    // message description for IService_tamanhoRedeUtilizador_OutputMessage
+        {    // message description for IService_sugereAmigos_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_sugereAmigos_InputMessageactionName, // http://tempuri.org/IService/sugereAmigos
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.sugereAmigos, 
+        },    // message description for IService_sugereAmigos_InputMessage
+        {    // message description for IService_sugereAmigos_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_sugereAmigos_OutputMessageactionName, // http://tempuri.org/IService/sugereAmigosResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.sugereAmigosResponse, 
+        },    // message description for IService_sugereAmigos_OutputMessage
     }, // end of messages 
     { // contracts
         {    // BasicHttpBinding_IService,
@@ -479,6 +775,42 @@ const static _tempuri_org_wsdlLocalDefinitions tempuri_org_wsdlLocalDefinitions 
                     WS_NON_RPC_LITERAL_OPERATION
                 }, //operation description for BasicHttpBinding_IService_GetHumorByUserID
             },  // BasicHttpBinding_IService_GetHumorByUserID
+            { // BasicHttpBinding_IService_getMenorCaminho
+                { // parameter descriptions for BasicHttpBinding_IService_getMenorCaminho
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)0, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)1, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)-1, (USHORT)0 },
+                },    // parameter descriptions for BasicHttpBinding_IService_getMenorCaminho
+                {    // operation description for BasicHttpBinding_IService_getMenorCaminho
+                    1,
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getMenorCaminho_InputMessage, 
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getMenorCaminho_OutputMessage, 
+                    0,
+                    0,
+                    3,
+                    (WS_PARAMETER_DESCRIPTION*)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getMenorCaminho.params,
+                    BasicHttpBinding_IService_getMenorCaminhoOperationStub,
+                    WS_NON_RPC_LITERAL_OPERATION
+                }, //operation description for BasicHttpBinding_IService_getMenorCaminho
+            },  // BasicHttpBinding_IService_getMenorCaminho
+            { // BasicHttpBinding_IService_getCaminhoForte
+                { // parameter descriptions for BasicHttpBinding_IService_getCaminhoForte
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)0, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)1, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)-1, (USHORT)0 },
+                },    // parameter descriptions for BasicHttpBinding_IService_getCaminhoForte
+                {    // operation description for BasicHttpBinding_IService_getCaminhoForte
+                    1,
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getCaminhoForte_InputMessage, 
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getCaminhoForte_OutputMessage, 
+                    0,
+                    0,
+                    3,
+                    (WS_PARAMETER_DESCRIPTION*)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getCaminhoForte.params,
+                    BasicHttpBinding_IService_getCaminhoForteOperationStub,
+                    WS_NON_RPC_LITERAL_OPERATION
+                }, //operation description for BasicHttpBinding_IService_getCaminhoForte
+            },  // BasicHttpBinding_IService_getCaminhoForte
             { // BasicHttpBinding_IService_DoWork
                 {    // operation description for BasicHttpBinding_IService_DoWork
                     1,
@@ -492,6 +824,76 @@ const static _tempuri_org_wsdlLocalDefinitions tempuri_org_wsdlLocalDefinitions 
                     WS_NON_RPC_LITERAL_OPERATION
                 }, //operation description for BasicHttpBinding_IService_DoWork
             },  // BasicHttpBinding_IService_DoWork
+            { // BasicHttpBinding_IService_validateLogin
+                { // parameter descriptions for BasicHttpBinding_IService_validateLogin
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)0, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)1, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)-1, (USHORT)0 },
+                },    // parameter descriptions for BasicHttpBinding_IService_validateLogin
+                {    // operation description for BasicHttpBinding_IService_validateLogin
+                    1,
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_validateLogin_InputMessage, 
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_validateLogin_OutputMessage, 
+                    0,
+                    0,
+                    3,
+                    (WS_PARAMETER_DESCRIPTION*)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_validateLogin.params,
+                    BasicHttpBinding_IService_validateLoginOperationStub,
+                    WS_NON_RPC_LITERAL_OPERATION
+                }, //operation description for BasicHttpBinding_IService_validateLogin
+            },  // BasicHttpBinding_IService_validateLogin
+            { // BasicHttpBinding_IService_xTagsEmComum
+                { // parameter descriptions for BasicHttpBinding_IService_xTagsEmComum
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)0, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)1, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)-1, (USHORT)0 },
+                },    // parameter descriptions for BasicHttpBinding_IService_xTagsEmComum
+                {    // operation description for BasicHttpBinding_IService_xTagsEmComum
+                    1,
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_xTagsEmComum_InputMessage, 
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_xTagsEmComum_OutputMessage, 
+                    0,
+                    0,
+                    3,
+                    (WS_PARAMETER_DESCRIPTION*)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_xTagsEmComum.params,
+                    BasicHttpBinding_IService_xTagsEmComumOperationStub,
+                    WS_NON_RPC_LITERAL_OPERATION
+                }, //operation description for BasicHttpBinding_IService_xTagsEmComum
+            },  // BasicHttpBinding_IService_xTagsEmComum
+            { // BasicHttpBinding_IService_tamanhoRedeUtilizador
+                { // parameter descriptions for BasicHttpBinding_IService_tamanhoRedeUtilizador
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)0, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)-1, (USHORT)0 },
+                },    // parameter descriptions for BasicHttpBinding_IService_tamanhoRedeUtilizador
+                {    // operation description for BasicHttpBinding_IService_tamanhoRedeUtilizador
+                    1,
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_tamanhoRedeUtilizador_InputMessage, 
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_tamanhoRedeUtilizador_OutputMessage, 
+                    0,
+                    0,
+                    2,
+                    (WS_PARAMETER_DESCRIPTION*)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_tamanhoRedeUtilizador.params,
+                    BasicHttpBinding_IService_tamanhoRedeUtilizadorOperationStub,
+                    WS_NON_RPC_LITERAL_OPERATION
+                }, //operation description for BasicHttpBinding_IService_tamanhoRedeUtilizador
+            },  // BasicHttpBinding_IService_tamanhoRedeUtilizador
+            { // BasicHttpBinding_IService_sugereAmigos
+                { // parameter descriptions for BasicHttpBinding_IService_sugereAmigos
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)0, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)-1, (USHORT)0 },
+                },    // parameter descriptions for BasicHttpBinding_IService_sugereAmigos
+                {    // operation description for BasicHttpBinding_IService_sugereAmigos
+                    1,
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_sugereAmigos_InputMessage, 
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_sugereAmigos_OutputMessage, 
+                    0,
+                    0,
+                    2,
+                    (WS_PARAMETER_DESCRIPTION*)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_sugereAmigos.params,
+                    BasicHttpBinding_IService_sugereAmigosOperationStub,
+                    WS_NON_RPC_LITERAL_OPERATION
+                }, //operation description for BasicHttpBinding_IService_sugereAmigos
+            },  // BasicHttpBinding_IService_sugereAmigos
             {    // array of operations for BasicHttpBinding_IService
                 (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_Add.BasicHttpBinding_IService_Add,
                 (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_GetAllXY.BasicHttpBinding_IService_GetAllXY,
@@ -499,10 +901,16 @@ const static _tempuri_org_wsdlLocalDefinitions tempuri_org_wsdlLocalDefinitions 
                 (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_GetUtilizadorByID.BasicHttpBinding_IService_GetUtilizadorByID,
                 (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_GetTagsByUserID.BasicHttpBinding_IService_GetTagsByUserID,
                 (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_GetHumorByUserID.BasicHttpBinding_IService_GetHumorByUserID,
+                (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getMenorCaminho.BasicHttpBinding_IService_getMenorCaminho,
+                (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getCaminhoForte.BasicHttpBinding_IService_getCaminhoForte,
                 (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_DoWork.BasicHttpBinding_IService_DoWork,
+                (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_validateLogin.BasicHttpBinding_IService_validateLogin,
+                (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_xTagsEmComum.BasicHttpBinding_IService_xTagsEmComum,
+                (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_tamanhoRedeUtilizador.BasicHttpBinding_IService_tamanhoRedeUtilizador,
+                (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_sugereAmigos.BasicHttpBinding_IService_sugereAmigos,
             },    // array of operations for BasicHttpBinding_IService
             {    // contract description for BasicHttpBinding_IService
-            7,
+            13,
             (WS_OPERATION_DESCRIPTION**)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.operations,
             },  // end of contract description for BasicHttpBinding_IService
         },    // BasicHttpBinding_IService
@@ -545,15 +953,27 @@ const static _tempuri_org_wsdlLocalDefinitions tempuri_org_wsdlLocalDefinitions 
             WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/GetTagsByUserIDResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 9),
             WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/GetHumorByUserID",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 10),
             WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/GetHumorByUserIDResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 11),
-            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/DoWork",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 12),
-            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/DoWorkResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 13),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getMenorCaminho",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 12),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getMenorCaminhoResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 13),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getCaminhoForte",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 14),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getCaminhoForteResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 15),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/DoWork",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 16),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/DoWorkResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 17),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/validateLogin",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 18),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/validateLoginResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 19),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/xTagsEmComum",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 20),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/xTagsEmComumResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 21),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/tamanhoRedeUtilizador",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 22),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/tamanhoRedeUtilizadorResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 23),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/sugereAmigos",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 24),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/sugereAmigosResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 25),
         },  // end of xmlStrings
         
         {   // tempuri_org_wsdldictionary
-        // 2a776461-8cfb-4d64-ae9f-ce89b1a39f5e 
-        { 0x2a776461, 0x8cfb, 0x4d64, { 0xae, 0x9f, 0xce,0x89, 0xb1, 0xa3, 0x9f, 0x5e } },
+        // 22464dd7-63c5-484a-82dd-e65512e89e1c 
+        { 0x22464dd7, 0x63c5, 0x484a, { 0x82, 0xdd, 0xe6,0x55, 0x12, 0xe8, 0x9e, 0x1c } },
         (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings,
-        14,
+        26,
         TRUE,
         },
     },   //  end of dictionary
@@ -708,6 +1128,58 @@ HRESULT WINAPI BasicHttpBinding_IService_GetHumorByUserID(
         _error);
 }
 
+// operation: BasicHttpBinding_IService_getMenorCaminho
+HRESULT WINAPI BasicHttpBinding_IService_getMenorCaminho(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int no1, 
+    __in int no2, 
+    __out_opt __deref __nullterminated WCHAR** getMenorCaminhoResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    void* _argList[3]; 
+    _argList[0] = &no1;
+    _argList[1] = &no2;
+    _argList[2] = &getMenorCaminhoResult;
+    return WsCall(_serviceProxy,
+        (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getMenorCaminho.BasicHttpBinding_IService_getMenorCaminho,
+        (const void **)&_argList,
+        _heap,
+        _callProperties,
+        _callPropertyCount,
+        _asyncContext,
+        _error);
+}
+
+// operation: BasicHttpBinding_IService_getCaminhoForte
+HRESULT WINAPI BasicHttpBinding_IService_getCaminhoForte(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int no1, 
+    __in int no2, 
+    __out_opt __deref __nullterminated WCHAR** getCaminhoForteResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    void* _argList[3]; 
+    _argList[0] = &no1;
+    _argList[1] = &no2;
+    _argList[2] = &getCaminhoForteResult;
+    return WsCall(_serviceProxy,
+        (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getCaminhoForte.BasicHttpBinding_IService_getCaminhoForte,
+        (const void **)&_argList,
+        _heap,
+        _callProperties,
+        _callPropertyCount,
+        _asyncContext,
+        _error);
+}
+
 // operation: BasicHttpBinding_IService_DoWork
 HRESULT WINAPI BasicHttpBinding_IService_DoWork(
     __in WS_SERVICE_PROXY* _serviceProxy,
@@ -720,6 +1192,106 @@ HRESULT WINAPI BasicHttpBinding_IService_DoWork(
     return WsCall(_serviceProxy,
         (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_DoWork.BasicHttpBinding_IService_DoWork,
         0,
+        _heap,
+        _callProperties,
+        _callPropertyCount,
+        _asyncContext,
+        _error);
+}
+
+// operation: BasicHttpBinding_IService_validateLogin
+HRESULT WINAPI BasicHttpBinding_IService_validateLogin(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in_opt __nullterminated WCHAR* userName, 
+    __in_opt __nullterminated WCHAR* password, 
+    __out int* validateLoginResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    void* _argList[3]; 
+    _argList[0] = &userName;
+    _argList[1] = &password;
+    _argList[2] = &validateLoginResult;
+    return WsCall(_serviceProxy,
+        (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_validateLogin.BasicHttpBinding_IService_validateLogin,
+        (const void **)&_argList,
+        _heap,
+        _callProperties,
+        _callPropertyCount,
+        _asyncContext,
+        _error);
+}
+
+// operation: BasicHttpBinding_IService_xTagsEmComum
+HRESULT WINAPI BasicHttpBinding_IService_xTagsEmComum(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int id, 
+    __in int n, 
+    __out_opt __deref __nullterminated WCHAR** xTagsEmComumResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    void* _argList[3]; 
+    _argList[0] = &id;
+    _argList[1] = &n;
+    _argList[2] = &xTagsEmComumResult;
+    return WsCall(_serviceProxy,
+        (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_xTagsEmComum.BasicHttpBinding_IService_xTagsEmComum,
+        (const void **)&_argList,
+        _heap,
+        _callProperties,
+        _callPropertyCount,
+        _asyncContext,
+        _error);
+}
+
+// operation: BasicHttpBinding_IService_tamanhoRedeUtilizador
+HRESULT WINAPI BasicHttpBinding_IService_tamanhoRedeUtilizador(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int id, 
+    __out int* tamanhoRedeUtilizadorResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    void* _argList[2]; 
+    _argList[0] = &id;
+    _argList[1] = &tamanhoRedeUtilizadorResult;
+    return WsCall(_serviceProxy,
+        (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_tamanhoRedeUtilizador.BasicHttpBinding_IService_tamanhoRedeUtilizador,
+        (const void **)&_argList,
+        _heap,
+        _callProperties,
+        _callPropertyCount,
+        _asyncContext,
+        _error);
+}
+
+// operation: BasicHttpBinding_IService_sugereAmigos
+HRESULT WINAPI BasicHttpBinding_IService_sugereAmigos(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int id, 
+    __out_opt __deref __nullterminated WCHAR** sugereAmigosResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    void* _argList[2]; 
+    _argList[0] = &id;
+    _argList[1] = &sugereAmigosResult;
+    return WsCall(_serviceProxy,
+        (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_sugereAmigos.BasicHttpBinding_IService_sugereAmigos,
+        (const void **)&_argList,
         _heap,
         _callProperties,
         _callPropertyCount,
@@ -777,6 +1349,22 @@ const _tempuri_org_wsdl tempuri_org_wsdl =
             (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_GetHumorByUserID_OutputMessageactionName, // http://tempuri.org/IService/GetHumorByUserIDResponse
             (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.GetHumorByUserIDResponse, 
         },    // message description for IService_GetHumorByUserID_OutputMessage
+        {    // message description for IService_getMenorCaminho_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getMenorCaminho_InputMessageactionName, // http://tempuri.org/IService/getMenorCaminho
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getMenorCaminho, 
+        },    // message description for IService_getMenorCaminho_InputMessage
+        {    // message description for IService_getMenorCaminho_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getMenorCaminho_OutputMessageactionName, // http://tempuri.org/IService/getMenorCaminhoResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getMenorCaminhoResponse, 
+        },    // message description for IService_getMenorCaminho_OutputMessage
+        {    // message description for IService_getCaminhoForte_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getCaminhoForte_InputMessageactionName, // http://tempuri.org/IService/getCaminhoForte
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getCaminhoForte, 
+        },    // message description for IService_getCaminhoForte_InputMessage
+        {    // message description for IService_getCaminhoForte_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getCaminhoForte_OutputMessageactionName, // http://tempuri.org/IService/getCaminhoForteResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getCaminhoForteResponse, 
+        },    // message description for IService_getCaminhoForte_OutputMessage
         {    // message description for IService_DoWork_InputMessage
             (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_DoWork_InputMessageactionName, // http://tempuri.org/IService/DoWork
             (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.DoWork, 
@@ -785,10 +1373,42 @@ const _tempuri_org_wsdl tempuri_org_wsdl =
             (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_DoWork_OutputMessageactionName, // http://tempuri.org/IService/DoWorkResponse
             (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.DoWorkResponse, 
         },    // message description for IService_DoWork_OutputMessage
+        {    // message description for IService_validateLogin_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_validateLogin_InputMessageactionName, // http://tempuri.org/IService/validateLogin
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.validateLogin, 
+        },    // message description for IService_validateLogin_InputMessage
+        {    // message description for IService_validateLogin_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_validateLogin_OutputMessageactionName, // http://tempuri.org/IService/validateLoginResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.validateLoginResponse, 
+        },    // message description for IService_validateLogin_OutputMessage
+        {    // message description for IService_xTagsEmComum_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_xTagsEmComum_InputMessageactionName, // http://tempuri.org/IService/xTagsEmComum
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.xTagsEmComum, 
+        },    // message description for IService_xTagsEmComum_InputMessage
+        {    // message description for IService_xTagsEmComum_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_xTagsEmComum_OutputMessageactionName, // http://tempuri.org/IService/xTagsEmComumResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.xTagsEmComumResponse, 
+        },    // message description for IService_xTagsEmComum_OutputMessage
+        {    // message description for IService_tamanhoRedeUtilizador_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_tamanhoRedeUtilizador_InputMessageactionName, // http://tempuri.org/IService/tamanhoRedeUtilizador
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.tamanhoRedeUtilizador, 
+        },    // message description for IService_tamanhoRedeUtilizador_InputMessage
+        {    // message description for IService_tamanhoRedeUtilizador_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_tamanhoRedeUtilizador_OutputMessageactionName, // http://tempuri.org/IService/tamanhoRedeUtilizadorResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.tamanhoRedeUtilizadorResponse, 
+        },    // message description for IService_tamanhoRedeUtilizador_OutputMessage
+        {    // message description for IService_sugereAmigos_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_sugereAmigos_InputMessageactionName, // http://tempuri.org/IService/sugereAmigos
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.sugereAmigos, 
+        },    // message description for IService_sugereAmigos_InputMessage
+        {    // message description for IService_sugereAmigos_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_sugereAmigos_OutputMessageactionName, // http://tempuri.org/IService/sugereAmigosResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.sugereAmigosResponse, 
+        },    // message description for IService_sugereAmigos_OutputMessage
     }, // messages
     {// contracts
         {   // BasicHttpBinding_IService
-            7,
+            13,
             (WS_OPERATION_DESCRIPTION**)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.operations,
         },    // end of BasicHttpBinding_IService
     }, // contracts

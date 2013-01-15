@@ -32,12 +32,13 @@ namespace Rede
         }
         public Perfil(string uid, string nm)
         {
-           
-            this._userID= uid;
-            
+
+            this._userID = uid;
+
             this._name = nm;
             this._nick = "";
-            this._datanasc = DateTime.Today.Date;
+            string date = "01/08/1900";
+            this._datanasc = Convert.ToDateTime(date); 
             this._morada = "";
             this._tlm = 0;
             this._lk = "";
@@ -45,12 +46,13 @@ namespace Rede
             this._humor = Rede.Humor.LoadById(2);
             this._avatar = "";
             this._avatar3D = "";
-            Random r = new Random();
-            this._x = r.Next(-100,100);
-            this._y = r.Next(-100,100);
+            int[] v = new int[2];
+            v = atribuirCoord();
+            this._x = v[0];
+            this._y = v[1];
             this._premium = false;
         }
-        public Perfil(int id, string uID, string Name, string Nick, DateTime dataNasc, string morada, int tlm, string lk, string fb, Humor humor,string avatar3D, string avatar, int x, int y, bool prem)
+        public Perfil(int id, string uID, string Name, string Nick, DateTime dataNasc, string morada, int tlm, string lk, string fb, Humor humor, string avatar3D, string avatar, int x, int y, bool prem)
         {
             this.myID = id;
             this._userID = uID;
@@ -159,7 +161,7 @@ namespace Rede
         protected Perfil(DataRow row)
         {
             this.myID = (int)row["ProfileID"];
-            this._userID = (string) row["UserID"];
+            this._userID = (string)row["UserID"];
             this._name = (string)row["Nome"];
             this._nick = (string)row["Nick"];
             this._morada = (string)row["Morada"];
@@ -172,7 +174,7 @@ namespace Rede
             this._humor = Humor.LoadById((int)row["HumorID"]);
             this._x = (int)row["X"];
             this._y = (int)row["Y"];
-            this._premium= (bool)row["Premium"];
+            this._premium = (bool)row["Premium"];
         }
         public Perfil(int ID, int x, int y, IList tags)
         {
@@ -230,7 +232,7 @@ namespace Rede
 
         public static Perfil LoadByUserId(string customerID)
         {
-            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * FROM TProfile WHERE UserID='" + customerID+"'");
+            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * FROM TProfile WHERE UserID='" + customerID + "'");
             if (ds.Tables[0].Rows.Count != 1)
                 return null;
             else
@@ -238,7 +240,7 @@ namespace Rede
         }
         public static Perfil LoadByName(string Nam)
         {
-            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * FROM TProfile WHERE Nome='" + Nam+"'");
+            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * FROM TProfile WHERE Nome='" + Nam + "'");
             if (ds.Tables[0].Rows.Count != 1)
                 return null;
             else
@@ -273,19 +275,19 @@ namespace Rede
 
         public static int get_UsersRegistados()
         {
-            int N_users=0;
+            int N_users = 0;
             try
             {
                 DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * FROM TProfile");
 
-              
+
 
                 foreach (DataRow r in ds.Tables[0].Rows)
                 {
                     N_users++;
                 }
 
-              
+
             }
             catch (Exception ex)
             {
@@ -293,7 +295,7 @@ namespace Rede
             }
 
             return N_users;
-         
+
         }
 
         public string toFile()
@@ -324,24 +326,24 @@ namespace Rede
             txt += Y + ").";
             return txt;
         }
-    
+
 
 
         public override void Save()
         {
             if (this.ID != 0)
             {
-                ExecuteNonQuery("UPDATE TProfile SET Nome='"+this._name+"',Nick= '"+this._nick+"',Morada= '"+ this._morada +"',DataNascimento='"+this._datanasc.ToString("yyyy-MM-dd") +"',Telemovel="+this._tlm+",Linkedin='"+ this._lk+"', Facebook='"+ this._fb+"',HumorID="+this._humor.ID+", Avatar3D='"+this._avatar3D+"', Avatar='"+this._avatar+"',X="+this._x+", Y="+this._y+",Premium='"+this._premium+ "'WHERE ProfileID=" + this.ID );
+                ExecuteNonQuery("UPDATE TProfile SET Nome='" + this._name + "',Nick= '" + this._nick + "',Morada= '" + this._morada + "',DataNascimento='" + this._datanasc.ToString("yyyy-MM-dd") + "',Telemovel=" + this._tlm + ",Linkedin='" + this._lk + "', Facebook='" + this._fb + "',HumorID=" + this._humor.ID + ", Avatar3D='" + this._avatar3D + "', Avatar='" + this._avatar + "',X=" + this._x + ", Y=" + this._y + ",Premium='" + this._premium + "'WHERE ProfileID=" + this.ID);
             }
             else
             {
-                
-                
-                this.humor= Humor.LoadById(2);
 
-                this.myID = ExecuteNonQuery("INSERT INTO TProfile(UserID, Nome, Nick, Morada, DataNascimento, Telemovel, Facebook, Linkedin, Avatar3D, Avatar, HumorID, X, Y, Premium)   VALUES('" + this.UsID + "','" + this.Name + "','" + this.Nick + "','" + this.Morada + "','" + this.DataNascimento.ToString("yyyy-MM-dd") + "'," + this.Telemovel + ",'" + this.Linkedin + "','" + this.FaceBook + "','" + this.avatar3D+ "','" + this.avatar + "'," + this.humor.ID + "," + this.X + "," + this.Y +",'"+this.Premium+ "')");
 
-                
+                this.humor = Humor.LoadById(2);
+
+                this.myID = ExecuteNonQuery("INSERT INTO TProfile(UserID, Nome, Nick, Morada, DataNascimento, Telemovel, Facebook, Linkedin, Avatar3D, Avatar, HumorID, X, Y, Premium)   VALUES('" + this.UsID + "','" + this.Name + "','" + this.Nick + "','" + this.Morada + "','" + this.DataNascimento.ToString("yyyy-MM-dd") + "'," + this.Telemovel + ",'" + this.Linkedin + "','" + this.FaceBook + "','" + this.avatar3D + "','" + this.avatar + "'," + this.humor.ID + "," + this.X + "," + this.Y + ",'" + this.Premium + "')");
+
+
             }
         }
         public static IList<string> LoadTagsByUserID(int userID)
@@ -481,5 +483,138 @@ namespace Rede
 
         }
 
+
+
+
+        public static int getMaxX()
+        {
+            int user_X;
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT MAX(X) FROM TProfile");
+                user_X = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro BD", ex);
+            }
+
+            return user_X;
+        }
+        public static int getMaxY()
+        {
+            int user_Y;
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT MAX(Y) FROM TProfile");
+                user_Y = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro BD", ex);
+            }
+
+            return user_Y;
+        }
+        public static int getMinX()
+        {
+            int user_X;
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT Min(X) FROM TProfile");
+                user_X = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro BD", ex);
+            }
+
+            return user_X;
+        }
+
+        public static int getMinY()
+        {
+            int user_Y;
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT Min(Y) FROM TProfile");
+                user_Y = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro BD", ex);
+            }
+
+            return user_Y;
+        }
+
+        public static Boolean valiadateCoord(int x, int y)
+        {
+            int xinf = x - 5;
+            int xsup = x + 5;
+            int yinf = y - 5;
+            int ysup = y + 5;
+            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * FROM TProfile where (X between " + xinf + " and " + xsup + ") and (Y between " + yinf + " and " + ysup + ")");
+            if (ds.Tables[0].Rows.Count == 0)
+                return true;
+            else
+                return false;
+        }
+
+        public static int[] atribuirCoord()
+        {
+            Random rnd = new Random();
+            int x = 0, newCoordX = 0;
+            int y = 0, newCoordY = 0;
+            do
+            {
+                int rndNumber = rnd.Next(0, 3);
+                switch (rndNumber)
+                {
+                    case 0:
+                        x = Rede.Perfil.getMinX();
+                        y = Rede.Perfil.getMaxY();
+                        break;
+                    case 1:
+                        x = Rede.Perfil.getMaxX();
+                        y = Rede.Perfil.getMinY();
+                        break;
+                    case 2:
+                        x = Rede.Perfil.getMinX();
+                        y = Rede.Perfil.getMinY();
+                        break;
+                    case 3:
+                        x = Rede.Perfil.getMaxX();
+                        y = Rede.Perfil.getMaxX();
+                        break;
+                    default:
+                        x = 10;
+                        y = 10;
+                        break;
+                }
+                int rndOp = rnd.Next(0, 1);
+                if (rndOp == 0)
+                {
+                    newCoordX = x + 5;
+                    newCoordY = y + 5;
+                }
+                if (rndOp == 1)
+                {
+                    newCoordX = x - 5;
+                    newCoordY = y - 5;
+                }
+            } while (Rede.Perfil.valiadateCoord(newCoordX, newCoordY));
+            //Console.WriteLine(newCoordX+" "+newCoordY);
+
+            int[] vec = new int[2];
+            vec[0] = newCoordX;
+            vec[1] = newCoordY;
+            return vec;
+        }
     }
+
 }

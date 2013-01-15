@@ -15,7 +15,7 @@
         {
             width: 100px;
             height: 100px;
-            float: left;
+            float: right;
         }
     </style>
 </asp:Content>
@@ -43,25 +43,27 @@
 <asp:Label ID="Label7" runat="server" Font-Bold="True" Font-Size="Medium" Height="35px" Text="Humor" Width="95px" meta:resourcekey="Label7Resource1"></asp:Label>
     <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Designacao" DataValueField="HumorID" meta:resourcekey="DropDownList1Resource1" >
     </asp:DropDownList>
-    <br />
+    <img id="avatarIMG" alt="" class="auto-style3" runat="server"  /><br />
     <asp:Label ID="Label13" runat="server" meta:resourcekey="Label13Resource1"></asp:Label>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ARQSI22ConnectionString %>" SelectCommand="SELECT * FROM [THumor]"></asp:SqlDataSource>
     <br />
 <asp:Label ID="Label12" runat="server" Font-Bold="True" Font-Size="Medium" Height="35px" Text="Avatar 3D" Width="95px" meta:resourcekey="Label12Resource1"></asp:Label>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:Label ID="StatusLabel" runat="server" meta:resourcekey="StatusLabelResource1"></asp:Label>
-    <asp:Label ID="lblfile" runat="server" meta:resourcekey="lblfileResource1"></asp:Label>
+    <asp:DropDownList ID="DropDownList3" runat="server">
+        <asp:ListItem Value="carro.3ds">Carro</asp:ListItem>
+        <asp:ListItem Value="dinossauro.3ds">Dinossauro</asp:ListItem>
+        <asp:ListItem Value="robot.3ds">Robot</asp:ListItem>
+    </asp:DropDownList>
 <br />
 <asp:Label ID="Label4" runat="server" Font-Bold="True" Font-Size="Medium" Height="35px" Text="Tlm." Width="95px" meta:resourcekey="Label4Resource1"></asp:Label>
 <asp:TextBox ID="TextTlm" runat="server" meta:resourcekey="TextTlmResource1"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;
 <asp:Label ID="Label8" runat="server" Font-Bold="True" Font-Size="Medium" Height="35px" Text="Avatar" Width="95px" meta:resourcekey="Label8Resource1"></asp:Label>
     <asp:FileUpload ID="UploadAvatar" runat="server" meta:resourcekey="UploadAvatarResource1" />
-    <img id="avatarIMG" alt="" class="auto-style3" runat="server"  />
-    <br />
+    &nbsp;<br />
     <asp:Label ID="Label9" runat="server" Text="Nick" Font-Bold="True" Font-Size="Medium" Height="35px" Width="95px" meta:resourcekey="Label9Resource1"></asp:Label>
     <asp:TextBox ID="TextNick" runat="server" meta:resourcekey="TextNickResource1"></asp:TextBox>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:Button ID="uploadButton" runat="server" Text="Upload!" OnClick="UploadFile" CssClass="auto-style2" meta:resourcekey="uploadButtonResource1" />
     &nbsp;<asp:Label ID="imglabel" runat="server" meta:resourcekey="imglabelResource1"></asp:Label>
     &nbsp;<br />

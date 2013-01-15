@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Threading;
+using System.Globalization;
 
 namespace RedeSocial
 {
@@ -64,10 +66,27 @@ namespace RedeSocial
                 }
             }
         }
+        protected override void InitializeCulture()
+        {
+            if (Request.Form["Language"] != null)
+            {
+                String selectedLanguage = Request.Form["Language"];
+                Page.UICulture = selectedLanguage;
+                Page.Culture = selectedLanguage;
+
+                Thread.CurrentThread.CurrentCulture =
+                    CultureInfo.CreateSpecificCulture(selectedLanguage);
+                Thread.CurrentThread.CurrentUICulture = new
+                    CultureInfo(selectedLanguage);
+            }
+            InitializeCulture();
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
+
+
     }
 }

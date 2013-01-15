@@ -75,8 +75,8 @@ public partial class Registado_Relacoes : System.Web.UI.Page
             
             CheckBox = (CheckBox)sender;
 
-            HyperLink l1 = (HyperLink)GridView1.SelectedRow.Cells[0].FindControl("Lknome1");
-            string nome = l1.Text;
+           
+            string nome = GridView1.SelectedRow.Cells[0].Text;
             Rede.Perfil ProfileIDB = Rede.Perfil.LoadByName(nome);
 
             ProfileIDB.Premium = CheckBox.Checked;
@@ -99,8 +99,8 @@ public partial class Registado_Relacoes : System.Web.UI.Page
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            HyperLink l1 = (HyperLink)GridView1.SelectedRow.Cells[0].FindControl("Lknome1");
-            string nome = l1.Text;
+            
+            string nome = GridView1.SelectedRow.Cells[0].Text;
             Rede.Perfil ProfileIDB = Rede.Perfil.LoadByName(nome);
 
             MembershipUser currentLoggedInUser = Membership.GetUser();
@@ -163,8 +163,8 @@ public partial class Registado_Relacoes : System.Web.UI.Page
     
     protected void Aceitar_Click(object sender, EventArgs e)
         {
-            HyperLink l1 = (HyperLink)GridView4.SelectedRow.Cells[1].FindControl("Lknome1");
-            string name = l1.Text;
+           
+            string name = GridView4.SelectedRow.Cells[1].Text;
             MembershipUser currentLoggedInUser = Membership.GetUser();
             string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
             //perfis
@@ -192,8 +192,8 @@ public partial class Registado_Relacoes : System.Web.UI.Page
         }
     protected void Rejeitar_Click(object sender, EventArgs e)
     {
-        HyperLink l1 = (HyperLink)GridView4.SelectedRow.Cells[1].FindControl("Lknome1");
-        string name = l1.Text;
+        
+        string name = GridView4.SelectedRow.Cells[1].Text;
         MembershipUser currentLoggedInUser = Membership.GetUser();
         string id = Convert.ToString(currentLoggedInUser.ProviderUserKey);
         Rede.Perfil this_user = Rede.Perfil.LoadByUserId(id);

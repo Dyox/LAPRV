@@ -339,5 +339,84 @@ namespace Rede
                 
             }
         }
+
+        public static int getMaxX()
+        {
+            int user_X;
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT MAX(X) FROM TProfile");
+                user_X = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro BD", ex);
+            }
+
+            return user_X;
+        }
+        public static int getMaxY()
+        {
+            int user_Y;
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT MAX(Y) FROM TProfile");
+                user_Y = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro BD", ex);
+            }
+
+            return user_Y;
+        }
+        public static int getMinX()
+        {
+            int user_X;
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT Min(X) FROM TProfile");
+                user_X = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro BD", ex);
+            }
+
+            return user_X;
+        }
+
+        public static int getMinY()
+        {
+            int user_Y;
+            try
+            {
+                DataSet ds = ExecuteQuery(GetConnection(false), "SELECT Min(Y) FROM TProfile");
+                user_Y = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro BD", ex);
+            }
+
+            return user_Y;
+        }
+
+        public static Boolean valiadateCoord(int x, int y)
+        {
+            int xinf = x - 5;
+            int xsup = x + 5;
+            int yinf = y - 5;
+            int ysup = y + 5;
+            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT * FROM TProfile where (X between "+xinf+ " and "+xsup+") and (Y between "+yinf+" and "+ysup+")");
+            if (ds.Tables[0].Rows.Count == 0)
+                return true;
+            else
+                return false;
+        }
     }
 }

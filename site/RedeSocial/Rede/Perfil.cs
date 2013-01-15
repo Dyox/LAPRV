@@ -576,43 +576,43 @@ namespace Rede
                 switch (rndNumber)
                 {
                     case 0:
-                        x = Rede.Perfil.getMinX();
-                        y = Rede.Perfil.getMaxY();
+                        x = Rede.Perfil.getMinX()-5;
+                        y = Rede.Perfil.getMaxY()+5;
                         break;
                     case 1:
-                        x = Rede.Perfil.getMaxX();
-                        y = Rede.Perfil.getMinY();
+                        x = Rede.Perfil.getMaxX()+5;
+                        y = Rede.Perfil.getMinY()-5;
                         break;
                     case 2:
-                        x = Rede.Perfil.getMinX();
-                        y = Rede.Perfil.getMinY();
+                        x = Rede.Perfil.getMinX()-5;
+                        y = Rede.Perfil.getMinY()-5;
                         break;
                     case 3:
-                        x = Rede.Perfil.getMaxX();
-                        y = Rede.Perfil.getMaxX();
+                        x = Rede.Perfil.getMaxX()+5;
+                        y = Rede.Perfil.getMaxX()+5;
                         break;
                     default:
                         x = 10;
                         y = 10;
                         break;
                 }
-                int rndOp = rnd.Next(0, 1);
-                if (rndOp == 0)
-                {
-                    newCoordX = x + 5;
-                    newCoordY = y + 5;
-                }
-                if (rndOp == 1)
-                {
-                    newCoordX = x - 5;
-                    newCoordY = y - 5;
-                }
-            } while (Rede.Perfil.valiadateCoord(newCoordX, newCoordY));
+                //int rndOp = rnd.Next(0, 1);
+                //if (rndOp == 0)
+                //{
+                //    newCoordX = x + 5;
+                //    newCoordY = y + 5;
+                //}
+                //if (rndOp == 1)
+                //{
+                //    newCoordX = x - 5;
+                //    newCoordY = y - 5;
+                //}
+            } while (Rede.Perfil.valiadateCoord(x, y));
             //Console.WriteLine(newCoordX+" "+newCoordY);
 
             int[] vec = new int[2];
-            vec[0] = newCoordX;
-            vec[1] = newCoordY;
+            vec[0] = x;
+            vec[1] = y;
             return vec;
         }
     }

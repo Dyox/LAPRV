@@ -19,6 +19,12 @@ max_list([H|T], M2) :- max_list(T, M), M2 is max(H, M).
 indexOf([Element|_], Element, 0):- !.
 indexOf([_|Tail], Element, Index):- indexOf(Tail, Element, Index1), !, Index is Index1+1.
 
+/*elemento numa possicao da lista*/
+item_at( N, L, Item ) :- item_at( N, 0, L, Item ).   
+item_at( N, Count, [H|_], Item ) :- CountNew is Count + 1,CountNew = N, Item = H.
+item_at( N, Count, [_|T], Item ) :- CountNew is Count + 1,item_at( N, CountNew, T, Item ).
+
 camMaisForte(X,X,Element):-!,write('Nenhum caminho...').
 camMaisForte(X,Y,Element):-findall(P,caminhos(X,Y,P),L),findall(F,forca(X,Y,F),LF),
-			max_list(LF,T),indexOf(LF,T,POS),indexOf(L, Element, POS),write(Element);write('Nenhum caminho...').
+			max_list(LF,T),item_at(POS,LF,T),item_at(POS,L,Element),write(Element);write('Nenhum caminho...').
+

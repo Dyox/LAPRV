@@ -55,13 +55,13 @@ namespace ExemploProf
             //PrologExec p = new PrologExec("user", "grafoAmigosComuns");
             //PrologExec p = new PrologExec("user", "maven");
             //PrologExec p = new PrologExec("user", "grafoUser3");
-            PrologExec p = new PrologExec("user", "separacao");
+            //PrologExec p = new PrologExec("user", "separacao");
             //string res = p.executaComandoProlog("1,1,P");
             //string res = p.executaComandoProlog("musica");
-            string res = p.executaComandoProlog("1,25");
+            //string res = p.executaComandoProlog("1,25");
             //string res = p.executaComandoProlog("1");
             //string res = p.executaComandoProlog("20");
-            Console.WriteLine(res);
+            //Console.WriteLine(res);
 
             //sugere_amigos(res);
 
@@ -71,6 +71,10 @@ namespace ExemploProf
             //% ramo(No1_ID,No2_ID,Tag,Força)
             //% no(NoID,PosX,PosY)
             //IList listaArcos = Rede.Relacao.LoadInfoForArcos();
+            //int m = Rede.Perfil.getMinY();
+            int[] v=atribuirCoord();
+            Console.WriteLine(v[0]+","+v[1]);
+            //Console.WriteLine(m);
             //Console.WriteLine(((Rede.Relacao)listaArcos[4]).toFile());
             //Console.WriteLine();
             //IList listaNos = Rede.Perfil.LoadInfoForNos();
@@ -91,7 +95,55 @@ namespace ExemploProf
             Console.Read();
             
         }
+        public static int[] atribuirCoord()
+        {
+            Random rnd = new Random();
+            int x = 0, newCoordX = 0;
+            int y = 0, newCoordY = 0;
+            do{
+                int rndNumber = rnd.Next(0, 3);
+                switch (rndNumber)
+                {
+                    case 0:
+                        x = Rede.Perfil.getMinX();
+                        y = Rede.Perfil.getMaxY();
+                        break;
+                    case 1:
+                        x = Rede.Perfil.getMaxX();
+                        y = Rede.Perfil.getMinY();
+                        break;
+                    case 2:
+                        x = Rede.Perfil.getMinX();
+                        y = Rede.Perfil.getMinY();
+                        break;
+                    case 3:
+                        x = Rede.Perfil.getMaxX();
+                        y = Rede.Perfil.getMaxX();
+                        break;
+                    default:
+                        x = 10;
+                        y = 10;
+                        break;
+                }
+                int rndOp = rnd.Next(0, 1);
+                if (rndOp == 0)
+                {
+                    newCoordX = x + 5;
+                    newCoordY = y + 5;
+                }
+                if (rndOp == 1)
+                {
+                    newCoordX = x - 5;
+                    newCoordY = y - 5;
+                }
+            } while (Rede.Perfil.valiadateCoord(newCoordX, newCoordY));
+            //Console.WriteLine(newCoordX+" "+newCoordY);
 
+            int[] vec=new int[2];
+            vec[0]=newCoordX;
+            vec[1]=newCoordY;
+            return vec;
+        }
         //cria um dicionário com o user e as suas tags
         private static Dictionary<string, List<string>> dicUserTag (String res)
         {

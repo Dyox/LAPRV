@@ -177,6 +177,87 @@ public class Service : IService
             return null;
         }
     }
+    public string getAmigosNivel3(int userID)
+    {
+        PrologExec p = new PrologExec(userID + "", "grafoUser3");
+        string res = p.executaComandoProlog(userID + "");
+        return res;
+    }
+    public string getMavenOfTag(string tag)
+    {
+        PrologExec p = new PrologExec(tag + "", "maven");
+        string res = p.executaComandoProlog(tag + "");
+        return res;
+    }
+    public string getSeparacao(int no1, int no2)
+    {
+        PrologExec p = new PrologExec(no1 + "_" + no2, "separacao");
+        string res = p.executaComandoProlog(no1 + "," + no2);
+        return res;
+    }
+
+    public IList<NoBD> getGrafoNivel3(int userid)
+    {
+        string ids = getAmigosNivel3(userid);
+
+        IList<NoBD> ret = new List<NoBD>();
+        Rede.Perfil perf = Rede.Perfil.LoadById(userid);
+        string avatar3d = Rede.Perfil.getAvatar3DByID(userid);
+        int numtags = Rede.Perfil.LoadTagsByUserID(userid).Count;
+        NoBD noi = new NoBD(userid, perf.X, perf.Y, Rede.Perfil.getHumorByPrefilID(userid), perf.Name, avatar3d, numtags);
+        ret.Add(noi);
+        //ids =ids.Remove(0);
+        //ids =ids.Remove(ids.Count() - 1);
+        ids = ids.Replace("[", "");
+        ids = ids.Replace("]", "");
+        string[] str = ids.Split(',');
+        for (int i = 0; i < str.Count(); i++)
+        {
+            int id = Convert.ToInt32(str[i]);
+            perf = Rede.Perfil.LoadById(id);
+            avatar3d = Rede.Perfil.getAvatar3DByID(id);
+            numtags = Rede.Perfil.LoadTagsByUserID(id).Count;
+            noi = new NoBD(id, perf.X, perf.Y, Rede.Perfil.getHumorByPrefilID(id), perf.Name, avatar3d, numtags);
+            ret.Add(noi);
+        }
+        return ret;
+
+    }
+    public IList<NoBD> getNosGrafoAmigos(int user1, int user2)
+    {
+        string ids = grafoAmigosComuns(user1, user2);
+        IList<NoBD> ret = new List<NoBD>();
+
+        Rede.Perfil perf = Rede.Perfil.LoadById(user1);
+        string avatar3d = Rede.Perfil.getAvatar3DByID(user1);
+        int numtags = Rede.Perfil.LoadTagsByUserID(user1).Count;
+        NoBD noi = new NoBD(user1, perf.X, perf.Y, Rede.Perfil.getHumorByPrefilID(user1), perf.Name, avatar3d, numtags);
+        ret.Add(noi);
+
+        perf = Rede.Perfil.LoadById(user2);
+        avatar3d = Rede.Perfil.getAvatar3DByID(user2);
+        numtags = Rede.Perfil.LoadTagsByUserID(user2).Count;
+        noi = new NoBD(user2, perf.X, perf.Y, Rede.Perfil.getHumorByPrefilID(user2), perf.Name, avatar3d, numtags);
+        ret.Add(noi);
+
+        ids = ids.Replace("[", "");
+        ids = ids.Replace("]", "");
+        if (ids != "")
+        {
+            string[] str = ids.Split(',');
+            for (int i = 0; i < str.Count(); i++)
+            {
+                int id = Convert.ToInt32(str[i]);
+                perf = Rede.Perfil.LoadById(id);
+                avatar3d = Rede.Perfil.getAvatar3DByID(id);
+                numtags = Rede.Perfil.LoadTagsByUserID(id).Count;
+                noi = new NoBD(id, perf.X, perf.Y, Rede.Perfil.getHumorByPrefilID(id), perf.Name, avatar3d, numtags);
+                ret.Add(noi);
+            }
+        }
+        return ret;
+
+    }
 }
 
      

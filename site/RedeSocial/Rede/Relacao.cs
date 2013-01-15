@@ -80,10 +80,10 @@ namespace Rede
         }
 
 
-        public static Relacao LoadByRelacao(int IDA,int IDB)
+        public static Relacao LoadByRelacao(int IDA, int IDB)
         {
 
-            DataSet ds = ExecuteQuery("SELECT * FROM TRelacao WHERE ProfileIDA=" + IDA + "AND ProfileIDB="+IDB);
+            DataSet ds = ExecuteQuery("SELECT * FROM TRelacao WHERE ProfileIDA=" + IDA + "AND ProfileIDB=" + IDB);
             Relacao m = new Relacao(ds.Tables[0].Rows[0]);
 
             return m;
@@ -112,7 +112,7 @@ namespace Rede
             }
         }
 
-        
+
         public static IList LoadInfoForArcos()
         {
             try
@@ -260,27 +260,25 @@ namespace Rede
             else
             {
                 int rel = (int)ds.Tables[0].Rows[0]["IDRelacao"];
-                ds = ExecuteQuery(GetConnection(false), "SELECT ID_Tag FROM Rel_Tag WHERE ID_Rel=" + rel);
-                if (ds.Tables[0].Rows.Count != 1)
+                DataSet dstag = ExecuteQuery(GetConnection(false), "SELECT ID_Tag FROM Rel_Tag WHERE ID_Rel=" + rel);
+                foreach (DataRow r in dstag.Tables[0].Rows)
                 {
-                    ret.Add("Sem Tags");
-                    return ret;
-                }
-                else
-                {
-                    int tag = (int)ds.Tables[0].Rows[0]["ID_Tag"];
-                    ds = ExecuteQuery(GetConnection(false), "SELECT Designacao FROM TTag where TagID=" + tag);
-                    foreach (DataRow r in ds.Tables[0].Rows)
+
+
+                    int tag = (int)r["ID_Tag"];
+                    DataSet dsdes = ExecuteQuery(GetConnection(false), "SELECT Designacao FROM TTag where TagID=" + tag);
+                    foreach (DataRow r2 in dsdes.Tables[0].Rows)
                     {
-                        string tagtxt = (string)r["Designacao"];
+                        string tagtxt = (string)r2["Designacao"];
                         ret.Add(tagtxt);
                     }
-                    return ret;
+
                 }
+                return ret;
             }
         }
-
-      
     }
+
+
 }
 

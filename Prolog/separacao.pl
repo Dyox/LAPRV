@@ -62,6 +62,6 @@ se_entao(X,Y):-X,!,Y;true.
 soma_for(_,[],0).
 soma_for(A,[H|T],V):-soma_for(H,T,V1),ramo(A,H,_,X),V is V1+X.
 
-grau(X,Y,V):-cam_min(X,Y,[A|P]),contar([A|P],N),soma_for(A,P,N1),V is N1/N,!,write(V);write('Nao existe ligacao...').
+grau(X,Y,V):-cam_min(X,Y,[A|P]),contar([A|P],N),soma_for(A,P,N1),V is N1/(N-1),!,write(V);write('Nao existe ligacao...').
 
 

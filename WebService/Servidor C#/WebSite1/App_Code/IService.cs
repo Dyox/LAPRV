@@ -41,7 +41,16 @@ using System.Collections;
         string grafoAmigosComuns(int user1, int user2);
         [OperationContract]
         Ligacao getLigacao(int userreg, int user1, int user2);
-
+        [OperationContract]
+        string getAmigosNivel3(int userID);
+        [OperationContract]
+        string getMavenOfTag(string tag);
+        [OperationContract]
+        string getSeparacao(int no1, int no2);
+        [OperationContract]
+        IList<NoBD> getGrafoNivel3(int userid);
+        [OperationContract]
+        IList<NoBD> getNosGrafoAmigos(int user1, int user2);
 
         [OperationContract]
         void DoWork();

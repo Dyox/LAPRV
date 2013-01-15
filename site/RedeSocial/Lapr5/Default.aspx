@@ -16,7 +16,7 @@
     <ol class="round">
         <li >
             <h5><a href="Registado\Relacoes.aspx"><asp:Label ID="namigosp" runat="server" meta:resourcekey="namigospResource1"></asp:Label></a></h5>
-            <h5><a href="Registado\RoyalSolutions.rar"><asp:Label ID="Download" runat="server"> </asp:Label> </a></h5>
+            <h5><a href="Registado\RoyalSolutions.exe"><asp:Label ID="Download" runat="server"> </asp:Label> </a></h5>
         </li>
     </ol>
 

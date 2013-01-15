@@ -13,6 +13,9 @@ using System.Data;
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //ServiceReference2.ServiceClient proxy = new ServiceReference2.ServiceClient();
+            //Service a = new Service();
+            //int li = a.validateLogin("RafaUser", "qwert");
             Dimensao_rede();
             Cloud_taguser();
             Cloud_tagrelacao();
@@ -114,6 +117,8 @@ using System.Data;
                 DataView dvSql = (DataView)SqlDataSource1.Select(DataSourceSelectArguments.Empty);
                 namigosp.Text = "Tem " + dvSql.Count.ToString() + " Amizades Pendentes.";
             }
+            Download.Text = "Download da aplicação";
+
             }
         }
 

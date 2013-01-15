@@ -100,8 +100,6 @@ public partial class Registado_Perfil : System.Web.UI.Page
             prof.Telemovel = Convert.ToInt32(TextTlm.Text);
             prof.avatar3D = DropDownList3.SelectedValue;
             prof.avatar = avatarIMG.Src;
-            prof.X = 1;
-            prof.Y = 1;
             prof.Save();
 
         }

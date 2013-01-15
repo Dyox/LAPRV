@@ -50,7 +50,7 @@
                     
                     </a>
                     <asp:DropDownList ID="Language" runat="server">
-                        <asp:ListItem value="pt-PT" selected="True">Português</asp:ListItem>
+                        <asp:ListItem value="pt-PT">Português</asp:ListItem>
                         <asp:ListItem value="en-US">English</asp:ListItem>
                     </asp:DropDownList>
                 </p>

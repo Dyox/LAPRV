@@ -27,6 +27,7 @@ public partial class Registado_Perfil : System.Web.UI.Page
             //uploadButton0.Enabled = false;
             uploadButton.Enabled = false;
             Button5.Enabled = false;
+            DropDownList3.Enabled = false;
 
             MembershipUser currentLoggedInUser = Membership.GetUser();
             
@@ -57,7 +58,7 @@ public partial class Registado_Perfil : System.Web.UI.Page
                 TextLinkedin.Text = prof.Linkedin;
                 TextTlm.Text = prof.Telemovel.ToString();
                 avatarIMG.Src = prof.avatar;
-                StatusLabel.Text = prof.avatar3D;
+                DropDownList3.SelectedValue = prof.avatar3D;
                 DropDownList1.SelectedValue = Convert.ToString(prof.humor.ID);
                 SqlDataSource2.SelectParameters["ProfileID"].DefaultValue = Convert.ToString(prof.ID);
             }
@@ -97,8 +98,7 @@ public partial class Registado_Perfil : System.Web.UI.Page
             Rede.Humor h = Rede.Humor.LoadById(Convert.ToInt32(DropDownList1.SelectedValue));
             prof.humor = h;
             prof.Telemovel = Convert.ToInt32(TextTlm.Text);
-            prof.avatar3D = @"/Lapr5/Registado/Avatar3D/3D_" + lblfile.Text;
-            lblfile.Text = "";
+            prof.avatar3D = DropDownList3.SelectedValue;
             prof.avatar = avatarIMG.Src;
             prof.X = 1;
             prof.Y = 1;
@@ -120,6 +120,7 @@ public partial class Registado_Perfil : System.Web.UI.Page
             TextTlm.Enabled = true;
             Button3.Visible = true;
             DropDownList1.Enabled = true;
+            DropDownList3.Enabled = true;
             TextTag.Enabled = true;
         }
 

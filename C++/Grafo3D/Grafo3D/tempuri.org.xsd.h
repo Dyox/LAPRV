@@ -67,6 +67,22 @@ extern "C" {
 //     struct _tamanhoRedeUtilizadorResponse;
 //     struct _sugereAmigos;
 //     struct _sugereAmigosResponse;
+//     struct _grafoAmigosComuns;
+//     struct _grafoAmigosComunsResponse;
+//     struct _getLigacao;
+//     struct _getLigacaoResponse;
+//     struct _getAmigosNivel3;
+//     struct _getAmigosNivel3Response;
+//     struct _getMavenOfTag;
+//     struct _getMavenOfTagResponse;
+//     struct _getSeparacao;
+//     struct _getSeparacaoResponse;
+//     struct _getGrafoNivel3;
+//     struct _getGrafoNivel3Response;
+//     struct _getNosGrafoAmigos;
+//     struct _getNosGrafoAmigosResponse;
+//     struct _getNosGrafo;
+//     struct _getNosGrafoResponse;
 
 // The following header files must be included in this order before this one
 
@@ -226,6 +242,110 @@ typedef struct _sugereAmigosResponse
     WCHAR* sugereAmigosResult; // optional
 } _sugereAmigosResponse;
 
+// typeDescription: n/a
+typedef struct _grafoAmigosComuns 
+{
+    int user1;
+    int user2;
+} _grafoAmigosComuns;
+
+// typeDescription: n/a
+typedef struct _grafoAmigosComunsResponse 
+{
+    WCHAR* grafoAmigosComunsResult; // optional
+} _grafoAmigosComunsResponse;
+
+// typeDescription: n/a
+typedef struct _getLigacao 
+{
+    int userreg;
+    int user1;
+    int user2;
+} _getLigacao;
+
+// typeDescription: n/a
+typedef struct _getLigacaoResponse 
+{
+    struct Ligacao* getLigacaoResult; // optional
+} _getLigacaoResponse;
+
+// typeDescription: n/a
+typedef struct _getAmigosNivel3 
+{
+    int userID;
+} _getAmigosNivel3;
+
+// typeDescription: n/a
+typedef struct _getAmigosNivel3Response 
+{
+    WCHAR* getAmigosNivel3Result; // optional
+} _getAmigosNivel3Response;
+
+// typeDescription: n/a
+typedef struct _getMavenOfTag 
+{
+    WCHAR* tag; // optional
+} _getMavenOfTag;
+
+// typeDescription: n/a
+typedef struct _getMavenOfTagResponse 
+{
+    WCHAR* getMavenOfTagResult; // optional
+} _getMavenOfTagResponse;
+
+// typeDescription: n/a
+typedef struct _getSeparacao 
+{
+    int no1;
+    int no2;
+} _getSeparacao;
+
+// typeDescription: n/a
+typedef struct _getSeparacaoResponse 
+{
+    WCHAR* getSeparacaoResult; // optional
+} _getSeparacaoResponse;
+
+// typeDescription: n/a
+typedef struct _getGrafoNivel3 
+{
+    int userid;
+} _getGrafoNivel3;
+
+// typeDescription: n/a
+typedef struct _getGrafoNivel3Response 
+{
+    unsigned int getGrafoNivel3ResultCount;
+    __field_ecount_opt(getGrafoNivel3ResultCount)struct NoBD** getGrafoNivel3Result; // optional
+} _getGrafoNivel3Response;
+
+// typeDescription: n/a
+typedef struct _getNosGrafoAmigos 
+{
+    int user1;
+    int user2;
+} _getNosGrafoAmigos;
+
+// typeDescription: n/a
+typedef struct _getNosGrafoAmigosResponse 
+{
+    unsigned int getNosGrafoAmigosResultCount;
+    __field_ecount_opt(getNosGrafoAmigosResultCount)struct NoBD** getNosGrafoAmigosResult; // optional
+} _getNosGrafoAmigosResponse;
+
+// typeDescription: n/a
+typedef struct _getNosGrafo 
+{
+    int userid;
+} _getNosGrafo;
+
+// typeDescription: n/a
+typedef struct _getNosGrafoResponse 
+{
+    unsigned int getNosGrafoResultCount;
+    __field_ecount_opt(getNosGrafoResultCount)struct NoBD** getNosGrafoResult; // optional
+} _getNosGrafoResponse;
+
 ////////////////////////////////////////////////
 // Global web service descriptions.
 ////////////////////////////////////////////////
@@ -364,6 +484,86 @@ typedef struct _tempuri_org_xsd
         // elementDescription: tempuri_org_xsd.globalElements.sugereAmigosResponse
         WS_ELEMENT_DESCRIPTION sugereAmigosResponse;
         
+        // xml element: grafoAmigosComuns ("http://tempuri.org/")
+        // c type: _grafoAmigosComuns
+        // elementDescription: tempuri_org_xsd.globalElements.grafoAmigosComuns
+        WS_ELEMENT_DESCRIPTION grafoAmigosComuns;
+        
+        // xml element: grafoAmigosComunsResponse ("http://tempuri.org/")
+        // c type: _grafoAmigosComunsResponse
+        // elementDescription: tempuri_org_xsd.globalElements.grafoAmigosComunsResponse
+        WS_ELEMENT_DESCRIPTION grafoAmigosComunsResponse;
+        
+        // xml element: getLigacao ("http://tempuri.org/")
+        // c type: _getLigacao
+        // elementDescription: tempuri_org_xsd.globalElements.getLigacao
+        WS_ELEMENT_DESCRIPTION getLigacao;
+        
+        // xml element: getLigacaoResponse ("http://tempuri.org/")
+        // c type: _getLigacaoResponse
+        // elementDescription: tempuri_org_xsd.globalElements.getLigacaoResponse
+        WS_ELEMENT_DESCRIPTION getLigacaoResponse;
+        
+        // xml element: getAmigosNivel3 ("http://tempuri.org/")
+        // c type: _getAmigosNivel3
+        // elementDescription: tempuri_org_xsd.globalElements.getAmigosNivel3
+        WS_ELEMENT_DESCRIPTION getAmigosNivel3;
+        
+        // xml element: getAmigosNivel3Response ("http://tempuri.org/")
+        // c type: _getAmigosNivel3Response
+        // elementDescription: tempuri_org_xsd.globalElements.getAmigosNivel3Response
+        WS_ELEMENT_DESCRIPTION getAmigosNivel3Response;
+        
+        // xml element: getMavenOfTag ("http://tempuri.org/")
+        // c type: _getMavenOfTag
+        // elementDescription: tempuri_org_xsd.globalElements.getMavenOfTag
+        WS_ELEMENT_DESCRIPTION getMavenOfTag;
+        
+        // xml element: getMavenOfTagResponse ("http://tempuri.org/")
+        // c type: _getMavenOfTagResponse
+        // elementDescription: tempuri_org_xsd.globalElements.getMavenOfTagResponse
+        WS_ELEMENT_DESCRIPTION getMavenOfTagResponse;
+        
+        // xml element: getSeparacao ("http://tempuri.org/")
+        // c type: _getSeparacao
+        // elementDescription: tempuri_org_xsd.globalElements.getSeparacao
+        WS_ELEMENT_DESCRIPTION getSeparacao;
+        
+        // xml element: getSeparacaoResponse ("http://tempuri.org/")
+        // c type: _getSeparacaoResponse
+        // elementDescription: tempuri_org_xsd.globalElements.getSeparacaoResponse
+        WS_ELEMENT_DESCRIPTION getSeparacaoResponse;
+        
+        // xml element: getGrafoNivel3 ("http://tempuri.org/")
+        // c type: _getGrafoNivel3
+        // elementDescription: tempuri_org_xsd.globalElements.getGrafoNivel3
+        WS_ELEMENT_DESCRIPTION getGrafoNivel3;
+        
+        // xml element: getGrafoNivel3Response ("http://tempuri.org/")
+        // c type: _getGrafoNivel3Response
+        // elementDescription: tempuri_org_xsd.globalElements.getGrafoNivel3Response
+        WS_ELEMENT_DESCRIPTION getGrafoNivel3Response;
+        
+        // xml element: getNosGrafoAmigos ("http://tempuri.org/")
+        // c type: _getNosGrafoAmigos
+        // elementDescription: tempuri_org_xsd.globalElements.getNosGrafoAmigos
+        WS_ELEMENT_DESCRIPTION getNosGrafoAmigos;
+        
+        // xml element: getNosGrafoAmigosResponse ("http://tempuri.org/")
+        // c type: _getNosGrafoAmigosResponse
+        // elementDescription: tempuri_org_xsd.globalElements.getNosGrafoAmigosResponse
+        WS_ELEMENT_DESCRIPTION getNosGrafoAmigosResponse;
+        
+        // xml element: getNosGrafo ("http://tempuri.org/")
+        // c type: _getNosGrafo
+        // elementDescription: tempuri_org_xsd.globalElements.getNosGrafo
+        WS_ELEMENT_DESCRIPTION getNosGrafo;
+        
+        // xml element: getNosGrafoResponse ("http://tempuri.org/")
+        // c type: _getNosGrafoResponse
+        // elementDescription: tempuri_org_xsd.globalElements.getNosGrafoResponse
+        WS_ELEMENT_DESCRIPTION getNosGrafoResponse;
+        
     } globalElements;
     struct // externallyReferencedTypes
     {
@@ -393,6 +593,22 @@ typedef struct _tempuri_org_xsd
         WS_STRUCT_DESCRIPTION tamanhoRedeUtilizadorResponse;
         WS_STRUCT_DESCRIPTION sugereAmigos;
         WS_STRUCT_DESCRIPTION sugereAmigosResponse;
+        WS_STRUCT_DESCRIPTION grafoAmigosComuns;
+        WS_STRUCT_DESCRIPTION grafoAmigosComunsResponse;
+        WS_STRUCT_DESCRIPTION getLigacao;
+        WS_STRUCT_DESCRIPTION getLigacaoResponse;
+        WS_STRUCT_DESCRIPTION getAmigosNivel3;
+        WS_STRUCT_DESCRIPTION getAmigosNivel3Response;
+        WS_STRUCT_DESCRIPTION getMavenOfTag;
+        WS_STRUCT_DESCRIPTION getMavenOfTagResponse;
+        WS_STRUCT_DESCRIPTION getSeparacao;
+        WS_STRUCT_DESCRIPTION getSeparacaoResponse;
+        WS_STRUCT_DESCRIPTION getGrafoNivel3;
+        WS_STRUCT_DESCRIPTION getGrafoNivel3Response;
+        WS_STRUCT_DESCRIPTION getNosGrafoAmigos;
+        WS_STRUCT_DESCRIPTION getNosGrafoAmigosResponse;
+        WS_STRUCT_DESCRIPTION getNosGrafo;
+        WS_STRUCT_DESCRIPTION getNosGrafoResponse;
     } externallyReferencedTypes;
 } _tempuri_org_xsd;
 

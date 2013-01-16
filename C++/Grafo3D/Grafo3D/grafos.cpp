@@ -103,9 +103,10 @@ void gravaGrafo(){
 		myfile << arcos[i].noi << " " << arcos[i].nof << " " << arcos[i].peso << " " << arcos[i].largura << endl;
 	myfile.close();
 }
-void leGrafo(){
+void leGrafo(int uid){
 	NoBD **nosbd=NULL;
 	getAllXY(nosbd);
+	//getNosGrafo(uid,nosbd);
 	numNos=(*(nosbd))->id;
 	char ch[260];
 	char DefChar = ' ';
@@ -115,7 +116,8 @@ void leGrafo(){
 		nos[i-1].y=(*(nosbd+i))->y;
 		nos[i-1].z=0.0;
 		nos[i-1].iduser=(*(nosbd+i))->id;
-		nos[i-1].largura=1.0;
+		int ntags=(*(nosbd+i))->ntag;
+		nos[i-1].largura=1.0+ntags*0.1;
 		//convert from wide char to narrow char array
 		WideCharToMultiByte(CP_ACP,0,(*(nosbd+i))->nome,-1, ch,260,&DefChar, NULL);
 		std::string ss(ch);
@@ -123,6 +125,9 @@ void leGrafo(){
 		WideCharToMultiByte(CP_ACP,0,(*(nosbd+i))->humor,-1, ch,260,&DefChar, NULL);
 		std::string ss2(ch);
 		nos[i-1].humor=ss2;
+		WideCharToMultiByte(CP_ACP,0,(*(nosbd+i))->avatar3d,-1, ch,260,&DefChar, NULL);
+		std::string ss3(ch);
+		nos[i-1].avatar3d=ss3;
 	}
 	ArcoBD **arcosbd=NULL;
 	GetAllArcoBD(arcosbd);
@@ -145,9 +150,12 @@ void leGrafo(){
 		arcos[i-1].peso=(*(arcosbd+i))->forca;
 		arcos[i-1].largura=arcos[i-1].peso*0.07;
 		//arcos[i-1].largura=(*(arcosbd+i))->idRel;
-		nos[arcos[i-1].noi].z+=2;
-		nos[arcos[i-1].nof].z+=2;
+		nos[arcos[i-1].noi].z+=1;
+		nos[arcos[i-1].nof].z+=1;
 	}
+
+	WCHAR *g;
+	grafoAmigosComuns(1,7,g);
 
 	/*
 	ifstream myfile;

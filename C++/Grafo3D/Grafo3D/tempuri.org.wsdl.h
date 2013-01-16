@@ -137,6 +137,14 @@ extern "C" {
 //     BasicHttpBinding_IService_xTagsEmComum
 //     BasicHttpBinding_IService_tamanhoRedeUtilizador
 //     BasicHttpBinding_IService_sugereAmigos
+//     BasicHttpBinding_IService_grafoAmigosComuns
+//     BasicHttpBinding_IService_getLigacao
+//     BasicHttpBinding_IService_getAmigosNivel3
+//     BasicHttpBinding_IService_getMavenOfTag
+//     BasicHttpBinding_IService_getSeparacao
+//     BasicHttpBinding_IService_getGrafoNivel3
+//     BasicHttpBinding_IService_getNosGrafoAmigos
+//     BasicHttpBinding_IService_getNosGrafo
 
 // The following server function tables were generated:
 
@@ -333,6 +341,102 @@ HRESULT WINAPI BasicHttpBinding_IService_sugereAmigos(
     __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
     __in_opt WS_ERROR* _error);
 
+// operation: BasicHttpBinding_IService_grafoAmigosComuns
+HRESULT WINAPI BasicHttpBinding_IService_grafoAmigosComuns(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int user1, 
+    __in int user2, 
+    __out_opt __deref __nullterminated WCHAR** grafoAmigosComunsResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+// operation: BasicHttpBinding_IService_getLigacao
+HRESULT WINAPI BasicHttpBinding_IService_getLigacao(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int userreg, 
+    __in int user1, 
+    __in int user2, 
+    __deref_out_opt Ligacao** getLigacaoResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+// operation: BasicHttpBinding_IService_getAmigosNivel3
+HRESULT WINAPI BasicHttpBinding_IService_getAmigosNivel3(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int userID, 
+    __out_opt __deref __nullterminated WCHAR** getAmigosNivel3Result, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+// operation: BasicHttpBinding_IService_getMavenOfTag
+HRESULT WINAPI BasicHttpBinding_IService_getMavenOfTag(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in_opt __nullterminated WCHAR* tag, 
+    __out_opt __deref __nullterminated WCHAR** getMavenOfTagResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+// operation: BasicHttpBinding_IService_getSeparacao
+HRESULT WINAPI BasicHttpBinding_IService_getSeparacao(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int no1, 
+    __in int no2, 
+    __out_opt __deref __nullterminated WCHAR** getSeparacaoResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+// operation: BasicHttpBinding_IService_getGrafoNivel3
+HRESULT WINAPI BasicHttpBinding_IService_getGrafoNivel3(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int userid, 
+    __out unsigned int* getGrafoNivel3ResultCount, 
+    __deref_out_ecount_opt(*getGrafoNivel3ResultCount) NoBD*** getGrafoNivel3Result, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+// operation: BasicHttpBinding_IService_getNosGrafoAmigos
+HRESULT WINAPI BasicHttpBinding_IService_getNosGrafoAmigos(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int user1, 
+    __in int user2, 
+    __out unsigned int* getNosGrafoAmigosResultCount, 
+    __deref_out_ecount_opt(*getNosGrafoAmigosResultCount) NoBD*** getNosGrafoAmigosResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+// operation: BasicHttpBinding_IService_getNosGrafo
+HRESULT WINAPI BasicHttpBinding_IService_getNosGrafo(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int userid, 
+    __out unsigned int* getNosGrafoResultCount, 
+    __deref_out_ecount_opt(*getNosGrafoResultCount) NoBD*** getNosGrafoResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
 ////////////////////////////////////////////////
 // Service functions definitions
 ////////////////////////////////////////////////
@@ -432,6 +536,70 @@ typedef HRESULT (CALLBACK* BasicHttpBinding_IService_sugereAmigosCallback) (
     __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
     __in_opt WS_ERROR* _error);
 
+typedef HRESULT (CALLBACK* BasicHttpBinding_IService_grafoAmigosComunsCallback) (
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in int user1, 
+    __in int user2, 
+    __out_opt __deref __nullterminated WCHAR** grafoAmigosComunsResult, 
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+typedef HRESULT (CALLBACK* BasicHttpBinding_IService_getLigacaoCallback) (
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in int userreg, 
+    __in int user1, 
+    __in int user2, 
+    __deref_out_opt Ligacao** getLigacaoResult, 
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+typedef HRESULT (CALLBACK* BasicHttpBinding_IService_getAmigosNivel3Callback) (
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in int userID, 
+    __out_opt __deref __nullterminated WCHAR** getAmigosNivel3Result, 
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+typedef HRESULT (CALLBACK* BasicHttpBinding_IService_getMavenOfTagCallback) (
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in_opt __nullterminated WCHAR* tag, 
+    __out_opt __deref __nullterminated WCHAR** getMavenOfTagResult, 
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+typedef HRESULT (CALLBACK* BasicHttpBinding_IService_getSeparacaoCallback) (
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in int no1, 
+    __in int no2, 
+    __out_opt __deref __nullterminated WCHAR** getSeparacaoResult, 
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+typedef HRESULT (CALLBACK* BasicHttpBinding_IService_getGrafoNivel3Callback) (
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in int userid, 
+    __out unsigned int* getGrafoNivel3ResultCount, 
+    __deref_out_ecount_opt(*getGrafoNivel3ResultCount) NoBD*** getGrafoNivel3Result, 
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+typedef HRESULT (CALLBACK* BasicHttpBinding_IService_getNosGrafoAmigosCallback) (
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in int user1, 
+    __in int user2, 
+    __out unsigned int* getNosGrafoAmigosResultCount, 
+    __deref_out_ecount_opt(*getNosGrafoAmigosResultCount) NoBD*** getNosGrafoAmigosResult, 
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
+typedef HRESULT (CALLBACK* BasicHttpBinding_IService_getNosGrafoCallback) (
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in int userid, 
+    __out unsigned int* getNosGrafoResultCount, 
+    __deref_out_ecount_opt(*getNosGrafoResultCount) NoBD*** getNosGrafoResult, 
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error);
+
 // binding: BasicHttpBinding_IService
 typedef struct BasicHttpBinding_IServiceFunctionTable 
 {
@@ -448,6 +616,14 @@ typedef struct BasicHttpBinding_IServiceFunctionTable
     BasicHttpBinding_IService_xTagsEmComumCallback BasicHttpBinding_IService_xTagsEmComum;
     BasicHttpBinding_IService_tamanhoRedeUtilizadorCallback BasicHttpBinding_IService_tamanhoRedeUtilizador;
     BasicHttpBinding_IService_sugereAmigosCallback BasicHttpBinding_IService_sugereAmigos;
+    BasicHttpBinding_IService_grafoAmigosComunsCallback BasicHttpBinding_IService_grafoAmigosComuns;
+    BasicHttpBinding_IService_getLigacaoCallback BasicHttpBinding_IService_getLigacao;
+    BasicHttpBinding_IService_getAmigosNivel3Callback BasicHttpBinding_IService_getAmigosNivel3;
+    BasicHttpBinding_IService_getMavenOfTagCallback BasicHttpBinding_IService_getMavenOfTag;
+    BasicHttpBinding_IService_getSeparacaoCallback BasicHttpBinding_IService_getSeparacao;
+    BasicHttpBinding_IService_getGrafoNivel3Callback BasicHttpBinding_IService_getGrafoNivel3;
+    BasicHttpBinding_IService_getNosGrafoAmigosCallback BasicHttpBinding_IService_getNosGrafoAmigos;
+    BasicHttpBinding_IService_getNosGrafoCallback BasicHttpBinding_IService_getNosGrafo;
 } BasicHttpBinding_IServiceFunctionTable;
 
 ////////////////////////////////////////////////
@@ -614,6 +790,102 @@ typedef struct _tempuri_org_wsdl
         // messageDescription: tempuri_org_wsdl.messages.IService_sugereAmigos_OutputMessage
         WS_MESSAGE_DESCRIPTION IService_sugereAmigos_OutputMessage;
         
+        // message: IService_grafoAmigosComuns_InputMessage
+        // c type: _grafoAmigosComuns
+        // action: "http://tempuri.org/IService/grafoAmigosComuns"
+        // messageDescription: tempuri_org_wsdl.messages.IService_grafoAmigosComuns_InputMessage
+        WS_MESSAGE_DESCRIPTION IService_grafoAmigosComuns_InputMessage;
+        
+        // message: IService_grafoAmigosComuns_OutputMessage
+        // c type: _grafoAmigosComunsResponse
+        // action: "http://tempuri.org/IService/grafoAmigosComunsResponse"
+        // messageDescription: tempuri_org_wsdl.messages.IService_grafoAmigosComuns_OutputMessage
+        WS_MESSAGE_DESCRIPTION IService_grafoAmigosComuns_OutputMessage;
+        
+        // message: IService_getLigacao_InputMessage
+        // c type: _getLigacao
+        // action: "http://tempuri.org/IService/getLigacao"
+        // messageDescription: tempuri_org_wsdl.messages.IService_getLigacao_InputMessage
+        WS_MESSAGE_DESCRIPTION IService_getLigacao_InputMessage;
+        
+        // message: IService_getLigacao_OutputMessage
+        // c type: _getLigacaoResponse
+        // action: "http://tempuri.org/IService/getLigacaoResponse"
+        // messageDescription: tempuri_org_wsdl.messages.IService_getLigacao_OutputMessage
+        WS_MESSAGE_DESCRIPTION IService_getLigacao_OutputMessage;
+        
+        // message: IService_getAmigosNivel3_InputMessage
+        // c type: _getAmigosNivel3
+        // action: "http://tempuri.org/IService/getAmigosNivel3"
+        // messageDescription: tempuri_org_wsdl.messages.IService_getAmigosNivel3_InputMessage
+        WS_MESSAGE_DESCRIPTION IService_getAmigosNivel3_InputMessage;
+        
+        // message: IService_getAmigosNivel3_OutputMessage
+        // c type: _getAmigosNivel3Response
+        // action: "http://tempuri.org/IService/getAmigosNivel3Response"
+        // messageDescription: tempuri_org_wsdl.messages.IService_getAmigosNivel3_OutputMessage
+        WS_MESSAGE_DESCRIPTION IService_getAmigosNivel3_OutputMessage;
+        
+        // message: IService_getMavenOfTag_InputMessage
+        // c type: _getMavenOfTag
+        // action: "http://tempuri.org/IService/getMavenOfTag"
+        // messageDescription: tempuri_org_wsdl.messages.IService_getMavenOfTag_InputMessage
+        WS_MESSAGE_DESCRIPTION IService_getMavenOfTag_InputMessage;
+        
+        // message: IService_getMavenOfTag_OutputMessage
+        // c type: _getMavenOfTagResponse
+        // action: "http://tempuri.org/IService/getMavenOfTagResponse"
+        // messageDescription: tempuri_org_wsdl.messages.IService_getMavenOfTag_OutputMessage
+        WS_MESSAGE_DESCRIPTION IService_getMavenOfTag_OutputMessage;
+        
+        // message: IService_getSeparacao_InputMessage
+        // c type: _getSeparacao
+        // action: "http://tempuri.org/IService/getSeparacao"
+        // messageDescription: tempuri_org_wsdl.messages.IService_getSeparacao_InputMessage
+        WS_MESSAGE_DESCRIPTION IService_getSeparacao_InputMessage;
+        
+        // message: IService_getSeparacao_OutputMessage
+        // c type: _getSeparacaoResponse
+        // action: "http://tempuri.org/IService/getSeparacaoResponse"
+        // messageDescription: tempuri_org_wsdl.messages.IService_getSeparacao_OutputMessage
+        WS_MESSAGE_DESCRIPTION IService_getSeparacao_OutputMessage;
+        
+        // message: IService_getGrafoNivel3_InputMessage
+        // c type: _getGrafoNivel3
+        // action: "http://tempuri.org/IService/getGrafoNivel3"
+        // messageDescription: tempuri_org_wsdl.messages.IService_getGrafoNivel3_InputMessage
+        WS_MESSAGE_DESCRIPTION IService_getGrafoNivel3_InputMessage;
+        
+        // message: IService_getGrafoNivel3_OutputMessage
+        // c type: _getGrafoNivel3Response
+        // action: "http://tempuri.org/IService/getGrafoNivel3Response"
+        // messageDescription: tempuri_org_wsdl.messages.IService_getGrafoNivel3_OutputMessage
+        WS_MESSAGE_DESCRIPTION IService_getGrafoNivel3_OutputMessage;
+        
+        // message: IService_getNosGrafoAmigos_InputMessage
+        // c type: _getNosGrafoAmigos
+        // action: "http://tempuri.org/IService/getNosGrafoAmigos"
+        // messageDescription: tempuri_org_wsdl.messages.IService_getNosGrafoAmigos_InputMessage
+        WS_MESSAGE_DESCRIPTION IService_getNosGrafoAmigos_InputMessage;
+        
+        // message: IService_getNosGrafoAmigos_OutputMessage
+        // c type: _getNosGrafoAmigosResponse
+        // action: "http://tempuri.org/IService/getNosGrafoAmigosResponse"
+        // messageDescription: tempuri_org_wsdl.messages.IService_getNosGrafoAmigos_OutputMessage
+        WS_MESSAGE_DESCRIPTION IService_getNosGrafoAmigos_OutputMessage;
+        
+        // message: IService_getNosGrafo_InputMessage
+        // c type: _getNosGrafo
+        // action: "http://tempuri.org/IService/getNosGrafo"
+        // messageDescription: tempuri_org_wsdl.messages.IService_getNosGrafo_InputMessage
+        WS_MESSAGE_DESCRIPTION IService_getNosGrafo_InputMessage;
+        
+        // message: IService_getNosGrafo_OutputMessage
+        // c type: _getNosGrafoResponse
+        // action: "http://tempuri.org/IService/getNosGrafoResponse"
+        // messageDescription: tempuri_org_wsdl.messages.IService_getNosGrafo_OutputMessage
+        WS_MESSAGE_DESCRIPTION IService_getNosGrafo_OutputMessage;
+        
     } messages;
     struct // contracts
     {
@@ -658,6 +930,30 @@ typedef struct _tempuri_org_wsdl
         // operation: BasicHttpBinding_IService_sugereAmigos
         //     input message: IService_sugereAmigos_InputMessage
         //     output message: IService_sugereAmigos_OutputMessage
+        // operation: BasicHttpBinding_IService_grafoAmigosComuns
+        //     input message: IService_grafoAmigosComuns_InputMessage
+        //     output message: IService_grafoAmigosComuns_OutputMessage
+        // operation: BasicHttpBinding_IService_getLigacao
+        //     input message: IService_getLigacao_InputMessage
+        //     output message: IService_getLigacao_OutputMessage
+        // operation: BasicHttpBinding_IService_getAmigosNivel3
+        //     input message: IService_getAmigosNivel3_InputMessage
+        //     output message: IService_getAmigosNivel3_OutputMessage
+        // operation: BasicHttpBinding_IService_getMavenOfTag
+        //     input message: IService_getMavenOfTag_InputMessage
+        //     output message: IService_getMavenOfTag_OutputMessage
+        // operation: BasicHttpBinding_IService_getSeparacao
+        //     input message: IService_getSeparacao_InputMessage
+        //     output message: IService_getSeparacao_OutputMessage
+        // operation: BasicHttpBinding_IService_getGrafoNivel3
+        //     input message: IService_getGrafoNivel3_InputMessage
+        //     output message: IService_getGrafoNivel3_OutputMessage
+        // operation: BasicHttpBinding_IService_getNosGrafoAmigos
+        //     input message: IService_getNosGrafoAmigos_InputMessage
+        //     output message: IService_getNosGrafoAmigos_OutputMessage
+        // operation: BasicHttpBinding_IService_getNosGrafo
+        //     input message: IService_getNosGrafo_InputMessage
+        //     output message: IService_getNosGrafo_OutputMessage
         // contractDescription: tempuri_org_wsdl.contracts.BasicHttpBinding_IService
         WS_CONTRACT_DESCRIPTION BasicHttpBinding_IService;
         

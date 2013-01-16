@@ -86,6 +86,54 @@
   <wsdl:message name="IService_sugereAmigos_OutputMessage">
     <wsdl:part name="parameters" element="tns:sugereAmigosResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_grafoAmigosComuns_InputMessage">
+    <wsdl:part name="parameters" element="tns:grafoAmigosComuns" />
+  </wsdl:message>
+  <wsdl:message name="IService_grafoAmigosComuns_OutputMessage">
+    <wsdl:part name="parameters" element="tns:grafoAmigosComunsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_getLigacao_InputMessage">
+    <wsdl:part name="parameters" element="tns:getLigacao" />
+  </wsdl:message>
+  <wsdl:message name="IService_getLigacao_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getLigacaoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_getAmigosNivel3_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAmigosNivel3" />
+  </wsdl:message>
+  <wsdl:message name="IService_getAmigosNivel3_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAmigosNivel3Response" />
+  </wsdl:message>
+  <wsdl:message name="IService_getMavenOfTag_InputMessage">
+    <wsdl:part name="parameters" element="tns:getMavenOfTag" />
+  </wsdl:message>
+  <wsdl:message name="IService_getMavenOfTag_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getMavenOfTagResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_getSeparacao_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSeparacao" />
+  </wsdl:message>
+  <wsdl:message name="IService_getSeparacao_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSeparacaoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_getGrafoNivel3_InputMessage">
+    <wsdl:part name="parameters" element="tns:getGrafoNivel3" />
+  </wsdl:message>
+  <wsdl:message name="IService_getGrafoNivel3_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getGrafoNivel3Response" />
+  </wsdl:message>
+  <wsdl:message name="IService_getNosGrafoAmigos_InputMessage">
+    <wsdl:part name="parameters" element="tns:getNosGrafoAmigos" />
+  </wsdl:message>
+  <wsdl:message name="IService_getNosGrafoAmigos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getNosGrafoAmigosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_getNosGrafo_InputMessage">
+    <wsdl:part name="parameters" element="tns:getNosGrafo" />
+  </wsdl:message>
+  <wsdl:message name="IService_getNosGrafo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getNosGrafoResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="Add">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/Add" message="tns:IService_Add_InputMessage" />
@@ -138,6 +186,38 @@
     <wsdl:operation name="sugereAmigos">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/sugereAmigos" message="tns:IService_sugereAmigos_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/sugereAmigosResponse" message="tns:IService_sugereAmigos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="grafoAmigosComuns">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/grafoAmigosComuns" message="tns:IService_grafoAmigosComuns_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/grafoAmigosComunsResponse" message="tns:IService_grafoAmigosComuns_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getLigacao">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/getLigacao" message="tns:IService_getLigacao_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/getLigacaoResponse" message="tns:IService_getLigacao_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAmigosNivel3">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/getAmigosNivel3" message="tns:IService_getAmigosNivel3_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/getAmigosNivel3Response" message="tns:IService_getAmigosNivel3_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMavenOfTag">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/getMavenOfTag" message="tns:IService_getMavenOfTag_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/getMavenOfTagResponse" message="tns:IService_getMavenOfTag_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getSeparacao">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/getSeparacao" message="tns:IService_getSeparacao_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/getSeparacaoResponse" message="tns:IService_getSeparacao_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getGrafoNivel3">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/getGrafoNivel3" message="tns:IService_getGrafoNivel3_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/getGrafoNivel3Response" message="tns:IService_getGrafoNivel3_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getNosGrafoAmigos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/getNosGrafoAmigos" message="tns:IService_getNosGrafoAmigos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/getNosGrafoAmigosResponse" message="tns:IService_getNosGrafoAmigos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getNosGrafo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/getNosGrafo" message="tns:IService_getNosGrafo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/getNosGrafoResponse" message="tns:IService_getNosGrafo_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
@@ -252,6 +332,78 @@
     </wsdl:operation>
     <wsdl:operation name="sugereAmigos">
       <soap:operation soapAction="http://tempuri.org/IService/sugereAmigos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="grafoAmigosComuns">
+      <soap:operation soapAction="http://tempuri.org/IService/grafoAmigosComuns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLigacao">
+      <soap:operation soapAction="http://tempuri.org/IService/getLigacao" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAmigosNivel3">
+      <soap:operation soapAction="http://tempuri.org/IService/getAmigosNivel3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMavenOfTag">
+      <soap:operation soapAction="http://tempuri.org/IService/getMavenOfTag" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSeparacao">
+      <soap:operation soapAction="http://tempuri.org/IService/getSeparacao" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGrafoNivel3">
+      <soap:operation soapAction="http://tempuri.org/IService/getGrafoNivel3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getNosGrafoAmigos">
+      <soap:operation soapAction="http://tempuri.org/IService/getNosGrafoAmigos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getNosGrafo">
+      <soap:operation soapAction="http://tempuri.org/IService/getNosGrafo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

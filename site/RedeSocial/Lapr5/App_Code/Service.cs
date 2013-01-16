@@ -255,10 +255,8 @@ public class Service : IService
         noi = new NoBD(user2, perf.X, perf.Y, Rede.Perfil.getHumorByPrefilID(user2), perf.Name, avatar3d, numtags);
         ret.Add(noi);
 
-
         if (ids != "")
         {
-
             for (int i = 0; i < str.Count(); i++)
             {
                 int id = Convert.ToInt32(str[i]);

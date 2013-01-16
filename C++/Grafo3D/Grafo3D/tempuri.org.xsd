@@ -181,4 +181,121 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="grafoAmigosComuns">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="user1" type="xs:int" />
+        <xs:element minOccurs="0" name="user2" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="grafoAmigosComunsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="grafoAmigosComunsResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getLigacao">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userreg" type="xs:int" />
+        <xs:element minOccurs="0" name="user1" type="xs:int" />
+        <xs:element minOccurs="0" name="user2" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getLigacaoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="getLigacaoResult" nillable="true" type="q5:Ligacao" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAmigosNivel3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAmigosNivel3Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getAmigosNivel3Result" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getMavenOfTag">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tag" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getMavenOfTagResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getMavenOfTagResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSeparacao">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="no1" type="xs:int" />
+        <xs:element minOccurs="0" name="no2" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSeparacaoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getSeparacaoResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getGrafoNivel3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getGrafoNivel3Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="getGrafoNivel3Result" nillable="true" type="q6:ArrayOfNoBD" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getNosGrafoAmigos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="user1" type="xs:int" />
+        <xs:element minOccurs="0" name="user2" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getNosGrafoAmigosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="getNosGrafoAmigosResult" nillable="true" type="q7:ArrayOfNoBD" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getNosGrafo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getNosGrafoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="getNosGrafoResult" nillable="true" type="q8:ArrayOfNoBD" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

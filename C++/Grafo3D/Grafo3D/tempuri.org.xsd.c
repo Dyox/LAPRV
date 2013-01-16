@@ -125,6 +125,91 @@ typedef struct _tempuri_org_xsdLocalDefinitions
             WS_FIELD_DESCRIPTION sugereAmigosResult;
             WS_FIELD_DESCRIPTION* _sugereAmigosResponseFields [1]; 
         } _sugereAmigosResponsedescs; // end of _sugereAmigosResponse
+        struct // _grafoAmigosComuns
+        {
+            WS_FIELD_DESCRIPTION user1;
+            WS_FIELD_DESCRIPTION user2;
+            WS_FIELD_DESCRIPTION* _grafoAmigosComunsFields [2]; 
+        } _grafoAmigosComunsdescs; // end of _grafoAmigosComuns
+        struct // _grafoAmigosComunsResponse
+        {
+            WS_FIELD_DESCRIPTION grafoAmigosComunsResult;
+            WS_FIELD_DESCRIPTION* _grafoAmigosComunsResponseFields [1]; 
+        } _grafoAmigosComunsResponsedescs; // end of _grafoAmigosComunsResponse
+        struct // _getLigacao
+        {
+            WS_FIELD_DESCRIPTION userreg;
+            WS_FIELD_DESCRIPTION user1;
+            WS_FIELD_DESCRIPTION user2;
+            WS_FIELD_DESCRIPTION* _getLigacaoFields [3]; 
+        } _getLigacaodescs; // end of _getLigacao
+        struct // _getLigacaoResponse
+        {
+            WS_FIELD_DESCRIPTION getLigacaoResult;
+            WS_FIELD_DESCRIPTION* _getLigacaoResponseFields [1]; 
+        } _getLigacaoResponsedescs; // end of _getLigacaoResponse
+        struct // _getAmigosNivel3
+        {
+            WS_FIELD_DESCRIPTION userID;
+            WS_FIELD_DESCRIPTION* _getAmigosNivel3Fields [1]; 
+        } _getAmigosNivel3descs; // end of _getAmigosNivel3
+        struct // _getAmigosNivel3Response
+        {
+            WS_FIELD_DESCRIPTION getAmigosNivel3Result;
+            WS_FIELD_DESCRIPTION* _getAmigosNivel3ResponseFields [1]; 
+        } _getAmigosNivel3Responsedescs; // end of _getAmigosNivel3Response
+        struct // _getMavenOfTag
+        {
+            WS_FIELD_DESCRIPTION tag;
+            WS_FIELD_DESCRIPTION* _getMavenOfTagFields [1]; 
+        } _getMavenOfTagdescs; // end of _getMavenOfTag
+        struct // _getMavenOfTagResponse
+        {
+            WS_FIELD_DESCRIPTION getMavenOfTagResult;
+            WS_FIELD_DESCRIPTION* _getMavenOfTagResponseFields [1]; 
+        } _getMavenOfTagResponsedescs; // end of _getMavenOfTagResponse
+        struct // _getSeparacao
+        {
+            WS_FIELD_DESCRIPTION no1;
+            WS_FIELD_DESCRIPTION no2;
+            WS_FIELD_DESCRIPTION* _getSeparacaoFields [2]; 
+        } _getSeparacaodescs; // end of _getSeparacao
+        struct // _getSeparacaoResponse
+        {
+            WS_FIELD_DESCRIPTION getSeparacaoResult;
+            WS_FIELD_DESCRIPTION* _getSeparacaoResponseFields [1]; 
+        } _getSeparacaoResponsedescs; // end of _getSeparacaoResponse
+        struct // _getGrafoNivel3
+        {
+            WS_FIELD_DESCRIPTION userid;
+            WS_FIELD_DESCRIPTION* _getGrafoNivel3Fields [1]; 
+        } _getGrafoNivel3descs; // end of _getGrafoNivel3
+        struct // _getGrafoNivel3Response
+        {
+            WS_FIELD_DESCRIPTION getGrafoNivel3Result;
+            WS_FIELD_DESCRIPTION* _getGrafoNivel3ResponseFields [1]; 
+        } _getGrafoNivel3Responsedescs; // end of _getGrafoNivel3Response
+        struct // _getNosGrafoAmigos
+        {
+            WS_FIELD_DESCRIPTION user1;
+            WS_FIELD_DESCRIPTION user2;
+            WS_FIELD_DESCRIPTION* _getNosGrafoAmigosFields [2]; 
+        } _getNosGrafoAmigosdescs; // end of _getNosGrafoAmigos
+        struct // _getNosGrafoAmigosResponse
+        {
+            WS_FIELD_DESCRIPTION getNosGrafoAmigosResult;
+            WS_FIELD_DESCRIPTION* _getNosGrafoAmigosResponseFields [1]; 
+        } _getNosGrafoAmigosResponsedescs; // end of _getNosGrafoAmigosResponse
+        struct // _getNosGrafo
+        {
+            WS_FIELD_DESCRIPTION userid;
+            WS_FIELD_DESCRIPTION* _getNosGrafoFields [1]; 
+        } _getNosGrafodescs; // end of _getNosGrafo
+        struct // _getNosGrafoResponse
+        {
+            WS_FIELD_DESCRIPTION getNosGrafoResult;
+            WS_FIELD_DESCRIPTION* _getNosGrafoResponseFields [1]; 
+        } _getNosGrafoResponsedescs; // end of _getNosGrafoResponse
     } globalElements;  // end of global elements
     struct // XML dictionary
     {
@@ -183,6 +268,36 @@ typedef struct _tempuri_org_xsdLocalDefinitions
             WS_XML_STRING _sugereAmigosTypeName;  // sugereAmigos
             WS_XML_STRING _sugereAmigosResponseTypeName;  // sugereAmigosResponse
             WS_XML_STRING _sugereAmigosResponsesugereAmigosResultLocalName;  // sugereAmigosResult
+            WS_XML_STRING _grafoAmigosComunsTypeName;  // grafoAmigosComuns
+            WS_XML_STRING _grafoAmigosComunsuser1LocalName;  // user1
+            WS_XML_STRING _grafoAmigosComunsuser2LocalName;  // user2
+            WS_XML_STRING _grafoAmigosComunsResponseTypeName;  // grafoAmigosComunsResponse
+            WS_XML_STRING _grafoAmigosComunsResponsegrafoAmigosComunsResultLocalName;  // grafoAmigosComunsResult
+            WS_XML_STRING _getLigacaoTypeName;  // getLigacao
+            WS_XML_STRING _getLigacaouserregLocalName;  // userreg
+            WS_XML_STRING _getLigacaoResponseTypeName;  // getLigacaoResponse
+            WS_XML_STRING _getLigacaoResponsegetLigacaoResultLocalName;  // getLigacaoResult
+            WS_XML_STRING _getAmigosNivel3TypeName;  // getAmigosNivel3
+            WS_XML_STRING _getAmigosNivel3userIDLocalName;  // userID
+            WS_XML_STRING _getAmigosNivel3ResponseTypeName;  // getAmigosNivel3Response
+            WS_XML_STRING _getAmigosNivel3ResponsegetAmigosNivel3ResultLocalName;  // getAmigosNivel3Result
+            WS_XML_STRING _getMavenOfTagTypeName;  // getMavenOfTag
+            WS_XML_STRING _getMavenOfTagtagLocalName;  // tag
+            WS_XML_STRING _getMavenOfTagResponseTypeName;  // getMavenOfTagResponse
+            WS_XML_STRING _getMavenOfTagResponsegetMavenOfTagResultLocalName;  // getMavenOfTagResult
+            WS_XML_STRING _getSeparacaoTypeName;  // getSeparacao
+            WS_XML_STRING _getSeparacaoResponseTypeName;  // getSeparacaoResponse
+            WS_XML_STRING _getSeparacaoResponsegetSeparacaoResultLocalName;  // getSeparacaoResult
+            WS_XML_STRING _getGrafoNivel3TypeName;  // getGrafoNivel3
+            WS_XML_STRING _getGrafoNivel3useridLocalName;  // userid
+            WS_XML_STRING _getGrafoNivel3ResponseTypeName;  // getGrafoNivel3Response
+            WS_XML_STRING _getGrafoNivel3ResponsegetGrafoNivel3ResultWrapperName;  // getGrafoNivel3Result
+            WS_XML_STRING _getNosGrafoAmigosTypeName;  // getNosGrafoAmigos
+            WS_XML_STRING _getNosGrafoAmigosResponseTypeName;  // getNosGrafoAmigosResponse
+            WS_XML_STRING _getNosGrafoAmigosResponsegetNosGrafoAmigosResultWrapperName;  // getNosGrafoAmigosResult
+            WS_XML_STRING _getNosGrafoTypeName;  // getNosGrafo
+            WS_XML_STRING _getNosGrafoResponseTypeName;  // getNosGrafoResponse
+            WS_XML_STRING _getNosGrafoResponsegetNosGrafoResultWrapperName;  // getNosGrafoResult
         } xmlStrings; // end of XML string list
         WS_XML_DICTIONARY dict;  
     } dictionary;  // end of XML dictionary
@@ -613,6 +728,331 @@ const static _tempuri_org_xsdLocalDefinitions tempuri_org_xsdLocalDefinitions =
             (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._sugereAmigosResponsedescs.sugereAmigosResult,
             },
         },    // _sugereAmigosResponse
+        {   // _grafoAmigosComuns
+            { // field description for user1
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._grafoAmigosComunsuser1LocalName, // user1
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_INT32_TYPE,
+            0,
+            WsOffsetOf(_grafoAmigosComuns, user1),
+             WS_FIELD_OPTIONAL,
+            0,
+            0xffffffff
+            },    // end of field description for user1
+            { // field description for user2
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._grafoAmigosComunsuser2LocalName, // user2
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_INT32_TYPE,
+            0,
+            WsOffsetOf(_grafoAmigosComuns, user2),
+             WS_FIELD_OPTIONAL,
+            0,
+            0xffffffff
+            },    // end of field description for user2
+            {    // fields description for _grafoAmigosComuns
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._grafoAmigosComunsdescs.user1,
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._grafoAmigosComunsdescs.user2,
+            },
+        },    // _grafoAmigosComuns
+        {   // _grafoAmigosComunsResponse
+            { // field description for grafoAmigosComunsResult
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._grafoAmigosComunsResponsegrafoAmigosComunsResultLocalName, // grafoAmigosComunsResult
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_WSZ_TYPE,
+            0,
+            WsOffsetOf(_grafoAmigosComunsResponse, grafoAmigosComunsResult),
+             WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE,
+            0,
+            0xffffffff
+            },    // end of field description for grafoAmigosComunsResult
+            {    // fields description for _grafoAmigosComunsResponse
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._grafoAmigosComunsResponsedescs.grafoAmigosComunsResult,
+            },
+        },    // _grafoAmigosComunsResponse
+        {   // _getLigacao
+            { // field description for userreg
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getLigacaouserregLocalName, // userreg
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_INT32_TYPE,
+            0,
+            WsOffsetOf(_getLigacao, userreg),
+             WS_FIELD_OPTIONAL,
+            0,
+            0xffffffff
+            },    // end of field description for userreg
+            { // field description for user1
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._grafoAmigosComunsuser1LocalName, // user1
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_INT32_TYPE,
+            0,
+            WsOffsetOf(_getLigacao, user1),
+             WS_FIELD_OPTIONAL,
+            0,
+            0xffffffff
+            },    // end of field description for user1
+            { // field description for user2
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._grafoAmigosComunsuser2LocalName, // user2
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_INT32_TYPE,
+            0,
+            WsOffsetOf(_getLigacao, user2),
+             WS_FIELD_OPTIONAL,
+            0,
+            0xffffffff
+            },    // end of field description for user2
+            {    // fields description for _getLigacao
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getLigacaodescs.userreg,
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getLigacaodescs.user1,
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getLigacaodescs.user2,
+            },
+        },    // _getLigacao
+        {   // _getLigacaoResponse
+            { // field description for getLigacaoResult
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getLigacaoResponsegetLigacaoResultLocalName, // getLigacaoResult
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&schema_xsd.globalTypes.Ligacao,
+            WsOffsetOf(_getLigacaoResponse, getLigacaoResult),
+            WS_FIELD_POINTER| WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE,
+            0,
+            0xffffffff
+            },    // end of field description for getLigacaoResult
+            {    // fields description for _getLigacaoResponse
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getLigacaoResponsedescs.getLigacaoResult,
+            },
+        },    // _getLigacaoResponse
+        {   // _getAmigosNivel3
+            { // field description for userID
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getAmigosNivel3userIDLocalName, // userID
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_INT32_TYPE,
+            0,
+            WsOffsetOf(_getAmigosNivel3, userID),
+             WS_FIELD_OPTIONAL,
+            0,
+            0xffffffff
+            },    // end of field description for userID
+            {    // fields description for _getAmigosNivel3
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getAmigosNivel3descs.userID,
+            },
+        },    // _getAmigosNivel3
+        {   // _getAmigosNivel3Response
+            { // field description for getAmigosNivel3Result
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getAmigosNivel3ResponsegetAmigosNivel3ResultLocalName, // getAmigosNivel3Result
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_WSZ_TYPE,
+            0,
+            WsOffsetOf(_getAmigosNivel3Response, getAmigosNivel3Result),
+             WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE,
+            0,
+            0xffffffff
+            },    // end of field description for getAmigosNivel3Result
+            {    // fields description for _getAmigosNivel3Response
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getAmigosNivel3Responsedescs.getAmigosNivel3Result,
+            },
+        },    // _getAmigosNivel3Response
+        {   // _getMavenOfTag
+            { // field description for tag
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getMavenOfTagtagLocalName, // tag
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_WSZ_TYPE,
+            0,
+            WsOffsetOf(_getMavenOfTag, tag),
+             WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE,
+            0,
+            0xffffffff
+            },    // end of field description for tag
+            {    // fields description for _getMavenOfTag
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getMavenOfTagdescs.tag,
+            },
+        },    // _getMavenOfTag
+        {   // _getMavenOfTagResponse
+            { // field description for getMavenOfTagResult
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getMavenOfTagResponsegetMavenOfTagResultLocalName, // getMavenOfTagResult
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_WSZ_TYPE,
+            0,
+            WsOffsetOf(_getMavenOfTagResponse, getMavenOfTagResult),
+             WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE,
+            0,
+            0xffffffff
+            },    // end of field description for getMavenOfTagResult
+            {    // fields description for _getMavenOfTagResponse
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getMavenOfTagResponsedescs.getMavenOfTagResult,
+            },
+        },    // _getMavenOfTagResponse
+        {   // _getSeparacao
+            { // field description for no1
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getMenorCaminhono1LocalName, // no1
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_INT32_TYPE,
+            0,
+            WsOffsetOf(_getSeparacao, no1),
+             WS_FIELD_OPTIONAL,
+            0,
+            0xffffffff
+            },    // end of field description for no1
+            { // field description for no2
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getMenorCaminhono2LocalName, // no2
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_INT32_TYPE,
+            0,
+            WsOffsetOf(_getSeparacao, no2),
+             WS_FIELD_OPTIONAL,
+            0,
+            0xffffffff
+            },    // end of field description for no2
+            {    // fields description for _getSeparacao
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getSeparacaodescs.no1,
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getSeparacaodescs.no2,
+            },
+        },    // _getSeparacao
+        {   // _getSeparacaoResponse
+            { // field description for getSeparacaoResult
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getSeparacaoResponsegetSeparacaoResultLocalName, // getSeparacaoResult
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_WSZ_TYPE,
+            0,
+            WsOffsetOf(_getSeparacaoResponse, getSeparacaoResult),
+             WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE,
+            0,
+            0xffffffff
+            },    // end of field description for getSeparacaoResult
+            {    // fields description for _getSeparacaoResponse
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getSeparacaoResponsedescs.getSeparacaoResult,
+            },
+        },    // _getSeparacaoResponse
+        {   // _getGrafoNivel3
+            { // field description for userid
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getGrafoNivel3useridLocalName, // userid
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_INT32_TYPE,
+            0,
+            WsOffsetOf(_getGrafoNivel3, userid),
+             WS_FIELD_OPTIONAL,
+            0,
+            0xffffffff
+            },    // end of field description for userid
+            {    // fields description for _getGrafoNivel3
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getGrafoNivel3descs.userid,
+            },
+        },    // _getGrafoNivel3
+        {   // _getGrafoNivel3Response
+            { // field description for getGrafoNivel3Result
+            WS_REPEATING_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getGrafoNivel3ResponsegetGrafoNivel3ResultWrapperName, // getGrafoNivel3Result
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&schema_xsd.globalTypes.NoBD,
+            WsOffsetOf(_getGrafoNivel3Response, getGrafoNivel3Result),
+            WS_FIELD_POINTER| WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE| WS_FIELD_NILLABLE_ITEM,
+            0,
+            WsOffsetOf(_getGrafoNivel3Response, getGrafoNivel3ResultCount),
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._GetAllXYResponseGetAllXYResultLocalName, // NoBD
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._GetAllXYResponseGetAllXYResultNamespace, // http://schemas.datacontract.org/2004/07/
+            0,
+            },    // end of field description for getGrafoNivel3Result
+            {    // fields description for _getGrafoNivel3Response
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getGrafoNivel3Responsedescs.getGrafoNivel3Result,
+            },
+        },    // _getGrafoNivel3Response
+        {   // _getNosGrafoAmigos
+            { // field description for user1
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._grafoAmigosComunsuser1LocalName, // user1
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_INT32_TYPE,
+            0,
+            WsOffsetOf(_getNosGrafoAmigos, user1),
+             WS_FIELD_OPTIONAL,
+            0,
+            0xffffffff
+            },    // end of field description for user1
+            { // field description for user2
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._grafoAmigosComunsuser2LocalName, // user2
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_INT32_TYPE,
+            0,
+            WsOffsetOf(_getNosGrafoAmigos, user2),
+             WS_FIELD_OPTIONAL,
+            0,
+            0xffffffff
+            },    // end of field description for user2
+            {    // fields description for _getNosGrafoAmigos
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getNosGrafoAmigosdescs.user1,
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getNosGrafoAmigosdescs.user2,
+            },
+        },    // _getNosGrafoAmigos
+        {   // _getNosGrafoAmigosResponse
+            { // field description for getNosGrafoAmigosResult
+            WS_REPEATING_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getNosGrafoAmigosResponsegetNosGrafoAmigosResultWrapperName, // getNosGrafoAmigosResult
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&schema_xsd.globalTypes.NoBD,
+            WsOffsetOf(_getNosGrafoAmigosResponse, getNosGrafoAmigosResult),
+            WS_FIELD_POINTER| WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE| WS_FIELD_NILLABLE_ITEM,
+            0,
+            WsOffsetOf(_getNosGrafoAmigosResponse, getNosGrafoAmigosResultCount),
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._GetAllXYResponseGetAllXYResultLocalName, // NoBD
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._GetAllXYResponseGetAllXYResultNamespace, // http://schemas.datacontract.org/2004/07/
+            0,
+            },    // end of field description for getNosGrafoAmigosResult
+            {    // fields description for _getNosGrafoAmigosResponse
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getNosGrafoAmigosResponsedescs.getNosGrafoAmigosResult,
+            },
+        },    // _getNosGrafoAmigosResponse
+        {   // _getNosGrafo
+            { // field description for userid
+            WS_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getGrafoNivel3useridLocalName, // userid
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_INT32_TYPE,
+            0,
+            WsOffsetOf(_getNosGrafo, userid),
+             WS_FIELD_OPTIONAL,
+            0,
+            0xffffffff
+            },    // end of field description for userid
+            {    // fields description for _getNosGrafo
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getNosGrafodescs.userid,
+            },
+        },    // _getNosGrafo
+        {   // _getNosGrafoResponse
+            { // field description for getNosGrafoResult
+            WS_REPEATING_ELEMENT_FIELD_MAPPING,
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getNosGrafoResponsegetNosGrafoResultWrapperName, // getNosGrafoResult
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&schema_xsd.globalTypes.NoBD,
+            WsOffsetOf(_getNosGrafoResponse, getNosGrafoResult),
+            WS_FIELD_POINTER| WS_FIELD_OPTIONAL| WS_FIELD_NILLABLE| WS_FIELD_NILLABLE_ITEM,
+            0,
+            WsOffsetOf(_getNosGrafoResponse, getNosGrafoResultCount),
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._GetAllXYResponseGetAllXYResultLocalName, // NoBD
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._GetAllXYResponseGetAllXYResultNamespace, // http://schemas.datacontract.org/2004/07/
+            0,
+            },    // end of field description for getNosGrafoResult
+            {    // fields description for _getNosGrafoResponse
+            (WS_FIELD_DESCRIPTION*)&tempuri_org_xsdLocalDefinitions.globalElements._getNosGrafoResponsedescs.getNosGrafoResult,
+            },
+        },    // _getNosGrafoResponse
     }, // end of global elements
     {    // dictionary 
         { // xmlStrings
@@ -669,13 +1109,43 @@ const static _tempuri_org_xsdLocalDefinitions tempuri_org_xsdLocalDefinitions =
             WS_XML_STRING_DICTIONARY_VALUE("sugereAmigos",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 50),
             WS_XML_STRING_DICTIONARY_VALUE("sugereAmigosResponse",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 51),
             WS_XML_STRING_DICTIONARY_VALUE("sugereAmigosResult",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 52),
+            WS_XML_STRING_DICTIONARY_VALUE("grafoAmigosComuns",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 53),
+            WS_XML_STRING_DICTIONARY_VALUE("user1",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 54),
+            WS_XML_STRING_DICTIONARY_VALUE("user2",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 55),
+            WS_XML_STRING_DICTIONARY_VALUE("grafoAmigosComunsResponse",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 56),
+            WS_XML_STRING_DICTIONARY_VALUE("grafoAmigosComunsResult",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 57),
+            WS_XML_STRING_DICTIONARY_VALUE("getLigacao",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 58),
+            WS_XML_STRING_DICTIONARY_VALUE("userreg",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 59),
+            WS_XML_STRING_DICTIONARY_VALUE("getLigacaoResponse",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 60),
+            WS_XML_STRING_DICTIONARY_VALUE("getLigacaoResult",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 61),
+            WS_XML_STRING_DICTIONARY_VALUE("getAmigosNivel3",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 62),
+            WS_XML_STRING_DICTIONARY_VALUE("userID",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 63),
+            WS_XML_STRING_DICTIONARY_VALUE("getAmigosNivel3Response",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 64),
+            WS_XML_STRING_DICTIONARY_VALUE("getAmigosNivel3Result",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 65),
+            WS_XML_STRING_DICTIONARY_VALUE("getMavenOfTag",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 66),
+            WS_XML_STRING_DICTIONARY_VALUE("tag",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 67),
+            WS_XML_STRING_DICTIONARY_VALUE("getMavenOfTagResponse",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 68),
+            WS_XML_STRING_DICTIONARY_VALUE("getMavenOfTagResult",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 69),
+            WS_XML_STRING_DICTIONARY_VALUE("getSeparacao",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 70),
+            WS_XML_STRING_DICTIONARY_VALUE("getSeparacaoResponse",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 71),
+            WS_XML_STRING_DICTIONARY_VALUE("getSeparacaoResult",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 72),
+            WS_XML_STRING_DICTIONARY_VALUE("getGrafoNivel3",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 73),
+            WS_XML_STRING_DICTIONARY_VALUE("userid",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 74),
+            WS_XML_STRING_DICTIONARY_VALUE("getGrafoNivel3Response",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 75),
+            WS_XML_STRING_DICTIONARY_VALUE("getGrafoNivel3Result",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 76),
+            WS_XML_STRING_DICTIONARY_VALUE("getNosGrafoAmigos",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 77),
+            WS_XML_STRING_DICTIONARY_VALUE("getNosGrafoAmigosResponse",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 78),
+            WS_XML_STRING_DICTIONARY_VALUE("getNosGrafoAmigosResult",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 79),
+            WS_XML_STRING_DICTIONARY_VALUE("getNosGrafo",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 80),
+            WS_XML_STRING_DICTIONARY_VALUE("getNosGrafoResponse",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 81),
+            WS_XML_STRING_DICTIONARY_VALUE("getNosGrafoResult",&tempuri_org_xsdLocalDefinitions.dictionary.dict, 82),
         },  // end of xmlStrings
         
         {   // tempuri_org_xsddictionary
-        // fa7beefe-5b81-4b04-9753-0d69b0ddaf5f 
-        { 0xfa7beefe, 0x5b81, 0x4b04, { 0x97, 0x53, 0x0d,0x69, 0xb0, 0xdd, 0xaf, 0x5f } },
+        // 971deff3-8dc2-431e-8c5c-8a278ba5cf72 
+        { 0x971deff3, 0x8dc2, 0x431e, { 0x8c, 0x5c, 0x8a,0x27, 0x8b, 0xa5, 0xcf, 0x72 } },
         (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings,
-        53,
+        83,
         TRUE,
         },
     },   //  end of dictionary
@@ -839,6 +1309,102 @@ const _tempuri_org_xsd tempuri_org_xsd =
             (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
             WS_STRUCT_TYPE,
             (void*)&tempuri_org_xsd.externallyReferencedTypes.sugereAmigosResponse,
+        },
+        {
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._grafoAmigosComunsTypeName, // grafoAmigosComuns
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&tempuri_org_xsd.externallyReferencedTypes.grafoAmigosComuns,
+        },
+        {
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._grafoAmigosComunsResponseTypeName, // grafoAmigosComunsResponse
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&tempuri_org_xsd.externallyReferencedTypes.grafoAmigosComunsResponse,
+        },
+        {
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getLigacaoTypeName, // getLigacao
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&tempuri_org_xsd.externallyReferencedTypes.getLigacao,
+        },
+        {
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getLigacaoResponseTypeName, // getLigacaoResponse
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&tempuri_org_xsd.externallyReferencedTypes.getLigacaoResponse,
+        },
+        {
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getAmigosNivel3TypeName, // getAmigosNivel3
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&tempuri_org_xsd.externallyReferencedTypes.getAmigosNivel3,
+        },
+        {
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getAmigosNivel3ResponseTypeName, // getAmigosNivel3Response
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&tempuri_org_xsd.externallyReferencedTypes.getAmigosNivel3Response,
+        },
+        {
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getMavenOfTagTypeName, // getMavenOfTag
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&tempuri_org_xsd.externallyReferencedTypes.getMavenOfTag,
+        },
+        {
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getMavenOfTagResponseTypeName, // getMavenOfTagResponse
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&tempuri_org_xsd.externallyReferencedTypes.getMavenOfTagResponse,
+        },
+        {
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getSeparacaoTypeName, // getSeparacao
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&tempuri_org_xsd.externallyReferencedTypes.getSeparacao,
+        },
+        {
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getSeparacaoResponseTypeName, // getSeparacaoResponse
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&tempuri_org_xsd.externallyReferencedTypes.getSeparacaoResponse,
+        },
+        {
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getGrafoNivel3TypeName, // getGrafoNivel3
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&tempuri_org_xsd.externallyReferencedTypes.getGrafoNivel3,
+        },
+        {
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getGrafoNivel3ResponseTypeName, // getGrafoNivel3Response
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&tempuri_org_xsd.externallyReferencedTypes.getGrafoNivel3Response,
+        },
+        {
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getNosGrafoAmigosTypeName, // getNosGrafoAmigos
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&tempuri_org_xsd.externallyReferencedTypes.getNosGrafoAmigos,
+        },
+        {
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getNosGrafoAmigosResponseTypeName, // getNosGrafoAmigosResponse
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&tempuri_org_xsd.externallyReferencedTypes.getNosGrafoAmigosResponse,
+        },
+        {
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getNosGrafoTypeName, // getNosGrafo
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&tempuri_org_xsd.externallyReferencedTypes.getNosGrafo,
+        },
+        {
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getNosGrafoResponseTypeName, // getNosGrafoResponse
+            (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+            WS_STRUCT_TYPE,
+            (void*)&tempuri_org_xsd.externallyReferencedTypes.getNosGrafoResponse,
         },
     }, // globalElements
     {  // begin of externallyReferencedTypes
@@ -1128,5 +1694,181 @@ const _tempuri_org_xsd tempuri_org_xsd =
         0,
         0,
         },   // end of struct description for _sugereAmigosResponse
+        {
+        sizeof(_grafoAmigosComuns),
+        __alignof(_grafoAmigosComuns),
+        (WS_FIELD_DESCRIPTION**)&tempuri_org_xsdLocalDefinitions.globalElements._grafoAmigosComunsdescs._grafoAmigosComunsFields,
+        WsCountOf(tempuri_org_xsdLocalDefinitions.globalElements._grafoAmigosComunsdescs._grafoAmigosComunsFields),
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._grafoAmigosComunsTypeName, // grafoAmigosComuns
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+        0,
+        0,
+        0,
+        },   // end of struct description for _grafoAmigosComuns
+        {
+        sizeof(_grafoAmigosComunsResponse),
+        __alignof(_grafoAmigosComunsResponse),
+        (WS_FIELD_DESCRIPTION**)&tempuri_org_xsdLocalDefinitions.globalElements._grafoAmigosComunsResponsedescs._grafoAmigosComunsResponseFields,
+        WsCountOf(tempuri_org_xsdLocalDefinitions.globalElements._grafoAmigosComunsResponsedescs._grafoAmigosComunsResponseFields),
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._grafoAmigosComunsResponseTypeName, // grafoAmigosComunsResponse
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+        0,
+        0,
+        0,
+        },   // end of struct description for _grafoAmigosComunsResponse
+        {
+        sizeof(_getLigacao),
+        __alignof(_getLigacao),
+        (WS_FIELD_DESCRIPTION**)&tempuri_org_xsdLocalDefinitions.globalElements._getLigacaodescs._getLigacaoFields,
+        WsCountOf(tempuri_org_xsdLocalDefinitions.globalElements._getLigacaodescs._getLigacaoFields),
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getLigacaoTypeName, // getLigacao
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+        0,
+        0,
+        0,
+        },   // end of struct description for _getLigacao
+        {
+        sizeof(_getLigacaoResponse),
+        __alignof(_getLigacaoResponse),
+        (WS_FIELD_DESCRIPTION**)&tempuri_org_xsdLocalDefinitions.globalElements._getLigacaoResponsedescs._getLigacaoResponseFields,
+        WsCountOf(tempuri_org_xsdLocalDefinitions.globalElements._getLigacaoResponsedescs._getLigacaoResponseFields),
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getLigacaoResponseTypeName, // getLigacaoResponse
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+        0,
+        0,
+        0,
+        },   // end of struct description for _getLigacaoResponse
+        {
+        sizeof(_getAmigosNivel3),
+        __alignof(_getAmigosNivel3),
+        (WS_FIELD_DESCRIPTION**)&tempuri_org_xsdLocalDefinitions.globalElements._getAmigosNivel3descs._getAmigosNivel3Fields,
+        WsCountOf(tempuri_org_xsdLocalDefinitions.globalElements._getAmigosNivel3descs._getAmigosNivel3Fields),
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getAmigosNivel3TypeName, // getAmigosNivel3
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+        0,
+        0,
+        0,
+        },   // end of struct description for _getAmigosNivel3
+        {
+        sizeof(_getAmigosNivel3Response),
+        __alignof(_getAmigosNivel3Response),
+        (WS_FIELD_DESCRIPTION**)&tempuri_org_xsdLocalDefinitions.globalElements._getAmigosNivel3Responsedescs._getAmigosNivel3ResponseFields,
+        WsCountOf(tempuri_org_xsdLocalDefinitions.globalElements._getAmigosNivel3Responsedescs._getAmigosNivel3ResponseFields),
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getAmigosNivel3ResponseTypeName, // getAmigosNivel3Response
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+        0,
+        0,
+        0,
+        },   // end of struct description for _getAmigosNivel3Response
+        {
+        sizeof(_getMavenOfTag),
+        __alignof(_getMavenOfTag),
+        (WS_FIELD_DESCRIPTION**)&tempuri_org_xsdLocalDefinitions.globalElements._getMavenOfTagdescs._getMavenOfTagFields,
+        WsCountOf(tempuri_org_xsdLocalDefinitions.globalElements._getMavenOfTagdescs._getMavenOfTagFields),
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getMavenOfTagTypeName, // getMavenOfTag
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+        0,
+        0,
+        0,
+        },   // end of struct description for _getMavenOfTag
+        {
+        sizeof(_getMavenOfTagResponse),
+        __alignof(_getMavenOfTagResponse),
+        (WS_FIELD_DESCRIPTION**)&tempuri_org_xsdLocalDefinitions.globalElements._getMavenOfTagResponsedescs._getMavenOfTagResponseFields,
+        WsCountOf(tempuri_org_xsdLocalDefinitions.globalElements._getMavenOfTagResponsedescs._getMavenOfTagResponseFields),
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getMavenOfTagResponseTypeName, // getMavenOfTagResponse
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+        0,
+        0,
+        0,
+        },   // end of struct description for _getMavenOfTagResponse
+        {
+        sizeof(_getSeparacao),
+        __alignof(_getSeparacao),
+        (WS_FIELD_DESCRIPTION**)&tempuri_org_xsdLocalDefinitions.globalElements._getSeparacaodescs._getSeparacaoFields,
+        WsCountOf(tempuri_org_xsdLocalDefinitions.globalElements._getSeparacaodescs._getSeparacaoFields),
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getSeparacaoTypeName, // getSeparacao
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+        0,
+        0,
+        0,
+        },   // end of struct description for _getSeparacao
+        {
+        sizeof(_getSeparacaoResponse),
+        __alignof(_getSeparacaoResponse),
+        (WS_FIELD_DESCRIPTION**)&tempuri_org_xsdLocalDefinitions.globalElements._getSeparacaoResponsedescs._getSeparacaoResponseFields,
+        WsCountOf(tempuri_org_xsdLocalDefinitions.globalElements._getSeparacaoResponsedescs._getSeparacaoResponseFields),
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getSeparacaoResponseTypeName, // getSeparacaoResponse
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+        0,
+        0,
+        0,
+        },   // end of struct description for _getSeparacaoResponse
+        {
+        sizeof(_getGrafoNivel3),
+        __alignof(_getGrafoNivel3),
+        (WS_FIELD_DESCRIPTION**)&tempuri_org_xsdLocalDefinitions.globalElements._getGrafoNivel3descs._getGrafoNivel3Fields,
+        WsCountOf(tempuri_org_xsdLocalDefinitions.globalElements._getGrafoNivel3descs._getGrafoNivel3Fields),
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getGrafoNivel3TypeName, // getGrafoNivel3
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+        0,
+        0,
+        0,
+        },   // end of struct description for _getGrafoNivel3
+        {
+        sizeof(_getGrafoNivel3Response),
+        __alignof(_getGrafoNivel3Response),
+        (WS_FIELD_DESCRIPTION**)&tempuri_org_xsdLocalDefinitions.globalElements._getGrafoNivel3Responsedescs._getGrafoNivel3ResponseFields,
+        WsCountOf(tempuri_org_xsdLocalDefinitions.globalElements._getGrafoNivel3Responsedescs._getGrafoNivel3ResponseFields),
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getGrafoNivel3ResponseTypeName, // getGrafoNivel3Response
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+        0,
+        0,
+        0,
+        },   // end of struct description for _getGrafoNivel3Response
+        {
+        sizeof(_getNosGrafoAmigos),
+        __alignof(_getNosGrafoAmigos),
+        (WS_FIELD_DESCRIPTION**)&tempuri_org_xsdLocalDefinitions.globalElements._getNosGrafoAmigosdescs._getNosGrafoAmigosFields,
+        WsCountOf(tempuri_org_xsdLocalDefinitions.globalElements._getNosGrafoAmigosdescs._getNosGrafoAmigosFields),
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getNosGrafoAmigosTypeName, // getNosGrafoAmigos
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+        0,
+        0,
+        0,
+        },   // end of struct description for _getNosGrafoAmigos
+        {
+        sizeof(_getNosGrafoAmigosResponse),
+        __alignof(_getNosGrafoAmigosResponse),
+        (WS_FIELD_DESCRIPTION**)&tempuri_org_xsdLocalDefinitions.globalElements._getNosGrafoAmigosResponsedescs._getNosGrafoAmigosResponseFields,
+        WsCountOf(tempuri_org_xsdLocalDefinitions.globalElements._getNosGrafoAmigosResponsedescs._getNosGrafoAmigosResponseFields),
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getNosGrafoAmigosResponseTypeName, // getNosGrafoAmigosResponse
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+        0,
+        0,
+        0,
+        },   // end of struct description for _getNosGrafoAmigosResponse
+        {
+        sizeof(_getNosGrafo),
+        __alignof(_getNosGrafo),
+        (WS_FIELD_DESCRIPTION**)&tempuri_org_xsdLocalDefinitions.globalElements._getNosGrafodescs._getNosGrafoFields,
+        WsCountOf(tempuri_org_xsdLocalDefinitions.globalElements._getNosGrafodescs._getNosGrafoFields),
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getNosGrafoTypeName, // getNosGrafo
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+        0,
+        0,
+        0,
+        },   // end of struct description for _getNosGrafo
+        {
+        sizeof(_getNosGrafoResponse),
+        __alignof(_getNosGrafoResponse),
+        (WS_FIELD_DESCRIPTION**)&tempuri_org_xsdLocalDefinitions.globalElements._getNosGrafoResponsedescs._getNosGrafoResponseFields,
+        WsCountOf(tempuri_org_xsdLocalDefinitions.globalElements._getNosGrafoResponsedescs._getNosGrafoResponseFields),
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._getNosGrafoResponseTypeName, // getNosGrafoResponse
+        (WS_XML_STRING*)&tempuri_org_xsdLocalDefinitions.dictionary.xmlStrings._AddTypeNamespace, // http://tempuri.org/
+        0,
+        0,
+        0,
+        },   // end of struct description for _getNosGrafoResponse
     }, // end of externallyReferencedTypes;
 }; // end of _tempuri_org_xsd

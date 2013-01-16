@@ -62,22 +62,26 @@ using namespace std;
 // função para ler jpegs do ficheiro readjpeg.c
 extern "C" int read_JPEG_file(char *, char **, int *, int *, int *);
 
-#define DEBUG_PICKING true
-#define DEBUG_CAMERA true
+#define DEBUG_PICKING false
+#define DEBUG_CAMERA false
 #define SERVER "http://wvm022.dei.isep.ipp.pt"
 #define graus(X) (double)((X)*180/M_PI)
 #define rad(X)   (double)((X)*M_PI/180)
 //#define AVATAR "http://imagens.filmes3d.com/2009/setembro/av6.jpg"
-#define AVATAR "http://wvm022.dei.isep.ipp.pt/TesteWebService/osamabin.jpg"
-//#define AVATAR "http://wvm022.dei.isep.ipp.pt/Lapr5/Registado/Avatar/tn_Cat-Avatar.jpg"
+//#define AVATAR "http://wvm022.dei.isep.ipp.pt/TesteWebService/osamabin.jpg"
+#define AVATAR "http://wvm022.dei.isep.ipp.pt/Lapr5/Registado/Avatar/royal.jpg"
 //#define AVATAR "http://www.cartoonwatcher.com/avatar-last-airbender/avatar-airbender-wallpapers/avatar-last-airbender-wallpaper-07.jpg"
 #define CONTENTE "Texturas/contente.bmp"
 #define TRISTE "Texturas/triste.bmp"
+#define CHATEADO "Texturas/chateado.bmp"
+#define APAIXONADO "Texturas/apaixonado.bmp"
+#define CANSADO "Texturas/cansado.bmp"
+#define SONOLENTO "Texturas/sonolento.bmp"
 #define ESTRELAS "Texturas/stars.jpg"
 #define TEXT_LOGIN "Texturas/login.jpg"
 #define BOTAO "Texturas/botao.bmp"
 #define NUM_TEXTURAS 80
-#define NUM_AVATARS 1
+#define NUM_AVATARS 3
 #define CENA_LOGIN 1
 #define CENA_LOADING 2
 #define CENA_GRAFO 3
@@ -85,15 +89,15 @@ extern "C" int read_JPEG_file(char *, char **, int *, int *, int *);
 #define BOX_PASSWORD 2
 #define CAMINHO_CURTO 0
 #define CAMINHO_FORTE 1
-//#define DIMENSAO_CAMARA 500
+#define DURACAO_MUSICA 252
 
 // luzes e materiais
 const GLfloat mat_ambient[][4] = {{0.33, 0.22, 0.03, 1.0},	// brass
 								  {0.0, 0.0, 0.0},			// red plastic
 								  {0.0215, 0.1745, 0.0215},	// emerald
 								  {0.02, 0.02, 0.02},		// slate
-								  {0.0, 0.0, 0.1745},		// azul caminho
-								  {0.02, 0.02, 0.02},		// preto
+								  {0.0, 0.0, 0.3500},		// azul caminho
+								  {0.01, 0.01, 0.01},		// preto
 								  {0.1745, 0.1745, 0.1745},// cinza
 								  {0.0, 0.0, 0.1745}};		// azul logado
 
@@ -101,16 +105,16 @@ const GLfloat mat_diffuse[][4] = {{0.78, 0.57, 0.11, 1.0},		// brass
 								  {0.5, 0.0, 0.0},				// red plastic
 								  {0.07568, 0.61424, 0.07568},	// emerald
 								  {0.78, 0.78, 0.78},			// slate
-								  {0.0, 0.0,  0.61424},			// azul caminho
+								  {0.0, 0.0,  0.75424},			// azul caminho
 								  {0.05, 0.05, 0.05},			// preto
 								  {0.61424, 0.61424, 0.61424},	// cinza
-								  {0.0, 0.0,  0.51424}};		//azul logado
+								  {0.0, 0.0,  0.45424}};		//azul logado
 
 const GLfloat mat_specular[][4] = {{0.99, 0.91, 0.81, 1.0},			// brass
 								   {0.7, 0.6, 0.6},					// red plastic
 								   {0.633, 0.727811, 0.633},		// emerald
 								   {0.14, 0.14, 0.14},				// slate
-								   {0.0, 0.0, 0.927811},			// azul caminho
+								   {0.0, 0.0, 0.427811},			// azul caminho
 								   {0.01, 0.01, 0.01},				// preto
 								   {0.727811, 0.727811, 0.727811},	// cinza
 								   {0.0, 0.0, 0.427811}}; //azul logado
@@ -119,7 +123,7 @@ const GLfloat mat_shininess[] = {27.8,	// brass
 								 32.0,	// red plastic
 								 76.8,	// emerald
 								 18.78,	// slate
-								 30.0,	// azul caminho
+								 20.0,	// azul caminho
 								 30.0,	// preto
 								 60.0,	// cinza
 								 15.0}; //azul logado
@@ -157,7 +161,6 @@ typedef struct Estado{
 	GLint		itemSeleccionado;
 	GLint		itemCursor;
 	GLint		itemBotao;
-	GLint		tempo;
 	GLint		cena;
 	bool		caminhoEscolhido;/*0-mais curto 1-mais forte*/
 }Estado;
@@ -212,13 +215,19 @@ TextureLoader *apTexLoad = new TextureLoader();
 glTexture avatar;
 glTexture contente;
 glTexture triste;
+glTexture chateado;
+glTexture apaixonado;
+glTexture cansado;
+glTexture sonolento;
 glTexture estrelas;
 glTexture text_login;
 glTexture botao;
 GLuint        texID[NUM_TEXTURAS];
 ALuint alBuffer[1];
 ALuint alSource[1];
+int tempo_musica=0;
 Model_3DS Avatar3D[NUM_AVATARS];
+GLuint  dlist;
 
 AUX_RGBImageRec *LoadBMP(char *Filename)				// Loads A Bitmap Image
 {
@@ -279,6 +288,10 @@ void carregaTexturas()
 {
 	apTexLoad->LoadTextureFromDisk(AVATAR,&avatar);
 	apTexLoad->LoadTextureFromDisk(CONTENTE,&contente);
+	apTexLoad->LoadTextureFromDisk(CHATEADO,&chateado);
+	apTexLoad->LoadTextureFromDisk(APAIXONADO,&apaixonado);
+	apTexLoad->LoadTextureFromDisk(CANSADO,&cansado);
+	apTexLoad->LoadTextureFromDisk(SONOLENTO,&sonolento);
 	apTexLoad->LoadTextureFromDisk(TRISTE,&triste);
 	apTexLoad->LoadTextureFromDisk(ESTRELAS,&estrelas);
 	apTexLoad->LoadTextureFromDisk(BOTAO,&botao);
@@ -291,6 +304,16 @@ void carregaAvatar()
 	apTexLoad->LoadTextureFromDisk((char*)link.c_str(),&avatar);
 	//createTextures(texID);
 	glBindTexture(GL_TEXTURE_2D, NULL);*/
+}
+
+void desenhaAvatars();
+
+void buildLists()
+{
+	dlist=glGenLists(1);
+	glNewList(dlist,GL_COMPILE);
+		desenhaAvatars();
+	glEndList();
 }
 
 void initEstado(){
@@ -356,10 +379,18 @@ void myReshape(int w, int h){
 
 void carregar3ds()
 {
-	Avatar3D[0].Load("Avatars3d/3D_F612.3ds");
+	Avatar3D[0].Load("Avatars3d/Carro.3ds");
 	Avatar3D[0].scale=0.0001;
 	Avatar3D[0].rot.x=90;
 	Avatar3D[0].lit=true;
+	Avatar3D[1].Load("Avatars3d/Dinossauro.3ds");
+	Avatar3D[1].scale=0.00008;
+	Avatar3D[1].rot.x=90;
+	Avatar3D[1].lit=true;
+	Avatar3D[2].Load("Avatars3d/Robot.3ds");
+	Avatar3D[2].scale=0.005;
+	Avatar3D[2].rot.x=90;
+	Avatar3D[2].lit=true;
 }
 
 void myInit()
@@ -492,8 +523,8 @@ void desenhaSolo(){
 		glBegin(GL_QUADS);
 			glNormal3f(0,0,1);
 			material(preto);
-			for(int i=-300;i<300;i+=STEP)
-				for(int j=-300;j<300;j+=STEP){
+			for(int i=-400;i<400;i+=STEP)
+				for(int j=-400;j<400;j+=STEP){
 					glVertex2f(i,j);
 					glVertex2f(i+STEP,j);
 					glVertex2f(i+STEP,j+STEP);
@@ -692,7 +723,7 @@ bool indicaCaminhoArco(Arco arc)
 	return false;
 }
 
-void desenhaLabirinto(){
+void desenhaGrafo(){
 	glPushMatrix();
 		glTranslatef(0,0,0);
 		//glScalef(2,2,2);
@@ -772,12 +803,35 @@ void desenhaAvatars()
 	//avatar3d
 	for (int i=0;i<numNos;i++)
 	{
-		glPushMatrix();			
-			glTranslatef(nos[i].x,nos[i].y,nos[i].z+nos[i].largura+0.06);
-			glDisable(GL_LIGHTING);	
-			Avatar3D[0].Draw();
-			glEnable(GL_LIGHTING);
-		glPopMatrix();
+		if (nos[i].avatar3d=="carro.3ds")
+		{
+			glPushMatrix();			
+				glTranslatef(nos[i].x,nos[i].y,nos[i].z+nos[i].largura+0.06);
+				glDisable(GL_LIGHTING);	
+				Avatar3D[0].Draw();
+				glEnable(GL_LIGHTING);
+			glPopMatrix();
+		}
+		if (nos[i].avatar3d=="dinossauro.3ds")
+		{
+			glPushMatrix();
+				glTranslatef(nos[i].x,nos[i].y,nos[i].z+nos[i].largura+0.1);
+				glDisable(GL_LIGHTING);	
+				glColor3f(0.0,0.5,0.0);
+				Avatar3D[1].Draw();
+				glColor3f(1.0,1.0,1.0);
+				glEnable(GL_LIGHTING);
+			glPopMatrix();
+		}
+		if (nos[i].avatar3d=="robot.3ds")
+		{
+			glPushMatrix();
+				glTranslatef(nos[i].x,nos[i].y,nos[i].z+nos[i].largura);
+				glDisable(GL_LIGHTING);	
+				Avatar3D[2].Draw();
+				glEnable(GL_LIGHTING);
+			glPopMatrix();
+		}
 	}
 }
 
@@ -964,47 +1018,58 @@ void desenhaHUD(int width, int height){
 	}
 
 	if (estado.itemSeleccionado>numNos)
-	{
-		//Altera viewport e projecção
-		glViewport(0, 0, (GLint) width, (GLint) height);
-		glMatrixMode(GL_PROJECTION);
-
-		glLoadIdentity();
-		gluOrtho2D(0,100,100,0);
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
-		glPushMatrix();
-			glDisable(GL_LIGHTING);
-			glColor3f(0.0,0.0,0.8);
-			glRasterPos2i(80, 3);
-			printString("Relacao:");
-			glRasterPos2i(80, 10);
-			printString("De:");
-			glColor3f(0.0,0.0,1.0);
-			glRasterPos2i(80, 12);
-			printString("Utilizador1");
-			glColor3f(0.0,0.0,0.8);
-			glRasterPos2i(80, 15);
-			printString("Para:");
-			glColor3f(0.0,0.0,1.0);
-			glRasterPos2i(80, 17);
-			printString("Utilizador2");
-			glColor3f(0.0,0.0,0.8);
-			glRasterPos2i(80, 20);
-			printString("Tags:");
-			int lastTagPos=20;
-			lastTagPos+=2;
-			glColor3f(0.0,0.0,1.0);
-			glRasterPos2i(80, lastTagPos);
-			printString("Tag1");
-			lastTagPos+=2;
-			glColor3f(0.0,0.0,1.0);
-			glRasterPos2i(80, lastTagPos);
-			printString("Tag2");
-
-			glEnable(GL_LIGHTING);
-		glPopMatrix();
-		myReshape((GLint) width, (GLint) height);
+	{			
+		int nof=arcos[estado.itemSeleccionado-numNos].nof;
+		if (nos[nof].iduser==userLog.id)
+			nof=arcos[estado.itemSeleccionado-numNos].noi;
+		Ligacao *lig=NULL;
+		getLigacao(userLog.id,nos[arcos[estado.itemSeleccionado-numNos].noi].iduser,nos[arcos[estado.itemSeleccionado-numNos].nof].iduser,lig);
+		if (lig==NULL)
+			getLigacao(userLog.id,nos[arcos[estado.itemSeleccionado-numNos].nof].iduser,nos[arcos[estado.itemSeleccionado-numNos].noi].iduser,lig);
+		if (lig!=NULL)
+		{
+			//Altera viewport e projecção
+			glViewport(0, 0, (GLint) width, (GLint) height);
+			glMatrixMode(GL_PROJECTION);
+			glLoadIdentity();
+			gluOrtho2D(0,100,100,0);
+			glMatrixMode(GL_MODELVIEW);
+			glLoadIdentity();
+			glPushMatrix();
+				glDisable(GL_LIGHTING);
+				glColor3f(0.0,0.0,0.8);
+				glRasterPos2i(80, 3);
+				printString("Relacao:");
+				glRasterPos2i(80, 10);
+				printString("De:");
+				glColor3f(0.0,0.0,1.0);
+				glRasterPos2i(80, 12);
+				printString((char*)nos[getNoByUserId(userLog.id)].nome.c_str());
+				glColor3f(0.0,0.0,0.8);
+				glRasterPos2i(80, 15);
+				printString("Para:");
+				glColor3f(0.0,0.0,1.0);
+				glRasterPos2i(80, 17);
+				printString((char*)nos[nof].nome.c_str());
+				glColor3f(0.0,0.0,0.8);
+				glRasterPos2i(80, 20);
+				printString("Tags:");
+				int numtags=(*(lig)).tagsCount;
+				char ch[260];
+				char DefChar = ' ';
+				int lastTagPos=20;
+				for (int i=0;i<numtags;i++)
+				{
+					lastTagPos+=2;
+					glColor3f(0.0,0.0,1.0);
+					glRasterPos2i(80, lastTagPos);
+					WideCharToMultiByte(CP_ACP,0,(*(lig)).tags[i],-1, ch,260,&DefChar, NULL);
+					printString(ch);
+				}
+				glEnable(GL_LIGHTING);
+			glPopMatrix();
+			myReshape((GLint) width, (GLint) height);
+		}
 	}
 	else
 	{
@@ -1020,13 +1085,9 @@ void desenhaHUD(int width, int height){
 			glLoadIdentity();
 			glPushMatrix();
 				glDisable(GL_LIGHTING);
-				glColor3f(0.0,0.0,0.8);
+				/*glColor3f(0.0,0.0,0.8);
 				glRasterPos2i(80, 3);
 				printString("Avatar:");
-				/*glColor3f(0.0,0.0,1.0);
-				glRasterPos2i(80, 5);
-				printString("Colocar aki o avatar");*/
-	
 				//carregar avatar
 				glPushMatrix();
 					glColor3f(1.0,1.0,1.0);
@@ -1046,46 +1107,58 @@ void desenhaHUD(int width, int height){
 					glBindTexture(GL_TEXTURE_2D, NULL);  
 					glDisable(GL_BLEND);
 				glPopMatrix();
-
+				*/
 				glColor3f(0.0,0.0,0.8);
-				glRasterPos2i(80, 21);
+				//glRasterPos2i(80, 21);
+				glRasterPos2i(80, 3);
 				printString("Nome:");
 				glColor3f(0.0,0.0,1.0);
-				glRasterPos2i(80, 23);
+				//glRasterPos2i(80, 23);
+				glRasterPos2i(80, 5);
 				printString((char*)userSel.nome.c_str());
 
 				glColor3f(0.0,0.0,0.8);
-				glRasterPos2i(80, 26);
+				//glRasterPos2i(80, 26);
+				glRasterPos2i(80, 8);
 				printString("Nick:");
 				glColor3f(0.0,0.0,1.0);
-				glRasterPos2i(80, 28);
+				//glRasterPos2i(80, 28);
+				glRasterPos2i(80, 10);
 				printString((char*)userSel.nick.c_str());
 
 				glColor3f(0.0,0.0,0.8);
-				glRasterPos2i(80, 31);
+				//glRasterPos2i(80, 31);
+				glRasterPos2i(80, 13);
 				printString("Morada:");
 				glColor3f(0.0,0.0,1.0);
-				glRasterPos2i(80, 33);
+				//glRasterPos2i(80, 33);
+				glRasterPos2i(80, 15);
 				printString((char*)userSel.morada.c_str());
 
 				glColor3f(0.0,0.0,0.8);
-				glRasterPos2i(80, 36);
+				//glRasterPos2i(80, 36);
+				glRasterPos2i(80, 18);
 				printString("Data Nascimento:");
 				glColor3f(0.0,0.0,1.0);
-				glRasterPos2i(80, 38);
+				//glRasterPos2i(80, 38);
+				glRasterPos2i(80, 20);
 				printString((char*)userSel.dataNasc.c_str());
 
 				glColor3f(0.0,0.0,0.8);
-				glRasterPos2i(80, 41);
+				//glRasterPos2i(80, 41);
+				glRasterPos2i(80, 23);
 				printString("Telefone:");
 				glColor3f(0.0,0.0,1.0);
-				glRasterPos2i(80, 43);
+				//glRasterPos2i(80, 43);
+				glRasterPos2i(80, 25);
 				printString((char*)userSel.telef.c_str());
 
 				glColor3f(0.0,0.0,0.8);
-				glRasterPos2i(80, 46);
+				//glRasterPos2i(80, 46);
+				glRasterPos2i(80, 28);
 				printString("Tags:");
-				int lastPos=46;
+				//int lastPos=46;
+				int lastPos=28;
 				glColor3f(0.0,0.0,1.0);
 				for (int i=0;i<userSel.numTags;i++)
 				{
@@ -1133,6 +1206,14 @@ void desenhaBillboards()
 			txid=contente.TextureID;
 		if (nos[i].humor=="triste")
 			txid=triste.TextureID;
+		if (nos[i].humor=="chateado")
+			txid=chateado.TextureID;
+		if (nos[i].humor=="apaixonado")
+			txid=apaixonado.TextureID;
+		if (nos[i].humor=="cansado")
+			txid=cansado.TextureID;
+		if (nos[i].humor=="sonolento")
+			txid=sonolento.TextureID;
 		if (txid>0)
 		{
 			/*GLfloat x=nos[i].x;
@@ -1142,7 +1223,10 @@ void desenhaBillboards()
 			GLfloat zf=nos[i].z+nos[i].largura+0.4;*/
 			glPushMatrix();
 				//glScalef(2,2,2);
-				glTranslated(nos[i].x,nos[i].y,nos[i].z+nos[i].largura+0.35);
+				float altura=0.40;
+				if(nos[i].avatar3d=="robot.3ds")
+					altura=0.55;
+				glTranslated(nos[i].x,nos[i].y,nos[i].z+nos[i].largura+altura);
 				glRotatef(graus(estado.camera.dir_long),0,0,1);
 				glDisable(GL_LIGHTING);
 				glColor3f(1.0,1.0,1.0);
@@ -1214,7 +1298,7 @@ void desenhaMinimapa()
 	glClear(GL_DEPTH_BUFFER_BIT);
 	minimapacam();
 
-	desenhaLabirinto();
+	desenhaGrafo();
 
 	glFlush();
 	myReshape(glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT));
@@ -1229,12 +1313,13 @@ void desenhaSkydome()
 		glBindTexture(GL_TEXTURE_2D, estrelas.TextureID);
 		glTranslatef(0.0,0.0,50.0);
 		glRotatef(90.0,1,0,0);
-		GenerateDome(300.0f, 5.0f, 5.0f, 1.0f, 1.0f);
+		GenerateDome(400.0f, 5.0f, 5.0f, 1.0f, 1.0f);
 		RenderSkyDome();
 		glBindTexture(GL_TEXTURE_2D, NULL);
 		glDisable(GL_BLEND);
 		glEnable(GL_LIGHTING);
 	glPopMatrix();
+	glutPostRedisplay();
 }
 
 void desenhaLogin()
@@ -1253,7 +1338,7 @@ void desenhaLogin()
 		glDisable(GL_LIGHTING);
 		//glPushName(0);
 		glEnable(GL_BLEND);
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glBindTexture(GL_TEXTURE_2D, text_login.TextureID);
 		glColor3f(1.0,1.0,1.0);
 		glBegin(GL_QUADS);
@@ -1430,7 +1515,85 @@ void multiplicaMatrix(float x,float y,float z,float ang, int eixo, int result[])
 		result[linha]=res;
 	}
 }
+/*
+bool detetaColisoesRamos(float nx, float nz, float ny)
+{
+	bool flag=true;
+	Lista<Ligacao> lista = grafo->getListaL();
+	Ligacao lig;
+	Lista<User*> lu = grafo->getListaU();
+	User* u,*u1;
+	int noi, nof;
+	glLoadIdentity();
+	for (int i = 1; i <= lista.comprimento(); i++)
+	{ 
+		lista.encontra(i,lig);
+		noi  = lig.getNoi();
+		nof = lig.getNof();
+		lu.encontra(noi,u);
+		lu.encontra(nof,u1);
+		GLdouble l = (u1->getStrength1() + u1->getStrength2())/2 + 0.7;//arcos[i].largura+0.4;
+			glPushMatrix();
+			glLoadIdentity();
+			glTranslatef(u->getPoint()->getX(),u->getPoint()->getY(),u->getPoint()->getZ());
+			GLdouble angOrientacao = graus(atan2(u1->getPoint()->getY()-u->getPoint()->getY(), u1->getPoint()->getX()-u->getPoint()->getX()));
+			GLdouble catetoOposto = u1->getPoint()->getZ() - u->getPoint()->getZ();
+			GLdouble tamanho = 	sqrt(pow((u1->getPoint()->getX() - u->getPoint()->getX()),2)+pow((u1->getPoint()->getY()-u->getPoint()->getY()),2));		
+			GLdouble angInclinacao = graus(atan2(catetoOposto,tamanho));	
+			glRotated(angOrientacao,0,0,1);
+			GLdouble X=(nx-u->getPoint()->getX())*cos(rad(angOrientacao))+(nz-u->getPoint()->getY())*sin(rad(angOrientacao));
+			GLdouble Y=(nz-u->getPoint()->getY())*cos(rad(angOrientacao))-(nx-u->getPoint()->getX())*sin(rad(angOrientacao));
+			GLdouble dist = sqrt(pow(u1->getPoint()->getX()-u->getPoint()->getX(),2) + pow(u1->getPoint()->getY()-u->getPoint()->getY(),2) + pow(u1->getPoint()->getZ()-u->getPoint()->getZ(),2));
+			GLdouble Z = u->getPoint()->getZ() + X/tamanho*catetoOposto;	
+			
+			if((0<=X && X<=tamanho) && (-l/2.0<=Y && Y<=l/2.0) && (Z-(l/2.0+0.1)<=ny && ny<=Z+(l/2.0+0.1)))
+			{
+				flag = false;
+			}
 
+		glPopMatrix();
+	}
+	return flag;
+}
+*/
+bool detetaColisoesRamos(float nx, float nz, float ny)
+{
+	bool flag=true;
+	/*Lista<Ligacao> lista = grafo->getListaL();
+	Ligacao lig;
+	Lista<User*> lu = grafo->getListaU();
+	User* u,*u1;*/
+	int noi, nof;
+	glLoadIdentity();
+	for (int i = 0; i <= numArcos; i++)
+	{ 
+		//lista.encontra(i,lig);
+		noi  = arcos[i].noi;
+		nof = arcos[i].nof;
+		//lu.encontra(noi,u);
+		//lu.encontra(nof,u1);
+		GLdouble l = arcos[i].largura+0.4;//arcos[i].largura+0.4;
+			glPushMatrix();
+			glLoadIdentity();
+			glTranslatef(nos[noi].x,nos[noi].y,nos[noi].z);
+			GLdouble angOrientacao = graus(atan2(nos[nof].z - nos[noi].z, nos[nof].x - nos[noi].x));//pode ser Y em vez de Z
+			GLdouble catetoOposto = nos[nof].z - nos[noi].z;
+			GLdouble tamanho = 	sqrt(pow((nos[nof].x - nos[noi].x),2)+pow((nos[nof].z - nos[noi].z),2));//pode ser Y em vez de Z	
+			GLdouble angInclinacao = graus(atan2(catetoOposto,tamanho));	
+			glRotated(angOrientacao,0,0,1);
+			GLdouble X=(nx-nos[noi].x)*cos(rad(angOrientacao))+(nz-nos[noi].z)*sin(rad(angOrientacao));//pode ser Y em vez de Z	
+			GLdouble Y=(nz-nos[noi].z)*cos(rad(angOrientacao))-(nx-nos[noi].x)*sin(rad(angOrientacao));//pode ser Y em vez de Z	
+			GLdouble dist = sqrt(pow(nos[nof].x - nos[noi].x,2) + pow(nos[nof].z - nos[noi].z,2) + pow(nos[nof].y - nos[noi].y,2)); //pode ser Y em vez de Z e Z em vez de Y
+			GLdouble Z = nos[noi].y + X/tamanho*catetoOposto;//pode ser Z em vez de Y		
+			
+			if((0<=X && X<=tamanho) && (-l/2.0<=Y && Y<=l/2.0) && (Z-(l/2.0+0.1)<=ny && ny<=Z+(l/2.0+0.1)))
+			{
+				flag = false;
+			}
+		glPopMatrix();
+	}
+	return flag;
+}
 bool detectacolisao()
 {
 	Vertice eye;
@@ -1438,7 +1601,7 @@ bool detectacolisao()
 	eye[1]=estado.camera.center[1]+estado.camera.dist*sin(estado.camera.dir_long)*cos(estado.camera.dir_lat);
 	eye[2]=estado.camera.center[2]+estado.camera.dist*sin(estado.camera.dir_lat);
 
-	if (eye[2]<-1.0)
+	if ((eye[2]<-1.0) && (eye[2]>100.0))
 		return true;
 	
 	for (int i=0;i<numNos;i++)
@@ -1455,7 +1618,12 @@ bool detectacolisao()
 			}
 		}
 	}
+	
+	/*if (detetaColisoesRamos(eye[0],eye[1],eye[2]))
+		return true;*/
 
+	/*
+	//colisão com os arcos
 	//GLfloat eyex,eyey,eyez;
 	float range;
 	int noi;
@@ -1465,9 +1633,11 @@ bool detectacolisao()
 	/*vec[0]=eye[0];
 	vec[1]=eye[1];
 	vec[2]=eye[2];*/
+		/*
 		multiplicaMatrix(eye[0],eye[1],eye[2],270.0,0,vec);
 		multiplicaMatrix(vec[0],vec[1],vec[2],arcos[i].ang,1,vec);
 		multiplicaMatrix(vec[0],vec[1],vec[2],arcos[i].angz,0,vec);
+		*/
 		/*eyex=eye[0]+arcos[i].dist*cos(rad(270.0));
 		eyey=eye[1];
 		eyez=eye[2]+arcos[i].dist*sin(rad(270.0));
@@ -1475,7 +1645,7 @@ bool detectacolisao()
 		eyez=eye[1]+arcos[i].dist*cos(rad(arcos[i].ang));
 		eyex=eye[0]+arcos[i].dist*cos(rad(arcos[i].angz));
 		eyez=eye[1]+arcos[i].dist*sin(rad(arcos[i].angz));*/
-		
+		/*
 		range=arcos[i].largura+0.1;
 		noi=arcos[i].noi;
 		if ((vec[0]<nos[noi].x+range) && (vec[0]>nos[noi].x-range))
@@ -1489,7 +1659,7 @@ bool detectacolisao()
 			}
 		}
 	}
-
+	*/
 	return false;
 }
 
@@ -1524,8 +1694,9 @@ void display(void)
 		material(slate);
 		desenhaSolo();
 		desenhaEixos();
-		desenhaLabirinto();
-		desenhaAvatars();
+		desenhaGrafo();
+		//desenhaAvatars();
+		glCallList(dlist);
 		desenhaBillboards();
 		desenhaSkydome();
 		desenhaHUD(glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT));
@@ -1542,10 +1713,41 @@ void display(void)
 	}
 	glFlush();
 	glutSwapBuffers();
-
 }
 
-
+void fazLogin()
+{
+	
+	login.estado="A efectuar o login...";
+	glutPostRedisplay();
+	std::wstring u = std::wstring(login.username.begin(), login.username.end());
+	wchar_t* user = (wchar_t*)u.c_str();
+	std::wstring p = std::wstring(login.password.begin(), login.password.end());
+	wchar_t* pw = (wchar_t*)p.c_str();
+	int res;
+	validateLogin(user,pw,res);
+	if (res>0)
+	{
+		login.estado="Login efectuado. A carregar grafo...";
+		glutPostRedisplay();
+		userLog.id=res;
+		carregaTexturas();
+		leGrafo(userLog.id);
+		carregar3ds();
+		buildLists();
+		estado.camera.center[0]=nos[getNoByUserId(res)].x+nos[getNoByUserId(res)].largura;
+		estado.camera.center[1]=nos[getNoByUserId(res)].y;
+		estado.camera.center[2]=nos[getNoByUserId(res)].z+nos[getNoByUserId(res)].largura;
+		estado.cena=CENA_GRAFO;
+		glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+		glutPostRedisplay();
+	}
+	else
+	{
+		login.estado="Dados incorretos.";
+		glutPostRedisplay();
+	}
+}
 
 void keyboard(unsigned char key, int x, int y)
 {
@@ -1576,6 +1778,11 @@ void keyboard(unsigned char key, int x, int y)
 			else
 				if (login.boxSeleccionada==BOX_PASSWORD)
 					login.boxSeleccionada=BOX_USERNAME;
+			glutPostRedisplay();
+		}
+		if (key==13)
+		{
+			fazLogin();
 			glutPostRedisplay();
 		}
 	}
@@ -1669,15 +1876,15 @@ void keyboard(unsigned char key, int x, int y)
 void Special(int key, int x, int y){
 	GLfloat antx,anty;
 	switch(key){
-		case GLUT_KEY_F1 :
+		/*case GLUT_KEY_F1 :
 				gravaGrafo();
-			break;
-		case GLUT_KEY_F2 :
-				leGrafo();
+			break;*/
+		case GLUT_KEY_F5 :
+				leGrafo(userLog.id);
 				glutPostRedisplay();
 			break;	
 
-		case GLUT_KEY_F6 :
+		/*case GLUT_KEY_F5 :
 				numNos=numArcos=0;
 				addNo(criaNo( 0, 10,0));  // 0
 				addNo(criaNo( 0,  5,0));  // 1
@@ -1694,7 +1901,7 @@ void Special(int key, int x, int y){
 				addArco(criaArco(4,5,1,1));  // 4 - 5
 				addArco(criaArco(4,6,1,1));  // 4 - 6
 				glutPostRedisplay();
-			break;	
+			break;	*/
 		case GLUT_KEY_UP:
 				//estado.camera.dist-=1;
 				antx=estado.camera.center[0];
@@ -1852,7 +2059,7 @@ int picking(int x, int y){
 		glGetDoublev(GL_MODELVIEW_MATRIX, mv);
 		gluUnProject(x,y,0,mv,proj,vp,&objx,&objy,&objz);
 		//34.4 55.4    66.7 58.2
-		cout<<"x:"<<objx<<" y:"<<objy<<"\n";
+		//cout<<"x:"<<objx<<" y:"<<objy<<"\n";
 		if(((objx>=34.4) && (objx<=66.7)) && ((objy>=47.8) && (objy<=50.6)))
 		{
 			return 1;
@@ -1889,7 +2096,7 @@ int picking(int x, int y){
 		glLoadIdentity();
 		setCamera();
 		//desenhaEixos();
-		desenhaLabirinto();
+		desenhaGrafo();
 
 		n = glRenderMode(GL_RENDER);
 		if (n > 0)
@@ -1946,32 +2153,7 @@ void mouse(int btn, int state, int x, int y){
 							}
 							if (login.objClicked==4)
 							{
-								login.estado="A efectuar o login...";
-								glutPostRedisplay();
-								std::wstring u = std::wstring(login.username.begin(), login.username.end());
-								wchar_t* user = (wchar_t*)u.c_str();
-								std::wstring p = std::wstring(login.password.begin(), login.password.end());
-								wchar_t* pw = (wchar_t*)p.c_str();
-								int res;
-								validateLogin(user,pw,res);
-								if (res>0)
-								{
-									login.estado="Login efectuado. A carregar grafo...";
-									glutPostRedisplay();
-									userLog.id=res;
-									carregaTexturas();
-									leGrafo();
-									carregar3ds();
-									estado.camera.center[0]=nos[getNoByUserId(res)].x+1.0;
-									estado.camera.center[1]=nos[getNoByUserId(res)].y;
-									estado.camera.center[2]=nos[getNoByUserId(res)].z+1.0;
-									estado.cena=CENA_GRAFO;
-								}
-								else
-								{
-									login.estado="Dados incorretos.";
-									//glutPostRedisplay();
-								}
+								fazLogin();
 								glutPostRedisplay();
 							}
 						}
@@ -2094,7 +2276,7 @@ void mousePassive(int x, int y)
 				glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
 			}
 		glutPostRedisplay();
-		cout<<login.objCursor;
+		//cout<<login.objCursor;
 	}
 	else
 	{
@@ -2107,13 +2289,15 @@ void mousePassive(int x, int y)
 
 void Timer(int value)
 {
-	estado.tempo++;
+	tempo_musica++;
+	if (tempo_musica==DURACAO_MUSICA)
+	{
+		alSourceStop(alSource[0]);
+		alSourcePlay(alSource[0]);
+		tempo_musica=0;
+	}
 	glutTimerFunc(1000,Timer,0);
 }
-
-
-
-
 
 void main(int argc, char **argv)
 {
@@ -2123,7 +2307,7 @@ void main(int argc, char **argv)
 
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(1024, 768);
-    glutCreateWindow("OpenGL");
+    glutCreateWindow("Social Graph");
     glutReshapeFunc(myReshape);
     glutDisplayFunc(display);
 	glutKeyboardFunc(keyboard);

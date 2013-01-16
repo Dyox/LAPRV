@@ -14,6 +14,7 @@ typedef struct No{
 	int iduser;
 	string nome;
 	string humor;
+	string avatar3d;
 }No;
 
 typedef struct Arco{
@@ -38,7 +39,7 @@ void listArcos();
 Arco criaArco(int, int, float, float);
 
 void gravaGrafo();
-void leGrafo();
+void leGrafo(int uid);
 
 void caminhoCurto(int uid1,int uid2,int &count,int nos[]);
 void caminhoForte(int uid1,int uid2,int &count,int nos[]);

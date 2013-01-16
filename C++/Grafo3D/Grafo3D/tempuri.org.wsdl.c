@@ -36,6 +36,22 @@ typedef struct _tempuri_org_wsdlLocalDefinitions
         WS_MESSAGE_DESCRIPTION IService_tamanhoRedeUtilizador_OutputMessage;
         WS_MESSAGE_DESCRIPTION IService_sugereAmigos_InputMessage;
         WS_MESSAGE_DESCRIPTION IService_sugereAmigos_OutputMessage;
+        WS_MESSAGE_DESCRIPTION IService_grafoAmigosComuns_InputMessage;
+        WS_MESSAGE_DESCRIPTION IService_grafoAmigosComuns_OutputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getLigacao_InputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getLigacao_OutputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getAmigosNivel3_InputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getAmigosNivel3_OutputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getMavenOfTag_InputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getMavenOfTag_OutputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getSeparacao_InputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getSeparacao_OutputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getGrafoNivel3_InputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getGrafoNivel3_OutputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getNosGrafoAmigos_InputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getNosGrafoAmigos_OutputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getNosGrafo_InputMessage;
+        WS_MESSAGE_DESCRIPTION IService_getNosGrafo_OutputMessage;
     } messages; // end of messages
     struct // contracts
     {
@@ -105,7 +121,47 @@ typedef struct _tempuri_org_wsdlLocalDefinitions
                 WS_PARAMETER_DESCRIPTION params[2];
                 WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_sugereAmigos;
             } BasicHttpBinding_IService_sugereAmigos;
-            WS_OPERATION_DESCRIPTION* operations[13];
+            struct // BasicHttpBinding_IService_grafoAmigosComuns
+            {
+                WS_PARAMETER_DESCRIPTION params[3];
+                WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_grafoAmigosComuns;
+            } BasicHttpBinding_IService_grafoAmigosComuns;
+            struct // BasicHttpBinding_IService_getLigacao
+            {
+                WS_PARAMETER_DESCRIPTION params[4];
+                WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_getLigacao;
+            } BasicHttpBinding_IService_getLigacao;
+            struct // BasicHttpBinding_IService_getAmigosNivel3
+            {
+                WS_PARAMETER_DESCRIPTION params[2];
+                WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_getAmigosNivel3;
+            } BasicHttpBinding_IService_getAmigosNivel3;
+            struct // BasicHttpBinding_IService_getMavenOfTag
+            {
+                WS_PARAMETER_DESCRIPTION params[2];
+                WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_getMavenOfTag;
+            } BasicHttpBinding_IService_getMavenOfTag;
+            struct // BasicHttpBinding_IService_getSeparacao
+            {
+                WS_PARAMETER_DESCRIPTION params[3];
+                WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_getSeparacao;
+            } BasicHttpBinding_IService_getSeparacao;
+            struct // BasicHttpBinding_IService_getGrafoNivel3
+            {
+                WS_PARAMETER_DESCRIPTION params[3];
+                WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_getGrafoNivel3;
+            } BasicHttpBinding_IService_getGrafoNivel3;
+            struct // BasicHttpBinding_IService_getNosGrafoAmigos
+            {
+                WS_PARAMETER_DESCRIPTION params[4];
+                WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_getNosGrafoAmigos;
+            } BasicHttpBinding_IService_getNosGrafoAmigos;
+            struct // BasicHttpBinding_IService_getNosGrafo
+            {
+                WS_PARAMETER_DESCRIPTION params[3];
+                WS_OPERATION_DESCRIPTION BasicHttpBinding_IService_getNosGrafo;
+            } BasicHttpBinding_IService_getNosGrafo;
+            WS_OPERATION_DESCRIPTION* operations[21];
             WS_CONTRACT_DESCRIPTION contractDesc;
         } BasicHttpBinding_IService;
     } contracts;  // endof contracts 
@@ -149,6 +205,22 @@ typedef struct _tempuri_org_wsdlLocalDefinitions
             WS_XML_STRING IService_tamanhoRedeUtilizador_OutputMessageactionName;  // http://tempuri.org/IService/tamanhoRedeUtilizadorResponse
             WS_XML_STRING IService_sugereAmigos_InputMessageactionName;  // http://tempuri.org/IService/sugereAmigos
             WS_XML_STRING IService_sugereAmigos_OutputMessageactionName;  // http://tempuri.org/IService/sugereAmigosResponse
+            WS_XML_STRING IService_grafoAmigosComuns_InputMessageactionName;  // http://tempuri.org/IService/grafoAmigosComuns
+            WS_XML_STRING IService_grafoAmigosComuns_OutputMessageactionName;  // http://tempuri.org/IService/grafoAmigosComunsResponse
+            WS_XML_STRING IService_getLigacao_InputMessageactionName;  // http://tempuri.org/IService/getLigacao
+            WS_XML_STRING IService_getLigacao_OutputMessageactionName;  // http://tempuri.org/IService/getLigacaoResponse
+            WS_XML_STRING IService_getAmigosNivel3_InputMessageactionName;  // http://tempuri.org/IService/getAmigosNivel3
+            WS_XML_STRING IService_getAmigosNivel3_OutputMessageactionName;  // http://tempuri.org/IService/getAmigosNivel3Response
+            WS_XML_STRING IService_getMavenOfTag_InputMessageactionName;  // http://tempuri.org/IService/getMavenOfTag
+            WS_XML_STRING IService_getMavenOfTag_OutputMessageactionName;  // http://tempuri.org/IService/getMavenOfTagResponse
+            WS_XML_STRING IService_getSeparacao_InputMessageactionName;  // http://tempuri.org/IService/getSeparacao
+            WS_XML_STRING IService_getSeparacao_OutputMessageactionName;  // http://tempuri.org/IService/getSeparacaoResponse
+            WS_XML_STRING IService_getGrafoNivel3_InputMessageactionName;  // http://tempuri.org/IService/getGrafoNivel3
+            WS_XML_STRING IService_getGrafoNivel3_OutputMessageactionName;  // http://tempuri.org/IService/getGrafoNivel3Response
+            WS_XML_STRING IService_getNosGrafoAmigos_InputMessageactionName;  // http://tempuri.org/IService/getNosGrafoAmigos
+            WS_XML_STRING IService_getNosGrafoAmigos_OutputMessageactionName;  // http://tempuri.org/IService/getNosGrafoAmigosResponse
+            WS_XML_STRING IService_getNosGrafo_InputMessageactionName;  // http://tempuri.org/IService/getNosGrafo
+            WS_XML_STRING IService_getNosGrafo_OutputMessageactionName;  // http://tempuri.org/IService/getNosGrafoResponse
         } xmlStrings; // end of XML string list
         WS_XML_DICTIONARY dict;  
     } dictionary;  // end of XML dictionary
@@ -561,6 +633,270 @@ HRESULT CALLBACK BasicHttpBinding_IService_sugereAmigosOperationStub(
 #if (_MSC_VER >=1400) 
 #pragma warning(pop)
 #endif
+
+typedef struct BasicHttpBinding_IService_grafoAmigosComunsParamStruct 
+{
+    int* user1;
+    int* user2;
+    WCHAR** grafoAmigosComunsResult;
+} BasicHttpBinding_IService_grafoAmigosComunsParamStruct;
+
+#if (_MSC_VER >=1400) 
+#pragma warning(push)
+#endif
+#pragma warning(disable: 4055) // conversion from data pointer to function pointer
+HRESULT CALLBACK BasicHttpBinding_IService_grafoAmigosComunsOperationStub(
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in void* _stackStruct,
+    __in const void* _callback,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    BasicHttpBinding_IService_grafoAmigosComunsCallback _operation = (BasicHttpBinding_IService_grafoAmigosComunsCallback)_callback;
+    BasicHttpBinding_IService_grafoAmigosComunsParamStruct *_stack =(BasicHttpBinding_IService_grafoAmigosComunsParamStruct*)_stackStruct;
+    return _operation( 
+        _context,
+        *(_stack->user1),
+        *(_stack->user2),
+        (_stack->grafoAmigosComunsResult),
+        (WS_ASYNC_CONTEXT*)_asyncContext,
+        _error);
+}
+#pragma warning(default: 4055)  // conversion from data pointer to function pointer
+#if (_MSC_VER >=1400) 
+#pragma warning(pop)
+#endif
+
+typedef struct BasicHttpBinding_IService_getLigacaoParamStruct 
+{
+    int* userreg;
+    int* user1;
+    int* user2;
+    Ligacao** getLigacaoResult;
+} BasicHttpBinding_IService_getLigacaoParamStruct;
+
+#if (_MSC_VER >=1400) 
+#pragma warning(push)
+#endif
+#pragma warning(disable: 4055) // conversion from data pointer to function pointer
+HRESULT CALLBACK BasicHttpBinding_IService_getLigacaoOperationStub(
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in void* _stackStruct,
+    __in const void* _callback,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    BasicHttpBinding_IService_getLigacaoCallback _operation = (BasicHttpBinding_IService_getLigacaoCallback)_callback;
+    BasicHttpBinding_IService_getLigacaoParamStruct *_stack =(BasicHttpBinding_IService_getLigacaoParamStruct*)_stackStruct;
+    return _operation( 
+        _context,
+        *(_stack->userreg),
+        *(_stack->user1),
+        *(_stack->user2),
+        (_stack->getLigacaoResult),
+        (WS_ASYNC_CONTEXT*)_asyncContext,
+        _error);
+}
+#pragma warning(default: 4055)  // conversion from data pointer to function pointer
+#if (_MSC_VER >=1400) 
+#pragma warning(pop)
+#endif
+
+typedef struct BasicHttpBinding_IService_getAmigosNivel3ParamStruct 
+{
+    int* userID;
+    WCHAR** getAmigosNivel3Result;
+} BasicHttpBinding_IService_getAmigosNivel3ParamStruct;
+
+#if (_MSC_VER >=1400) 
+#pragma warning(push)
+#endif
+#pragma warning(disable: 4055) // conversion from data pointer to function pointer
+HRESULT CALLBACK BasicHttpBinding_IService_getAmigosNivel3OperationStub(
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in void* _stackStruct,
+    __in const void* _callback,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    BasicHttpBinding_IService_getAmigosNivel3Callback _operation = (BasicHttpBinding_IService_getAmigosNivel3Callback)_callback;
+    BasicHttpBinding_IService_getAmigosNivel3ParamStruct *_stack =(BasicHttpBinding_IService_getAmigosNivel3ParamStruct*)_stackStruct;
+    return _operation( 
+        _context,
+        *(_stack->userID),
+        (_stack->getAmigosNivel3Result),
+        (WS_ASYNC_CONTEXT*)_asyncContext,
+        _error);
+}
+#pragma warning(default: 4055)  // conversion from data pointer to function pointer
+#if (_MSC_VER >=1400) 
+#pragma warning(pop)
+#endif
+
+typedef struct BasicHttpBinding_IService_getMavenOfTagParamStruct 
+{
+    WCHAR** tag;
+    WCHAR** getMavenOfTagResult;
+} BasicHttpBinding_IService_getMavenOfTagParamStruct;
+
+#if (_MSC_VER >=1400) 
+#pragma warning(push)
+#endif
+#pragma warning(disable: 4055) // conversion from data pointer to function pointer
+HRESULT CALLBACK BasicHttpBinding_IService_getMavenOfTagOperationStub(
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in void* _stackStruct,
+    __in const void* _callback,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    BasicHttpBinding_IService_getMavenOfTagCallback _operation = (BasicHttpBinding_IService_getMavenOfTagCallback)_callback;
+    BasicHttpBinding_IService_getMavenOfTagParamStruct *_stack =(BasicHttpBinding_IService_getMavenOfTagParamStruct*)_stackStruct;
+    return _operation( 
+        _context,
+        *(_stack->tag),
+        (_stack->getMavenOfTagResult),
+        (WS_ASYNC_CONTEXT*)_asyncContext,
+        _error);
+}
+#pragma warning(default: 4055)  // conversion from data pointer to function pointer
+#if (_MSC_VER >=1400) 
+#pragma warning(pop)
+#endif
+
+typedef struct BasicHttpBinding_IService_getSeparacaoParamStruct 
+{
+    int* no1;
+    int* no2;
+    WCHAR** getSeparacaoResult;
+} BasicHttpBinding_IService_getSeparacaoParamStruct;
+
+#if (_MSC_VER >=1400) 
+#pragma warning(push)
+#endif
+#pragma warning(disable: 4055) // conversion from data pointer to function pointer
+HRESULT CALLBACK BasicHttpBinding_IService_getSeparacaoOperationStub(
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in void* _stackStruct,
+    __in const void* _callback,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    BasicHttpBinding_IService_getSeparacaoCallback _operation = (BasicHttpBinding_IService_getSeparacaoCallback)_callback;
+    BasicHttpBinding_IService_getSeparacaoParamStruct *_stack =(BasicHttpBinding_IService_getSeparacaoParamStruct*)_stackStruct;
+    return _operation( 
+        _context,
+        *(_stack->no1),
+        *(_stack->no2),
+        (_stack->getSeparacaoResult),
+        (WS_ASYNC_CONTEXT*)_asyncContext,
+        _error);
+}
+#pragma warning(default: 4055)  // conversion from data pointer to function pointer
+#if (_MSC_VER >=1400) 
+#pragma warning(pop)
+#endif
+
+typedef struct BasicHttpBinding_IService_getGrafoNivel3ParamStruct 
+{
+    int* userid;
+    unsigned int* getGrafoNivel3ResultCount;
+    NoBD*** getGrafoNivel3Result;
+} BasicHttpBinding_IService_getGrafoNivel3ParamStruct;
+
+#if (_MSC_VER >=1400) 
+#pragma warning(push)
+#endif
+#pragma warning(disable: 4055) // conversion from data pointer to function pointer
+HRESULT CALLBACK BasicHttpBinding_IService_getGrafoNivel3OperationStub(
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in void* _stackStruct,
+    __in const void* _callback,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    BasicHttpBinding_IService_getGrafoNivel3Callback _operation = (BasicHttpBinding_IService_getGrafoNivel3Callback)_callback;
+    BasicHttpBinding_IService_getGrafoNivel3ParamStruct *_stack =(BasicHttpBinding_IService_getGrafoNivel3ParamStruct*)_stackStruct;
+    return _operation( 
+        _context,
+        *(_stack->userid),
+        _stack->getGrafoNivel3ResultCount,
+        (_stack->getGrafoNivel3Result),
+        (WS_ASYNC_CONTEXT*)_asyncContext,
+        _error);
+}
+#pragma warning(default: 4055)  // conversion from data pointer to function pointer
+#if (_MSC_VER >=1400) 
+#pragma warning(pop)
+#endif
+
+typedef struct BasicHttpBinding_IService_getNosGrafoAmigosParamStruct 
+{
+    int* user1;
+    int* user2;
+    unsigned int* getNosGrafoAmigosResultCount;
+    NoBD*** getNosGrafoAmigosResult;
+} BasicHttpBinding_IService_getNosGrafoAmigosParamStruct;
+
+#if (_MSC_VER >=1400) 
+#pragma warning(push)
+#endif
+#pragma warning(disable: 4055) // conversion from data pointer to function pointer
+HRESULT CALLBACK BasicHttpBinding_IService_getNosGrafoAmigosOperationStub(
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in void* _stackStruct,
+    __in const void* _callback,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    BasicHttpBinding_IService_getNosGrafoAmigosCallback _operation = (BasicHttpBinding_IService_getNosGrafoAmigosCallback)_callback;
+    BasicHttpBinding_IService_getNosGrafoAmigosParamStruct *_stack =(BasicHttpBinding_IService_getNosGrafoAmigosParamStruct*)_stackStruct;
+    return _operation( 
+        _context,
+        *(_stack->user1),
+        *(_stack->user2),
+        _stack->getNosGrafoAmigosResultCount,
+        (_stack->getNosGrafoAmigosResult),
+        (WS_ASYNC_CONTEXT*)_asyncContext,
+        _error);
+}
+#pragma warning(default: 4055)  // conversion from data pointer to function pointer
+#if (_MSC_VER >=1400) 
+#pragma warning(pop)
+#endif
+
+typedef struct BasicHttpBinding_IService_getNosGrafoParamStruct 
+{
+    int* userid;
+    unsigned int* getNosGrafoResultCount;
+    NoBD*** getNosGrafoResult;
+} BasicHttpBinding_IService_getNosGrafoParamStruct;
+
+#if (_MSC_VER >=1400) 
+#pragma warning(push)
+#endif
+#pragma warning(disable: 4055) // conversion from data pointer to function pointer
+HRESULT CALLBACK BasicHttpBinding_IService_getNosGrafoOperationStub(
+    __in const WS_OPERATION_CONTEXT* _context,
+    __in void* _stackStruct,
+    __in const void* _callback,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    BasicHttpBinding_IService_getNosGrafoCallback _operation = (BasicHttpBinding_IService_getNosGrafoCallback)_callback;
+    BasicHttpBinding_IService_getNosGrafoParamStruct *_stack =(BasicHttpBinding_IService_getNosGrafoParamStruct*)_stackStruct;
+    return _operation( 
+        _context,
+        *(_stack->userid),
+        _stack->getNosGrafoResultCount,
+        (_stack->getNosGrafoResult),
+        (WS_ASYNC_CONTEXT*)_asyncContext,
+        _error);
+}
+#pragma warning(default: 4055)  // conversion from data pointer to function pointer
+#if (_MSC_VER >=1400) 
+#pragma warning(pop)
+#endif
 const static _tempuri_org_wsdlLocalDefinitions tempuri_org_wsdlLocalDefinitions =
 {
     { // messages
@@ -668,6 +1004,70 @@ const static _tempuri_org_wsdlLocalDefinitions tempuri_org_wsdlLocalDefinitions 
             (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_sugereAmigos_OutputMessageactionName, // http://tempuri.org/IService/sugereAmigosResponse
             (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.sugereAmigosResponse, 
         },    // message description for IService_sugereAmigos_OutputMessage
+        {    // message description for IService_grafoAmigosComuns_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_grafoAmigosComuns_InputMessageactionName, // http://tempuri.org/IService/grafoAmigosComuns
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.grafoAmigosComuns, 
+        },    // message description for IService_grafoAmigosComuns_InputMessage
+        {    // message description for IService_grafoAmigosComuns_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_grafoAmigosComuns_OutputMessageactionName, // http://tempuri.org/IService/grafoAmigosComunsResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.grafoAmigosComunsResponse, 
+        },    // message description for IService_grafoAmigosComuns_OutputMessage
+        {    // message description for IService_getLigacao_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getLigacao_InputMessageactionName, // http://tempuri.org/IService/getLigacao
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getLigacao, 
+        },    // message description for IService_getLigacao_InputMessage
+        {    // message description for IService_getLigacao_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getLigacao_OutputMessageactionName, // http://tempuri.org/IService/getLigacaoResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getLigacaoResponse, 
+        },    // message description for IService_getLigacao_OutputMessage
+        {    // message description for IService_getAmigosNivel3_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getAmigosNivel3_InputMessageactionName, // http://tempuri.org/IService/getAmigosNivel3
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getAmigosNivel3, 
+        },    // message description for IService_getAmigosNivel3_InputMessage
+        {    // message description for IService_getAmigosNivel3_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getAmigosNivel3_OutputMessageactionName, // http://tempuri.org/IService/getAmigosNivel3Response
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getAmigosNivel3Response, 
+        },    // message description for IService_getAmigosNivel3_OutputMessage
+        {    // message description for IService_getMavenOfTag_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getMavenOfTag_InputMessageactionName, // http://tempuri.org/IService/getMavenOfTag
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getMavenOfTag, 
+        },    // message description for IService_getMavenOfTag_InputMessage
+        {    // message description for IService_getMavenOfTag_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getMavenOfTag_OutputMessageactionName, // http://tempuri.org/IService/getMavenOfTagResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getMavenOfTagResponse, 
+        },    // message description for IService_getMavenOfTag_OutputMessage
+        {    // message description for IService_getSeparacao_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getSeparacao_InputMessageactionName, // http://tempuri.org/IService/getSeparacao
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getSeparacao, 
+        },    // message description for IService_getSeparacao_InputMessage
+        {    // message description for IService_getSeparacao_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getSeparacao_OutputMessageactionName, // http://tempuri.org/IService/getSeparacaoResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getSeparacaoResponse, 
+        },    // message description for IService_getSeparacao_OutputMessage
+        {    // message description for IService_getGrafoNivel3_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getGrafoNivel3_InputMessageactionName, // http://tempuri.org/IService/getGrafoNivel3
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getGrafoNivel3, 
+        },    // message description for IService_getGrafoNivel3_InputMessage
+        {    // message description for IService_getGrafoNivel3_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getGrafoNivel3_OutputMessageactionName, // http://tempuri.org/IService/getGrafoNivel3Response
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getGrafoNivel3Response, 
+        },    // message description for IService_getGrafoNivel3_OutputMessage
+        {    // message description for IService_getNosGrafoAmigos_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getNosGrafoAmigos_InputMessageactionName, // http://tempuri.org/IService/getNosGrafoAmigos
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getNosGrafoAmigos, 
+        },    // message description for IService_getNosGrafoAmigos_InputMessage
+        {    // message description for IService_getNosGrafoAmigos_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getNosGrafoAmigos_OutputMessageactionName, // http://tempuri.org/IService/getNosGrafoAmigosResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getNosGrafoAmigosResponse, 
+        },    // message description for IService_getNosGrafoAmigos_OutputMessage
+        {    // message description for IService_getNosGrafo_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getNosGrafo_InputMessageactionName, // http://tempuri.org/IService/getNosGrafo
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getNosGrafo, 
+        },    // message description for IService_getNosGrafo_InputMessage
+        {    // message description for IService_getNosGrafo_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getNosGrafo_OutputMessageactionName, // http://tempuri.org/IService/getNosGrafoResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getNosGrafoResponse, 
+        },    // message description for IService_getNosGrafo_OutputMessage
     }, // end of messages 
     { // contracts
         {    // BasicHttpBinding_IService,
@@ -894,6 +1294,150 @@ const static _tempuri_org_wsdlLocalDefinitions tempuri_org_wsdlLocalDefinitions 
                     WS_NON_RPC_LITERAL_OPERATION
                 }, //operation description for BasicHttpBinding_IService_sugereAmigos
             },  // BasicHttpBinding_IService_sugereAmigos
+            { // BasicHttpBinding_IService_grafoAmigosComuns
+                { // parameter descriptions for BasicHttpBinding_IService_grafoAmigosComuns
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)0, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)1, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)-1, (USHORT)0 },
+                },    // parameter descriptions for BasicHttpBinding_IService_grafoAmigosComuns
+                {    // operation description for BasicHttpBinding_IService_grafoAmigosComuns
+                    1,
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_grafoAmigosComuns_InputMessage, 
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_grafoAmigosComuns_OutputMessage, 
+                    0,
+                    0,
+                    3,
+                    (WS_PARAMETER_DESCRIPTION*)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_grafoAmigosComuns.params,
+                    BasicHttpBinding_IService_grafoAmigosComunsOperationStub,
+                    WS_NON_RPC_LITERAL_OPERATION
+                }, //operation description for BasicHttpBinding_IService_grafoAmigosComuns
+            },  // BasicHttpBinding_IService_grafoAmigosComuns
+            { // BasicHttpBinding_IService_getLigacao
+                { // parameter descriptions for BasicHttpBinding_IService_getLigacao
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)0, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)1, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)2, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)-1, (USHORT)0 },
+                },    // parameter descriptions for BasicHttpBinding_IService_getLigacao
+                {    // operation description for BasicHttpBinding_IService_getLigacao
+                    1,
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getLigacao_InputMessage, 
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getLigacao_OutputMessage, 
+                    0,
+                    0,
+                    4,
+                    (WS_PARAMETER_DESCRIPTION*)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getLigacao.params,
+                    BasicHttpBinding_IService_getLigacaoOperationStub,
+                    WS_NON_RPC_LITERAL_OPERATION
+                }, //operation description for BasicHttpBinding_IService_getLigacao
+            },  // BasicHttpBinding_IService_getLigacao
+            { // BasicHttpBinding_IService_getAmigosNivel3
+                { // parameter descriptions for BasicHttpBinding_IService_getAmigosNivel3
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)0, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)-1, (USHORT)0 },
+                },    // parameter descriptions for BasicHttpBinding_IService_getAmigosNivel3
+                {    // operation description for BasicHttpBinding_IService_getAmigosNivel3
+                    1,
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getAmigosNivel3_InputMessage, 
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getAmigosNivel3_OutputMessage, 
+                    0,
+                    0,
+                    2,
+                    (WS_PARAMETER_DESCRIPTION*)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getAmigosNivel3.params,
+                    BasicHttpBinding_IService_getAmigosNivel3OperationStub,
+                    WS_NON_RPC_LITERAL_OPERATION
+                }, //operation description for BasicHttpBinding_IService_getAmigosNivel3
+            },  // BasicHttpBinding_IService_getAmigosNivel3
+            { // BasicHttpBinding_IService_getMavenOfTag
+                { // parameter descriptions for BasicHttpBinding_IService_getMavenOfTag
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)0, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)-1, (USHORT)0 },
+                },    // parameter descriptions for BasicHttpBinding_IService_getMavenOfTag
+                {    // operation description for BasicHttpBinding_IService_getMavenOfTag
+                    1,
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getMavenOfTag_InputMessage, 
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getMavenOfTag_OutputMessage, 
+                    0,
+                    0,
+                    2,
+                    (WS_PARAMETER_DESCRIPTION*)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getMavenOfTag.params,
+                    BasicHttpBinding_IService_getMavenOfTagOperationStub,
+                    WS_NON_RPC_LITERAL_OPERATION
+                }, //operation description for BasicHttpBinding_IService_getMavenOfTag
+            },  // BasicHttpBinding_IService_getMavenOfTag
+            { // BasicHttpBinding_IService_getSeparacao
+                { // parameter descriptions for BasicHttpBinding_IService_getSeparacao
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)0, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)1, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)-1, (USHORT)0 },
+                },    // parameter descriptions for BasicHttpBinding_IService_getSeparacao
+                {    // operation description for BasicHttpBinding_IService_getSeparacao
+                    1,
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getSeparacao_InputMessage, 
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getSeparacao_OutputMessage, 
+                    0,
+                    0,
+                    3,
+                    (WS_PARAMETER_DESCRIPTION*)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getSeparacao.params,
+                    BasicHttpBinding_IService_getSeparacaoOperationStub,
+                    WS_NON_RPC_LITERAL_OPERATION
+                }, //operation description for BasicHttpBinding_IService_getSeparacao
+            },  // BasicHttpBinding_IService_getSeparacao
+            { // BasicHttpBinding_IService_getGrafoNivel3
+                { // parameter descriptions for BasicHttpBinding_IService_getGrafoNivel3
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)0, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_ARRAY_COUNT, (USHORT)-1, (USHORT)0 },
+                    { WS_PARAMETER_TYPE_ARRAY, (USHORT)-1, (USHORT)0 },
+                },    // parameter descriptions for BasicHttpBinding_IService_getGrafoNivel3
+                {    // operation description for BasicHttpBinding_IService_getGrafoNivel3
+                    1,
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getGrafoNivel3_InputMessage, 
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getGrafoNivel3_OutputMessage, 
+                    0,
+                    0,
+                    3,
+                    (WS_PARAMETER_DESCRIPTION*)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getGrafoNivel3.params,
+                    BasicHttpBinding_IService_getGrafoNivel3OperationStub,
+                    WS_NON_RPC_LITERAL_OPERATION
+                }, //operation description for BasicHttpBinding_IService_getGrafoNivel3
+            },  // BasicHttpBinding_IService_getGrafoNivel3
+            { // BasicHttpBinding_IService_getNosGrafoAmigos
+                { // parameter descriptions for BasicHttpBinding_IService_getNosGrafoAmigos
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)0, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)1, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_ARRAY_COUNT, (USHORT)-1, (USHORT)0 },
+                    { WS_PARAMETER_TYPE_ARRAY, (USHORT)-1, (USHORT)0 },
+                },    // parameter descriptions for BasicHttpBinding_IService_getNosGrafoAmigos
+                {    // operation description for BasicHttpBinding_IService_getNosGrafoAmigos
+                    1,
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getNosGrafoAmigos_InputMessage, 
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getNosGrafoAmigos_OutputMessage, 
+                    0,
+                    0,
+                    4,
+                    (WS_PARAMETER_DESCRIPTION*)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getNosGrafoAmigos.params,
+                    BasicHttpBinding_IService_getNosGrafoAmigosOperationStub,
+                    WS_NON_RPC_LITERAL_OPERATION
+                }, //operation description for BasicHttpBinding_IService_getNosGrafoAmigos
+            },  // BasicHttpBinding_IService_getNosGrafoAmigos
+            { // BasicHttpBinding_IService_getNosGrafo
+                { // parameter descriptions for BasicHttpBinding_IService_getNosGrafo
+                    { WS_PARAMETER_TYPE_NORMAL, (USHORT)0, (USHORT)-1 },
+                    { WS_PARAMETER_TYPE_ARRAY_COUNT, (USHORT)-1, (USHORT)0 },
+                    { WS_PARAMETER_TYPE_ARRAY, (USHORT)-1, (USHORT)0 },
+                },    // parameter descriptions for BasicHttpBinding_IService_getNosGrafo
+                {    // operation description for BasicHttpBinding_IService_getNosGrafo
+                    1,
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getNosGrafo_InputMessage, 
+                    (WS_MESSAGE_DESCRIPTION*)&tempuri_org_wsdl.messages.IService_getNosGrafo_OutputMessage, 
+                    0,
+                    0,
+                    3,
+                    (WS_PARAMETER_DESCRIPTION*)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getNosGrafo.params,
+                    BasicHttpBinding_IService_getNosGrafoOperationStub,
+                    WS_NON_RPC_LITERAL_OPERATION
+                }, //operation description for BasicHttpBinding_IService_getNosGrafo
+            },  // BasicHttpBinding_IService_getNosGrafo
             {    // array of operations for BasicHttpBinding_IService
                 (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_Add.BasicHttpBinding_IService_Add,
                 (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_GetAllXY.BasicHttpBinding_IService_GetAllXY,
@@ -908,9 +1452,17 @@ const static _tempuri_org_wsdlLocalDefinitions tempuri_org_wsdlLocalDefinitions 
                 (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_xTagsEmComum.BasicHttpBinding_IService_xTagsEmComum,
                 (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_tamanhoRedeUtilizador.BasicHttpBinding_IService_tamanhoRedeUtilizador,
                 (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_sugereAmigos.BasicHttpBinding_IService_sugereAmigos,
+                (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_grafoAmigosComuns.BasicHttpBinding_IService_grafoAmigosComuns,
+                (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getLigacao.BasicHttpBinding_IService_getLigacao,
+                (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getAmigosNivel3.BasicHttpBinding_IService_getAmigosNivel3,
+                (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getMavenOfTag.BasicHttpBinding_IService_getMavenOfTag,
+                (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getSeparacao.BasicHttpBinding_IService_getSeparacao,
+                (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getGrafoNivel3.BasicHttpBinding_IService_getGrafoNivel3,
+                (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getNosGrafoAmigos.BasicHttpBinding_IService_getNosGrafoAmigos,
+                (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getNosGrafo.BasicHttpBinding_IService_getNosGrafo,
             },    // array of operations for BasicHttpBinding_IService
             {    // contract description for BasicHttpBinding_IService
-            13,
+            21,
             (WS_OPERATION_DESCRIPTION**)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.operations,
             },  // end of contract description for BasicHttpBinding_IService
         },    // BasicHttpBinding_IService
@@ -967,13 +1519,29 @@ const static _tempuri_org_wsdlLocalDefinitions tempuri_org_wsdlLocalDefinitions 
             WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/tamanhoRedeUtilizadorResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 23),
             WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/sugereAmigos",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 24),
             WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/sugereAmigosResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 25),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/grafoAmigosComuns",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 26),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/grafoAmigosComunsResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 27),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getLigacao",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 28),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getLigacaoResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 29),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getAmigosNivel3",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 30),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getAmigosNivel3Response",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 31),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getMavenOfTag",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 32),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getMavenOfTagResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 33),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getSeparacao",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 34),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getSeparacaoResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 35),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getGrafoNivel3",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 36),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getGrafoNivel3Response",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 37),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getNosGrafoAmigos",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 38),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getNosGrafoAmigosResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 39),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getNosGrafo",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 40),
+            WS_XML_STRING_DICTIONARY_VALUE("http://tempuri.org/IService/getNosGrafoResponse",&tempuri_org_wsdlLocalDefinitions.dictionary.dict, 41),
         },  // end of xmlStrings
         
         {   // tempuri_org_wsdldictionary
-        // 22464dd7-63c5-484a-82dd-e65512e89e1c 
-        { 0x22464dd7, 0x63c5, 0x484a, { 0x82, 0xdd, 0xe6,0x55, 0x12, 0xe8, 0x9e, 0x1c } },
+        // d3b5b67e-0e39-4f5c-a5d7-aa9d825de216 
+        { 0xd3b5b67e, 0x0e39, 0x4f5c, { 0xa5, 0xd7, 0xaa,0x9d, 0x82, 0x5d, 0xe2, 0x16 } },
         (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings,
-        26,
+        42,
         TRUE,
         },
     },   //  end of dictionary
@@ -1298,6 +1866,214 @@ HRESULT WINAPI BasicHttpBinding_IService_sugereAmigos(
         _asyncContext,
         _error);
 }
+
+// operation: BasicHttpBinding_IService_grafoAmigosComuns
+HRESULT WINAPI BasicHttpBinding_IService_grafoAmigosComuns(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int user1, 
+    __in int user2, 
+    __out_opt __deref __nullterminated WCHAR** grafoAmigosComunsResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    void* _argList[3]; 
+    _argList[0] = &user1;
+    _argList[1] = &user2;
+    _argList[2] = &grafoAmigosComunsResult;
+    return WsCall(_serviceProxy,
+        (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_grafoAmigosComuns.BasicHttpBinding_IService_grafoAmigosComuns,
+        (const void **)&_argList,
+        _heap,
+        _callProperties,
+        _callPropertyCount,
+        _asyncContext,
+        _error);
+}
+
+// operation: BasicHttpBinding_IService_getLigacao
+HRESULT WINAPI BasicHttpBinding_IService_getLigacao(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int userreg, 
+    __in int user1, 
+    __in int user2, 
+    __deref_out_opt Ligacao** getLigacaoResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    void* _argList[4]; 
+    _argList[0] = &userreg;
+    _argList[1] = &user1;
+    _argList[2] = &user2;
+    _argList[3] = &getLigacaoResult;
+    return WsCall(_serviceProxy,
+        (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getLigacao.BasicHttpBinding_IService_getLigacao,
+        (const void **)&_argList,
+        _heap,
+        _callProperties,
+        _callPropertyCount,
+        _asyncContext,
+        _error);
+}
+
+// operation: BasicHttpBinding_IService_getAmigosNivel3
+HRESULT WINAPI BasicHttpBinding_IService_getAmigosNivel3(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int userID, 
+    __out_opt __deref __nullterminated WCHAR** getAmigosNivel3Result, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    void* _argList[2]; 
+    _argList[0] = &userID;
+    _argList[1] = &getAmigosNivel3Result;
+    return WsCall(_serviceProxy,
+        (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getAmigosNivel3.BasicHttpBinding_IService_getAmigosNivel3,
+        (const void **)&_argList,
+        _heap,
+        _callProperties,
+        _callPropertyCount,
+        _asyncContext,
+        _error);
+}
+
+// operation: BasicHttpBinding_IService_getMavenOfTag
+HRESULT WINAPI BasicHttpBinding_IService_getMavenOfTag(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in_opt __nullterminated WCHAR* tag, 
+    __out_opt __deref __nullterminated WCHAR** getMavenOfTagResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    void* _argList[2]; 
+    _argList[0] = &tag;
+    _argList[1] = &getMavenOfTagResult;
+    return WsCall(_serviceProxy,
+        (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getMavenOfTag.BasicHttpBinding_IService_getMavenOfTag,
+        (const void **)&_argList,
+        _heap,
+        _callProperties,
+        _callPropertyCount,
+        _asyncContext,
+        _error);
+}
+
+// operation: BasicHttpBinding_IService_getSeparacao
+HRESULT WINAPI BasicHttpBinding_IService_getSeparacao(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int no1, 
+    __in int no2, 
+    __out_opt __deref __nullterminated WCHAR** getSeparacaoResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    void* _argList[3]; 
+    _argList[0] = &no1;
+    _argList[1] = &no2;
+    _argList[2] = &getSeparacaoResult;
+    return WsCall(_serviceProxy,
+        (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getSeparacao.BasicHttpBinding_IService_getSeparacao,
+        (const void **)&_argList,
+        _heap,
+        _callProperties,
+        _callPropertyCount,
+        _asyncContext,
+        _error);
+}
+
+// operation: BasicHttpBinding_IService_getGrafoNivel3
+HRESULT WINAPI BasicHttpBinding_IService_getGrafoNivel3(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int userid, 
+    __out unsigned int* getGrafoNivel3ResultCount, 
+    __deref_out_ecount_opt(*getGrafoNivel3ResultCount) NoBD*** getGrafoNivel3Result, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    void* _argList[3]; 
+    _argList[0] = &userid;
+    _argList[1] = &getGrafoNivel3ResultCount;
+    _argList[2] = &getGrafoNivel3Result;
+    return WsCall(_serviceProxy,
+        (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getGrafoNivel3.BasicHttpBinding_IService_getGrafoNivel3,
+        (const void **)&_argList,
+        _heap,
+        _callProperties,
+        _callPropertyCount,
+        _asyncContext,
+        _error);
+}
+
+// operation: BasicHttpBinding_IService_getNosGrafoAmigos
+HRESULT WINAPI BasicHttpBinding_IService_getNosGrafoAmigos(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int user1, 
+    __in int user2, 
+    __out unsigned int* getNosGrafoAmigosResultCount, 
+    __deref_out_ecount_opt(*getNosGrafoAmigosResultCount) NoBD*** getNosGrafoAmigosResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    void* _argList[4]; 
+    _argList[0] = &user1;
+    _argList[1] = &user2;
+    _argList[2] = &getNosGrafoAmigosResultCount;
+    _argList[3] = &getNosGrafoAmigosResult;
+    return WsCall(_serviceProxy,
+        (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getNosGrafoAmigos.BasicHttpBinding_IService_getNosGrafoAmigos,
+        (const void **)&_argList,
+        _heap,
+        _callProperties,
+        _callPropertyCount,
+        _asyncContext,
+        _error);
+}
+
+// operation: BasicHttpBinding_IService_getNosGrafo
+HRESULT WINAPI BasicHttpBinding_IService_getNosGrafo(
+    __in WS_SERVICE_PROXY* _serviceProxy,
+    __in int userid, 
+    __out unsigned int* getNosGrafoResultCount, 
+    __deref_out_ecount_opt(*getNosGrafoResultCount) NoBD*** getNosGrafoResult, 
+    __in WS_HEAP* _heap,
+    __in_ecount_opt(_callPropertyCount) const WS_CALL_PROPERTY* _callProperties,
+    __in const ULONG _callPropertyCount,
+    __in_opt const WS_ASYNC_CONTEXT* _asyncContext,
+    __in_opt WS_ERROR* _error)
+{
+    void* _argList[3]; 
+    _argList[0] = &userid;
+    _argList[1] = &getNosGrafoResultCount;
+    _argList[2] = &getNosGrafoResult;
+    return WsCall(_serviceProxy,
+        (WS_OPERATION_DESCRIPTION*)&tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.BasicHttpBinding_IService_getNosGrafo.BasicHttpBinding_IService_getNosGrafo,
+        (const void **)&_argList,
+        _heap,
+        _callProperties,
+        _callPropertyCount,
+        _asyncContext,
+        _error);
+}
 const _tempuri_org_wsdl tempuri_org_wsdl =
 {
     {// messages
@@ -1405,10 +2181,74 @@ const _tempuri_org_wsdl tempuri_org_wsdl =
             (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_sugereAmigos_OutputMessageactionName, // http://tempuri.org/IService/sugereAmigosResponse
             (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.sugereAmigosResponse, 
         },    // message description for IService_sugereAmigos_OutputMessage
+        {    // message description for IService_grafoAmigosComuns_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_grafoAmigosComuns_InputMessageactionName, // http://tempuri.org/IService/grafoAmigosComuns
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.grafoAmigosComuns, 
+        },    // message description for IService_grafoAmigosComuns_InputMessage
+        {    // message description for IService_grafoAmigosComuns_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_grafoAmigosComuns_OutputMessageactionName, // http://tempuri.org/IService/grafoAmigosComunsResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.grafoAmigosComunsResponse, 
+        },    // message description for IService_grafoAmigosComuns_OutputMessage
+        {    // message description for IService_getLigacao_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getLigacao_InputMessageactionName, // http://tempuri.org/IService/getLigacao
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getLigacao, 
+        },    // message description for IService_getLigacao_InputMessage
+        {    // message description for IService_getLigacao_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getLigacao_OutputMessageactionName, // http://tempuri.org/IService/getLigacaoResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getLigacaoResponse, 
+        },    // message description for IService_getLigacao_OutputMessage
+        {    // message description for IService_getAmigosNivel3_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getAmigosNivel3_InputMessageactionName, // http://tempuri.org/IService/getAmigosNivel3
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getAmigosNivel3, 
+        },    // message description for IService_getAmigosNivel3_InputMessage
+        {    // message description for IService_getAmigosNivel3_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getAmigosNivel3_OutputMessageactionName, // http://tempuri.org/IService/getAmigosNivel3Response
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getAmigosNivel3Response, 
+        },    // message description for IService_getAmigosNivel3_OutputMessage
+        {    // message description for IService_getMavenOfTag_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getMavenOfTag_InputMessageactionName, // http://tempuri.org/IService/getMavenOfTag
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getMavenOfTag, 
+        },    // message description for IService_getMavenOfTag_InputMessage
+        {    // message description for IService_getMavenOfTag_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getMavenOfTag_OutputMessageactionName, // http://tempuri.org/IService/getMavenOfTagResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getMavenOfTagResponse, 
+        },    // message description for IService_getMavenOfTag_OutputMessage
+        {    // message description for IService_getSeparacao_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getSeparacao_InputMessageactionName, // http://tempuri.org/IService/getSeparacao
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getSeparacao, 
+        },    // message description for IService_getSeparacao_InputMessage
+        {    // message description for IService_getSeparacao_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getSeparacao_OutputMessageactionName, // http://tempuri.org/IService/getSeparacaoResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getSeparacaoResponse, 
+        },    // message description for IService_getSeparacao_OutputMessage
+        {    // message description for IService_getGrafoNivel3_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getGrafoNivel3_InputMessageactionName, // http://tempuri.org/IService/getGrafoNivel3
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getGrafoNivel3, 
+        },    // message description for IService_getGrafoNivel3_InputMessage
+        {    // message description for IService_getGrafoNivel3_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getGrafoNivel3_OutputMessageactionName, // http://tempuri.org/IService/getGrafoNivel3Response
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getGrafoNivel3Response, 
+        },    // message description for IService_getGrafoNivel3_OutputMessage
+        {    // message description for IService_getNosGrafoAmigos_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getNosGrafoAmigos_InputMessageactionName, // http://tempuri.org/IService/getNosGrafoAmigos
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getNosGrafoAmigos, 
+        },    // message description for IService_getNosGrafoAmigos_InputMessage
+        {    // message description for IService_getNosGrafoAmigos_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getNosGrafoAmigos_OutputMessageactionName, // http://tempuri.org/IService/getNosGrafoAmigosResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getNosGrafoAmigosResponse, 
+        },    // message description for IService_getNosGrafoAmigos_OutputMessage
+        {    // message description for IService_getNosGrafo_InputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getNosGrafo_InputMessageactionName, // http://tempuri.org/IService/getNosGrafo
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getNosGrafo, 
+        },    // message description for IService_getNosGrafo_InputMessage
+        {    // message description for IService_getNosGrafo_OutputMessage
+            (WS_XML_STRING*)&tempuri_org_wsdlLocalDefinitions.dictionary.xmlStrings.IService_getNosGrafo_OutputMessageactionName, // http://tempuri.org/IService/getNosGrafoResponse
+            (WS_ELEMENT_DESCRIPTION*)&tempuri_org_xsd.globalElements.getNosGrafoResponse, 
+        },    // message description for IService_getNosGrafo_OutputMessage
     }, // messages
     {// contracts
         {   // BasicHttpBinding_IService
-            13,
+            21,
             (WS_OPERATION_DESCRIPTION**)tempuri_org_wsdlLocalDefinitions.contracts.BasicHttpBinding_IService.operations,
         },    // end of BasicHttpBinding_IService
     }, // contracts

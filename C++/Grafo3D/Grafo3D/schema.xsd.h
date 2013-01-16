@@ -46,15 +46,18 @@ extern "C" {
 //     struct ArrayOfArcoBD;
 //     struct ArcoBD;
 //     struct Utilizador;
+//     struct Ligacao;
 //     struct ArrayOfNoBD;
 //     struct NoBD;
 //     struct ArrayOfArcoBD;
 //     struct ArcoBD;
 //     struct Utilizador;
+//     struct Ligacao;
 
 // The following header files must be included in this order before this one
 
 // #include <WebServices.h>
+// #include "schemas.microsoft.com.2003.10.Serialization.Arrays.xsd.h"
 
 ////////////////////////////////////////////////
 // C structure definitions for generated types
@@ -70,9 +73,11 @@ typedef struct ArrayOfNoBD
 // typeDescription: schema_xsd.globalTypes.NoBD
 typedef struct NoBD 
 {
+    WCHAR* avatar3d; // optional
     WCHAR* humor; // optional
     int id;
     WCHAR* nome; // optional
+    int ntag;
     int x;
     int y;
 } NoBD;
@@ -103,6 +108,15 @@ typedef struct Utilizador
     WCHAR* nome; // optional
     int tele;
 } Utilizador;
+
+// typeDescription: schema_xsd.globalTypes.Ligacao
+typedef struct Ligacao 
+{
+    int id1;
+    int id2;
+    unsigned int tagsCount;
+    __field_ecount_opt(tagsCount)WCHAR** tags; // optional
+} Ligacao;
 
 ////////////////////////////////////////////////
 // Global web service descriptions.
@@ -142,6 +156,12 @@ typedef struct _schema_xsd
         // typeDescription: schema_xsd.globalTypes.Utilizador
         WS_STRUCT_DESCRIPTION Utilizador;
         
+        // xml type: Ligacao ("http://schemas.datacontract.org/2004/07/")
+        // c type: Ligacao
+        // WS_TYPE: WS_STRUCT_TYPE
+        // typeDescription: schema_xsd.globalTypes.Ligacao
+        WS_STRUCT_DESCRIPTION Ligacao;
+        
     } globalTypes;
     struct // globalElements
     {
@@ -169,6 +189,11 @@ typedef struct _schema_xsd
         // c type: Utilizador
         // elementDescription: schema_xsd.globalElements.Utilizador
         WS_ELEMENT_DESCRIPTION Utilizador;
+        
+        // xml element: Ligacao ("http://schemas.datacontract.org/2004/07/")
+        // c type: Ligacao
+        // elementDescription: schema_xsd.globalElements.Ligacao
+        WS_ELEMENT_DESCRIPTION Ligacao;
         
     } globalElements;
 } _schema_xsd;

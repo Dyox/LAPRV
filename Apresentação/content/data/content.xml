@@ -1,0 +1,1514 @@
+<zuiprezi>
+  <version>5</version>
+  <zui-table>
+    <settings>
+      <autoplay>
+        <delay>4000</delay>
+      </autoplay>
+      <bounds x="-625130.3055318588" y="-380382.34568276256" width="1250260.611063718" height="760764.6913655251"/>
+      <aspectratio>off</aspectratio>
+      <languages>
+        <language>es</language>
+      </languages>
+    </settings>
+    <object id="5_12096031" type="button" x="-163873.75099923732" y="-75646.28951660487" r="-12.640840189010254" s="207.67027539275668" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>911.340206185567</w>
+        <h>600</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="21_12096031" type="image" x="-168083.37795407118" y="-94378.0509250076" r="-12.64084018901026" s="107.357236826389">
+      <source w="1214" h="674">420835168.jpg<url>420835168.jpg</url>
+      </source>
+      <sourceUrl>imagem default.jpg</sourceUrl>
+    <resource><id>
+        420835168
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/2/2/6/7c969e30ebef443a72565288c7915391fa879.jpg</url></resource></object>
+    <object id="0" type="button" x="118504.20305154548" y="-2.2809149189173624e-11" r="0" s="1270.0579154683223" class="invisible">
+      <type>invisible</type>
+      <size>
+        <w>798.7951807228915</w>
+        <h>600</h>
+      </size>
+      <meta>
+        <parentTemplate>showcase</parentTemplate>
+      </meta>
+    </object>
+    <object id="8_1304803" type="button" x="6845.7941015244205" y="-259642.62104768568" r="-12.640839101945524" s="474.29545135599705" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>370.7148290976123</w>
+        <h>278.03612182320944</h>
+      </size>
+      <meta>
+        <parentTemplate>showcase</parentTemplate>
+      </meta>
+    </object>
+    <object id="11_1304803" type="button" x="385505.84359044314" y="95230.25385197856" r="11.05928368559136" s="474.2954513559978" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>366.3</w>
+        <h>275.18194180898166</h>
+      </size>
+      <meta>
+        <parentTemplate>showcase</parentTemplate>
+      </meta>
+    </object>
+    <object id="31_12011704" type="image" x="53111.93170361589" y="-1262.1690593786445" r="0" s="51.51513109976252">
+      <source w="1343" h="1221">420121508.jpe<url>420121508.jpe</url>
+      </source>
+      <sourceUrl>http://www.google.pt/imgres?um=1&amp;hl=pt-PT&amp;sa=N&amp;tbo=d&amp;rlz=1C1FDUM_enPT483PT483&amp;biw=1440&amp;bih=775&amp;tbm=isch&amp;tbnid=3e627kxJBBIiWM:&amp;imgrefurl=http://dear-cots.di.fc.ul.pt/&amp;docid=-HpnXOlOl-LgiM&amp;imgurl=http://dear-cots.di.fc.ul.pt/images/isep.jpg&amp;w=1343&amp;h=1221&amp;ei=m430UIDLONKShgeN5IDwBQ&amp;zoom=1&amp;iact=hc&amp;vpx=268&amp;vpy=155&amp;dur=6595&amp;hovh=214&amp;hovw=235&amp;tx=173&amp;ty=98&amp;sig=105760855010958612441&amp;page=1&amp;tbnh=143&amp;tbnw=157&amp;start=0&amp;ndsp=26&amp;ved=1t:429,r:1,s:0,i:137</sourceUrl>
+    <resource><id>
+        420121508
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/converted/8/c/1/169c9d4a261b1b6eb3f7ad8ff113f3a8f7bfe.jpe</url></resource></object>
+    <object id="19_12096031" type="image" x="118507.44385770381" y="-128767.42401665683" r="0" s="161.3714296076673">
+      <source w="331" h="288">420826296.jpg<url>420826296.jpg</url>
+      </source>
+      <sourceUrl>coroa.jpg</sourceUrl>
+    <resource><id>
+        420826296
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/a/6/f/ec08bfda5fb5e29ea59f608f3f29d012b8f51.jpg</url></resource></object>
+    <object id="3_677673" type="label" x="53111.93170361589" y="-42939.948484341316" r="0" s="590.2674997578634" class="head">
+      <textfield autoSize="true">
+        <x>-104.25</x>
+        <y>-18.7</y>
+        <text><![CDATA[Social Graph]]></text>
+        <w>208.5</w>
+        <h>37.45</h>
+        <annotations>r0-12 { align: center; }</annotations>
+      </textfield>
+    </object>
+    <object id="4_677673" type="label" x="170214.51259009" y="-21523.754053217563" r="0" s="363.1580037866813" class="strong">
+      <textfield>
+        <x>-142.7</x>
+        <y>-18.7</y>
+        <text><![CDATA[Fábio Barbosa 1100577]]></text>
+        <annotations>r0-21 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="2_12127372" type="image" x="44320.412108715755" y="-240376.82470175886" r="-12.640839101945518" s="190.3412399970654">
+      <source w="458" h="241">421085226.jpg<url>421085226.jpg</url>
+      </source>
+      <sourceUrl>prolog print.jpg</sourceUrl>
+    <resource><id>
+        421085226
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/3/9/b/515d22e3751d55f3957d735ed4b6623d838b5.jpg</url></resource></object>
+    <object id="7_677673" type="label" x="-6144.168133358145" y="-304897.4440429128" r="-12.640839101945533" s="329.9795739495196" class="head">
+      <textfield autoSize="true">
+        <x>-149.8</x>
+        <y>-18.7</y>
+        <text><![CDATA[Inteligência artificial]]></text>
+        <w>299.65</w>
+        <h>37.45</h>
+        <annotations>r0-23 { align: center; }</annotations>
+      </textfield>
+    </object>
+    <object id="8_677673" type="label" x="-32670.82996422215" y="-221360.41662306085" r="-12.640839101945526" s="222.86315856218698" class="strong">
+      <textfield>
+        <x>-95.45</x>
+        <y>-35.45</y>
+        <text><![CDATA[Listar os 
+amigos comuns]]></text>
+        <w>190.95</w>
+        <h>70.9</h>
+        <annotations>r0-11 { align: center; }
+r11-24 { align: center; }</annotations>
+      </textfield>
+    </object>
+    <object id="9_677673" type="label" x="391393.4538548007" y="47737.1427897996" r="11.059283685591362" s="329.97957394951953" class="head">
+      <textfield autoSize="true">
+        <x>-117.3</x>
+        <y>-18.7</y>
+        <text><![CDATA[Demonstração...]]></text>
+        <w>234.6</w>
+        <h>37.45</h>
+        <annotations>r0-15 { align: center; }</annotations>
+      </textfield>
+    </object>
+    <object id="10_677673" type="label" x="383340.8805693739" y="88068.48424161089" r="11.059283685591364" s="268.53863599567484" class="strong">
+      <textfield autoSize="true">
+        <x>-250.5</x>
+        <y>-52.15</y>
+        <text><![CDATA[Demonstração do web site: 
+
+http://wvm022.dei.isep.ipp.pt/lapr5/]]></text>
+        <annotations>r0-27 { align: left; }
+r28-64 { bullet: true; }
+r28-64 { align: left; }
+r28-64 { blockIndent: 36; }</annotations>
+      </textfield>
+    </object>
+    <object id="7_1237878" type="label" x="119237.60673484733" y="314485.71302107885" r="0" s="2153.655331282234" class="strong">
+      <textfield autoSize="true">
+        <x>-54.7</x>
+        <y>-15.35</y>
+        <text><![CDATA[LAPRV]]></text>
+        <w>109.4</w>
+        <h>37.45</h>
+        <annotations>r0-5 { align: center; }</annotations>
+      </textfield>
+    </object>
+    <object id="8_1237878" type="label" x="118700.91544208795" y="202603.96332155913" r="0" s="2153.655331282234" class="head">
+      <textfield autoSize="true">
+        <x>-104.25</x>
+        <y>-18.7</y>
+        <text><![CDATA[ Social Graph]]></text>
+        <w>208.5</w>
+        <h>37.45</h>
+        <annotations>r0-13 { align: center; }</annotations>
+      </textfield>
+    </object>
+    <object id="16_12011704" type="button" x="-163870.77168645433" y="101760.92260922282" r="-12.64084018901026" s="196.2660464970898" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>911.340206185567</w>
+        <h>600</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="15_12011704" type="hotspot" x="-600218.0584070599" y="116778.26785642863" r="6.138267268350451" s="292.56022125464534">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="17_12011704" type="label" x="-169057.65047650493" y="66518.34194775324" r="-12.64084018901026" s="515.528569791609" class="head">
+      <textfield autoSize="true">
+        <x>-147.95</x>
+        <y>-18.7</y>
+        <text><![CDATA[Objectivo do projecto]]></text>
+        <w>295.9</w>
+        <h>37.45</h>
+        <annotations>r0-21 { align: center; }</annotations>
+      </textfield>
+    </object>
+    <object id="18_12011704" type="labelwithplaceholder" x="-163691.59551197477" y="101144.66544134046" r="-12.640840189010262" s="263.0247805059232" class="strong">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+    </object>
+    <object id="21_12011704" type="hotspot" x="-287217.97035679687" y="150439.77990718678" r="6.138267268350451" s="292.56022125464534">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="0_28778678" type="button" x="-110168.52042234893" y="121699.1522707653" r="-12.640840189010255" s="49.16128698967827" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>911.340206185567</w>
+        <h>600</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="0_12096031" type="image" x="-102697.87697768114" y="122808.45905826244" r="-12.640840189010254" s="28.279015899939967">
+      <source w="877" h="744">420790452.jpg<url>420790452.jpg</url>
+      </source>
+      <sourceUrl>grafo.jpg</sourceUrl>
+    <resource><id>
+        420790452
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/6/d/2/8678fbc8d259a457efb918a6e5984eb6f7dbf.jpg</url></resource></object>
+    <object id="2" type="label" x="-112777.85155831902" y="113268.63966455049" r="-12.640840189010262" s="79.71868140345462" class="head">
+      <textfield>
+        <x>-239.75</x>
+        <y>-18.7</y>
+        <text><![CDATA[Aplicação desktop para Visualização 3D]]></text>
+        <annotations>r0-38 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="5" type="label" x="-123368.71871763158" y="123523.7350339611" r="-12.640840189010262" s="39.24168044289411" class="strong">
+      <textfield>
+        <x>-174.45</x>
+        <y>-52.15</y>
+        <text><![CDATA[Permitir a visualização em 3D do grafo da rede social do utilizador.]]></text>
+        <w>348.95</w>
+        <h>104.35</h>
+        <annotations>r0-68 { align: justify; }</annotations>
+      </textfield>
+    </object>
+    <object id="5_21072948" type="hotspot" x="-96719.947304997" y="126693.99305872599" r="-12.64084018901026" s="28.08529543556803">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="1_28778678" type="hotspot" x="-68303.26606756076" y="125237.26902742854" r="-12.640840189010255" s="73.2813303959667">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="26_12011704" type="label" x="163732.11521367202" y="-59153.00051763872" r="0" s="363.1580037866813" class="strong">
+      <textfield autoSize="true">
+        <x>-124.9</x>
+        <y>-18.7</y>
+        <text><![CDATA[Bruno Raro 1100551]]></text>
+        <annotations>r0-18 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="27_12011704" type="label" x="168036.78770373386" y="-40877.1020322123" r="0" s="363.1580037866813" class="strong">
+      <textfield autoSize="true">
+        <x>-136.75</x>
+        <y>-18.7</y>
+        <text><![CDATA[Carlos Rocha 1100559]]></text>
+        <annotations>r0-20 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="28_12011704" type="label" x="174984.9369355779" y="-4557.236300161875" r="0" s="363.1580037866813" class="strong">
+      <textfield autoSize="true">
+        <x>-155.9</x>
+        <y>-18.7</y>
+        <text><![CDATA[Carlos Monteiro 1080626]]></text>
+        <annotations>r0-23 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="29_12011704" type="label" x="171255.0085727492" y="34418.797589782036" r="0" s="363.1580037866813" class="strong">
+      <textfield autoSize="true">
+        <x>-145.55</x>
+        <y>-18.7</y>
+        <text><![CDATA[Rafael Pereira 1080730]]></text>
+        <annotations>r0-22 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="30_12011704" type="label" x="168015.87616906557" y="13654.96938818343" r="0" s="363.1580037866813" class="strong">
+      <textfield autoSize="true">
+        <x>-139.4</x>
+        <y>-18.7</y>
+        <text><![CDATA[Fábio Batista 1080658]]></text>
+        <annotations>r0-21 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="32_12011704" type="label" x="118520.32474468747" y="80780.67953167154" r="0" s="363.1580037866813" class="strong">
+      <textfield>
+        <x>-139.25</x>
+        <y>-35.45</y>
+        <text><![CDATA[LAPRV 
+17 de Janeiro de 2013]]></text>
+        <w>278.5</w>
+        <h>70.9</h>
+        <annotations>r0-7 { align: center; }
+r7-28 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="33_12011704" type="label" x="-165935.21971342244" y="100951.97718833026" r="-12.640840189010262" s="195.43064006389443" class="strong">
+      <textfield>
+        <x>-354.95</x>
+        <y>-68.9</y>
+        <text><![CDATA[Pretende-se o desenvolvimento de um protótipo para um sistema de visualização e manipulação de grafos sociais. O protótipo inicial deve ser constituído pelos seguintes módulos:]]></text>
+        <w>709.95</w>
+        <h>137.8</h>
+        <annotations>r0-176 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="34_12011704" type="hotspot" x="-129372.95877252043" y="137232.7250290546" r="-12.64084018901026" s="18.37586193586883">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="35_12011704" type="button" x="-120465.15730594331" y="132021.634276977" r="-12.640840189010262" s="12.327573986861909" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>911.340206185567</w>
+        <h>600</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="36_12011704" type="label" x="-121086.62559978905" y="129712.13295732194" r="-12.640840189010262" s="21.585029487028553" class="head">
+      <textfield>
+        <x>-186.05</x>
+        <y>-35.45</y>
+        <text><![CDATA[Site web para manipulação de informação de cada utilizador]]></text>
+        <w>372.15</w>
+        <h>70.9</h>
+        <annotations>r0-58 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="37_12011704" type="label" x="-120669.03680056438" y="131658.66829604807" r="-12.640840189010264" s="10.878114203690686" class="strong">
+      <textfield>
+        <x>-434.05</x>
+        <y>-85.6</y>
+        <text><![CDATA[A principal função deste módulo será: 
+o registo de utilizadores;
+permitir ao utilizador construir a sua rede social associando-se a outros utilizadores (indicando tags e força dessa relação); 
+permitir ao utilizador fazer download da aplicação de visualização.]]></text>
+        <w>868.15</w>
+        <h>171.25</h>
+        <annotations>r0-39 { align: justify; }
+r39-66 { bullet: true; }
+r39-66 { align: justify; }
+r39-66 { blockIndent: 36; }
+r66-194 { bullet: true; }
+r66-194 { align: justify; }
+r66-194 { blockIndent: 36; }
+r194-261 { bullet: true; }
+r194-261 { align: justify; }
+r194-261 { blockIndent: 36; }</annotations>
+      </textfield>
+    </object>
+    <object id="38_12011704" type="hotspot" x="-123047.29187722385" y="134609.56785654108" r="-12.640840189010262" s="7.042605648170535">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="40_12011704" type="hotspot" x="-110079.17295466996" y="132905.6109785566" r="-12.64084018901026" s="18.37586193586883">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="42_12011704" type="button" x="-117093.64909004084" y="133273.11703060547" r="-12.640840189010285" s="3.091234784668302" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>911.340206185567</w>
+        <h>600</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="43_12011704" type="label" x="-117219.53181630485" y="132832.40083752314" r="-12.640840189010344" s="4.583354453537236" class="head">
+      <textfield>
+        <x>-267.2</x>
+        <y>-35.45</y>
+        <text><![CDATA[Componente de inteligência artificial para representação e inferência sobre o grafo]]></text>
+        <w>534.45</w>
+        <h>70.9</h>
+        <annotations>r0-83 { align: center; }</annotations>
+      </textfield>
+    </object>
+    <object id="46_12011704" type="hotspot" x="-114489.2829646464" y="133494.7810442769" r="-12.640840189010314" s="4.607889895851263">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="1_12096031" type="label" x="-117113.28090664659" y="133352.5709919092" r="-12.64084018901033" s="3.130492762473353" class="strong">
+      <textfield>
+        <x>-371.7</x>
+        <y>-68.9</y>
+        <text><![CDATA[modelação do grafo e as propriedades de cada um dos nós utilizando factos Prolog;
+
+processar a informação relativa ao grafo.]]></text>
+        <w>743.45</w>
+        <h>137.8</h>
+        <annotations>r0-82 { bullet: true; }
+r0-82 { align: justify; }
+r0-82 { blockIndent: 36; }
+r83-124 { bullet: true; }
+r83-124 { align: justify; }
+r83-124 { blockIndent: 36; }</annotations>
+      </textfield>
+    </object>
+    <object id="4_12096031" type="hotspot" x="-620692.7056864118" y="-18551.735588823023" r="-12.64084018901026" s="309.5597165239628">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="6_12096031" type="label" x="-236092.36914719216" y="-104006.92960805843" r="-53.5005350897392" s="513.0853937704437" class="head">
+      <textfield autoSize="true">
+        <x>-73.8</x>
+        <y>-18.7</y>
+        <text><![CDATA[Web Site]]></text>
+        <w>147.65</w>
+        <h>37.45</h>
+        <annotations>r0-8 { align: center; }</annotations>
+      </textfield>
+    </object>
+    <object id="7_12096031" type="labelwithplaceholder" x="-163979.83287599115" y="-77624.69260148844" r="-12.640840189010262" s="278.3080903583313" class="strong">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="10_12096031" type="hotspot" x="-295669.64612643037" y="-91446.28625065438" r="-12.64084018901026" s="309.5597165239628">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="12_12096031" type="button" x="399484.3226658141" y="-76683.74562816702" r="11.059283685591362" s="211.06835658242514" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>911.340206185567</w>
+        <h>600</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="11_12096031" type="hotspot" x="339730.5037756942" y="-40427.88075690773" r="11.059283685591375" s="314.6250011334704">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="13_12096031" type="label" x="461791.7510877978" y="-114030.98485487787" r="28.761141903546893" s="454.7723051061932" class="head">
+      <textfield autoSize="true">
+        <x>-97.1</x>
+        <y>-18.7</y>
+        <text><![CDATA[Aplicação 3D]]></text>
+        <w>194.2</w>
+        <h>37.45</h>
+        <annotations>r0-12 { align: center; }</annotations>
+      </textfield>
+    </object>
+    <object id="0_12296607" type="image" x="375615.5348409829" y="-78381.51020289885" r="11.059283685591364" s="115.07182775104344">
+      <source w="1040" h="806">422675640.png<url>422675640.png</url>
+      </source>
+      <sourceUrl>login.png</sourceUrl>
+    <resource><id>
+        422675640
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/b/8/3/2cd0dcbd5d36cc26be87fb17d043acbb7d637.png</url></resource></object>
+    <object id="14_12096031" type="labelwithplaceholder" x="404506.3717960663" y="-75352.58788618798" r="11.059283685591364" s="282.8620087512769" class="strong">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="15_12096031" type="hotspot" x="341192.2912287715" y="-53881.42248908903" r="11.059283685591376" s="120.58100010607626">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="1_12133504" type="button" x="228836.7862643849" y="-259642.70060553827" r="11.059283685591362" s="207.4499167168267" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>911.340206185567</w>
+        <h>600</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="17_12096031" type="hotspot" x="154098.02381061122" y="-216612.40333844395" r="17.057549342237483" s="272.7664646517165">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="6_1237878" type="button" x="118508.40090321357" y="-18230.87790005057" r="0" s="381.7354074697761" class="circle">
+      <type>circle</type>
+      <size>
+        <w>800</w>
+        <h>800</h>
+      </size>
+      <meta>
+        <parentTemplate>showcase</parentTemplate>
+      </meta>
+    </object>
+    <object id="20_12096031" type="label" x="118507.53604066164" y="-99257.72335515112" r="0" s="524.0794300301313" class="head">
+      <textfield autoSize="true">
+        <x>-90.9</x>
+        <y>-18.7</y>
+        <text><![CDATA[RoyalSolutions]]></text>
+        <annotations>r0-14 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="22_12096031" type="hotspot" x="-244988.2771091542" y="-10057.441598133324" r="-12.640839101945526" s="77.62449316618398">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="23_12096031" type="button" x="-215911.49164081755" y="-25651.138855868303" r="-12.640840189010259" s="52.07492775241876" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>911.340206185567</w>
+        <h>600</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="28_12096031" type="image" x="-214774.8757700801" y="-23075.915744357895" r="-12.640840189010259" s="34.08909175183724">
+      <source w="1107" h="571">420843476.jpg<url>420843476.jpg</url>
+      </source>
+      <sourceUrl>Registar.jpg</sourceUrl>
+    <resource><id>
+        420843476
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/c/c/7/e07e76e5e2bc9a7e4e388304af1a86c98cb9d.jpg</url></resource></object>
+    <object id="24_12096031" type="label" x="-228826.3240406819" y="-33209.8648536675" r="-12.640840189010264" s="103.5477070562628" class="head">
+      <textfield>
+        <x>-70.85</x>
+        <y>-18.7</y>
+        <text><![CDATA[Log in]]></text>
+        <w>141.75</w>
+        <h>37.45</h>
+        <annotations>r0-6 { align: center; }</annotations>
+      </textfield>
+    </object>
+    <object id="25_12096031" type="labelwithplaceholder" x="-214644.93705917045" y="-25848.4466190636" r="-12.64084018901027" s="69.78790619367197" class="strong">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="4_21072948" type="hotspot" x="-226819.10991102824" y="-14719.024043376345" r="-12.64084018901026" s="29.7498259355906">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="26_12096031" type="hotspot" x="-201665.86227789545" y="-20360.268964229843" r="-12.64084018901026" s="29.7498259355906">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="30_12096031" type="button" x="-97699.01630213698" y="-52165.72303269176" r="-12.640839101945524" s="52.07492775241878" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>911.340206185567</w>
+        <h>600</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="38_12096031" type="image" x="-103241.06120691905" y="-55253.96398584198" r="-12.640839101945526" s="24.786768591167913">
+      <source w="1366" h="768">420847318.jpg<url>420847318.jpg</url>
+      </source>
+      <sourceUrl>add tags.jpg</sourceUrl>
+    <resource><id>
+        420847318
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/6/7/9/7b7ca05bc2bcbb3d7b93c04690ce3eab37def.jpg</url></resource></object>
+    <object id="31_12096031" type="label" x="-84247.59238107722" y="-68414.3717855152" r="3.0691202152704133" s="136.78429613959702" class="head">
+      <textfield autoSize="true">
+        <x>-54.65</x>
+        <y>-18.7</y>
+        <text><![CDATA[Perfil]]></text>
+        <w>109.3</w>
+        <h>37.45</h>
+        <annotations>r0-6 { align: center; }</annotations>
+      </textfield>
+    </object>
+    <object id="32_12096031" type="labelwithplaceholder" x="-96432.46171674613" y="-52363.0307718568" r="-12.640839101945526" s="69.78790619367199" class="strong">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="34_12096031" type="hotspot" x="-83453.38703959761" y="-46874.852870772964" r="-12.640839101945526" s="29.7498259355906">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="35_12096031" type="hotspot" x="-63177.278442608374" y="-50833.10192686968" r="-12.640839101945524" s="77.62449316618405">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="39_12096031" type="image" x="-88202.05690848175" y="-45573.64721229059" r="-12.640839101945526" s="22.849782634568804">
+      <source w="1205" h="455">420847326.jpg<url>420847326.jpg</url>
+      </source>
+      <sourceUrl>Perfil publico.jpg</sourceUrl>
+    <resource><id>
+        420847326
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/4/c/e/c5537741f6c66d32cbc6ca6db771407fd706f.jpg</url></resource></object>
+    <object id="40_12096031" type="hotspot" x="-118047.04510214581" y="-35714.83014760154" r="-12.640839101945494" s="19.464943684238776">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="46_12096031" type="hotspot" x="-97609.77487727575" y="-40298.39877022546" r="-12.640839101945494" s="19.464943684238776">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="62_12096031" type="button" x="-144164.02059061936" y="-31862.703107117803" r="-12.64083807130171" s="9.630016979974794" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>911.340206185567</w>
+        <h>600</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="47_12096031" type="hotspot" x="-146967.94743210956" y="-28728.683700078374" r="-12.640838014880785" s="14.354800212572522">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="48_12096031" type="button" x="-155693.15876753748" y="-39159.076406772765" r="-12.640838014880789" s="51.88066749974766" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>911.340206185567</w>
+        <h>600</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="57_12096031" type="image" x="-166383.8007595223" y="-35555.183668209655" r="-12.640838014880789" s="53.11960676285263">
+      <source w="347" h="346">420856378.jpg<url>420856378.jpg</url>
+      </source>
+      <sourceUrl>lista amigos.jpg</sourceUrl>
+    <resource><id>
+        420856378
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/7/7/0/1fffde289c53cfd05b07c273e86ac9a2452ac.jpg</url></resource></object>
+    <object id="60_12096031" type="image" x="-147031.55586158714" y="-44648.11063410978" r="-12.640838014880794" s="59.824023373294246">
+      <source w="430" h="219">420856938.jpg<url>420856938.jpg</url>
+        <mask x="36" y="0" w="309" h="213"/>
+      </source>
+      <sourceUrl>pedidos pendentes.jpg</sourceUrl>
+    <resource><id>
+        420856938
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/e/0/6/e58cb970ef01633d46a6349ef9ed6067cb2c0.jpg</url></resource></object>
+    <object id="49_12096031" type="label" x="-173298.9975283175" y="-47391.10672897314" r="-32.203050001152135" s="105.34386463663887" class="head">
+      <textfield>
+        <x>-104.3</x>
+        <y>-18.7</y>
+        <text><![CDATA[Amizades]]></text>
+        <w>208.65</w>
+        <h>37.45</h>
+        <annotations>r0-8 { align: center; }</annotations>
+      </textfield>
+    </object>
+    <object id="58_12096031" type="image" x="-145974.40170054755" y="-31320.11421699932" r="-12.640838014880789" s="8.172958389926183">
+      <source w="486" h="406">420856414.jpg<url>420856414.jpg</url>
+      </source>
+      <sourceUrl>Sem Título.jpg</sourceUrl>
+    <resource><id>
+        420856414
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/7/1/4/7b603177735f6b3b90aae276c1fb3f1a3a658.jpg</url></resource></object>
+    <object id="69_12096031" type="image" x="-142031.46004287878" y="-32576.291384115295" r="-12.640838071301705" s="7.952224264278258">
+      <source w="364" h="261">420860776.jpg<url>420860776.jpg</url>
+      </source>
+      <sourceUrl>sugestoes.jpg</sourceUrl>
+    <resource><id>
+        420860776
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/f/4/3/6a991c7d61edd65e81a7f55f6e80dd7bd9626.jpg</url></resource></object>
+    <object id="50_12096031" type="labelwithplaceholder" x="-144561.77140723215" y="-27577.056253766787" r="-12.640838014880753" s="45.66136124374432" class="strong">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="51_12096031" type="hotspot" x="-140921.48404198868" y="-30728.822153986002" r="-12.640838014880751" s="5.50152136581358">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="52_12096031" type="hotspot" x="-131275.47265689686" y="-30025.76022935248" r="-12.640838014880789" s="19.464942037574556">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="53_12096031" type="hotspot" x="-115985.78758350802" y="-30125.8825353489" r="-12.640838014880789" s="50.78874288028262">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="61_12096031" type="hotspot" x="-184011.1141132526" y="-14851.87722708392" r="-12.640838071301724" s="50.78874310328155">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="63_12096031" type="label" x="-142050.726281077" y="-34343.254320879016" r="8.216813417346266" s="21.097804412299237" class="head">
+      <textfield autoSize="true">
+        <x>-76.7</x>
+        <y>-18.7</y>
+        <text><![CDATA[Amizades]]></text>
+        <w>153.4</w>
+        <h>37.45</h>
+        <annotations>r0-8 { align: center; }</annotations>
+      </textfield>
+    </object>
+    <object id="64_12096031" type="labelwithplaceholder" x="-143699.89720350577" y="-31950.62855806315" r="-12.640838071301708" s="12.905610255229455" class="strong">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="65_12096031" type="hotspot" x="-146181.12474376845" y="-29841.06905148463" r="-12.64083807130171" s="5.501521389969189">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="67_12096031" type="hotspot" x="-130685.33582131383" y="-26811.514736224603" r="-12.640838071301724" s="50.78874310328155">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="70_12096031" type="image" x="-141409.96254080968" y="-30580.899077709444" r="-12.640838071301701" s="2.0701649112257274">
+      <source w="686" h="560">420860780.jpg<url>420860780.jpg</url>
+        <mask x="111" y="0" w="531" h="560"/>
+      </source>
+      <sourceUrl>adicionar amigos.jpg</sourceUrl>
+    <resource><id>
+        420860780
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/2/c/7/a7d0c1fb9a53a000cb1f1287cbd7ee88ebdba.jpg</url></resource></object>
+    <object id="71_12096031" type="hotspot" x="-143274.70104200442" y="-29864.192367597734" r="-12.64083807130165" s="3.5995774988812577">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="72_12096031" type="button" x="-141582.25248909902" y="-30576.38211277302" r="-12.640838071301655" s="2.4148014440773533" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>911.340206185567</w>
+        <h>600</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="73_12096031" type="label" x="-142233.98600135488" y="-30901.23485636416" r="-32.41821274110293" s="5.939671958090923" class="head">
+      <textfield autoSize="true">
+        <x>-76.7</x>
+        <y>-18.7</y>
+        <text><![CDATA[Amizades]]></text>
+        <w>153.4</w>
+        <h>37.45</h>
+        <annotations>r0-8 { align: center; }</annotations>
+      </textfield>
+    </object>
+    <object id="74_12096031" type="labelwithplaceholder" x="-141523.5202357406" y="-30585.53160138515" r="-12.640838071301651" s="3.2361818619668914" class="strong">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="75_12096031" type="hotspot" x="-142088.05699930995" y="-30069.44169438226" r="-12.64083807130165" s="1.379549156013514">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="76_12096031" type="hotspot" x="-140921.65885277765" y="-30331.0356076954" r="-12.64083807130165" s="1.379549156013514">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="77_12096031" type="hotspot" x="-139495.31490402395" y="-30711.814093245386" r="-12.64083807130165" s="3.5995774988812577">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="3_12127372" type="image" x="-26614.41549879044" y="-269594.8419136615" r="-12.640839101945526" s="177.88082102934726">
+      <source w="547" h="211">421085232.jpg<url>421085232.jpg</url>
+      </source>
+      <sourceUrl>prolog print1.jpg</sourceUrl>
+    <resource><id>
+        421085232
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/2/c/c/ee9a48b87be2b2da062fd5c0c0c25a86e8fcb.jpg</url></resource></object>
+    <object id="0_12133504" type="hotspot" x="114457.69301764494" y="-205170.09874183973" r="-12.640840189010285" s="356.6856370366707">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="8_12133504" type="image" x="227648.91665573415" y="-253607.52544995968" r="11.059283685591387" s="127.32720963549406">
+      <source w="1366" h="702">421215302.jpg<url>421215302.jpg</url>
+      </source>
+      <sourceUrl>nagios.jpg</sourceUrl>
+    <resource><id>
+        421215302
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/c/5/8/e5e060e3fcd6a688f6f884a89b91f29b2f909.jpg</url></resource></object>
+    <object id="2_12133504" type="label" x="173389.72129024466" y="-321871.12496478314" r="11.059283685591364" s="411.33104398229204" class="head">
+      <textfield autoSize="true">
+        <x>-60.3</x>
+        <y>-18.7</y>
+        <text><![CDATA[Nagios]]></text>
+        <w>120.65</w>
+        <h>37.45</h>
+        <annotations>r0-6 { align: center; }</annotations>
+      </textfield>
+    </object>
+    <object id="3_12133504" type="labelwithplaceholder" x="233772.7401453343" y="-258334.3635000533" r="11.059283685591376" s="278.01277798309644" class="strong">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="4_12133504" type="hotspot" x="171544.08136692268" y="-237231.28795825876" r="11.059283685591364" s="118.51382573241725">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="5_12133504" type="hotspot" x="272328.6815388297" y="-217532.5029020304" r="11.059283685591364" s="118.51382573241725">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="6_12133504" type="hotspot" x="549579.0501851087" y="-309036.5986890168" r="-12.640840189010285" s="356.68563703667047">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="1_12296607" type="hotspot" x="399744.30396656506" y="-28731.139866783844" r="11.059283042082356" s="78.89465459947444">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="2_12296607" type="button" x="455003.4457662591" y="-32383.06955526884" r="11.059283042082352" s="52.92702432882931" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>911.340206185567</w>
+        <h>600</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="9_12296607" type="image" x="441051.15259336197" y="-25696.788604288355" r="11.05928304208235" s="43.942594661912466">
+      <source w="548" h="275">422677498.png<url>422677498.png</url>
+        <mask x="16" y="0" w="454" h="230"/>
+      </source>
+      <sourceUrl>teclas.png</sourceUrl>
+    <resource><id>
+        422677498
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/3/7/7/61153a4a899c1183beab77f49cd1ec3db3286.png</url></resource></object>
+    <object id="10_12296607" type="image" x="463540.2481382025" y="-33756.71509451838" r="11.059283042082352" s="27.47536836093423">
+      <source w="1041" h="807">422677520.png<url>422677520.png</url>
+      </source>
+      <sourceUrl>grafo.png</sourceUrl>
+    <resource><id>
+        422677520
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/0/5/2/917e986fac7aa4e822e0171d76fbe36e16a2c.png</url></resource></object>
+    <object id="3_12296607" type="labelwithplaceholder" x="457535.9207901834" y="-41648.94835249105" r="11.05928304208234" s="139.02248321882658" class="head">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="4_12296607" type="labelwithplaceholder" x="456272.3899661147" y="-32098.51777166122" r="11.059283042082356" s="70.9298383769522" class="strong">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="6_12296607" type="hotspot" x="466099.6016999905" y="-21639.42854656084" r="11.059283042082349" s="30.236619214479948">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="7_12296607" type="hotspot" x="483061.15282545116" y="-12446.503161167302" r="11.059283042082356" s="78.89465459947444">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="11_12296607" type="hotspot" x="429352.5127518917" y="-25378.944603843607" r="11.059282181469799" s="19.783444994128974">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="12_12296607" type="button" x="441515.8908435957" y="-38061.8516642027" r="11.0592821814698" s="13.271860810191" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>911.340206185567</w>
+        <h>600</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="18_12296607" type="image" x="440395.43677213695" y="-38280.61326757259" r="11.059282181469795" s="8.346267978354392">
+      <source w="1037" h="807">422679798.png<url>422679798.png</url>
+      </source>
+      <sourceUrl>noSeleccionado.png</sourceUrl>
+    <resource><id>
+        422679798
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/5/c/f/515bc80864c1c74a977791d886a039019a341.png</url></resource></object>
+    <object id="13_12296607" type="labelwithplaceholder" x="442150.9285129505" y="-40385.34246583272" r="11.059282181469795" s="34.860963187805055" class="head">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="14_12296607" type="labelwithplaceholder" x="441831.67450051935" y="-37978.14921441693" r="11.059282181469792" s="17.786205708063804" class="strong">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="15_12296607" type="hotspot" x="437850.5203818278" y="-36628.05417764174" r="11.059282181469792" s="7.582066187815875">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="17_12296607" type="hotspot" x="450244.8572293592" y="-21295.446280766566" r="11.059282181469799" s="19.783444994128974">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="19_12296607" type="hotspot" x="441530.12067922385" y="-35045.748620270264" r="11.059281534053929" s="4.960851977535251">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="20_12296607" type="button" x="445526.5115277251" y="-35214.483088757705" r="11.059281534053923" s="2.8451710475536602" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>736.1371025669775</w>
+        <h>488.5735603857563</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="26_12296607" type="image" x="445777.6599193079" y="-35223.425970053024" r="11.059281534053929" s="1.3500243986475855">
+      <source w="1041" h="807">422681576.png<url>422681576.png</url>
+      </source>
+      <sourceUrl>tooltip_avatar3d_billboard.png</sourceUrl>
+    <resource><id>
+        422681576
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/6/f/4/6cdba5bf82ac5eac8d7a6e4e1d8da571785cb.png</url></resource></object>
+    <object id="21_12296607" type="labelwithplaceholder" x="445741.62401979504" y="-35589.02083683238" r="11.059281534053916" s="7.473360711831454" class="head">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="22_12296607" type="labelwithplaceholder" x="445673.1835645646" y="-35072.975901385296" r="11.059281534053916" s="3.812939138689509" class="strong">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="24_12296607" type="hotspot" x="446201.977474244" y="-34513.37930005748" r="11.059281534053916" s="1.6254145147185906">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="25_12296607" type="hotspot" x="446769.0377978577" y="-34021.77986426326" r="11.059281534053929" s="4.960851977535251">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="27_12296607" type="hotspot" x="444226.31966734584" y="-34714.746240506975" r="11.059280629880325" s="1.0634885564226704">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="28_12296607" type="button" x="444720.81075572193" y="-34931.19910081358" r="11.059280629880327" s="0.7134486485170461" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>607.2795316727062</w>
+        <h>455.45964875452864</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="29_12296607" type="labelwithplaceholder" x="444871.2903694627" y="-35085.89893395101" r="11.059280629880325" s="1.8740030074188283" class="head">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="30_12296607" type="labelwithplaceholder" x="444854.1283979462" y="-34956.49667433784" r="11.05928062988033" s="0.9561239833769526" class="strong">
+      <placeholder text="Click to add text" x="-104.3" y="-18.7" align="center" width="208.65"/>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="31_12296607" type="hotspot" x="444640.11552966374" y="-34883.92029864723" r="11.059280629880327" s="0.40758526268677625">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="32_12296607" type="hotspot" x="444986.7275634091" y="-34816.17349998186" r="11.059280629880327" s="0.40758526268677625">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="33_12296607" type="hotspot" x="445349.4187733319" y="-34495.23173550745" r="11.059280629880325" s="1.0634885564226704">
+      <size>
+        <w>400</w>
+        <h>300</h>
+      </size>
+      <meta>
+        <parentObjlib>bracket</parentObjlib>
+      </meta>
+    </object>
+    <object id="34_12296607" type="image" x="444719.59082011116" y="-34924.95262257179" r="11.059280629880325" s="0.3225726389460883">
+      <source w="1041" h="808">422682908.png<url>422682908.png</url>
+      </source>
+      <sourceUrl>arcoSeleccionado.png</sourceUrl>
+    <resource><id>
+        422682908
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/1/6/1/b30ca92bdcd273ce81493b176e4b7ab440301.png</url></resource></object>
+  </zui-table>
+  <path>
+    <s>
+      <eagle o="0"/>
+    </s>
+    <s>
+      <eagle o="6_1237878"/>
+    </s>
+    <s>
+      <eagle o="16_12011704"/>
+    </s>
+    <s>
+      <eagle o="0_28778678"/>
+    </s>
+    <s>
+      <eagle o="35_12011704"/>
+    </s>
+    <s>
+      <eagle o="42_12011704"/>
+    </s>
+    <s>
+      <eagle o="5_12096031"/>
+    </s>
+    <s>
+      <eagle o="23_12096031"/>
+    </s>
+    <s>
+      <eagle o="5_12096031"/>
+    </s>
+    <s>
+      <eagle o="48_12096031"/>
+    </s>
+    <s>
+      <eagle o="62_12096031"/>
+    </s>
+    <s>
+      <eagle o="72_12096031"/>
+    </s>
+    <s>
+      <eagle o="5_12096031"/>
+    </s>
+    <s>
+      <eagle o="30_12096031"/>
+    </s>
+    <s>
+      <eagle o="8_1304803"/>
+    </s>
+    <s>
+      <eagle o="1_12133504"/>
+    </s>
+    <s>
+      <eagle o="12_12096031"/>
+    </s>
+    <s>
+      <eagle o="2_12296607"/>
+    </s>
+    <s>
+      <eagle o="12_12296607"/>
+    </s>
+    <s>
+      <eagle o="20_12296607"/>
+    </s>
+    <s>
+      <eagle o="28_12296607"/>
+    </s>
+    <s>
+      <eagle o="11_1304803"/>
+    </s>
+  </path>
+  <style type="text/css"><![CDATA[
+@font-face
+{
+	src: url('migmix-2p-bold.swf');
+	fontFamily: strong;
+}
+
+@font-face
+{
+	src: url('migmix-2p-regular.swf');
+	fontFamily: body;
+}
+
+@font-face
+{
+	src: url('migmix-2p-bold.swf');
+	fontFamily: head;
+}
+
+Background
+{
+	gradEnd: #fff;
+	gradStart: #fff;
+}
+
+ZLabel
+{
+	padding: 1.2;
+}
+
+ZLabel.head
+{
+	fontFamily: head;
+	color: #004f75;
+}
+
+.line5
+{
+	gradStartColor: #333;
+	gradEndColor: #333;
+	color: #333;
+}
+
+.poly5
+{
+	gradStartColor: #fff;
+	borderThickness: 9;
+	gradEndColor: #fff;
+	borderColor: #333;
+	color: #fff;
+}
+
+ZLabel.strong
+{
+	fontFamily: strong;
+	color: #318bff;
+}
+
+.line1
+{
+	gradStartColor: #3fc0ff;
+	gradEndColor: #3fc0ff;
+	color: #3fc0ff;
+}
+
+.poly1
+{
+	gradStartColor: #fff;
+	borderThickness: 9;
+	gradEndColor: #fff;
+	borderColor: #3fc0ff;
+	color: #fff;
+}
+
+ZLabel.body
+{
+	fontFamily: body;
+	color: #333;
+}
+
+ZFrame.circle
+{
+	gradStartColor: #004f75;
+	borderThickness: 0;
+	gradEndColor: #004f75;
+	borderColor: #004f75;
+	thickness: 10;
+}
+
+.line4
+{
+	gradStartColor: #ffbe00;
+	gradEndColor: #ffbe00;
+	color: #ffbe00;
+}
+
+.poly4
+{
+	gradStartColor: #004f75;
+	borderThickness: 0;
+	gradEndColor: #004f75;
+	borderColor: #004f75;
+	color: #fff;
+}
+
+ZFrame.bracket
+{
+	gradStartColor: #b2b2b2;
+	borderThickness: 0;
+	gradEndColor: #b2b2b2;
+	borderColor: #b2b2b2;
+	thickness: 10;
+}
+
+.line2
+{
+	gradStartColor: #f00;
+	gradEndColor: #f00;
+	borderColor: #fff;
+	color: #f00;
+}
+
+.poly2
+{
+	gradStartColor: #3fc0ff;
+	borderThickness: 0;
+	gradEndColor: #3fc0ff;
+	borderColor: #3fc0ff;
+	color: #fff;
+}
+
+ZFrame.roundrect
+{
+	gradStartColor: #3fc0ff;
+	borderThickness: 0;
+	gradEndColor: #3fc0ff;
+	borderColor: #3fc0ff;
+}
+
+ZArrow
+{
+	gradStartColor: #333;
+	borderThickness: 0;
+	gradEndColor: #333;
+	lockTintAlpha: 0;
+	borderColor: #fff;
+}
+
+.line3
+{
+	gradStartColor: #004f75;
+	gradEndColor: #004f75;
+	color: #004f75;
+}
+
+.poly3
+{
+	gradStartColor: #fff;
+	borderThickness: 9;
+	gradEndColor: #fff;
+	borderColor: #004f75;
+	color: #fff;
+}
+
+ZLine
+{
+	lockTintAlpha: 0;
+	color: #333;
+}
+
+ZCircle
+{
+	gradStartAlpha: 1;
+	gradEndAlpha: 1;
+	borderAlpha: 1;
+	radius: 0;
+	lockTintAlpha: 0;
+	thickness: 100;
+}
+
+ZPoly
+{
+	gradStartAlpha: 1;
+	gradEndAlpha: 1;
+	borderAlpha: 1;
+	radius: 0;
+	lockTintAlpha: 0;
+	thickness: 100;
+}
+
+ZCurveLine
+{
+	color: #333;
+}
+
+ZMarker
+{
+	alpha: 0.3;
+	color: #00e1ff;
+}
+
+Grid
+{
+	color: #b8b8b8;
+}
+
+ZPath
+{
+	alpha: 1;
+	textColor: #fff;
+	color: #40abe6;
+	thickness: 3;
+}
+
+ZPath Ball.mid
+{
+	alpha: .5;
+	radius: 8;
+	fillColor: #40abe6;
+}
+
+ZPath Ball.base
+{
+	alpha: 1;
+	radius: 12;
+	fillColor: #40abe6;
+}
+
+]]></style>
+  <hash>-133c510d</hash>
+<sync><oid>dpj8kscbzpxq</oid><hash>-133c510d</hash></sync><config>GRkf3lQib3EGZij+4hlD1olnTDXoZdNiM5t2iJ0rCyuTo5IamlQdAf6UGZFPaARyg9+QQEprvJIg7TLFa/SppW2rpXkDFvFpH5FMTPaRMnWIsIaqqNGFZ9c87e7il7sF03I5cszwaUgklmIgupTO6Q17BhReOU3KQenxtFfYjOJhjQ+t//p2gZw3kCVmsemFygRhdWaEy7J/cxKVV3l+ZWdyUUyIXohOBIHKeWJCYBbSqkMdjl8sdlpxYFBMpCjgSQIwdr+9Tx7JV1NuB45z0NmVgtqbLn9Mf51/CR3PuebqXdlk0UuSVUd8qppnsXvr/RhsL86EoZrtcLa4N07T4g==</config></zuiprezi>

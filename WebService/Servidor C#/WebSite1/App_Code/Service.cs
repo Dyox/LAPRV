@@ -22,7 +22,6 @@ public class Service : IService
         return x + y;
     }
 
-
     public IList<NoBD> GetAllXY()
     {
         IList<NoBD> ret = new List<NoBD>();
@@ -105,14 +104,14 @@ public class Service : IService
     public string getMenorCaminho(int no1, int no2)
     {
         PrologExec p = new PrologExec(no1 + "_" + no2, "menorCaminho");
-        string res = p.executaComandoProlog(no1 + "," + no2);
+        string res = p.executaComandoProlog(no1 + "," + no2 + ",P");
         return res;
     }
 
     public string getCaminhoForte(int no1, int no2)
     {
         PrologExec p = new PrologExec(no1 + "_" + no2, "caminhoMaisForte");
-        string res = p.executaComandoProlog(no1 + "," + no2);
+        string res = p.executaComandoProlog(no1 + "," + no2 + ",P");
         return res;
     }
 
@@ -159,7 +158,6 @@ public class Service : IService
         string res = p.executaComandoProlog(id + "");
         return res;
     }
-
     public string grafoAmigosComuns(int user1, int user2)
     {
         PrologExec p = new PrologExec(user1 + "_" + user2, "grafoAmigosComuns");
@@ -197,16 +195,15 @@ public class Service : IService
         string res = p.executaComandoProlog(no1 + "," + no2);
         return res;
     }
-
     public IList<NoBD> getGrafoNivel3(int userid)
     {
         string ids = getAmigosNivel3(userid);
         ids = ids.Replace("[", "");
         ids = ids.Replace("]", "");
         string[] str = ids.Split(',');
-        
+
         IList<NoBD> ret = new List<NoBD>();
-        ret.Add(new NoBD((str.Count()+1), 0, 0, "", "", "", 0));
+        ret.Add(new NoBD((str.Count() + 1), 0, 0, "", "", "", 0));
 
         Rede.Perfil perf = Rede.Perfil.LoadById(userid);
         string avatar3d = Rede.Perfil.getAvatar3DByID(userid);
@@ -238,7 +235,7 @@ public class Service : IService
     public IList<NoBD> getNosGrafoAmigos(int user1, int user2)
     {
         string ids = grafoAmigosComuns(user1, user2);
-        
+
         ids = ids.Replace("[", "");
         ids = ids.Replace("]", "");
         string[] str = ids.Split(',');
@@ -258,10 +255,10 @@ public class Service : IService
         noi = new NoBD(user2, perf.X, perf.Y, Rede.Perfil.getHumorByPrefilID(user2), perf.Name, avatar3d, numtags);
         ret.Add(noi);
 
-        
+
         if (ids != "")
         {
-            
+
             for (int i = 0; i < str.Count(); i++)
             {
                 int id = Convert.ToInt32(str[i]);
@@ -293,7 +290,8 @@ public class Service : IService
 
 
     }
-
 }
+
+     
 
    

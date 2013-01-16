@@ -239,8 +239,12 @@ namespace Prolog
                     removeFiles();
                     return resultado;
                 }
+                else
+                {
+                    return "erro exec";
+                }
             }
-            return "erro";
+            return "erro pl";
         }
 
         private static bool IsFileLocked(string path)

@@ -429,5 +429,14 @@ namespace Rede
                 return (string)ds.Tables[0].Rows[0]["Avatar3D"]; 
             
         }
+        public static Boolean verificaPremium(int profid)
+        {
+            DataSet ds = ExecuteQuery(GetConnection(false), "SELECT Premium FROM TProfile WHERE ProfileID=" + profid);
+            if (ds.Tables[0].Rows.Count != 1)
+                return false;
+            else
+                return (Boolean)ds.Tables[0].Rows[0]["Premium"];
+
+        }
     }
 }

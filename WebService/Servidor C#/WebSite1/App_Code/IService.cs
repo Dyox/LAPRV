@@ -51,6 +51,8 @@ using System.Collections;
         IList<NoBD> getGrafoNivel3(int userid);
         [OperationContract]
         IList<NoBD> getNosGrafoAmigos(int user1, int user2);
+        [OperationContract]
+        IList<NoBD> getNosGrafo(int userid);
 
         [OperationContract]
         void DoWork();

@@ -105,14 +105,14 @@ public class Service : IService
     public string getMenorCaminho(int no1, int no2)
     {
         PrologExec p = new PrologExec(no1 + "_" + no2, "menorCaminho");
-        string res = p.executaComandoProlog(no1 + "," + no2 + ",P");
+        string res = p.executaComandoProlog(no1 + "," + no2);
         return res;
     }
 
     public string getCaminhoForte(int no1, int no2)
     {
         PrologExec p = new PrologExec(no1 + "_" + no2, "caminhoMaisForte");
-        string res = p.executaComandoProlog(no1 + "," + no2 + ",P");
+        string res = p.executaComandoProlog(no1 + "," + no2);
         return res;
     }
 

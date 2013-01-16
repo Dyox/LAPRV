@@ -20,6 +20,23 @@ using System.Data;
             Cloud_taguser();
             Cloud_tagrelacao();
             ContarAmizades();
+            Service a = new Service();
+            string tag = txt_maven.Text;
+            string res = a.getMavenOfTag(tag);
+            string resultado = "";
+            try
+            {
+               int userID = Convert.ToInt32(res);
+                Rede.Perfil prefil = Rede.Perfil.LoadById(userID);
+                lb_resultado_maven.Text = prefil.Name;
+               
+            }
+            catch (FormatException ex)
+            {
+                //Console.WriteLine("Input string is not a sequence of digits.");
+                 lb_resultado_maven.Text = res;
+            }
+
         }
 
         protected void Cloud_tagrelacao()
